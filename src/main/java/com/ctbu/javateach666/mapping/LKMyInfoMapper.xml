@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.LKMyInfoDao">
+  <select id="initStuInfo" resultType="com.ctbu.javateach666.pojo.po.LKStudentInfoPO">
+    SELECT s.* 
+    FROM account a, studentinfo s 
+    WHERE a.`userdetailid` = s.`id` AND a.`username` = #{username}
+  </select>
+  
+  <select id="getStuInfoByStuno" resultType="com.ctbu.javateach666.pojo.po.LKStudentInfoPO">
+    SELECT * 
+    FROM studentinfo
+    WHERE stuno = #{stuno}
+  </select>
+  
+  <update id="updateStuInfoStuPhone" parameterType="com.ctbu.javateach666.pojo.po.LKStudentInfoPO">
+  	update studentinfo
+  	set stuphone = #{stuphone}
+  	where stuno = #{stuno}
+  </update>
+  
+  <update id="updateStuInofStuImage" parameterType="com.ctbu.javateach666.pojo.po.LKStudentInfoPO">
+  	update studentinfo
+  	set stuimage= #{stuimage}
+  	where stuno = #{stuno}
+  </update>
+  
+  <select id="getMyClassInfoByPage" resultType="com.ctbu.javateach666.pojo.bo.LKMyClassInfoListRspBO" parameterType="com.ctbu.javateach666.pojo.bo.LKMyClassInfoListRepBO">
+  	select s.stuno,s.stuname,c.claname,c.college,c.major,c.classyear
+  	from studentinfo s , class c
+  	where 1=1
+  	<if test="stuno != null and stuno != '' ">
+  		and s.stuno = #{stuno}
+  	</if>
+  	<if test="stuname != null and stuname != '' ">
+  		and s.stuname like #{stuname}
+  	</if>
+  	and s.classid = c.id
+  	limit #{page}, #{rows}
+  </select>
+  
+  <select id="getTotalByQuestion" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.LKMyClassInfoListRepBO">
+  	select count(*)
+  	from studentinfo s , class c
+  	where 1=1
+  	<if test="stuno != null and stuno != '' ">
+  		and s.stuno = #{stuno}
+  	</if>
+  	<if test="stuname != null and stuname != '' ">
+  		and s.stuname like #{stuname}
+  	</if>
+  	and s.classid = c.id
+  </select>
+  
+  <select id="getMyClassInfoBySearch" parameterType="com.ctbu.javateach666.pojo.bo.LKMyClassInfoListRepBO" resultType="com.ctbu.javateach666.pojo.bo.LKMyClassInfoListRspBO">
+  	select s.stuno,s.stuname,c.claname,c.college,c.major,c.classyear
+  	from studentinfo s , class c
+  	where 1=1
+  	<if test="stuno != null and stuno != '' ">
+  		and s.stuno = #{stuno}
+  	</if>
+  	<if test="stuname != null and stuname != '' ">
+  		and s.stuname like #{stuname}
+  	</if>
+  	and s.classid = c.id
+  </select>
+  
+</mapper>

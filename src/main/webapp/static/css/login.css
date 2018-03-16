@@ -1,0 +1,21 @@
+*{padding: 0;margin: 0;}
+body{font-size: 12px;color: #11449E;background: url(../img/login/login_bg.jpg) repeat-x left top !important;}
+ul li{list-style: none;float: left;margin-left: 25px;}
+.main{width: 891px;margin: 0 auto;}
+.main .top_logo{width: 891px;min-height: 90px;margin-top: 22px;}
+.main .top_logo h2{margin-top: 20px;float: left;}
+.main .top_logo h3{}
+.main .left_img{float: left;height: 340px;width: 426px;background: url(../img/login/login_left.jpg) no-repeat;}
+.main .left_img .login_pic{margin: 29px 0 0 0;}
+.main .right_form{float: left;height: 340px;width: 462px;background: url(../img/login/login_right.jpg) no-repeat;text-align: left;}
+.main .right_form dl{margin: 0 0 0 105px;min-height: 20px;width: 285px;}
+.main .right_form dt{float: left;margin: 7px 0;height: 20px;line-height: 20px;}
+.main .right_form dd{float: left;margin: 7px 0;height: 20px;line-height: 20px;}
+.main .right_form .username{background: url(../img/login/login_ico2.gif) no-repeat left 0;text-indent: 1.5em;}
+.main .right_form .password{background: url(../img/login/login_ico2.gif) no-repeat left -28px;text-indent: 1.5em;}
+.main .right_form .verification{background: url(../img/login/login_ico2.gif) no-repeat left -88px;text-indent: 1.5em}
+.main .right_form .verification_text{width: 80px;height: 18px;padding: 1px 2px;line-height: 18px;color: #000;font-size: 14px;}
+.main .right_form .verification_img{position: absolute;top: 5px;left: 167px;cursor: pointer;}
+.main .right_form .btn_d1{background: url(../img/login/login_in.gif) no-repeat;height: 20px;width: 58px;margin: 0 4px;cursor: pointer;outline-width: 0;border-width: 0 !important;}
+.main .right_form .btn_d2{background: url(../img/login/login_res.gif) no-repeat;height: 20px;width: 58px;margin: 0 4px;cursor: pointer;outline-width: 0;border-width: 0 !important;}
+.main .footer{margin-left: 20%;}

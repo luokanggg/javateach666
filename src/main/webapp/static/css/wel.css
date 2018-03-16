@@ -1,0 +1,12 @@
+.welbody{border: 5px solid #678FDD;margin: 3px 0px;}
+.main_box {background: #fff;width: 100%;margin: 1px auto;font-size: 12px;}
+.main_box .formbox {display: block;width: 98%;margin: 0 auto;}
+.main_box .mid_box {width: 100%;text-align: center;}
+.main_box .mid_box .title p{background: url(images/con_topright.gif) no-repeat right top;}
+.main_box .movebox {width: 100%;text-align: left;margin-bottom:10px;}
+.main_box .movebox h2 {background: url(../img/mainpage/icon/movebox_title.gif) no-repeat right top;border-bottom: 1px solid #BED0E8;clear: both;float:left;cursor: pointer;text-align:left;width: 100%;margin:0px;padding: 0px;}
+.main_box .movebox .titilebox {background:url(../img/mainpage/icon/movebox_title.gif) no-repeat left top;padding-right:2em;float: left;color:#11449E;padding-left:10px;font-size: 12px;}
+.main_box .portallet {text-align: center;width: 98%;margin: 0 auto;margin-top: 5px;}
+.movebox_con .datelist{border: 1px solid #ccc;border-collapse: collapse;width: 100%;margin: 2px auto;}
+.movebox_con .datelist td{border: 1px solid #ccc;}
+.main_box .movebox .movebox_con {border: solid #CFCECC;border-width: 0px 1px 1px 1px;margin: 0px;list-style: none;clear: both;background: #fff;padding: 3px 0;min-height: 170px;}

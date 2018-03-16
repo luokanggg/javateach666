@@ -1,0 +1,35 @@
+*{margin: 0;padding: 0;}
+ul,li{list-style: none;line-height: 150%;}
+a{text-decoration: none;}
+body{font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;font-size: 12px;font-weight: normal;color: #11449E;}
+
+
+.mainbody{border: 5px solid #678FC2;height:auto;}
+
+.header{height: 105px;width: 100%;z-index: 999;}
+.header .logo_box{height: 60px;background: #FFFFFF url(../img/mainpage/icon/head_bg.gif) repeat-x left top;float: left;width: 100%;}
+.header .logo_box .logo{float: left;background: url(../img/mainpage/icon/head_leftbg.gif) no-repeat left top;padding: 2px 5px 0 5px;}
+.header .logo_box .info{width: 390px;height: 60px;color: #000;background: url(../img/mainpage/info_bg.gif) no-repeat right top;float: right;padding-right: 10px;}
+.header .logo_box .info ul{float: right;padding-left: 15px;}
+.header .logo_box .info ul li{display: inline;height: 23px;line-height: 23px;background: url(../img/mainpage/icon/linge_3.gif) no-repeat right 40%;padding: 0 2px 0 5px !important;}
+.header .logo_box .info ul li a{color: #000;padding: 1px;}
+.header .logo_box .info ul li a:hover{color: #FFFFFF;background-color: #2358AE;}
+
+.header .nav{height: 25px;background: #C7DEFC url(../img/mainpage/icon/nav_bg.gif) repeat-x left top;width: 100%;z-index: 500;position: relative;float: left;}
+.header .nav .nav_top{display: block;float: left;cursor: pointer;}
+.header .nav .nav_top .nav_top_link{height: 25px;line-height: 25px;color: #3F6FC3;padding: 0 0 0 5px;background: url(../img/mainpage/icon/nav_lige.gif) no-repeat right bottom;font-weight: bold;display: block;float: left;}
+.header .nav .nav_top .nav_top_link span{padding: 0 24px 0 12px;height: 25px;}
+.header .nav .nav_top .nav_top_link .down{background: url(../img/mainpage/icon/nav_bg_down.gif) no-repeat right top;float: left;display: block;position: relative;}
+.header .nav .nav_top .sub{display: none;background: url(../img/mainpage/nav_sub_bg.png) repeat-y left top;padding: 3px;border: 1px solid #3a93d2;width: 120px;position: absolute;top: 22px;}
+.header .nav .nav_top:hover .sub{display: block;z-index: 99;}
+.header .nav .nav_top:hover .index{background: url(../img/mainpage/icon/nav_lirighthover.gif) no-repeat right top;float: left;display: block;}
+.header .nav .nav_top:hover .down{background: url(../img/mainpage/icon/nav_lirighthover_down.gif) no-repeat right top;}
+.header .nav .nav_top:hover .nav_top_link{background: url(../img/mainpage/icon/nav_lilefthover.gif) no-repeat;}
+.header .nav .nav_top .sub li{height: 20px;display: block;float: left;text-align: left;width: 120px;}
+.header .nav .nav_top .sub li a{text-indent: 15px;line-height: 20px;height: 20px;color: #11449E;display: block;}
+.header .nav .nav_top .sub li:hover a{background: #3a93d2;color: #FFFFFF;}
+.header .tab {width: 100%;text-align: left;}
+.header .tab .location {display: block;margin-left: 5px;text-align: left;padding: 5px 0;}
+.header .tab .location em {background: url(../img/mainpage/icon/icons.gif) no-repeat -50px 0;padding-left: 1.4em;font-style: normal;}
+
+.main .center{width: 1000px;}
