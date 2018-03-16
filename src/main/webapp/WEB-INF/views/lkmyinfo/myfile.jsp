@@ -25,8 +25,9 @@
                 <a href="javascript:;" class="easyui-linkbutton" iconCls="icon-ok" onclick="openImportChoice()"
                    plain="true">导入</a> -->
                 <form id="choice-search-form" style="display: inline-block">
-			                    学号：<input class="easyui-textbox" id="choice-course-value"/>
-			                    学生姓名：<input class="easyui-textbox" id="choice-course-value2"/>
+			                    文件名：<input class="easyui-textbox" id="choice-course-value"/>
+			                    时间：<input type="date" id="start-time-value"/>
+			           —— <input type="date" id="start-time-value2"/>
                     <a id="choice-search-btn" class="easyui-linkbutton">搜索</a>
                     <a id="choice-search-reset" class="easyui-linkbutton">重置</a>
                 </form>
@@ -45,7 +46,7 @@
 		     * Name 载入数据
 		     */
 		    $('#classinfo-datagrid').datagrid({
-		        url: 'getmyclassinfolist',
+		        url: 'getmyfilelist',
 		        rownumbers: true,
 		        singleSelect: true,
 		        checkOnSelect:false,  
@@ -58,19 +59,20 @@
 		        fit: true,
 		        columns: [[
 		            //{field: '', checkbox: true},
-		            {field: 'stuno', title: '学号', width: 50, sortable: true},
-		            {field: 'stuname', title: '学生姓名', width: 50, sortable: true},
-		            {field: 'claname', title: '班级名', width: 100, sortable: true},
-		            {field: 'college', title: '学院', width: 180, sortable: true},
-		            {field: 'major', title: '专业', width: 100},
-		            {field: 'classyear', title: '年级', width: 100},
+		            {field: 'accname', title: '文件名', width: 100, sortable: true},
+		            {field: 'uploadtime', title: '上传时间', width: 180, sortable: true},
 		            {field: 'operate', title: '操作', align:'center',width:$(this).width()*0.1,formatter:function(value, row, index){  
-						var str = '<a href="#" name="opera" class="easyui-linkbutton" onclick="sendMessage()" ></a>';  
+						var str = '<a href="#" name="opera" class="easyui-linkbutton" onclick="downloadFile()" ></a>';  
+						return str;  
+					}},
+		            {field: 'operate2', title: '操作', align:'center',width:$(this).width()*0.1,formatter:function(value, row, index){  
+						var str = '<a href="#" name="delete" class="easyui-linkbutton" onclick="deleteFile()" ></a>';  
 						return str;  
 					}}
 				]],
 				onLoadSuccess:function(data){    
-						$("a[name='opera']").linkbutton({text:'发消息',plain:true,iconCls:'icon-edit'});    
+						$("a[name='opera']").linkbutton({text:'下载',plain:true,iconCls:'icon-edit'});   
+						$("a[name='delete']").linkbutton({text:'删除',plain:true,iconCls:'icon-edit'});
 				}
 		    });
 		    /* 搜索方法*/
@@ -83,59 +85,38 @@
 		    /*重置方法*/
 		    $("#choice-search-reset").click(function () {
 		        $("#choice-search-form").form('clear');
-		        $("#choice-course-value2").val('');
+		        $("#start-time-value").val('');
+		        $("#start-time-value2").val('');
 		        $('#choice-datagrid').datagrid({
 		            queryParams: formChoiceJson()
 		        });
 		    });
 		    //将表单数据转为json
 		    function formChoiceJson() {
-		        var stuno = $("#choice-course-value").val();
-		        var stuname = $("#choice-course-value2").val();
+		        var accname = $("#choice-course-value").val();
+		        var beforeuploadtime = $("#start-time-value").val();
+		        var afteruploadtime = $("#start-time-value2").val();
 		        //alert(question1);
 		        //alert(question2);
-		        return {"stuno": stuno,"stuname": stuname};
+		        return {"accname": accname,"beforeuploadtime": beforeuploadtime,"afteruploadtime":afteruploadtime};
 		    }
-		  	//导出
-		    function openExportSearch() {
-			  //alert("导出方法");
-			  var stuno = $("#choice-course-value").val();
-		      var stuname = $("#choice-course-value2").val();
-		      //alert("学号：" + stuno + "学生姓名：" + stuname);
-		      $.messager.confirm('提示', '是否确认导出查询出的班级列表 ', function(r){
-				if (r){
-					window.location.href = "exportclassinfo?stuno=" + stuno + "&stuname=" + stuname;
-				}
-			  });
-			  //window.location.href = "exportclassinfo?stuno=" + stuno + "&stuname=" + stuname;
-		  	}
-		  	//发送消息
-		  	function sendMessage(){
-		  		//alert("发送消息");
-		  		var rows = $('#classinfo-datagrid').datagrid('getSelections');
-		  		//alert(rows[0].stuno);
-		  		$.messager.prompt('消息框', '说点什么', function(message){
-					if (message){
-						//alert('我说的话: '+message);
-						var param = {
-								"stuno":rows[0].stuno,
-								"message":message
-						}
-						$.ajax({
-							type:'post',
-							url:'sendmessagetostu',
-							contentType:"application/json",    //必须配置
-							data:JSON.stringify(param),//转换成字符串，客户端作为生产者
-							success:function(result){
-								//alert(result.stuimage);
-								alert(result.responseDesc);
-							} 
-						});
-					}else{
-						alert("请输入你要发送的消息！");
+		    //下载文件
+		  	function downloadFile(){
+		    	//alert("下载文件");
+		    	var rows = $('#classinfo-datagrid').datagrid('getSelections');
+		    	//alert(rows[0].accname + rows[0].accurl);
+		    	$.messager.confirm('提示', '你是否要下载该文件？ ', function(r){
+					if (r){
+		    			window.location.href = rows[0].accurl;
 					}
 				});
-		  	}
+		    }
+		    //删除文件
+		    function deleteFile(){
+		    	alert("删除文件");
+		    	var rows = $('#classinfo-datagrid').datagrid('getSelections');
+		    	alert(rows[0].accname + rows[0].id);
+		    }
 	</script>
 </body>
 </html>

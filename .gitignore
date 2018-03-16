@@ -1,2 +1,7 @@
 
 javateach6662/
+*.class
+*.class
+*.class
+target/classes/com/ctbu/javateach666/controller/LKMyInfoController.class
+target/classes/com/ctbu/javateach666/service/impl/LKMyInfoServiceImpl.class

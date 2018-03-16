@@ -70,7 +70,7 @@
 								<a href="myclassinfo" target="_son">我的班级</a>
 							</li>
 							<li>
-								<a href="#">我的文档</a>
+								<a href="myfile" target="_son">我的文档</a>
 							</li>
 						</ul>
 					</li>

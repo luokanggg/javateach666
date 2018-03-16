@@ -13,10 +13,13 @@ public class Constant {
 	public static final String RSP_FALSE_CODE = "8888";
 	public static final String RSP_FALSE_MESSAGE = "失败";
 	
-	public static final class ORDER_TYPE {
-		//单价型
-		public static final int SINGLE_TYPE = 1;
-		//总价型
-		public static final int TOTAL_TYPE = 2;
+	//通知表类型
+	public static final class NOTICE_TYPE {
+		//老师to学生
+		public static final int TEA_TO_STU = 1;
+		//学生to老师
+		public static final int STU_TO_TEA = 2;
+		//学生to学生
+		public static final int STU_TO_STU = 3;
 	}
 }

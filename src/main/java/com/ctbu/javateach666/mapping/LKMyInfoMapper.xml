@@ -67,4 +67,51 @@
   	and s.classid = c.id
   </select>
   
+  <insert id="createNoticeTypeThree" parameterType="com.ctbu.javateach666.pojo.po.LKNoticePO">
+  	insert into 
+  	notice(notid ,tonotid ,nottype ,notname ,nottitle ,notcontent ,noturl , starttime, endtime) 
+  	values(#{notid} ,#{tonotid} ,#{nottype} ,#{notname}, #{nottitle} ,#{notcontent} ,#{noturl} ,#{starttime} ,#{endtime})	
+  </insert>
+  
+  <select id="getMyFileByPage" resultType="com.ctbu.javateach666.pojo.bo.LKMyFileListRspBO" parameterType="com.ctbu.javateach666.pojo.bo.LKMyFileListReqDaoBO">
+  	select * 
+  	from accessory 
+  	where 1=1
+  	<if test="accname != null and accname != '' ">
+  		and accname like #{accname}
+  	</if>
+  	<if test="beforeuploadtime != null and afteruploadtime == null">
+  		and uploadtime &gt;= #{beforeuploadtime}
+  	</if>
+  	<if test="afteruploadtime != null and beforeuploadtime == null">
+  		and uploadtime &lt;= #{afteruploadtime}
+  	</if>
+  	<if test="afteruploadtime != null and beforeuploadtime != null">
+  		and uploadtime between #{beforeuploadtime} and #{afteruploadtime}
+  	</if>
+  	and ownid = #{ownid}
+  	and acctype = 1
+  	limit #{page}, #{rows}
+  </select>
+  
+  <select id="getTotalByQuestionFile" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.LKMyFileListReqDaoBO">
+  	select count(*) 
+  	from accessory 
+  	where 1=1
+  	<if test="accname != null and accname != '' ">
+  		and accname like #{accname}
+  	</if>
+  	<if test="beforeuploadtime != null and afteruploadtime == null">
+  		and uploadtime &gt;= #{beforeuploadtime}
+  	</if>
+  	<if test="afteruploadtime != null and beforeuploadtime == null">
+  		and uploadtime &lt;= #{afteruploadtime}
+  	</if>
+  	<if test="afteruploadtime != null and beforeuploadtime != null">
+  		and uploadtime between #{beforeuploadtime} and #{afteruploadtime}
+  	</if>
+  	and ownid = #{ownid}
+  	and acctype = 1
+  </select>
+  
 </mapper>

@@ -4,6 +4,9 @@ import java.util.List;
 
 import com.ctbu.javateach666.pojo.bo.LKMyClassInfoListRepBO;
 import com.ctbu.javateach666.pojo.bo.LKMyClassInfoListRspBO;
+import com.ctbu.javateach666.pojo.bo.LKMyFileListReqDaoBO;
+import com.ctbu.javateach666.pojo.bo.LKMyFileListRspBO;
+import com.ctbu.javateach666.pojo.po.LKNoticePO;
 import com.ctbu.javateach666.pojo.po.LKStudentInfoPO;
 /**
  * 我的信息Dao类
@@ -18,4 +21,7 @@ public interface LKMyInfoDao {
 	public List<LKMyClassInfoListRspBO> getMyClassInfoByPage(LKMyClassInfoListRepBO lKMyClassInfoListRepBO);
 	public int getTotalByQuestion(LKMyClassInfoListRepBO lKMyClassInfoListRepBO);
 	public List<LKMyClassInfoListRspBO> getMyClassInfoBySearch(LKMyClassInfoListRepBO lKMyClassInfoListRepBO);
+	public int createNoticeTypeThree(LKNoticePO lKNoticePO);
+	public List<LKMyFileListRspBO> getMyFileByPage(LKMyFileListReqDaoBO lKMyFileListReqDaoBO);
+	public int getTotalByQuestionFile(LKMyFileListReqDaoBO lKMyFileListReqDaoBO);
 }

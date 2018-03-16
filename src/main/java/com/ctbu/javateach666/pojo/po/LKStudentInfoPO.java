@@ -9,7 +9,7 @@ public class LKStudentInfoPO implements Serializable{
 	 */
 	private static final long serialVersionUID = -6593775917708688391L;
 	
-	private String id;
+	private int id;
 	private String stuno;
 	private String stuname;
 	private String stusex;
@@ -25,10 +25,11 @@ public class LKStudentInfoPO implements Serializable{
 	private String classname;
 	private int isdelete;
 	
-	public String getId() {
+	
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getStuno() {
