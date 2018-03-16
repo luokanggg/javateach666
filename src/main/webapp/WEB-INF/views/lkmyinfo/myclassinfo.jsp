@@ -109,6 +109,7 @@
 		  		alert("发送消息");
 		  		var rows = $('#classinfo-datagrid').datagrid('getSelections');
 		  		alert(rows[0].stuno);
+		  		//更改
 		  	}
 	</script>
 </body>
