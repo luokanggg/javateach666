@@ -114,4 +114,16 @@
   	and acctype = 1
   </select>
   
+  <delete id="deleteMyFile">
+  	delete 
+  	from accessory
+  	where id = #{id}
+  </delete>
+  
+  <insert id="uploadMyFile" parameterType="com.ctbu.javateach666.pojo.po.LKAccessoryPO">
+  	insert into 
+  	accessory(ownid,accname,accurl,acctype,uploadtime)
+  	values(#{ownid}, #{accname}, #{accurl}, #{acctype}, #{uploadtime})
+  </insert>
+  
 </mapper>

@@ -27,6 +27,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.ctbu.javateach666.pojo.bo.LKUpdateStuInfoBO;
 import com.ctbu.javateach666.pojo.bo.BaseInfoBO;
+import com.ctbu.javateach666.pojo.bo.DeleteMyFileReqBO;
 import com.ctbu.javateach666.pojo.bo.LKMyClassInfoListRepBO;
 import com.ctbu.javateach666.pojo.bo.LKMyClassInfoListRspBO;
 import com.ctbu.javateach666.pojo.bo.LKMyFileListReqBO;
@@ -190,6 +191,20 @@ public class LKMyInfoController {
 		}*/
 		page = lKMyInfoService.getMyFileList(lKMyFileListReqBO);
 		return page;
+	}
+	
+	@ResponseBody
+	@RequestMapping("deletemyfile")
+	public BaseInfoBO deleteMyFile(@RequestBody DeleteMyFileReqBO deleteMyFileReqBO, HttpServletRequest request){
+		//lKMyInfoService.deleteMyFile(deleteMyFileReqBO, request);
+		return lKMyInfoService.deleteMyFile(deleteMyFileReqBO, request);
+	}
+	
+	@RequestMapping("uploadmyfile")
+	public String uploadMyFile(@RequestParam("file") CommonsMultipartFile file, HttpServletRequest request){
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		boolean issuccess = lKMyInfoService.uploadMyFile(userDetails.getUsername(), file, request);
+		return "lkmyinfo/myfile";
 	}
 	
 	

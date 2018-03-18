@@ -23,6 +23,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import com.ctbu.javateach666.constant.Constant;
 import com.ctbu.javateach666.dao.LKMyInfoDao;
 import com.ctbu.javateach666.pojo.bo.BaseInfoBO;
+import com.ctbu.javateach666.pojo.bo.DeleteMyFileReqBO;
 import com.ctbu.javateach666.pojo.bo.LKMyClassInfoListRepBO;
 import com.ctbu.javateach666.pojo.bo.LKMyClassInfoListRspBO;
 import com.ctbu.javateach666.pojo.bo.LKMyFileListReqBO;
@@ -31,6 +32,7 @@ import com.ctbu.javateach666.pojo.bo.LKMyFileListRspBO;
 import com.ctbu.javateach666.pojo.bo.LKSendMessageToStuReqBO;
 import com.ctbu.javateach666.pojo.bo.LKUpdateStuInfoBO;
 import com.ctbu.javateach666.pojo.bo.PageInfoBo;
+import com.ctbu.javateach666.pojo.po.LKAccessoryPO;
 import com.ctbu.javateach666.pojo.po.LKNoticePO;
 import com.ctbu.javateach666.pojo.po.LKStudentInfoPO;
 import com.ctbu.javateach666.service.interfac.LKMyInfoService;
@@ -238,6 +240,63 @@ public class LKMyInfoServiceImpl implements LKMyInfoService{
 		rsp.setTotal(total);
 		
 		return rsp;
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED)
+	public BaseInfoBO deleteMyFile(DeleteMyFileReqBO deleteMyFileReqBO, HttpServletRequest request) {
+		//定义出参
+		BaseInfoBO rsp =new BaseInfoBO();
+		int count = lKMyInfoDao.deleteMyFile(deleteMyFileReqBO.getId());
+		if(count < 1){
+			rsp.setResponseCode(Constant.RSP_FALSE_MESSAGE);
+			rsp.setResponseDesc("删除文件异常！");
+			return rsp;
+		}
+		//定义文件上传路径
+		String savepath = request.getServletContext().getRealPath("/")+"static\\file\\";
+		//定义文件保存的名称
+		String filename = deleteMyFileReqBO.getFilename().substring(deleteMyFileReqBO.getFilename().indexOf("file") + 5);
+		//删除文件
+		File deleteFile=new File(savepath, filename);
+		deleteFile.delete();
+		
+		rsp.setResponseCode(Constant.RSP_SUCCESS_MESSAGE);
+		rsp.setResponseDesc("删除文件成功！");
+		return rsp;
+	}
+
+	public boolean uploadMyFile(String username, CommonsMultipartFile file, HttpServletRequest request) {
+		//定义文件上传路径
+		String savepath = request.getServletContext().getRealPath("/")+"static\\file\\";
+		LKStudentInfoPO oldstupo = lKMyInfoDao.initStuInfo(username);
+		//定义文件保存的名称
+		String filename = oldstupo.getStuno() + file.getOriginalFilename();
+		//定义附件表实体
+		LKAccessoryPO lKAccessoryPO = new LKAccessoryPO();
+		//定义数据库图片名称
+		String accurl = "\\javateach666\\static\\file\\" + filename;
+		lKAccessoryPO.setAccurl(accurl);
+		lKAccessoryPO.setOwnid(oldstupo.getId());
+		lKAccessoryPO.setAccname(filename);
+		lKAccessoryPO.setAcctype(Constant.ACCESSORY_TYPE.STU);
+		lKAccessoryPO.setUploadtime(new Date());
+		int count = lKMyInfoDao.uploadMyFile(lKAccessoryPO);
+		if(count > 0){
+			File newFile=new File(savepath, filename);
+			File oldFile=new File(savepath, filename);
+			try {
+				oldFile.delete();
+				file.transferTo(newFile);
+				
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}else{
+			return false;
+		}
+		return true;
 	}
 
 }

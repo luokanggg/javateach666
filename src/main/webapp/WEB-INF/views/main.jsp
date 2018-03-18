@@ -81,10 +81,10 @@
 						
 						<ul class="sub">
 							<li>
-								<a href="#">查看我的课表</a>
+								<a href="myownclassinfo" target="_son">查看我的课表</a>
 							</li>
 							<li>
-								<a href="#">网上选课</a>
+								<a href="chooseclassonline" target="_son">网上选课</a>
 							</li>
 						</ul>
 					</li>

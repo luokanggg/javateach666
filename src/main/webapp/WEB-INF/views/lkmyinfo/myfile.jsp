@@ -6,9 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@include file="/common/easyui.jspf"%>
 <title>我的班级</title>
-<!-- <style type="text/css">
-	#classinfo-datagrid tr{height:40px;}
-</style> -->
+<style type="text/css">
+	/* #classinfo-datagrid tr{height:40px;} */
+	.filebox{float: right;margin-right: 10px;}
+	.textbox-button{right:0;}
+</style>
 </head>
 <body>
 <div class="easyui-layout" data-options="fit:true">
@@ -31,8 +33,10 @@
                     <a id="choice-search-btn" class="easyui-linkbutton">搜索</a>
                     <a id="choice-search-reset" class="easyui-linkbutton">重置</a>
                 </form>
-                <a href="javascript:;" style="text-align: right;" class="easyui-linkbutton" iconAlign="right" iconCls="icon-ok" onclick="openExportSearch()"
-                   plain="true">导出</a>
+                <form id="fileform" action="uploadmyfile" method="post" enctype="multipart/form-data" style="display: inline">
+                	<a style="float: right;" class="easyui-linkbutton" onclick="uploadFile()" >上传文件</a>
+                	<input type="text" id="file" name="file" class="easyui-filebox" />
+                </form>
             </div>
 
         </div>
@@ -48,9 +52,7 @@
 		    $('#classinfo-datagrid').datagrid({
 		        url: 'getmyfilelist',
 		        rownumbers: true,
-		        singleSelect: true,
-		        checkOnSelect:false,  
-	            selectOncheck:false,
+		        singleSelect: false,
 		        pageSize: 10,
 		        pagination: true,
 		        queryParams: formChoiceJson(),
@@ -58,9 +60,17 @@
 		        fitColumns: true,
 		        fit: true,
 		        columns: [[
-		            //{field: '', checkbox: true},
+		            //{field: '', checkbox: true },
 		            {field: 'accname', title: '文件名', width: 100, sortable: true},
-		            {field: 'uploadtime', title: '上传时间', width: 180, sortable: true},
+		            {field: 'uploadtime', title: '上传时间', width: 180, sortable: true,
+		            	formatter : function(value){
+	                        var date = new Date(value);
+	                        var y = date.getFullYear();
+	                        var m = date.getMonth() + 1;
+	                        var d = date.getDate();
+	                        return y + '年' +m + '月' + d + '日';
+	                    }	
+		            },
 		            {field: 'operate', title: '操作', align:'center',width:$(this).width()*0.1,formatter:function(value, row, index){  
 						var str = '<a href="#" name="opera" class="easyui-linkbutton" onclick="downloadFile()" ></a>';  
 						return str;  
@@ -72,7 +82,7 @@
 				]],
 				onLoadSuccess:function(data){    
 						$("a[name='opera']").linkbutton({text:'下载',plain:true,iconCls:'icon-edit'});   
-						$("a[name='delete']").linkbutton({text:'删除',plain:true,iconCls:'icon-edit'});
+						$("a[name='delete']").linkbutton({text:'删除',plain:true,iconCls:'icon-remove'});
 				}
 		    });
 		    /* 搜索方法*/
@@ -107,15 +117,50 @@
 		    	//alert(rows[0].accname + rows[0].accurl);
 		    	$.messager.confirm('提示', '你是否要下载该文件？ ', function(r){
 					if (r){
-		    			window.location.href = rows[0].accurl;
+						var ss = encodeURIComponent((rows[0].accurl));
+						alert(ss);
+						var ss2 = encodeURIComponent(ss);
+						alert(ss2);
+						var aa = decodeURIComponent(ss2);
+						alert(aa);
+		    			//window.location.href = rows[0].accurl + '';
+		    			window.open((rows[0].accurl), "_blank");
 					}
 				});
 		    }
 		    //删除文件
 		    function deleteFile(){
-		    	alert("删除文件");
+		    	//alert("删除文件");
 		    	var rows = $('#classinfo-datagrid').datagrid('getSelections');
 		    	alert(rows[0].accname + rows[0].id);
+		    	$.messager.confirm('警告', '你确定要删除该文件吗！？ ', function(r){
+					if (r){
+				    	var param = {
+				    			"id":rows[0].id,
+				    			"filename":rows[0].accurl
+				    	}
+				    	$.ajax({
+							type:'post',
+							url:'deletemyfile',
+							contentType:"application/json",    //必须配置
+							data:JSON.stringify(param),//转换成字符串，客户端作为生产者
+							success:function(result){
+								//alert(result.stuimage);
+								alert(result.responseDesc);
+							} 
+						});	
+		    		}
+				});
+		    }
+		    //上传文件
+		    function uploadFile(){
+		    	alert("上传文件");
+		    	var file = $("#filebox_file_id_1").val();
+		    	alert(file);
+				if(file != null && file != ""){
+					alert("上传文件");
+					$("#fileform").submit();
+				}
 		    }
 	</script>
 </body>

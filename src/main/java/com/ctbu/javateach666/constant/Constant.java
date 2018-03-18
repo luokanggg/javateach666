@@ -22,4 +22,22 @@ public class Constant {
 		//学生to学生
 		public static final int STU_TO_STU = 3;
 	}
+	
+	//附件表类型
+	public static final class ACCESSORY_TYPE {
+		//学生资料
+		public static final int STU = 1;
+		//老师资料
+		public static final int TEA = 2;
+		//课程作业
+		public static final int CLASS = 3;
+	}
+	
+	//学期
+	public static final class SEMESTER {
+		//上学期
+		public static final int LAST = 1;
+		//下学期
+		public static final int NEXT = 2;
+	}
 }
