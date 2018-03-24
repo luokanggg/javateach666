@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.LKMyEvaluateDao">
+
+  <select id="initEvaluate" parameterType="com.ctbu.javateach666.pojo.bo.LKInitEvaluateReqBO" resultType="com.ctbu.javateach666.pojo.bo.LKInitEvaluateRspBO">
+  	SELECT s.`id`,s.`couname`, s.`teaname`, s.`evaluate`
+    FROM stucourse s, teacourse t 
+    WHERE s.`stuid` = #{stuid}
+    	AND s.`teacourseid` = t.`id` 
+    	AND t.`couyear` = #{couyear}
+    	AND t.`semester` = #{semester}
+  </select>
+  
+  <update id="submitEvaluate" parameterType="com.ctbu.javateach666.pojo.bo.LKSubmitEvaluateDaoBO">
+  	update stucourse
+  	set evaluate = #{evaluate}
+  	where id = #{id}
+  </update>
+</mapper>

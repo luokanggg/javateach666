@@ -32,12 +32,12 @@
 			</div>
 			<!--菜单-->
 			<ul class="nav">
-				<li class="nav_top">
-					<a class="nav_top_link" href="#">
-						<span class="index">返回首页</span>
-					</a>
-				</li>
 				<security:authorize ifAnyGranted="STUDENT" >
+					<li class="nav_top">
+						<a class="nav_top_link" href="#">
+							<span class="index">返回首页</span>
+						</a>
+					</li>
 					<li class="nav_top">
 						<a class="nav_top_link">
 							<span class="down">我的考试</span>
@@ -56,6 +56,11 @@
 						<a class="nav_top_link">
 							<span class="down">教学质量评价</span>
 						</a>
+						<ul class="sub">
+							<li>
+								<a href="gomyevaluate" target="_son">教学评价</a>
+							</li>
+						</ul>
 					</li>
 					<li class="nav_top">
 						<a class="nav_top_link">
@@ -95,7 +100,7 @@
 						
 						<ul class="sub">
 							<li>
-								<a href="#">挂科科目</a>
+								<a href="myrepairlist" target="_son">挂科科目</a>
 							</li>
 						</ul>
 					</li>
