@@ -1,21 +1,14 @@
 package com.ctbu.javateach666.pojo.bo;
 
-public class LKChooseClassOnlineListRspBO {
+public class LKAlreadyChooseRspBO {
 	private int id;
 	private String teaname;
-	private String couname;
 	private int couyear;
-	private int counumber;
+	private int semester;
 	private String couaddress;
+	private int counumber;
 	private int alcounumber;
-	private String coutime;
-	
-	public String getCoutime() {
-		return coutime;
-	}
-	public void setCoutime(String coutime) {
-		this.coutime = coutime;
-	}
+	//private int classyear;
 	public int getId() {
 		return id;
 	}
@@ -28,29 +21,29 @@ public class LKChooseClassOnlineListRspBO {
 	public void setTeaname(String teaname) {
 		this.teaname = teaname;
 	}
-	public String getCouname() {
-		return couname;
-	}
-	public void setCouname(String couname) {
-		this.couname = couname;
-	}
 	public int getCouyear() {
 		return couyear;
 	}
 	public void setCouyear(int couyear) {
 		this.couyear = couyear;
 	}
-	public int getCounumber() {
-		return counumber;
+	public int getSemester() {
+		return semester;
 	}
-	public void setCounumber(int counumber) {
-		this.counumber = counumber;
+	public void setSemester(int semester) {
+		this.semester = semester;
 	}
 	public String getCouaddress() {
 		return couaddress;
 	}
 	public void setCouaddress(String couaddress) {
 		this.couaddress = couaddress;
+	}
+	public int getCounumber() {
+		return counumber;
+	}
+	public void setCounumber(int counumber) {
+		this.counumber = counumber;
 	}
 	public int getAlcounumber() {
 		return alcounumber;

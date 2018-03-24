@@ -12,8 +12,8 @@
     	AND t.`semester` = #{semester}
   </select>
   
-  <select id="getChooseClassOnlineList" parameterType="com.ctbu.javateach666.pojo.bo.LKChooseClassOnlineListReqBO" resultType="com.ctbu.javateach666.pojo.bo.LKChooseClassOnlineListRspBO">
-  	SELECT ta.`id`, ta.`couname`, ta.`couyear`, ta.`counumber`, ta.`couaddress`, ta.`coutime`, ta.`alcounumber`, ti.`teaname` 
+  <select id="getChooseClassOnlineList" parameterType="com.ctbu.javateach666.pojo.bo.LKChooseClassOnlineListReqBO" resultType="com.ctbu.javateach666.pojo.po.LKTeacoursePO">
+  	SELECT ta.`id`, ta.`couname`, ta.`couyear`, ta.`counumber`, ta.`couaddress`, ta.`coutime`, ta.`alcounumber`, ti.`teaname`, ta.`couhour`, ta.`coufhour` 
   	FROM teacourse ta, teachersinfo ti
   	WHERE 1 = 1
   	<if test="couname != null and couname != '' ">
@@ -71,5 +71,39 @@
   	AND t.`couyear` = #{couyear}
   	AND t.`semester` = #{semester}
   </select>
+  
+  <select id="goAlreadyChoose" resultType="com.ctbu.javateach666.pojo.bo.LKAlreadyChooseRspBO" parameterType="com.ctbu.javateach666.pojo.bo.LKAlreadyChooseReqBO">
+  	select s.`id`, s.`couname`, s.`teaname`, t.`couyear`, t.`semester`, t.`couaddress`, t.`counumber`, t.`alcounumber`
+  	from teacourse t, stucourse s
+  	where s.`stuid` = #{stuid}
+  	AND s.`teacourseid` = t.`id`
+  	AND t.`couyear` = #{couyear}
+  	AND t.`semester` = #{semester}
+  	limit #{page}, #{rows}
+  </select>
+  
+  <delete id="cancelClass" parameterType="com.ctbu.javateach666.pojo.bo.LKcancelClassReqBO">
+  	delete from
+  	stucourse
+  	where id = #{id}
+  </delete>
+  
+  <select id="checkCouyearAndSemesterIsOK" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.LKCheckCouyearAndSemesterIsOKBO">
+  	select count(*)
+  	from stucourse s, teacourse t
+  	where s.`id` = #{id}
+  	AND s.`teacourseid` = t.`id`
+  	AND t.`couyear` = #{couyear}
+  	AND t.`semester` = #{semester}
+   </select>
+   
+   <select id="getTotalAlreadyChooseByQuestion" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.LKAlreadyChooseReqBO">
+   	select count(*)
+  	from teacourse t, stucourse s
+  	where s.`stuid` = #{stuid}
+  	AND s.`teacourseid` = t.`id`
+  	AND t.`couyear` = #{couyear}
+  	AND t.`semester` = #{semester}
+   </select>
   
 </mapper>

@@ -1,24 +1,33 @@
 package com.ctbu.javateach666.service.impl;
 
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ctbu.javateach666.constant.Constant;
 import com.ctbu.javateach666.dao.LKMyClassDao;
 import com.ctbu.javateach666.dao.LKMyInfoDao;
+import com.ctbu.javateach666.pojo.bo.AlreadyChooseComboBoxBO;
 import com.ctbu.javateach666.pojo.bo.BaseInfoBO;
+import com.ctbu.javateach666.pojo.bo.LKAlreadyChooseReqBO;
+import com.ctbu.javateach666.pojo.bo.LKAlreadyChooseRspBO;
+import com.ctbu.javateach666.pojo.bo.LKCheckCouyearAndSemesterIsOKBO;
 import com.ctbu.javateach666.pojo.bo.LKCheckIsTimeOKReqBO;
 import com.ctbu.javateach666.pojo.bo.LKChooseClassOnlineListReqBO;
 import com.ctbu.javateach666.pojo.bo.LKChooseClassOnlineListRspBO;
 import com.ctbu.javateach666.pojo.bo.LKChooseClassReqBO;
 import com.ctbu.javateach666.pojo.bo.LKInitMyClassInfoReqBO;
 import com.ctbu.javateach666.pojo.bo.LKInitMyClassInfoRspBO;
+import com.ctbu.javateach666.pojo.bo.LKcancelClassReqBO;
 import com.ctbu.javateach666.pojo.bo.PageInfoBo;
 import com.ctbu.javateach666.pojo.po.LKStucoursePO;
 import com.ctbu.javateach666.pojo.po.LKStudentInfoPO;
@@ -100,18 +109,28 @@ public class LKMyClassServiceImpl implements LKMyClassService{
 		PageInfoBo<LKChooseClassOnlineListRspBO> rsp = new PageInfoBo<LKChooseClassOnlineListRspBO>();
 		
 		int total = lKMyClassDao.getTotalByQuestion(lKChooseClassOnlineListReqBO);
-		if(total < 1){
+		if(total <  1){
 			return rsp;
 		}
 		
-		List<LKChooseClassOnlineListRspBO> list = lKMyClassDao.getChooseClassOnlineList(lKChooseClassOnlineListReqBO);
+		List<LKTeacoursePO> list = lKMyClassDao.getChooseClassOnlineList(lKChooseClassOnlineListReqBO);
 		
-		rsp.setRows(list);
+		List<LKChooseClassOnlineListRspBO> listrsp = new ArrayList<LKChooseClassOnlineListRspBO>();
+		for (LKTeacoursePO lk : list) {
+			LKChooseClassOnlineListRspBO bo = new LKChooseClassOnlineListRspBO();
+			BeanUtils.copyProperties(lk, bo);
+			String coutime = "星期" + lk.getCoutime() + "第" + lk.getCoufhour() + "到" + (lk.getCoufhour() + lk.getCouhour() - 1) + "节";
+			bo.setCoutime(coutime);
+			listrsp.add(bo);
+		}
+		
+		rsp.setRows(listrsp);
 		rsp.setTotal(total);
 		
 		return rsp;
 	}
 
+	@Transactional(propagation=Propagation.REQUIRED)
 	public BaseInfoBO ChooseClass(LKChooseClassReqBO lKChooseClassReqBO) {
 		//定义出参
 		BaseInfoBO rsp = new BaseInfoBO();
@@ -182,6 +201,117 @@ public class LKMyClassServiceImpl implements LKMyClassService{
 		
 		rsp.setResponseCode(Constant.RSP_SUCCESS_CODE);
 		rsp.setResponseDesc("选课成功！");
+		return rsp;
+	}
+	
+	public PageInfoBo<LKAlreadyChooseRspBO> goAlreadyChoose(LKAlreadyChooseReqBO lKAlreadyChooseReqBO){
+		//System.out.println("测试goAlreadyChoose");
+		//设置page为下标
+		int page = 0;
+		page = (lKAlreadyChooseReqBO.getPage() - 1) * lKAlreadyChooseReqBO.getRows();
+		lKAlreadyChooseReqBO.setPage(page);
+		//取得当前用户信息；
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		//取得登录学生的id和姓名
+		LKStudentInfoPO logstu = lKMyInfoDao.initStuInfo(userDetails.getUsername());
+		
+		lKAlreadyChooseReqBO.setStuid(logstu.getId());
+		
+		if(lKAlreadyChooseReqBO.getCouyear() == 0 && lKAlreadyChooseReqBO.getSemester() == 0){
+			//取得当前时间
+			Calendar cal =Calendar.getInstance();
+			int semester = cal.get(Calendar.MONTH) + 1;
+			if(semester <= 6){
+				lKAlreadyChooseReqBO.setSemester(Constant.SEMESTER.NEXT);
+				int couyear = cal.get(Calendar.YEAR);
+				//设置学年
+				lKAlreadyChooseReqBO.setCouyear(couyear);
+			}else{
+				lKAlreadyChooseReqBO.setSemester(Constant.SEMESTER.LAST);
+				int couyear = cal.get(Calendar.YEAR);
+				//设置学年
+				lKAlreadyChooseReqBO.setCouyear(couyear + 1);
+			}
+		}
+		
+		//定义出参
+		PageInfoBo<LKAlreadyChooseRspBO> rsp = new PageInfoBo<LKAlreadyChooseRspBO>();
+		
+		int total = lKMyClassDao.getTotalAlreadyChooseByQuestion(lKAlreadyChooseReqBO);
+		if(total <  1){
+			return rsp;
+		}
+		
+		List<LKAlreadyChooseRspBO> list = lKMyClassDao.goAlreadyChoose(lKAlreadyChooseReqBO);
+		
+		rsp.setRows(list);
+		rsp.setTotal(total);
+		
+		return rsp;
+	}
+	
+	public List<AlreadyChooseComboBoxBO> getAlreadyChooseComboBox(){
+		//取得当前用户信息；
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		//取得登录学生的id和姓名
+		LKStudentInfoPO logstu = lKMyInfoDao.initStuInfo(userDetails.getUsername());
+		//定义出参
+		List<AlreadyChooseComboBoxBO> rsp = new ArrayList<AlreadyChooseComboBoxBO>();
+		for (int i = logstu.getClassyear(); i <= logstu.getClassyear() + 4; i++) {
+			AlreadyChooseComboBoxBO bo = new AlreadyChooseComboBoxBO();
+			bo.setId(i);
+			rsp.add(bo);
+		}
+		return rsp;
+	}
+	
+	public List<LKInitMyClassInfoRspBO> getMyClassInfo(LKInitMyClassInfoReqBO lKInitMyClassInfoReqBO){
+		//取得当前登录学生id;
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		LKStudentInfoPO lKStudentInfoPO = lKMyInfoDao.initStuInfo(userDetails.getUsername());
+		lKInitMyClassInfoReqBO.setStuid(lKStudentInfoPO.getId());
+		
+		//定义出参 
+		return lKMyClassDao.initMyClassInfo(lKInitMyClassInfoReqBO);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED)
+	public BaseInfoBO cancelClass(LKcancelClassReqBO lKcancelClassReqBO) {
+		//定义出参
+		BaseInfoBO rsp = new BaseInfoBO();
+		
+		LKCheckCouyearAndSemesterIsOKBO lKCheckCouyearAndSemesterIsOKBO = new LKCheckCouyearAndSemesterIsOKBO();
+		lKCheckCouyearAndSemesterIsOKBO.setId(lKcancelClassReqBO.getId());
+		//取得当前时间
+		Calendar cal =Calendar.getInstance();
+		int semester = cal.get(Calendar.MONTH) + 1;
+		if(semester <= 6){
+			lKCheckCouyearAndSemesterIsOKBO.setSemester(Constant.SEMESTER.NEXT);
+			int couyear = cal.get(Calendar.YEAR);
+			//设置学年
+			lKCheckCouyearAndSemesterIsOKBO.setCouyear(couyear);
+		}else{
+			lKCheckCouyearAndSemesterIsOKBO.setSemester(Constant.SEMESTER.LAST);
+			int couyear = cal.get(Calendar.YEAR);
+			//设置学年
+			lKCheckCouyearAndSemesterIsOKBO.setCouyear(couyear + 1);
+		}
+		
+		int isok = lKMyClassDao.checkCouyearAndSemesterIsOK(lKCheckCouyearAndSemesterIsOKBO);
+		if(isok < 1){
+			rsp.setResponseCode(Constant.RSP_FALSE_CODE);
+			rsp.setResponseDesc("取消失败！只能取消下学期选择的课程！");
+			return rsp;
+		}
+		
+		int count = lKMyClassDao.cancelClass(lKcancelClassReqBO);
+		if(count < 1){
+			rsp.setResponseCode(Constant.RSP_FALSE_CODE);
+			rsp.setResponseDesc("取消失败！取消课程异常！");
+			return rsp;
+		}
+		rsp.setResponseCode(Constant.RSP_SUCCESS_CODE);
+		rsp.setResponseDesc("取消成功！");
 		return rsp;
 	}
 

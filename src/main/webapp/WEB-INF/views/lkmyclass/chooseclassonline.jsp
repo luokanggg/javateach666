@@ -118,7 +118,7 @@
 		  	//查看我的已选课程
 		    function goAlreadyChoose() {
 		  		alert("查看已选课程");
-				window.location.href = "goalreadychoose";
+				window.location.href = "goalreadychoosepage";
 		  	}
 	</script>
 </body>
