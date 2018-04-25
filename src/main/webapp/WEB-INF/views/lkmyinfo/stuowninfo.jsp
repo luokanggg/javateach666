@@ -12,6 +12,11 @@
 <%@include file="/common/easyui.jspf"%>
 <link rel="stylesheet" type="text/css" href="${basePath}/static/css/main.css"/>
 <title>个人信息修改</title>
+<style type="text/css">
+	/* #classinfo-datagrid tr{height:40px;} */
+	.filebox{float: left;margin-left: 10px;}
+	.textbox-button{right:0;}
+</style>
 </head>
 <body>
 	<!--选项卡-->
@@ -24,7 +29,7 @@
 	</div>
 	<!--选项卡-->
 	<div id="bod">
-		<table width="100%" height="400px" border="1" style="border-color: #99CCFF; border-collapse : collapse">
+		<table width="100%" height="500px" border="1" style="border-color: #99CCFF; border-collapse : collapse">
 		  <tr>
 		    <td width="12%" bgcolor="#FFFFFF">学号：</td>
 		    <td width="12%" bgcolor="#FFFFFF">{{ StuInfo.stuno }}</td>
@@ -32,7 +37,7 @@
 		    <td width="12%" bgcolor="#FFFFFF">{{ StuInfo.stuname }}</td>
 		    <td width="12%" bgcolor="#FFFFFF">性别</td>
 		    <td width="12%" bgcolor="#FFFFFF">{{ StuInfo.stusex }}</td>
-		    <td width="28%" rowspan="3" bgcolor="#FFFFFF"><img width="150px" length="150px" v-bind:src="StuInfo.stuimage"></td>
+		    <td width="28%" align="center" rowspan="3" bgcolor="#FFFFFF"><img width="150px" length="150px" v-bind:src="StuInfo.stuimage"></td>
 		  </tr>
 		  <tr>
 		    <td bgcolor="#FFFFFF">政治面貌：</td>
@@ -58,7 +63,7 @@
 		    <td colspan="2" bgcolor="#FFFFFF"></td>
 		    <td bgcolor="#FFFFFF">
 		    	<form id="fileform" action="updatestuinfoimg" method="post" enctype="multipart/form-data">
-		    		<input type="file" id="file" name="file" />
+		    		<input type="text" id="file" name="file" class="easyui-filebox" />
 		    		<!-- <input type="text" name="file" value="abc" /> -->
 		    		<%-- <input type="hidden" name="${ _csrf.parameterName}" value="${ _csrf.token}" /> --%>
 		    		<!-- <input type="submit" value="修改"> -->
@@ -66,8 +71,8 @@
 		    </td>
 		  </tr>
 		  <tr>
-		    <td colspan="7" bgcolor="#FFFFFF">
-		    	<button id="submits" v-on:click="sibmits">提交</button>
+		    <td align="center" colspan="7" bgcolor="#FFFFFF">
+		    	<button class="easyui-linkbutton" id="submits" v-on:click="sibmits">提交</button>
 		    </td>
 		  </tr>
 		</table>
@@ -126,7 +131,7 @@
 								alert(man.StuInfo.responseDesc);
 							} 
 						});
-						var file = $("#file").val();
+						var file = $("#filebox_file_id_1").val();
 						if(file != null && file != ""){
 							//alert("上传图片");
 							$('form').submit();

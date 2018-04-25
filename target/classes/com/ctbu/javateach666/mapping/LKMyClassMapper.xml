@@ -105,5 +105,43 @@
   	AND t.`couyear` = #{couyear}
   	AND t.`semester` = #{semester}
    </select>
+   
+   <select id="getSubmitClassWorkDataTAC" parameterType="int" resultType="java.util.Map">
+   	select teaname, couname
+   	from stucourse
+   	where id = #{id}
+   </select>
+   
+   <select id="getSubmitClassWorkDataSBS" resultType="com.ctbu.javateach666.pojo.bo.LKSubmotsWorkBO" parameterType="com.ctbu.javateach666.pojo.bo.LKGetSubmitClassWorkDataSBSDaoBO">
+   	select accname, uploadtime
+   	from accessory
+   	where ownid = #{ownid}
+   	AND acctype = #{acctype}
+   </select>
+   
+   <insert id="submitWork" parameterType="com.ctbu.javateach666.pojo.po.LKAccessoryPO">
+   	insert into 
+   	accessory(ownid, accname, accurl, acctype, uploadtime)
+   	values(#{ownid}, #{accname}, #{accurl}, #{acctype}, #{uploadtime})
+   	
+   </insert>
+   
+   <update id="updateAlCouNumber" parameterType="com.ctbu.javateach666.pojo.bo.UpdateAlCouNumberReqBO">
+   	update teacourse
+   	set alcounumber = #{alcounumber}
+   	where id = #{id}
+   </update>
+   
+   <select id="getCancelClassId" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.LKcancelClassReqBO">
+   	select teacourseid 
+   	from stucourse
+   	where id = #{id}
+   </select>
+   
+   <update id="UpCancelAlCounumber" parameterType="com.ctbu.javateach666.pojo.bo.LKcancelClassReqBO">
+   	update teacourse
+   	set alcounumber = alcounumber - 1
+   	where id = #{id}
+   </update>
   
 </mapper>

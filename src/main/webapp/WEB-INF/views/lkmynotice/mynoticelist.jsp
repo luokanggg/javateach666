@@ -33,16 +33,15 @@
                 <!-- <select id="cc" class="easyui-combobox" name="dept" style="width:200px;" onclick="LoadSuccess()" > 
                 	  <option selected="selected">请选择</option>
 				</select> -->
-				学年：<input id="cc" name="dept" value="--请选择--">  
-				学期：<select id="dd" class="easyui-combobox" name="dept" style="width:200px;"> 
+				消息来源：<select id="dd" class="easyui-combobox" name="dept" style="width:200px;"> 
                 	  <option selected="selected">--请选择--</option>
-                	  <option>1</option>
-                	  <option>2</option>
+                	  <option value="1">老师消息</option>
+                	  <option value="3">学生消息</option>
 				</select>
-				<a id="choice-search-btn" class="easyui-linkbutton">查看</a>
-                <a href="javascript:;" style="text-align: right;" class="easyui-linkbutton" iconAlign="right" iconCls="icon-ok" onclick="openExportSearch()"
-                   >预览我的课表</a>
-                <a class="easyui-linkbutton" style="float: right" onclick="backToChooseClassOnline()" >返回</a>
+				<input type="checkbox" id="history">:显示所有历史消息
+				&nbsp;<a id="choice-search-btn" class="easyui-linkbutton">查看</a>
+                <!-- <a href="javascript:;" style="text-align: right;" class="easyui-linkbutton" iconAlign="right" iconCls="icon-ok" onclick="goReapair()"
+                   >重修选课</a> -->
             </div>
 
         </div>
@@ -56,7 +55,7 @@
 		     * Name 载入数据
 		     */
 		    $('#classinfo-datagrid').datagrid({
-		        url: 'goalreadychoose',
+		        url: 'getmynoticelist',
 		        rownumbers: true,
 		        singleSelect: true,
 		        checkOnSelect:false,  
@@ -69,40 +68,47 @@
 		        fit: true,
 		        columns: [[
 		            //{field: '', checkbox: true},
-		            {field: 'id', hidden: true},
-		            {field: 'couname', title: '课程名称', width: 50, sortable: true},
-		            {field: 'teaname', title: '教师姓名', width: 50, sortable: true},
-		            {field: 'couaddress', title: '上课地点', width: 100},
-		            {field: 'couyear', title: '学年', width: 100, sortable: true},
-		            {field: 'semester', title: '学期', width: 180, sortable: true},
-		            {field: 'counumber', title: '课程容量', width: 100},
-		            {field: 'alcounumber', title: '已报名人数', width: 100},
+		            {field: 'nottitle', title: '标题', width: 50, sortable: true},
+		            {field: 'notname', title: '发送人', width: 50, sortable: true},
+		            {field: 'notcontent', title: '内容', width: 100},
+		            {field: 'starttime', title: '发送时间', width: 180, sortable: true,
+		            	formatter : function(value){
+	                        var date = new Date(value);
+	                        var y = date.getFullYear();
+	                        var m = date.getMonth() + 1;
+	                        var d = date.getDate();
+	                        return y + '年' +m + '月' + d + '日';
+	                    }
+	                },
+		            {field: 'endtime', title: '过期时间', width: 100,
+	                	formatter : function(value){
+	                        var date = new Date(value);
+	                        var y = date.getFullYear();
+	                        var m = date.getMonth() + 1;
+	                        var d = date.getDate();
+	                        return y + '年' +m + '月' + d + '日';
+	                    }
+		            },
 		            {field: 'operate', title: '操作', align:'center',width:$(this).width()*0.1,formatter:function(value, row, index){  
-						var str = '<a href="#" name="opera" class="easyui-linkbutton" onclick="cancelClass()" ></a>';  
+						var str = '<a href="#" name="opera" class="easyui-linkbutton" onclick="goTo()" ></a>';  
 						return str;  
 					}}
 				]],
 				onLoadSuccess:function(data){    
-						$("a[name='opera']").linkbutton({text:'取消选该课程',plain:true,iconCls:'icon-edit'});    
+					$("a[name='opera']").linkbutton({text:'前往',plain:true,iconCls:'icon-edit'});    
 				}
 		    });
 			
-		    $('#cc').combobox({    
-		        url:'alreadychoosecombobox',    
-		        valueField:'id',    
-		        textField:'id'   
-		    });  
 
 
 		    /* 搜索方法*/
 		    $("#choice-search-btn").click(function () {
 		    	/* var a = $("#_easyui_textbox_input1").val();
 		    	alert(a); */
-		    	var couyear = $("#_easyui_textbox_input1").val();
-		        var semester = $("#dd").val();
-		        if((couyear == null || couyear == "--请选择--") || (semester == null || semester == "--请选择--")){
+		        /* var noticetype = $("#dd").val();
+		        if(noticetype == null || noticetype == "--请选择--"){
 		        	window.location.reload(true);
-		        }
+		        } */
 		        //点击搜索
 		        $('#classinfo-datagrid').datagrid({
 		            queryParams: formChoiceJson()
@@ -118,51 +124,34 @@
 		    }); */
 		    //将表单数据转为json
 		    function formChoiceJson() {
-		        var couyear = $("#_easyui_textbox_input1").val();
-		        var semester = $("#dd").val();
-		        if((couyear == null || couyear == "--请选择--") || (semester == null || semester == "--请选择--")){
-		        	couyear = 0;
-		        	semester = 0;
+		        var nottype = $("#dd").val();
+		        //alert(nottype);
+		        var nowtime = null;
+		        var history = $("#history");
+		        if(history[0].checked == true){
+		        	nowtime = "历史";
+		        	//alert("选中");
 		        }
+		        if(nottype == null || nottype == "--请选择--"){
+		        	nottype = 0;
+		        }
+		        //alert(nottype);
 		        //alert(couyear);
 		        //alert(semester);
-		        return {"couyear": couyear,"semester": semester};
+		        return {"nottype": nottype,"nowtime": nowtime};
 		    }
 		  	//查看已选课程表
-		    function openExportSearch() {
-		    	//alert("查看已选课程表");
-		    	var couyear = $("#_easyui_textbox_input1").val();
-		        var semester = $("#dd").val();
-		        if((couyear == null || couyear == "--请选择--") || (semester == null || semester == "--请选择--")){
-		        	alert("没有已选课程信息！");
-		        	return false;
-		        }
-		    	window.location.href = "myownchooseclassinfo?couyear=" + couyear + "&semester=" + semester;
-		    	//var rows = $('#dg').datagrid('getData');
-		    	//alert(rows[0].teaname + rows[0].classyear);
-		  	}
-		  	//取消选择课程
-		  	function cancelClass(){
-		  		//alert("取消选择该课程！");
+		    function goTo() {
+		  		//alert("前往");
 		  		var rows = $('#classinfo-datagrid').datagrid('getSelections');
-		    	//alert("id:" + rows[0].id + "teaname:" + rows[0].teaname);
-		    	var param = {
-		    			"id":rows[0].id,
-		    	}
-		    	$.ajax({
-					type:'post',
-					url:'cancelclass',
-					contentType:"application/json",    //必须配置
-					data:JSON.stringify(param),//转换成字符串，客户端作为生产者
-					success:function(result){
-						alert(result.responseDesc);
-						window.location.reload(true);
-					}
-				});
-		  	}
-		  	//回到在线选课页面
-		  	function backToChooseClassOnline() {
-		  		window.location.href = "chooseclassonline";
+		  		//alert(rows[0].noturl);
+		  		if(rows[0].noturl == "#"){
+		  			alert("没有可跳转的页面！");
+		  			return false;
+		  		}else{
+		  			window.location.href = rows[0].noturl; 
+		  		}
+		    	//window.location.href = "chooseclassonline";
 		  	}
 	</script>
 </body>

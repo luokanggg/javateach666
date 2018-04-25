@@ -40,9 +40,8 @@
                 	  <option>2</option>
 				</select>
 				<a id="choice-search-btn" class="easyui-linkbutton">查看</a>
-                <a href="javascript:;" style="text-align: right;" class="easyui-linkbutton" iconAlign="right" iconCls="icon-ok" onclick="openExportSearch()"
-                   >预览我的课表</a>
-                <a class="easyui-linkbutton" style="float: right" onclick="backToChooseClassOnline()" >返回</a>
+                <!-- <a href="javascript:;" style="text-align: right;" class="easyui-linkbutton" iconAlign="right" iconCls="icon-ok" onclick="goReapair()"
+                   >重修选课</a> -->
             </div>
 
         </div>
@@ -56,7 +55,7 @@
 		     * Name 载入数据
 		     */
 		    $('#classinfo-datagrid').datagrid({
-		        url: 'goalreadychoose',
+		        url: 'getevaluatelist',
 		        rownumbers: true,
 		        singleSelect: true,
 		        checkOnSelect:false,  
@@ -69,21 +68,31 @@
 		        fit: true,
 		        columns: [[
 		            //{field: '', checkbox: true},
-		            {field: 'id', hidden: true},
+		            {field: 'id', hidden :true},
 		            {field: 'couname', title: '课程名称', width: 50, sortable: true},
 		            {field: 'teaname', title: '教师姓名', width: 50, sortable: true},
-		            {field: 'couaddress', title: '上课地点', width: 100},
-		            {field: 'couyear', title: '学年', width: 100, sortable: true},
+		            {field: 'couyear', title: '学年', width: 100},
 		            {field: 'semester', title: '学期', width: 180, sortable: true},
-		            {field: 'counumber', title: '课程容量', width: 100},
-		            {field: 'alcounumber', title: '已报名人数', width: 100},
+		            {field: 'evaluate', title: '评价', width: 100,formatter:function(value, row, index){  
+						if(value == 1){
+							return "不满意";
+						}else if(value == 2){
+							return "较满意";
+						}else if(value == 3){
+							return "满意";
+						}else if(value == 4){
+							return "很满意";
+						}else if(value == 0){
+							return "未评价";
+						}
+					}},
 		            {field: 'operate', title: '操作', align:'center',width:$(this).width()*0.1,formatter:function(value, row, index){  
-						var str = '<a href="#" name="opera" class="easyui-linkbutton" onclick="cancelClass()" ></a>';  
+						var str = '<a href="#" name="opera" class="easyui-linkbutton" onclick="sendMessage()" ></a>';  
 						return str;  
 					}}
 				]],
 				onLoadSuccess:function(data){    
-						$("a[name='opera']").linkbutton({text:'取消选该课程',plain:true,iconCls:'icon-edit'});    
+					$("a[name='opera']").linkbutton({text:'重新评价',plain:true,iconCls:'icon-edit'});    
 				}
 		    });
 			
@@ -128,41 +137,31 @@
 		        //alert(semester);
 		        return {"couyear": couyear,"semester": semester};
 		    }
-		  	//查看已选课程表
-		    function openExportSearch() {
-		    	//alert("查看已选课程表");
-		    	var couyear = $("#_easyui_textbox_input1").val();
-		        var semester = $("#dd").val();
-		        if((couyear == null || couyear == "--请选择--") || (semester == null || semester == "--请选择--")){
-		        	alert("没有已选课程信息！");
-		        	return false;
-		        }
-		    	window.location.href = "myownchooseclassinfo?couyear=" + couyear + "&semester=" + semester;
-		    	//var rows = $('#dg').datagrid('getData');
-		    	//alert(rows[0].teaname + rows[0].classyear);
-		  	}
-		  	//取消选择课程
-		  	function cancelClass(){
-		  		//alert("取消选择该课程！");
+		  	//评价编辑
+		  	function sendMessage(){
+		  		//alert("发送消息");
 		  		var rows = $('#classinfo-datagrid').datagrid('getSelections');
-		    	//alert("id:" + rows[0].id + "teaname:" + rows[0].teaname);
-		    	var param = {
-		    			"id":rows[0].id,
-		    	}
-		    	$.ajax({
+		  		//alert(rows[0].stuno);
+		  		//alert("id" + rows[0].id);
+				var param = {
+						"couyear":rows[0].couyear,
+						"semester":rows[0].semester,
+				} 
+				 $.ajax({
 					type:'post',
-					url:'cancelclass',
+					url:'checkgoupdateevaluate',
 					contentType:"application/json",    //必须配置
 					data:JSON.stringify(param),//转换成字符串，客户端作为生产者
 					success:function(result){
-						alert(result.responseDesc);
-						window.location.reload(true);
-					}
-				});
-		  	}
-		  	//回到在线选课页面
-		  	function backToChooseClassOnline() {
-		  		window.location.href = "chooseclassonline";
+						//alert(result.stuimage);
+						if(result.responseCode == "0000"){
+							window.location.href = "goupdateevaluate?id=" + rows[0].id;
+						}else{
+							alert(result.responseDesc);
+						}
+					} 
+				});  
+				//window.location.href = "goupdateevaluate?id=" + rows[0].id;
 		  	}
 	</script>
 </body>

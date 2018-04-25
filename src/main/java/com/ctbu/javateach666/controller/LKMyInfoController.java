@@ -26,15 +26,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.ctbu.javateach666.pojo.bo.LKUpdateStuInfoBO;
+import com.ctbu.javateach666.pojo.bo.LKcancelClassReqBO;
+import com.ctbu.javateach666.dao.LKMyInfoDao;
 import com.ctbu.javateach666.pojo.bo.BaseInfoBO;
 import com.ctbu.javateach666.pojo.bo.DeleteMyFileReqBO;
+import com.ctbu.javateach666.pojo.bo.LKGetChooseActivityListReqBO;
+import com.ctbu.javateach666.pojo.bo.LKGetChooseActivityListRspBO;
 import com.ctbu.javateach666.pojo.bo.LKMyClassInfoListRepBO;
 import com.ctbu.javateach666.pojo.bo.LKMyClassInfoListRspBO;
 import com.ctbu.javateach666.pojo.bo.LKMyFileListReqBO;
 import com.ctbu.javateach666.pojo.bo.LKMyFileListRspBO;
+import com.ctbu.javateach666.pojo.bo.LKPubActivityReqBO;
 import com.ctbu.javateach666.pojo.bo.LKSendMessageToStuReqBO;
 import com.ctbu.javateach666.pojo.bo.PageInfoBo;
 import com.ctbu.javateach666.pojo.po.LKStudentInfoPO;
+import com.ctbu.javateach666.service.interfac.LKMyActivityService;
 import com.ctbu.javateach666.service.interfac.LKMyInfoService;
 /**
  * 我的信息控制器类
@@ -45,7 +51,13 @@ import com.ctbu.javateach666.service.interfac.LKMyInfoService;
 public class LKMyInfoController {
 	
 	@Autowired
+	private LKMyInfoDao lKMyInfoDao;
+	
+	@Autowired
 	private LKMyInfoService lKMyInfoService;
+	
+	@Autowired
+	private LKMyActivityService lKMyActivityService;
 	
 	//个人信息小模块
 	
@@ -207,5 +219,40 @@ public class LKMyInfoController {
 		return "lkmyinfo/myfile";
 	}
 	
+	//我的活动编辑模块
+	
+	@RequestMapping("/gomyactivityupdate")
+	public String goMyActivityUpdate(){
+		return "lkmyinfo/mypubactivity";
+	}
+	
+	@RequestMapping("/goupdateactivityupdate")
+	public String goUpdateActivityUpdate(LKcancelClassReqBO lKcancelClassReqBO, HttpServletRequest request){
+		request.setAttribute("id", lKcancelClassReqBO.getId());
+		return "lkmyinfo/updatepubactivity";
+	}
+	
+	@ResponseBody
+	@RequestMapping("getmyupdatechooseactivitylist")
+	public PageInfoBo<LKGetChooseActivityListRspBO> getMyChooseActivityList(LKGetChooseActivityListReqBO lKGetChooseActivityListReqBO){
+		//取得当前登录学生id;
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		LKStudentInfoPO lKStudentInfoPO = lKMyInfoDao.initStuInfo(userDetails.getUsername());
+		lKGetChooseActivityListReqBO.setPubownid(lKStudentInfoPO.getId());
+		return lKMyActivityService.getChooseActivityList(lKGetChooseActivityListReqBO);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/updatepubactivity")
+	public LKPubActivityReqBO UpdatePubActivity(@RequestBody LKPubActivityReqBO lKPubActivityReqBO, HttpServletRequest request){
+		request.setAttribute("id", lKPubActivityReqBO.getId());
+		return lKMyActivityService.updatePubActivity(lKPubActivityReqBO);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/getupdatepubactivity")
+	public LKPubActivityReqBO geUpdatePubActivity(@RequestBody LKPubActivityReqBO lKPubActivityReqBO){
+		return lKMyActivityService.getUpdatePubActivity(lKPubActivityReqBO);
+	}
 	
 }

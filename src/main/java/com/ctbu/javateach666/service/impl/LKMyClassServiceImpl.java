@@ -1,9 +1,15 @@
 package com.ctbu.javateach666.service.impl;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.ctbu.javateach666.constant.Constant;
 import com.ctbu.javateach666.dao.LKMyClassDao;
@@ -25,10 +32,15 @@ import com.ctbu.javateach666.pojo.bo.LKCheckIsTimeOKReqBO;
 import com.ctbu.javateach666.pojo.bo.LKChooseClassOnlineListReqBO;
 import com.ctbu.javateach666.pojo.bo.LKChooseClassOnlineListRspBO;
 import com.ctbu.javateach666.pojo.bo.LKChooseClassReqBO;
+import com.ctbu.javateach666.pojo.bo.LKGetSubmitClassWorkDataRspBO;
+import com.ctbu.javateach666.pojo.bo.LKGetSubmitClassWorkDataSBSDaoBO;
 import com.ctbu.javateach666.pojo.bo.LKInitMyClassInfoReqBO;
 import com.ctbu.javateach666.pojo.bo.LKInitMyClassInfoRspBO;
+import com.ctbu.javateach666.pojo.bo.LKSubmotsWorkBO;
 import com.ctbu.javateach666.pojo.bo.LKcancelClassReqBO;
 import com.ctbu.javateach666.pojo.bo.PageInfoBo;
+import com.ctbu.javateach666.pojo.bo.UpdateAlCouNumberReqBO;
+import com.ctbu.javateach666.pojo.po.LKAccessoryPO;
 import com.ctbu.javateach666.pojo.po.LKStucoursePO;
 import com.ctbu.javateach666.pojo.po.LKStudentInfoPO;
 import com.ctbu.javateach666.pojo.po.LKTeacoursePO;
@@ -199,6 +211,16 @@ public class LKMyClassServiceImpl implements LKMyClassService{
 			return rsp;
 		}
 		
+		UpdateAlCouNumberReqBO alcounumber = new UpdateAlCouNumberReqBO();
+		alcounumber.setAlcounumber(lKTeacoursePO.getAlcounumber() + 1);
+		alcounumber.setId(lKTeacoursePO.getId());
+		int isup = lKMyClassDao.updateAlCouNumber(alcounumber);
+		if(isup < 1){
+			rsp.setResponseCode(Constant.RSP_FALSE_CODE);
+			rsp.setResponseDesc("选课失败！已选人数更新异常！");
+			return rsp;
+		}
+		
 		rsp.setResponseCode(Constant.RSP_SUCCESS_CODE);
 		rsp.setResponseDesc("选课成功！");
 		return rsp;
@@ -304,15 +326,71 @@ public class LKMyClassServiceImpl implements LKMyClassService{
 			return rsp;
 		}
 		
+		int teaid = lKMyClassDao.getCancelClassId(lKcancelClassReqBO);
+		LKcancelClassReqBO teaidbo = new LKcancelClassReqBO();
+		teaidbo.setId(teaid);
+		int isup = lKMyClassDao.UpCancelAlCounumber(teaidbo);
+		if(isup < 1){
+			rsp.setResponseCode(Constant.RSP_FALSE_CODE);
+			rsp.setResponseDesc("取消失败！已选人数更新异常！");
+			return rsp;
+		}
+		
 		int count = lKMyClassDao.cancelClass(lKcancelClassReqBO);
 		if(count < 1){
 			rsp.setResponseCode(Constant.RSP_FALSE_CODE);
 			rsp.setResponseDesc("取消失败！取消课程异常！");
 			return rsp;
 		}
+		
+		
 		rsp.setResponseCode(Constant.RSP_SUCCESS_CODE);
 		rsp.setResponseDesc("取消成功！");
 		return rsp;
+	}
+
+	public LKGetSubmitClassWorkDataRspBO getSubmitClassWorkData(int id) {
+		//定义出参
+		LKGetSubmitClassWorkDataRspBO rsp = new LKGetSubmitClassWorkDataRspBO();
+		
+		Map<String,String> TAC = lKMyClassDao.getSubmitClassWorkDataTAC(id);
+		rsp.setCouname(TAC.get("couname"));
+		rsp.setTeaname(TAC.get("teaname"));
+		LKGetSubmitClassWorkDataSBSDaoBO sbsreq = new LKGetSubmitClassWorkDataSBSDaoBO();
+		sbsreq.setOwnid(id);
+		sbsreq.setAcctype(Constant.ACCESSORY_TYPE.CLASS);
+		List<LKSubmotsWorkBO> list = lKMyClassDao.getSubmitClassWorkDataSBS(sbsreq);
+		if(null != list){
+			rsp.setSubmits(list);
+		}
+		return rsp;
+	}
+
+	public int submitWork(int id, CommonsMultipartFile file, HttpServletRequest request) {
+		//定义文件上传路径
+		String savepath = request.getServletContext().getRealPath("/")+"static\\file\\";
+		//定义文件保存的名称
+		String accname = id + file.getOriginalFilename();
+		//定义数据库图片名称
+		String accurl = "\\javateach666\\static\\file\\" + accname;
+		LKAccessoryPO req = new LKAccessoryPO();
+		req.setAccname(accname);
+		req.setAcctype(Constant.ACCESSORY_TYPE.CLASS);
+		req.setOwnid(id);
+		req.setUploadtime(new Date());
+		req.setAccurl(accurl);
+		int count = lKMyClassDao.submitWork(req);
+		if(count > 0){
+			File newFile=new File(savepath, accname);
+			try {
+				file.transferTo(newFile);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return id;
 	}
 
 }

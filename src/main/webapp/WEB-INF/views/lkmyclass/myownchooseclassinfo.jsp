@@ -5,10 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@include file="/common/easyui.jspf"%>
+<link rel="stylesheet" type="text/css" href="${basePath}/static/css/main.css"/>
 <title>我的课程表</title>
 </head>
 <body>
-	<table width="100%" height="400px" border="1" style="border-color: #99CCFF; border-collapse : collapse">
+	<table width="100%" height="500px" border="1" style="border-color: #99CCFF; border-collapse : collapse">
 		<thead>
 			<tr>
 				<th colspan="8" >课程表</th>
@@ -25,18 +26,18 @@
 				<th>星期六</th>
 				<th>星期日</th>
 			</tr>
-			<tr id="1"></tr>
-			<tr id="2"></tr>
-			<tr id="3"></tr>
-			<tr id="4"></tr>
-			<tr id="5"></tr>
-			<tr id="6"></tr>
-			<tr id="7"></tr>
-			<tr id="8"></tr>
-			<tr id="9"></tr>
-			<tr id="10"></tr>
-			<tr id="11"></tr>
-			<tr id="12"></tr>
+			<tr align="center" id="1"></tr>
+			<tr align="center" id="2"></tr>
+			<tr align="center" id="3"></tr>
+			<tr align="center" id="4"></tr>
+			<tr align="center" id="5"></tr>
+			<tr align="center" id="6"></tr>
+			<tr align="center" id="7"></tr>
+			<tr align="center" id="8"></tr>
+			<tr align="center" id="9"></tr>
+			<tr align="center" id="10"></tr>
+			<tr align="center" id="11"></tr>
+			<tr align="center" id="12"></tr>
 		</tbody>
 	</table>
 	<center><a class="easyui-linkbutton" onclick="backToAlreadyChoose()" >返回</a></center>

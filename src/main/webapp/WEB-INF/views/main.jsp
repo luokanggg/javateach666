@@ -34,7 +34,7 @@
 			<ul class="nav">
 				<security:authorize ifAnyGranted="STUDENT" >
 					<li class="nav_top">
-						<a class="nav_top_link" href="#">
+						<a class="nav_top_link" href="mynoticelist" target="_son">
 							<span class="index">返回首页</span>
 						</a>
 					</li>
@@ -60,6 +60,9 @@
 							<li>
 								<a href="gomyevaluate" target="_son">教学评价</a>
 							</li>
+							<li>
+								<a href="goevaluatelist" target="_son">教学评价管理</a>
+							</li>
 						</ul>
 					</li>
 					<li class="nav_top">
@@ -76,6 +79,9 @@
 							</li>
 							<li>
 								<a href="myfile" target="_son">我的文档</a>
+							</li>
+							<li>
+								<a href="gomyactivityupdate" target="_son">我的活动编辑</a>
 							</li>
 						</ul>
 					</li>
@@ -101,6 +107,20 @@
 						<ul class="sub">
 							<li>
 								<a href="myrepairlist" target="_son">挂科科目</a>
+							</li>
+						</ul>
+					</li>
+					<li class="nav_top">
+						<a class="nav_top_link">
+							<span class="down">我的活动</span>
+						</a>
+						
+						<ul class="sub">
+							<li>
+								<a href="gopubactivity" target="_son">发布活动</a>
+							</li>
+							<li>
+								<a href="gochooseactivity" target="_son">活动报名</a>
 							</li>
 						</ul>
 					</li>
@@ -166,7 +186,7 @@
 		<!--中间-->
 		<div class="center">
 			<div>
-				<iframe name="_son" src="wel"  width="98%" height="463px" style="margin: 0px 12px;" scrolling="no" frameborder="0"></iframe>
+				<iframe name="_son" src="mynoticelist"  width="98%" height="543px" style="margin: 0px 12px;" scrolling="no" frameborder="0"></iframe>
 			</div>
 		</div>
 		<!--底部-->

@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.ctbu.javateach666.pojo.bo.AlreadyChooseComboBoxBO;
 import com.ctbu.javateach666.pojo.bo.BaseInfoBO;
@@ -17,6 +19,8 @@ import com.ctbu.javateach666.pojo.bo.LKAlreadyChooseRspBO;
 import com.ctbu.javateach666.pojo.bo.LKChooseClassOnlineListReqBO;
 import com.ctbu.javateach666.pojo.bo.LKChooseClassOnlineListRspBO;
 import com.ctbu.javateach666.pojo.bo.LKChooseClassReqBO;
+import com.ctbu.javateach666.pojo.bo.LKGetSubmitClassWorkDataReqBO;
+import com.ctbu.javateach666.pojo.bo.LKGetSubmitClassWorkDataRspBO;
 import com.ctbu.javateach666.pojo.bo.LKInitMyClassInfoReqBO;
 import com.ctbu.javateach666.pojo.bo.LKInitMyClassInfoRspBO;
 import com.ctbu.javateach666.pojo.bo.LKcancelClassReqBO;
@@ -45,6 +49,29 @@ public class LKMyClassController {
 	@RequestMapping("initmyclassinfo")
 	public List<LKInitMyClassInfoRspBO> initMyClassInfo(){
 		return lKMyClassService.initMyClassInfo();
+	}
+	
+	@RequestMapping("submitclasswork")
+	public String goSubmitClassWork(int id, HttpServletRequest request){
+		request.setAttribute("id", id);
+		return "lkmyclass/submitclasswork";
+	}
+	
+	@ResponseBody
+	@RequestMapping("getsubmitclassworkdata")
+	public LKGetSubmitClassWorkDataRspBO getSubmitClassWorkData(@RequestBody LKGetSubmitClassWorkDataReqBO lKGetSubmitClassWorkDataReqBO){
+		return lKMyClassService.getSubmitClassWorkData(lKGetSubmitClassWorkDataReqBO.getId());
+	}
+	
+	@RequestMapping("/updateclasswork")
+	public String submitWork(int id, @RequestParam("file") CommonsMultipartFile file, HttpServletRequest request){
+		//int id2 = Integer.parseInt(id);
+		request.setAttribute("id", id);
+		if(file.getOriginalFilename() == null || file.getOriginalFilename()== ""){
+			return "lkmyclass/submitclasswork";
+		}
+		lKMyClassService.submitWork(id, file, request);
+		return "lkmyclass/submitclasswork";
 	}
 	
 	//网上选课小模块

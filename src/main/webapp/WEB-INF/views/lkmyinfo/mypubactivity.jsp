@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@include file="/common/easyui.jspf"%>
-<title>网上选课</title>
+<title>我的班级</title>
 <!-- <style type="text/css">
 	#classinfo-datagrid tr{height:40px;}
 </style> -->
@@ -25,12 +25,13 @@
                 <a href="javascript:;" class="easyui-linkbutton" iconCls="icon-ok" onclick="openImportChoice()"
                    plain="true">导入</a> -->
                 <form id="choice-search-form" style="display: inline-block">
-			                    教师姓名：<input class="easyui-textbox" id="choice-course-value"/>
-			                    课程名字：<input class="easyui-textbox" id="choice-course-value2"/>
+			                    活动名称：<input class="easyui-textbox" id="choice-course-value"/>
+			                    发布人：<input class="easyui-textbox" id="choice-course-value2"/>
                     <a id="choice-search-btn" class="easyui-linkbutton">搜索</a>
                     <a id="choice-search-reset" class="easyui-linkbutton">重置</a>
                 </form>
-                <a class="easyui-linkbutton" iconAlign="right" iconCls="icon-ok" onclick="goAlreadyChoose()">查看我的已选课程</a>
+                <!-- <a href="javascript:;" style="text-align: right;" class="easyui-linkbutton" iconAlign="right" iconCls="icon-ok" onclick="openExportSearch()"
+                   plain="true">选择</a> -->
             </div>
 
         </div>
@@ -44,7 +45,7 @@
 		     * Name 载入数据
 		     */
 		    $('#classinfo-datagrid').datagrid({
-		        url: 'getchooseclassonlinelist',
+		        url: 'getmyupdatechooseactivitylist',
 		        rownumbers: true,
 		        singleSelect: true,
 		        checkOnSelect:false,  
@@ -57,20 +58,39 @@
 		        fit: true,
 		        columns: [[
 		            //{field: '', checkbox: true},
+		            //{field: 'pubid', hidden :true},
 		            {field: 'id', hidden :true},
-		            {field: 'couname', title: '课程名称', width: 50, sortable: true},
-		            {field: 'teaname', title: '教师姓名', width: 50, sortable: true},
-		            {field: 'couaddress', title: '上课地点', width: 100, sortable: true},
-		            {field: 'coutime', title: '上课时间', width: 180, sortable: true},
-		            {field: 'counumber', title: '课程容量', width: 100},
-		            {field: 'alcounumber', title: '已报名人数', width: 100},
+		            {field: 'pubname', title: '活动名称', width: 50, sortable: true},
+		            {field: 'pubownname', title: '发布人', width: 50, sortable: true},
+		            {field: 'pubcontent', title: '内容', width: 100, sortable: true},
+		            {field: 'pubaddress', title: '地点', width: 180, sortable: true},
+		            {field: 'pubnumber', title: '人数', width: 100},
+		            {field: 'alpubnumber', title: '已报名', width: 100},
+		            {field: 'pubtimestart', title: '开始时间', width: 100,
+		            	formatter : function(value){
+	                        var date = new Date(value);
+	                        var y = date.getFullYear();
+	                        var m = date.getMonth() + 1;
+	                        var d = date.getDate();
+	                        return y + '年' +m + '月' + d + '日';
+	                    }
+		            },
+		            {field: 'pubtimeend', title: '结束时间', width: 100,
+		            	formatter : function(value){
+	                        var date = new Date(value);
+	                        var y = date.getFullYear();
+	                        var m = date.getMonth() + 1;
+	                        var d = date.getDate();
+	                        return y + '年' +m + '月' + d + '日';
+	                    }
+		            },
 		            {field: 'operate', title: '操作', align:'center',width:$(this).width()*0.1,formatter:function(value, row, index){  
-						var str = '<a href="#" name="opera" class="easyui-linkbutton" onclick="chooseClass()" ></a>';  
+						var str = '<a href="#" name="opera" class="easyui-linkbutton" onclick="sendMessage()" ></a>';  
 						return str;  
 					}}
 				]],
 				onLoadSuccess:function(data){    
-						$("a[name='opera']").linkbutton({text:'选课',plain:true,iconCls:'icon-edit'});    
+						$("a[name='opera']").linkbutton({text:'详情',plain:true,iconCls:'icon-edit'});    
 				}
 		    });
 		    /* 搜索方法*/
@@ -90,36 +110,27 @@
 		    });
 		    //将表单数据转为json
 		    function formChoiceJson() {
-		        var teaname = $("#choice-course-value").val();
-		        var couname = $("#choice-course-value2").val();
+		        var pubname = $("#choice-course-value").val();
+		        var pubownname = $("#choice-course-value2").val();
 		        //alert(question1);
 		        //alert(question2);
-		        return {"teaname": teaname,"couname": couname};
+		        return {"pubname": pubname,"pubownname": pubownname};
 		    }
-		    //选课
-		    function chooseClass() {
-		    	//alert("选课");
-		    	var rows = $('#classinfo-datagrid').datagrid('getSelections');
-		    	//alert("id:" + rows[0].id + "teaname:" + rows[0].teaname);
-		    	var param = {
-						"teacourseid":rows[0].id,
-				}
-				$.ajax({
-					type:'post',
-					url:'chooseclass',
-					contentType:"application/json",    //必须配置
-					data:JSON.stringify(param),//转换成字符串，客户端作为生产者
-					success:function(result){
-						//alert(result.stuimage);
-						alert(result.responseDesc);
-						window.location.reload(true);
-					} 
-				});
-		    }
-		  	//查看我的已选课程
-		    function goAlreadyChoose() {
-		  		//alert("查看已选课程");
-				window.location.href = "goalreadychoosepage";
+		  	//导出
+		   /*  function openExportSearch() {
+			  //alert("导出方法");
+			  //var pubname = $("#choice-course-value").val();
+		      //var pubownname = $("#choice-course-value2").val();
+		      //alert("学号：" + stuno + "学生姓名：" + stuname);
+			  window.location.href = "gomychooseactivity";
+			  //window.location.href = "exportclassinfo?stuno=" + stuno + "&stuname=" + stuname;
+		  	} */
+		  	//发送消息
+		  	function sendMessage(){
+		  		//alert("发送消息");
+		  		var rows = $('#classinfo-datagrid').datagrid('getSelections');
+		  		//alert(rows[0].stuno);
+		  		window.location.href = "goupdateactivityupdate?id=" + rows[0].id;
 		  	}
 	</script>
 </body>
