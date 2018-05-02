@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
 import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter.XFrameOptionsMode;
 /**
@@ -29,7 +30,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	      .jdbcAuthentication()
 	      	.dataSource(dataSource)
 	      	.usersByUsernameQuery("select username,password,enable from account where username=?")
-	      	.authoritiesByUsernameQuery("select username,authorities from authorities where username=?");
+	      	.authoritiesByUsernameQuery("select username,authorities from authorities where username=?")
+	      	.passwordEncoder(new BCryptPasswordEncoder());
 	      	
 	}
 

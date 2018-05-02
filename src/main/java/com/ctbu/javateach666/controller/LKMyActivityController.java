@@ -1,6 +1,8 @@
 package com.ctbu.javateach666.controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +12,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ctbu.javateach666.pojo.bo.BaseInfoBO;
 import com.ctbu.javateach666.pojo.bo.LKGetChooseActivityListReqBO;
 import com.ctbu.javateach666.pojo.bo.LKGetChooseActivityListRspBO;
+import com.ctbu.javateach666.pojo.bo.LKGetManageActivityReqBO;
+import com.ctbu.javateach666.pojo.bo.LKGetManageActivityRspBO;
+import com.ctbu.javateach666.pojo.bo.LKMoveActivityMemberReqBO;
+import com.ctbu.javateach666.pojo.bo.LKMyPubNameCombBoxBO;
 import com.ctbu.javateach666.pojo.bo.LKPubActivityReqBO;
 import com.ctbu.javateach666.pojo.bo.LKcancelClassReqBO;
 import com.ctbu.javateach666.pojo.bo.PageInfoBo;
@@ -69,4 +75,30 @@ public class LKMyActivityController {
 	public BaseInfoBO cancelChooseActivity(@RequestBody LKcancelClassReqBO lKcancelClassReqBO){
 		return lKMyActivityService.cancelChooseActivity(lKcancelClassReqBO);
 	}
+	
+	//活动管理小模块
+	
+	@RequestMapping("/gomanageactivity")
+	public String goManageActivity(){
+		return "lkmyactivity/manageactivity";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/mypubactivitynamelist")
+	public List<LKMyPubNameCombBoxBO> getMyPubNameCombList(LKGetChooseActivityListReqBO lKGetChooseActivityListReqBO){
+		return lKMyActivityService.getMyPubNameCombList(lKGetChooseActivityListReqBO);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/getmanageactivitylist")
+	public PageInfoBo<LKGetManageActivityRspBO> getManageActivityList(LKGetManageActivityReqBO lKGetManageActivityReqBO){
+		return lKMyActivityService.getManageActivityList(lKGetManageActivityReqBO);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/moveactivitymember")
+	public BaseInfoBO moveActivityMember(@RequestBody LKMoveActivityMemberReqBO lKMoveActivityMemberReqBO){
+		return lKMyActivityService.moveActivityMember(lKMoveActivityMemberReqBO);
+	}
+	
 }

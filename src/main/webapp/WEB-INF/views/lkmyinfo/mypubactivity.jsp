@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@include file="/common/easyui.jspf"%>
+<link rel="stylesheet" type="text/css" href="${basePath}/static/css/lklist.css"/>
 <title>我的班级</title>
 <!-- <style type="text/css">
 	#classinfo-datagrid tr{height:40px;}
@@ -25,10 +26,10 @@
                 <a href="javascript:;" class="easyui-linkbutton" iconCls="icon-ok" onclick="openImportChoice()"
                    plain="true">导入</a> -->
                 <form id="choice-search-form" style="display: inline-block">
-			                    活动名称：<input class="easyui-textbox" id="choice-course-value"/>
-			                    发布人：<input class="easyui-textbox" id="choice-course-value2"/>
-                    <a id="choice-search-btn" class="easyui-linkbutton">搜索</a>
-                    <a id="choice-search-reset" class="easyui-linkbutton">重置</a>
+			        &nbsp;&nbsp; 活动名称：&nbsp;&nbsp;<input class="easyui-textbox" id="choice-course-value"/>
+			        &nbsp;&nbsp; 发布人：&nbsp;&nbsp;<input class="easyui-textbox" id="choice-course-value2"/>
+                    &nbsp;&nbsp;<a id="choice-search-btn" iconCls="icon-search" class="easyui-linkbutton">搜索</a>
+                    &nbsp;&nbsp;<a id="choice-search-reset" iconCls="icon-undo" class="easyui-linkbutton">重置</a>
                 </form>
                 <!-- <a href="javascript:;" style="text-align: right;" class="easyui-linkbutton" iconAlign="right" iconCls="icon-ok" onclick="openExportSearch()"
                    plain="true">选择</a> -->
@@ -54,6 +55,7 @@
 		        pagination: true,
 		        queryParams: formChoiceJson(),
 		        multiSort: true,
+		        striped:true,
 		        fitColumns: true,
 		        fit: true,
 		        columns: [[

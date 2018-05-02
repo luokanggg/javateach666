@@ -1,5 +1,6 @@
 package com.ctbu.javateach666.service.impl;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -20,10 +21,15 @@ import com.ctbu.javateach666.pojo.bo.ChooseActivityReqBO;
 import com.ctbu.javateach666.pojo.bo.ChooseActivityRspBO;
 import com.ctbu.javateach666.pojo.bo.LKGetChooseActivityListReqBO;
 import com.ctbu.javateach666.pojo.bo.LKGetChooseActivityListRspBO;
+import com.ctbu.javateach666.pojo.bo.LKGetManageActivityReqBO;
+import com.ctbu.javateach666.pojo.bo.LKGetManageActivityRspBO;
+import com.ctbu.javateach666.pojo.bo.LKMoveActivityMemberReqBO;
+import com.ctbu.javateach666.pojo.bo.LKMyPubNameCombBoxBO;
 import com.ctbu.javateach666.pojo.bo.LKPubActivityReqBO;
 import com.ctbu.javateach666.pojo.bo.LKcancelClassReqBO;
 import com.ctbu.javateach666.pojo.bo.PageInfoBo;
 import com.ctbu.javateach666.pojo.bo.UpdatePubNumberReqBO;
+import com.ctbu.javateach666.pojo.po.LKNoticePO;
 import com.ctbu.javateach666.pojo.po.LKStudentInfoPO;
 import com.ctbu.javateach666.service.interfac.LKMyActivityService;
 
@@ -250,6 +256,13 @@ public class LKMyActivityServiceImpl implements LKMyActivityService{
 			return rsp;
 		}
 		
+		int count2 = lKMyActivityDao.updatePerActivity(lKPubActivityReqBO);
+		if(count2 < 1){
+			rsp.setResponseCode(Constant.RSP_FALSE_CODE);
+			rsp.setResponseDesc("活动更新失败！");
+			return rsp;
+		}
+		
 		LKPubActivityReqBO value = lKMyActivityDao.getUpdatePubActivity(lKPubActivityReqBO);
 		BeanUtils.copyProperties(value, rsp);
 		rsp.setResponseCode(Constant.RSP_SUCCESS_CODE);
@@ -263,7 +276,96 @@ public class LKMyActivityServiceImpl implements LKMyActivityService{
 		
 		return rsp;
 	}
-	
-	
+
+	public List<LKMyPubNameCombBoxBO> getMyPubNameCombList(LKGetChooseActivityListReqBO lKGetChooseActivityListReqBO) {
+		
+		//取得当前登录学生id;
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		LKStudentInfoPO lKStudentInfoPO = lKMyInfoDao.initStuInfo(userDetails.getUsername());
+		lKGetChooseActivityListReqBO.setStuid(lKStudentInfoPO.getId());
+		lKGetChooseActivityListReqBO.setNowtime(new Date());
+		
+		return lKMyActivityDao.getMyPubNameCombList(lKGetChooseActivityListReqBO);
+	}
+
+	public PageInfoBo<LKGetManageActivityRspBO> getManageActivityList(
+			LKGetManageActivityReqBO lKGetManageActivityReqBO) {
+		//出参定义
+		PageInfoBo<LKGetManageActivityRspBO> rsp = new PageInfoBo<LKGetManageActivityRspBO>();
+		
+		//设置page为下标
+		int page = 0;
+		page = (lKGetManageActivityReqBO.getPage() - 1) * lKGetManageActivityReqBO.getRows();
+		lKGetManageActivityReqBO.setPage(page);
+		
+		//取得当前登录学生id;
+		/*UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		LKStudentInfoPO lKStudentInfoPO = lKMyInfoDao.initStuInfo(userDetails.getUsername());
+		lKGetManageActivityReqBO.setStuid(lKStudentInfoPO.getId());*/
+		
+		int total = lKMyActivityDao.getTotalManageActivityList(lKGetManageActivityReqBO);
+		if(total <  1){
+			return rsp;
+		}
+		
+		List<LKGetManageActivityRspBO> listrsp = lKMyActivityDao.getManageActivityList(lKGetManageActivityReqBO);
+		
+		rsp.setRows(listrsp);
+		rsp.setTotal(total);
+		return rsp;
+	}
+
+	public BaseInfoBO moveActivityMember(LKMoveActivityMemberReqBO lKMoveActivityMemberReqBO) {
+		//出参定义
+		BaseInfoBO rsp = new BaseInfoBO();
+		LKcancelClassReqBO peridbo = new LKcancelClassReqBO();
+		peridbo.setId(lKMoveActivityMemberReqBO.getId());
+		int pubid = lKMyActivityDao.getCancelPubId(peridbo);
+		LKcancelClassReqBO pubidbo = new LKcancelClassReqBO();
+		pubidbo.setId(pubid);
+		int isup = lKMyActivityDao.updateCancelAlPubNumber(pubidbo);
+		if(isup < 1){
+			rsp.setResponseCode(Constant.RSP_FALSE_CODE);
+			rsp.setResponseDesc("取消报名失败，已报名人数更新失败!");
+			return rsp;
+		}
+		
+		int count = lKMyActivityDao.cancelChooseActivity(peridbo);
+		if(count < 1){
+			rsp.setResponseCode(Constant.RSP_FALSE_CODE);
+			rsp.setResponseDesc("未知原因，取消报名失败!");
+			return rsp;
+		}
+		
+		//取得当前用户信息；
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		//取得登录学生的id和姓名
+		LKStudentInfoPO logstu = lKMyInfoDao.initStuInfo(userDetails.getUsername());
+		//生成一个通知实体
+		LKNoticePO lKNoticePO = new LKNoticePO();
+		lKNoticePO.setNotid(logstu.getId());  //通知人id
+		lKNoticePO.setTonotid(lKMoveActivityMemberReqBO.getStuid()); //被通知人id
+		lKNoticePO.setNottype(Constant.NOTICE_TYPE.STU_TO_STU); //通知类型
+		lKNoticePO.setNotname(logstu.getStuname()); //通知人姓名
+		lKNoticePO.setNottitle("活动踢出"); //标题
+		lKNoticePO.setNotcontent(lKMoveActivityMemberReqBO.getMessage()); //内容
+		lKNoticePO.setNoturl("#"); //连接url
+		lKNoticePO.setStarttime(new Date()); //通知创建时间
+		Calendar cal = Calendar.getInstance();
+		//下面的就是把当前日期加一个月
+		cal.add(Calendar.MONTH, 1);
+		lKNoticePO.setEndtime(cal.getTime()); //通知过期时间
+		
+		int count2 = lKMyInfoDao.createNoticeTypeThree(lKNoticePO);
+		if(count2 < 1){
+			rsp.setResponseCode(Constant.RSP_FALSE_CODE);
+			rsp.setResponseDesc("发送消息异常！");
+			return rsp;
+		}
+		
+		rsp.setResponseCode(Constant.RSP_SUCCESS_CODE);
+		rsp.setResponseDesc("成功踢出！");
+		return rsp;
+	}
 	
 }

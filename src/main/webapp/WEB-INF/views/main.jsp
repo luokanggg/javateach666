@@ -83,6 +83,12 @@
 							<li>
 								<a href="gomyactivityupdate" target="_son">我的活动编辑</a>
 							</li>
+							<li>
+								<a href="goupdatepass" target="_son">修改密码</a>
+							</li>
+							<li>
+								<a href="javascript:;"  onclick="flushDb()">清除系统缓存</a>
+							</li>
 						</ul>
 					</li>
 					<li class="nav_top">
@@ -96,6 +102,9 @@
 							</li>
 							<li>
 								<a href="chooseclassonline" target="_son">网上选课</a>
+							</li>
+							<li>
+								<a href="gosemesterteacher" target="_son">学期任课老师</a>
 							</li>
 						</ul>
 					</li>
@@ -121,6 +130,9 @@
 							</li>
 							<li>
 								<a href="gochooseactivity" target="_son">活动报名</a>
+							</li>
+							<li>
+								<a href="gomanageactivity" target="_son">活动管理</a>
 							</li>
 						</ul>
 					</li>
@@ -193,5 +205,21 @@
 		<div class="footer">
 			
 		</div>
+		<script type="text/javascript">
+		
+			function flushDb(){
+				$.ajax({
+					type:'post',
+					url:'flushdb',
+					contentType:"application/json",    //必须配置
+					//data:JSON.stringify(param),//转换成字符串，客户端作为生产者
+					success:function(result){
+						//alert(result.stuimage);
+						alert(result.responseDesc);
+					} 
+				});
+			}	
+		
+		</script>
 	</body>
 </html>

@@ -3,12 +3,15 @@ package com.ctbu.javateach666.service.interfac;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.ctbu.javateach666.pojo.bo.BaseInfoBO;
+import com.ctbu.javateach666.pojo.bo.CheckOldPassReqBO;
 import com.ctbu.javateach666.pojo.bo.DeleteMyFileReqBO;
+import com.ctbu.javateach666.pojo.bo.LKDownloadFileReqBO;
 import com.ctbu.javateach666.pojo.bo.LKMyClassInfoListRepBO;
 import com.ctbu.javateach666.pojo.bo.LKMyClassInfoListRspBO;
 import com.ctbu.javateach666.pojo.bo.LKMyFileListReqBO;
@@ -34,4 +37,8 @@ public interface LKMyInfoService {
 	public PageInfoBo<LKMyFileListRspBO> getMyFileList(LKMyFileListReqBO lKMyFileListReqBO);
 	public BaseInfoBO deleteMyFile(DeleteMyFileReqBO deleteMyFileReqBO, HttpServletRequest request);
 	public boolean uploadMyFile(String username, @RequestParam("file") CommonsMultipartFile file, HttpServletRequest request);
+	BaseInfoBO checkOldPass(CheckOldPassReqBO checkOldPassReqBO);
+	BaseInfoBO updatePass(CheckOldPassReqBO checkOldPassReqBO);
+	BaseInfoBO flushDb();
+	String downloadFile(LKDownloadFileReqBO lKDownloadFileReqBO, HttpServletResponse response, HttpServletRequest request);
 }

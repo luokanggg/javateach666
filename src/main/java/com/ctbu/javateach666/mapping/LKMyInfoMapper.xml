@@ -38,6 +38,7 @@
   		and s.stuname like #{stuname}
   	</if>
   	and s.classid = c.id
+  	and s.classid = #{classid}
   	limit #{page}, #{rows}
   </select>
   
@@ -52,6 +53,7 @@
   		and s.stuname like #{stuname}
   	</if>
   	and s.classid = c.id
+  	and s.classid = #{classid}
   </select>
   
   <select id="getMyClassInfoBySearch" parameterType="com.ctbu.javateach666.pojo.bo.LKMyClassInfoListRepBO" resultType="com.ctbu.javateach666.pojo.bo.LKMyClassInfoListRspBO">
@@ -125,5 +127,17 @@
   	accessory(ownid,accname,accurl,acctype,uploadtime)
   	values(#{ownid}, #{accname}, #{accurl}, #{acctype}, #{uploadtime})
   </insert>
+  
+  <select id="checkOldPass" resultType="String" parameterType="com.ctbu.javateach666.pojo.bo.CheckOldPassReqBO">
+  	select password 
+  	from account
+  	where username = #{username}
+  </select>
+  
+  <update id="updatePass" parameterType="com.ctbu.javateach666.pojo.bo.CheckOldPassReqBO">
+  	update account
+  	set password = #{oldpass}
+  	where username = #{username}
+  </update>
   
 </mapper>

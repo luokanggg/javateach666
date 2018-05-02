@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@include file="/common/easyui.jspf"%>
 <link rel="stylesheet" type="text/css" href="${basePath}/static/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="${basePath}/static/css/lktable.css"/>
 <title>上传课程作业</title>
 <style type="text/css">
 	/* #classinfo-datagrid tr{height:40px;} */
@@ -15,42 +16,59 @@
 </head>
 <body>
 	<%-- ${requestScope.id } 上传课程作业 --%>
-	<div id="bod">
-	<form id="fileform" action="updateclasswork" method="post" enctype="multipart/form-data">
-		<table width="100%" height="500px" border="1" style="border-color: #99CCFF; border-collapse : collapse">
-		  <tr>
-		    <td width="12%">课程名称：</td>
-		    <td width="12%">{{ couname }}</td>
-		    <td width="12%">教师名称：</td>
-		    <td width="12%">{{ teaname }}</td>
-		  </tr>
-		  <tr>
-		  	<td colspan="4">
-		  		作业提交记录：
-		  	</td>
-		  </tr>
-		  <tr>
-		  	<th colspan="2">文件名称</th>
-		  	<th colspan="2">上传时间</th>
-		  </tr>
-		  <tr v-if="submits == ''">
-		  	<td colspan="4">没有作业上传记录！</td>
-		  </tr>
-		  <tr v-for="sub in submits">
-		  	<td colspan="2">{{ sub.accname }}</td>
-		  	<td colspan="2">{{ sub.uploadtime | time }}</td>
-		  </tr>
-		  <tr>
-			<td colspan="2">
-				<!-- <input type="file" id="file" name="file" /> -->
-				<input type="text" id="file" name="file" class="easyui-filebox" />
-			</td>
-			<input type="hidden" name="id" value="${requestScope.id }" />
-			<td colspan="2"><button id="submits" class="easyui-linkbutton" v-on:click="sibmits">提交</button></td>
-		  </tr>
-		</table>
-	</form>
-	    	<center><button id="back" class="easyui-linkbutton" v-on:click="back">返回</button></center>
+	<div id="bod" class="easyui-layout" data-options="fit:true" data-options="region:'center',border:false">
+		<div class="tab">
+			<div class="tab1">
+			<!--  <div id="cc" class="easyui-calendar" data-options="formatter:formatDay" style="width:290px;height:230px;"></div>  -->
+			
+			</div>
+			<div class="tab2">
+				<div class="tab3">
+					<span color="#CCC" id="wei">&nbsp;&nbsp;我的课程/课程作业提交</span>
+				</div>
+				<form id="fileform" action="updateclasswork" method="post" enctype="multipart/form-data">
+					<table width="100%" height="400px" border="1" style="border-color: #99CCFF; border-collapse : collapse">
+					  <tr>
+					    <td width="12%" align="center" valign="middle">课程名称：</td>
+					    <td width="12%" align="center" valign="middle">{{ couname }}</td>
+					    <td width="12%" align="center" valign="middle">教师名称：</td>
+					    <td width="12%" align="center" valign="middle">{{ teaname }}</td>
+					  </tr>
+					  <tr>
+					  	<td colspan="4">
+					  		作业提交记录：
+					  	</td>
+					  </tr>
+					  <tr>
+					  	<th colspan="2">文件名称</th>
+					  	<th colspan="2">上传时间</th>
+					  </tr>
+					  <tr v-if="submits == ''">
+					  	<td colspan="4">没有作业上传记录！</td>
+					  </tr>
+					  <tr v-for="sub in submits">
+					  	<td colspan="2" align="center" valign="middle">{{ sub.accname }}</td>
+					  	<td colspan="2" align="center" valign="middle">{{ sub.uploadtime | time }}</td>
+					  </tr>
+					  <tr>
+						<td colspan="2" align="center" valign="middle">
+							<!-- <input type="file" id="file" name="file" /> -->
+							<input type="text" id="file" name="file" class="easyui-filebox" />
+						</td>
+						<input type="hidden" name="id" value="${requestScope.id }" />
+						<td colspan="2" align="center" valign="middle"><button id="submits" iconCls="icon-ok" class="easyui-linkbutton" v-on:click="sibmits">提交</button></td>
+					  </tr>
+					</table>
+				</form>
+				<table width="100%" height="20px" border="1" style="border-color: #99CCFF; border-collapse : collapse">
+					<tr>
+						<td>
+		    				<center><button id="back" class="easyui-linkbutton" iconCls="icon-back" v-on:click="back">返回</button></center>
+		    			</td>
+		    		</tr>
+		    	</table>
+		    </div>
+	    </div>	
 	</div>
 <script type="text/javascript" src="${basePath}/static/js/vue.js"></script>
 <script type="text/javascript">

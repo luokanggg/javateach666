@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -29,7 +30,9 @@ import com.ctbu.javateach666.pojo.bo.LKUpdateStuInfoBO;
 import com.ctbu.javateach666.pojo.bo.LKcancelClassReqBO;
 import com.ctbu.javateach666.dao.LKMyInfoDao;
 import com.ctbu.javateach666.pojo.bo.BaseInfoBO;
+import com.ctbu.javateach666.pojo.bo.CheckOldPassReqBO;
 import com.ctbu.javateach666.pojo.bo.DeleteMyFileReqBO;
+import com.ctbu.javateach666.pojo.bo.LKDownloadFileReqBO;
 import com.ctbu.javateach666.pojo.bo.LKGetChooseActivityListReqBO;
 import com.ctbu.javateach666.pojo.bo.LKGetChooseActivityListRspBO;
 import com.ctbu.javateach666.pojo.bo.LKMyClassInfoListRepBO;
@@ -205,6 +208,16 @@ public class LKMyInfoController {
 		return page;
 	}
 	
+	//@ResponseBody
+	@RequestMapping("/downloadfile")
+	public String downloadFile(LKDownloadFileReqBO lKDownloadFileReqBO, HttpServletResponse response, HttpServletRequest request){
+		//LKDownloadFileReqBO lKDownloadFileReqBO = new LKDownloadFileReqBO();
+		//lKDownloadFileReqBO.setAccurl(accurl);
+		String responseDesc = lKMyInfoService.downloadFile(lKDownloadFileReqBO, response, request);
+		request.setAttribute("responseDesc", responseDesc);
+		return "lkmyinfo/myfile";
+	}
+	
 	@ResponseBody
 	@RequestMapping("deletemyfile")
 	public BaseInfoBO deleteMyFile(@RequestBody DeleteMyFileReqBO deleteMyFileReqBO, HttpServletRequest request){
@@ -253,6 +266,35 @@ public class LKMyInfoController {
 	@RequestMapping("/getupdatepubactivity")
 	public LKPubActivityReqBO geUpdatePubActivity(@RequestBody LKPubActivityReqBO lKPubActivityReqBO){
 		return lKMyActivityService.getUpdatePubActivity(lKPubActivityReqBO);
+	}
+	
+	//修改密码小模块
+	
+	@RequestMapping("/goupdatepass")
+	public String goUpdatePass(){
+		return "lkmyinfo/updatepass";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/checkoldpass")
+	public BaseInfoBO checkOldPass(@RequestBody CheckOldPassReqBO checkOldPassReqBO){
+		return lKMyInfoService.checkOldPass(checkOldPassReqBO);
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping("/updatepass")
+	public BaseInfoBO updatePass(@RequestBody CheckOldPassReqBO checkOldPassReqBO){
+		return lKMyInfoService.updatePass(checkOldPassReqBO);
+		
+	}
+	
+	//清除缓存小模块
+	
+	@ResponseBody
+	@RequestMapping("/flushdb")
+	public BaseInfoBO flushDb(){
+		return lKMyInfoService.flushDb();
 	}
 	
 }

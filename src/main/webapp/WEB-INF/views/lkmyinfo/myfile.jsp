@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@include file="/common/easyui.jspf"%>
+<link rel="stylesheet" type="text/css" href="${basePath}/static/css/lklist.css"/>
 <title>我的班级</title>
 <style type="text/css">
 	/* #classinfo-datagrid tr{height:40px;} */
@@ -27,15 +28,15 @@
                 <a href="javascript:;" class="easyui-linkbutton" iconCls="icon-ok" onclick="openImportChoice()"
                    plain="true">导入</a> -->
                 <form id="choice-search-form" style="display: inline-block">
-			                    文件名：<input class="easyui-textbox" id="choice-course-value"/>
-			                    时间：<input type="date" id="start-time-value"/>
+			        &nbsp;&nbsp;文件名：&nbsp;&nbsp;<input class="easyui-textbox" id="choice-course-value"/>
+			        &nbsp;&nbsp;时间：&nbsp;&nbsp;<input type="date" id="start-time-value"/>
 			           —— <input type="date" id="start-time-value2"/>
-                    <a id="choice-search-btn" class="easyui-linkbutton">搜索</a>
-                    <a id="choice-search-reset" class="easyui-linkbutton">重置</a>
+                    &nbsp;&nbsp;<a id="choice-search-btn" iconCls="icon-search" class="easyui-linkbutton">搜索</a>
+                    &nbsp;&nbsp;<a id="choice-search-reset" iconCls="icon-undo" class="easyui-linkbutton">重置</a>
                 </form>
                 <form id="fileform" action="uploadmyfile" method="post" enctype="multipart/form-data" style="display: inline">
-                	<a style="float: right;" class="easyui-linkbutton" onclick="uploadFile()" >上传文件</a>
-                	<input type="text" id="file" name="file" class="easyui-filebox" />
+                	<a style="float: right;" iconCls="icon-add" class="easyui-linkbutton" onclick="uploadFile()" >上传文件</a>
+                	&nbsp;&nbsp;<input type="text" id="file" name="file" class="easyui-filebox" />
                 </form>
             </div>
 
@@ -45,6 +46,11 @@
     </div>
 </div>
 	<script type="text/javascript">
+	
+			var responseDesc = "${requestScope.responseDesc}";
+			if("" != responseDesc && null != responseDesc){
+				alert(responseDesc);
+			}
 		
 			/**
 		     * Name 载入数据
@@ -52,15 +58,17 @@
 		    $('#classinfo-datagrid').datagrid({
 		        url: 'getmyfilelist',
 		        rownumbers: true,
-		        singleSelect: false,
+		        singleSelect: true,
 		        pageSize: 10,
 		        pagination: true,
 		        queryParams: formChoiceJson(),
 		        multiSort: true,
+		        striped:true,
 		        fitColumns: true,
 		        fit: true,
 		        columns: [[
 		            //{field: '', checkbox: true },
+		            {field: 'id', hidden: true},
 		            {field: 'accname', title: '文件名', width: 100, sortable: true},
 		            {field: 'uploadtime', title: '上传时间', width: 180, sortable: true,
 		            	formatter : function(value){
@@ -81,8 +89,8 @@
 					}}
 				]],
 				onLoadSuccess:function(data){    
-						$("a[name='opera']").linkbutton({text:'下载',plain:true,iconCls:'icon-edit'});   
-						$("a[name='delete']").linkbutton({text:'删除',plain:true,iconCls:'icon-remove'});
+						$("a[name='opera']").linkbutton({text:'下载',plain:true,iconCls:'icon-print'});   
+						$("a[name='delete']").linkbutton({text:'删除',plain:true,iconCls:'icon-cut'});
 				}
 		    });
 		    /* 搜索方法*/
@@ -117,14 +125,30 @@
 		    	//alert(rows[0].accname + rows[0].accurl);
 		    	$.messager.confirm('提示', '你是否要下载该文件？ ', function(r){
 					if (r){
-						var ss = encodeURIComponent((rows[0].accurl));
+						/* var ss = encodeURIComponent((rows[0].accurl));
 						alert(ss);
 						var ss2 = encodeURIComponent(ss);
 						alert(ss2);
 						var aa = decodeURIComponent(ss2);
-						alert(aa);
+						alert(aa); */
 		    			//window.location.href = rows[0].accurl + '';
-		    			window.open((rows[0].accurl), "_blank");
+						//alert(rows[0].id);
+		    			//window.open((rows[0].accurl), "_blank");
+		    			/* var param = {
+				    		"accurl":rows[0].accurl
+				    	}  */
+		    			window.location.href = "downloadfile?accurl=" + rows[0].accurl + "&id=" + rows[0].id;
+						/* $.ajax({
+							type:'post',
+							url:'downloadfile',
+							contentType:"application/json",    //必须配置
+							data:JSON.stringify(param),//转换成字符串，客户端作为生产者
+							success:function(result){
+								//alert(result.stuimage);
+								//alert(result.responseDesc);
+								//$("#classinfo-datagrid").datagrid("reload");
+							} 
+						});  */
 					}
 				});
 		    }
@@ -132,7 +156,7 @@
 		    function deleteFile(){
 		    	//alert("删除文件");
 		    	var rows = $('#classinfo-datagrid').datagrid('getSelections');
-		    	alert(rows[0].accname + rows[0].id);
+		    	//alert(rows[0].accname + rows[0].id);
 		    	$.messager.confirm('警告', '你确定要删除该文件吗！？ ', function(r){
 					if (r){
 				    	var param = {
@@ -147,6 +171,7 @@
 							success:function(result){
 								//alert(result.stuimage);
 								alert(result.responseDesc);
+								$("#classinfo-datagrid").datagrid("reload");
 							} 
 						});	
 		    		}

@@ -8,6 +8,9 @@ import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 /**
  * Redis配置类
  *
@@ -41,9 +44,13 @@ public class RedisCachingConfig {
 	@Bean
 	public RedisTemplate<String,Object> redisTemplate(RedisConnectionFactory redisCF){
 		RedisTemplate<String,Object> redisTemplate = new RedisTemplate<String,Object>();
+		RedisSerializer<String> redisSerializer = new StringRedisSerializer();//Long类型不可以会出现异常信息;  
+	    redisTemplate.setKeySerializer(redisSerializer);  
+	    redisTemplate.setHashKeySerializer(redisSerializer);
 		redisTemplate.setConnectionFactory(redisCF);
 		redisTemplate.afterPropertiesSet();
 		System.out.println("生成RedisTemplate");
 		return redisTemplate;
 	}
+	
 }

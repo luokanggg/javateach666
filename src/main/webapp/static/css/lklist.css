@@ -1,0 +1,9 @@
+@CHARSET "UTF-8";
+.datagrid-row {
+	  height: 45px;
+	}
+	.datagrid-header-row td
+	{
+	  background-color:#9aCCFF;
+	  height:32px;
+	}

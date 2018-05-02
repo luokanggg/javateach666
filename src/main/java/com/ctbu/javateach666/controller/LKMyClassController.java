@@ -19,10 +19,15 @@ import com.ctbu.javateach666.pojo.bo.LKAlreadyChooseRspBO;
 import com.ctbu.javateach666.pojo.bo.LKChooseClassOnlineListReqBO;
 import com.ctbu.javateach666.pojo.bo.LKChooseClassOnlineListRspBO;
 import com.ctbu.javateach666.pojo.bo.LKChooseClassReqBO;
+import com.ctbu.javateach666.pojo.bo.LKGetClassStudentsListReqBO;
+import com.ctbu.javateach666.pojo.bo.LKGetClassStudentsListRspBO;
+import com.ctbu.javateach666.pojo.bo.LKGetSemesterTeacherListReqBO;
+import com.ctbu.javateach666.pojo.bo.LKGetSemesterTeacherListRspBO;
 import com.ctbu.javateach666.pojo.bo.LKGetSubmitClassWorkDataReqBO;
 import com.ctbu.javateach666.pojo.bo.LKGetSubmitClassWorkDataRspBO;
 import com.ctbu.javateach666.pojo.bo.LKInitMyClassInfoReqBO;
 import com.ctbu.javateach666.pojo.bo.LKInitMyClassInfoRspBO;
+import com.ctbu.javateach666.pojo.bo.LKSendMessageToTeaReqBO;
 import com.ctbu.javateach666.pojo.bo.LKcancelClassReqBO;
 import com.ctbu.javateach666.pojo.bo.PageInfoBo;
 import com.ctbu.javateach666.service.interfac.LKMyClassService;
@@ -134,6 +139,37 @@ public class LKMyClassController {
 	@RequestMapping("cancelclass")
 	public BaseInfoBO cancelClass(@RequestBody LKcancelClassReqBO lKcancelClassReqBO){
 		return lKMyClassService.cancelClass(lKcancelClassReqBO);
+	}
+	
+	//学期任课老师小模块
+	
+	@RequestMapping("/gosemesterteacher")
+	public String goSemesterTeacher(){
+		return "lkmyclass/semesterteacher";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/getsemesterteacherlist")
+	public PageInfoBo<LKGetSemesterTeacherListRspBO> getSemesterTeacherList(LKGetSemesterTeacherListReqBO lKGetSemesterTeacherListReqBO){
+		return lKMyClassService.getSemesterTeacherList(lKGetSemesterTeacherListReqBO);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/sendmessagetotea")
+	public BaseInfoBO sendMessageToTea(@RequestBody LKSendMessageToTeaReqBO lKSendMessageToTeaReqBO){
+		return lKMyClassService.sendMessageToTea(lKSendMessageToTeaReqBO);
+	}
+	
+	@RequestMapping("/goclassstudents")
+	public String goClassStudents(int id, HttpServletRequest request){
+		request.setAttribute("id", id);
+		return "lkmyclass/classstudents";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/getclassstudentslist")
+	public PageInfoBo<LKGetClassStudentsListRspBO> getClassStudentsList(LKGetClassStudentsListReqBO lKGetClassStudentsListReqBO){
+		return lKMyClassService.getClassStudentsList(lKGetClassStudentsListReqBO);
 	}
 	
 }

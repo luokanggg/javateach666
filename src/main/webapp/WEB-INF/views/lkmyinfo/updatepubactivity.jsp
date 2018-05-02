@@ -11,6 +11,7 @@
 <meta name="_csrf_header"  content="${_csrf.headerName}"/> --%>
 <%@include file="/common/easyui.jspf"%>
 <link rel="stylesheet" type="text/css" href="${basePath}/static/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="${basePath}/static/css/lktable.css"/>
 <title>个人信息修改</title>
 <style type="text/css">
 	/* #classinfo-datagrid tr{height:40px;} */
@@ -19,49 +20,54 @@
 </style>
 </head>
 <body>
-	<!--选项卡-->
-	<div class="tab">
-		<p class="location">
-			<em>当前位置 --
-				<span id="dqwz">发布活动</span>
-			</em>
-		</p>
-	</div>
-	<!--选项卡-->
-	<div id="bod">
-		<table width="100%" height="500px" border="1" style="border-color: #99CCFF; border-collapse : collapse">
-			<tr>
-				<td>活动名称：</td>
-				<td><input type="text" v-model="PubInfo.pubname" name="pubname" id="pubname" /></td>
-			</tr>
-			<tr>
-				<td>活动内容：</td>
-				<td><textarea rows="3"  cols="50" v-model="PubInfo.pubcontent" name="pubcontent" id="pubcontent"></textarea></td>
-			</tr>
-			<tr>
-				<td>活动地点：</td>
-				<td><input type="text" v-model="PubInfo.pubaddress" name="pubaddress" id="pubaddress" /></td>
-			</tr>
-			<tr>
-				<td>活动人数：</td>
-				<td><input type="text" v-model="PubInfo.pubnumber" name="pubnumber" id="pubnumber" ></td>
-			</tr>
-			<tr>
-				<td>已报名人数：</td>
-				<td>{{ PubInfo.alpubnumber }}</td>
-			</tr>
-			<tr>
-				<td>活动开始时间：</td>
-				<td><!-- <input type="date" v-model="PubInfo.pubtimestart" name="pubtimestart" id="pubtimestart"/> -->{{ PubInfo.pubtimestart | time }}</td>
-			</tr>
-			<tr>
-				<td>活动结束时间：</td>
-				<td><!-- <input type="date" v-model="PubInfo.pubtimeend" name="pubtimeend" id="pubtimeend"/> -->{{ PubInfo.pubtimeend | time }}</td>
-			</tr>
-			<tr>
-				<td colspan="2"><button class="easyui-linkbutton" id="submits" v-on:click="sibmits">提交</button><button class="easyui-linkbutton" id="back" v-on:click="back">返回</button></td>
-			</tr>
-		</table>
+	<div id="bod" class="easyui-layout" data-options="fit:true" data-options="region:'center',border:false">
+		<div class="tab">
+			<div class="tab1">
+			<!--  <div id="cc" class="easyui-calendar" data-options="formatter:formatDay" style="width:290px;height:230px;"></div>  -->
+			
+			</div>
+			<div class="tab2">
+				<div class="tab3">
+					<span color="#CCC" id="wei">&nbsp;&nbsp;我的信息/我的活动编辑详情</span>
+				</div>
+				<table width="90%" height="400px" border="1" style="border-color: #99CCFF; border-collapse : collapse">
+					<tr>
+						<td align="center" valign="middle">活动名称：</td>
+						<td><input type="text" v-model="PubInfo.pubname" name="pubname" id="pubname" /></td>
+					</tr>
+					<tr>
+						<td align="center" valign="middle">活动内容：</td>
+						<td><textarea rows="3"  cols="50" v-model="PubInfo.pubcontent" name="pubcontent" id="pubcontent"></textarea></td>
+					</tr>
+					<tr>
+						<td align="center" valign="middle">活动地点：</td>
+						<td><input type="text" v-model="PubInfo.pubaddress" name="pubaddress" id="pubaddress" /></td>
+					</tr>
+					<tr>
+						<td align="center" valign="middle">活动人数：</td>
+						<td><input type="text" v-model="PubInfo.pubnumber" name="pubnumber" id="pubnumber" ></td>
+					</tr>
+					<tr>
+						<td align="center" valign="middle">已报名人数：</td>
+						<td>{{ PubInfo.alpubnumber }}</td>
+					</tr>
+					<tr>
+						<td align="center" valign="middle">活动开始时间：</td>
+						<td><!-- <input type="date" v-model="PubInfo.pubtimestart" name="pubtimestart" id="pubtimestart"/> -->{{ PubInfo.pubtimestart | time }}</td>
+					</tr>
+					<tr>
+						<td align="center" valign="middle">活动结束时间：</td>
+						<td><!-- <input type="date" v-model="PubInfo.pubtimeend" name="pubtimeend" id="pubtimeend"/> -->{{ PubInfo.pubtimeend | time }}</td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center" valign="middle">
+							<button class="easyui-linkbutton" iconCls="icon-ok" id="submits" v-on:click="sibmits">提交</button>&nbsp;&nbsp;&nbsp;
+							<button class="easyui-linkbutton" iconCls="icon-back" id="back" v-on:click="back">返回</button>
+						</td>
+					</tr>
+				</table>
+			</div>	
+		</div>
 	</div>
 	<script type="text/javascript" src="${basePath}/static/js/vue.js"></script>
 	<script type="text/javascript">

@@ -108,6 +108,12 @@
   	where id = #{id}
   </update>
   
+  <update id="updatePerActivity" parameterType="com.ctbu.javateach666.pojo.bo.LKPubActivityReqBO">
+  	update peractivity
+  	set pubname = #{pubname},pubcontent = #{pubcontent},pubaddress = #{pubaddress},pubnumber=#{pubnumber}
+  	where pubid = #{id}
+  </update>
+  
   <select id="getUpdatePubActivity" parameterType="com.ctbu.javateach666.pojo.bo.LKPubActivityReqBO" resultType="com.ctbu.javateach666.pojo.bo.LKPubActivityReqBO">
   	select * 
   	from pubactivity
@@ -130,6 +136,30 @@
   	select alpubnumber
   	from pubactivity
   	where id = #{id}
+  </select>
+  
+  <select id="getMyPubNameCombList" resultType="com.ctbu.javateach666.pojo.bo.LKMyPubNameCombBoxBO" parameterType="com.ctbu.javateach666.pojo.bo.LKGetChooseActivityListReqBO">
+  	select id,pubname
+  	from pubactivity
+  	where pubtimeend >= #{nowtime}
+  		  AND pubownid = #{stuid}
+  </select>
+  
+  <select id="getManageActivityList" parameterType="com.ctbu.javateach666.pojo.bo.LKGetManageActivityReqBO" resultType="com.ctbu.javateach666.pojo.bo.LKGetManageActivityRspBO">
+  	SELECT p.`id`, p.`stuid`, s.`stuno`, s.`stuname`, p.`pubcontent`, p.`pubaddress`, s.`classname`
+  	FROM peractivity p, studentinfo s
+  	WHERE 1 = 1
+  	AND pubid = #{id}
+  	AND p.stuid = s.id
+  	limit #{page}, #{rows}
+  </select>
+  
+  <select id="getTotalManageActivityList" parameterType="com.ctbu.javateach666.pojo.bo.LKGetManageActivityRspBO" resultType="int">
+  	SELECT count(*)
+  	FROM peractivity p, studentinfo s
+  	WHERE 1 = 1
+  	AND pubid = #{id}
+  	AND p.stuid = s.id
   </select>
   
 </mapper>

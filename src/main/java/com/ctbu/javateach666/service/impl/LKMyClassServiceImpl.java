@@ -32,15 +32,21 @@ import com.ctbu.javateach666.pojo.bo.LKCheckIsTimeOKReqBO;
 import com.ctbu.javateach666.pojo.bo.LKChooseClassOnlineListReqBO;
 import com.ctbu.javateach666.pojo.bo.LKChooseClassOnlineListRspBO;
 import com.ctbu.javateach666.pojo.bo.LKChooseClassReqBO;
+import com.ctbu.javateach666.pojo.bo.LKGetClassStudentsListReqBO;
+import com.ctbu.javateach666.pojo.bo.LKGetClassStudentsListRspBO;
+import com.ctbu.javateach666.pojo.bo.LKGetSemesterTeacherListReqBO;
+import com.ctbu.javateach666.pojo.bo.LKGetSemesterTeacherListRspBO;
 import com.ctbu.javateach666.pojo.bo.LKGetSubmitClassWorkDataRspBO;
 import com.ctbu.javateach666.pojo.bo.LKGetSubmitClassWorkDataSBSDaoBO;
 import com.ctbu.javateach666.pojo.bo.LKInitMyClassInfoReqBO;
 import com.ctbu.javateach666.pojo.bo.LKInitMyClassInfoRspBO;
+import com.ctbu.javateach666.pojo.bo.LKSendMessageToTeaReqBO;
 import com.ctbu.javateach666.pojo.bo.LKSubmotsWorkBO;
 import com.ctbu.javateach666.pojo.bo.LKcancelClassReqBO;
 import com.ctbu.javateach666.pojo.bo.PageInfoBo;
 import com.ctbu.javateach666.pojo.bo.UpdateAlCouNumberReqBO;
 import com.ctbu.javateach666.pojo.po.LKAccessoryPO;
+import com.ctbu.javateach666.pojo.po.LKNoticePO;
 import com.ctbu.javateach666.pojo.po.LKStucoursePO;
 import com.ctbu.javateach666.pojo.po.LKStudentInfoPO;
 import com.ctbu.javateach666.pojo.po.LKTeacoursePO;
@@ -391,6 +397,113 @@ public class LKMyClassServiceImpl implements LKMyClassService{
 			}
 		}
 		return id;
+	}
+
+	public PageInfoBo<LKGetSemesterTeacherListRspBO> getSemesterTeacherList(
+			LKGetSemesterTeacherListReqBO lKGetSemesterTeacherListReqBO) {
+		int page = 0;
+		page = (lKGetSemesterTeacherListReqBO.getPage() - 1) * lKGetSemesterTeacherListReqBO.getRows();
+		lKGetSemesterTeacherListReqBO.setPage(page);
+		//取得当前用户信息；
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		//取得登录学生的id和姓名
+		LKStudentInfoPO logstu = lKMyInfoDao.initStuInfo(userDetails.getUsername());
+		
+		lKGetSemesterTeacherListReqBO.setStuid(logstu.getId());
+		
+		if(lKGetSemesterTeacherListReqBO.getCouyear() == 0 && lKGetSemesterTeacherListReqBO.getSemester() == 0){
+			//取得当前时间
+			Calendar cal =Calendar.getInstance();
+			int semester = cal.get(Calendar.MONTH) + 1;
+			if(semester <= 6){
+				lKGetSemesterTeacherListReqBO.setSemester(Constant.SEMESTER.LAST);
+				int couyear = cal.get(Calendar.YEAR);
+				//设置学年
+				lKGetSemesterTeacherListReqBO.setCouyear(couyear);
+			}else{
+				lKGetSemesterTeacherListReqBO.setSemester(Constant.SEMESTER.NEXT);
+				int couyear = cal.get(Calendar.YEAR);
+				//设置学年
+				lKGetSemesterTeacherListReqBO.setCouyear(couyear + 1);
+			}
+		}
+		
+		//定义出参
+		PageInfoBo<LKGetSemesterTeacherListRspBO> rsp = new PageInfoBo<LKGetSemesterTeacherListRspBO>();
+		
+		int total = lKMyClassDao.getTotalSemesterTeacher(lKGetSemesterTeacherListReqBO);
+		if(total <  1){
+			return rsp;
+		}
+		
+		List<LKGetSemesterTeacherListRspBO> list = lKMyClassDao.getSemesterTeacherList(lKGetSemesterTeacherListReqBO);
+		
+		rsp.setRows(list);
+		rsp.setTotal(total);
+		
+		return rsp;
+	}
+
+	public BaseInfoBO sendMessageToTea(LKSendMessageToTeaReqBO lKSendMessageToTeaReqBO) {
+		//定义出参
+		BaseInfoBO rsp = new BaseInfoBO();
+		//取得当前用户信息；
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		//取得登录学生的id和姓名
+		LKStudentInfoPO logstu = lKMyInfoDao.initStuInfo(userDetails.getUsername());
+		//生成一个通知实体
+		LKNoticePO lKNoticePO = new LKNoticePO();
+		lKNoticePO.setNotid(logstu.getId());  //通知人id
+		lKNoticePO.setTonotid(lKSendMessageToTeaReqBO.getTeaid()); //被通知人id
+		lKNoticePO.setNottype(Constant.NOTICE_TYPE.STU_TO_TEA); //通知类型
+		lKNoticePO.setNotname(logstu.getStuname()); //通知人姓名
+		lKNoticePO.setNottitle("学生消息"); //标题
+		lKNoticePO.setNotcontent(lKSendMessageToTeaReqBO.getMessage()); //内容
+		lKNoticePO.setNoturl("#"); //连接url
+		lKNoticePO.setStarttime(new Date()); //通知创建时间
+		Calendar cal = Calendar.getInstance();
+		//下面的就是把当前日期加一个月
+		cal.add(Calendar.MONTH, 1);
+		lKNoticePO.setEndtime(cal.getTime()); //通知过期时间
+		
+		int count = lKMyInfoDao.createNoticeTypeThree(lKNoticePO);
+		if(count < 1){
+			rsp.setResponseCode(Constant.RSP_FALSE_CODE);
+			rsp.setResponseDesc("发送消息异常！");
+			return rsp;
+		}
+		
+		rsp.setResponseCode(Constant.RSP_SUCCESS_CODE);
+		rsp.setResponseDesc("发送消息成功");	
+		return rsp;
+	}
+
+	public PageInfoBo<LKGetClassStudentsListRspBO> getClassStudentsList(
+			LKGetClassStudentsListReqBO lKGetClassStudentsListReqBO) {
+		//定义出参
+		PageInfoBo<LKGetClassStudentsListRspBO> rsp = new PageInfoBo<LKGetClassStudentsListRspBO>();
+		//设置page为下标
+		int page = 0;
+		page = (lKGetClassStudentsListReqBO.getPage() - 1) * lKGetClassStudentsListReqBO.getRows();
+		lKGetClassStudentsListReqBO.setPage(page);
+		
+		if(lKGetClassStudentsListReqBO.getStuname() != null && lKGetClassStudentsListReqBO.getStuname() != ""){
+			String stuname = "";
+			stuname = "%" + lKGetClassStudentsListReqBO.getStuname() + "%";
+			lKGetClassStudentsListReqBO.setStuname(stuname);
+		}
+		
+		
+		int total = lKMyClassDao.getTotalClassStudents(lKGetClassStudentsListReqBO);
+		if(total < 1){
+			return rsp;
+		}
+		
+		List<LKGetClassStudentsListRspBO> list = lKMyClassDao.getClassStudentsList(lKGetClassStudentsListReqBO);
+		rsp.setRows(list);
+		rsp.setTotal(total);
+		
+		return rsp;
 	}
 
 }

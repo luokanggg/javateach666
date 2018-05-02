@@ -1,0 +1,48 @@
+@CHARSET "UTF-8";
+.tab{
+border:0px solid #99CCFF;
+border-radius:5px;
+height:458px;
+width:1320px;
+}
+.tab1{
+	border:0px solid #99CCFF;
+	
+	height:455px;
+	width:200px;
+	margin-top:2px;
+	float:left;
+}
+.tab2{
+	border:0px solid blue;
+	border-radius:5px;
+	height:450px;
+	width:960px;
+	margin-top:2px;
+	margin-left:10px;
+	float:left;
+}
+.tab3{
+	border:0px solid #99CCFF;
+	border-radius:5px;
+	height:23px;
+	width:1280px;
+	background: #99CCFF;
+	line-height:22px;
+		margin-left:-200px;				
+}
+
+#wei{
+	font-weight: bolder;
+	font-size: 12px;
+}
+.right{
+	float: right;
+	position:relative;
+	margin-top: -2px;
+}
+#cc{
+margin: auto;
+border-radius:7px;
+}
+.txt01{font:Verdana, Geneva, sans-serif,宋体;padding:3px 2px 2px 2px; border-width:1px; border-color:#ddd;  color:#000;}

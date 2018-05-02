@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@include file="/common/easyui.jspf"%>
+<link rel="stylesheet" type="text/css" href="${basePath}/static/css/lklist.css"/>
 <title>我的已选课程</title>
 <!-- <style type="text/css">
 	#classinfo-datagrid tr{height:40px;}
@@ -33,16 +34,16 @@
                 <!-- <select id="cc" class="easyui-combobox" name="dept" style="width:200px;" onclick="LoadSuccess()" > 
                 	  <option selected="selected">请选择</option>
 				</select> -->
-				学年：<input id="cc" name="dept" value="--请选择--">  
-				学期：<select id="dd" class="easyui-combobox" name="dept" style="width:200px;"> 
+				&nbsp;&nbsp;学年：&nbsp;&nbsp;<input id="cc" name="dept" value="--请选择--">  
+				&nbsp;&nbsp;学期：&nbsp;&nbsp;<select id="dd" class="easyui-combobox" name="dept" style="width:200px;"> 
                 	  <option selected="selected">--请选择--</option>
                 	  <option>1</option>
                 	  <option>2</option>
 				</select>
-				<a id="choice-search-btn" class="easyui-linkbutton">查看</a>
-                <a href="javascript:;" style="text-align: right;" class="easyui-linkbutton" iconAlign="right" iconCls="icon-ok" onclick="openExportSearch()"
+				&nbsp;&nbsp;<a id="choice-search-btn" iconCls="icon-search" class="easyui-linkbutton">查看</a>
+                &nbsp;&nbsp;<a href="javascript:;" style="text-align: right;" class="easyui-linkbutton" iconAlign="right" iconCls="icon-redo" onclick="openExportSearch()"
                    >预览我的课表</a>
-                <a class="easyui-linkbutton" style="float: right" onclick="backToChooseClassOnline()" >返回</a>
+                <a class="easyui-linkbutton" style="float: right" iconCls="icon-back" onclick="backToChooseClassOnline()" >返回</a>
             </div>
 
         </div>
@@ -65,6 +66,7 @@
 		        pagination: true,
 		        queryParams: formChoiceJson(),
 		        multiSort: true,
+		        striped:true,
 		        fitColumns: true,
 		        fit: true,
 		        columns: [[
@@ -83,7 +85,7 @@
 					}}
 				]],
 				onLoadSuccess:function(data){    
-						$("a[name='opera']").linkbutton({text:'取消选该课程',plain:true,iconCls:'icon-edit'});    
+						$("a[name='opera']").linkbutton({text:'取消选该课程',plain:true,iconCls:'icon-cut'});    
 				}
 		    });
 			
@@ -156,7 +158,7 @@
 					data:JSON.stringify(param),//转换成字符串，客户端作为生产者
 					success:function(result){
 						alert(result.responseDesc);
-						window.location.reload(true);
+						$("#classinfo-datagrid").datagrid("reload");
 					}
 				});
 		  	}

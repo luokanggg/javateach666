@@ -5,50 +5,51 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@include file="/common/easyui.jspf"%>
+<link rel="stylesheet" type="text/css" href="${basePath}/static/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="${basePath}/static/css/lktable.css"/>
+<link rel="stylesheet" type="text/css" href="${basePath}/static/css/lklist.css"/>
 <title>我的已选课程</title>
-<!-- <style type="text/css">
-	#classinfo-datagrid tr{height:40px;}
-</style> -->
+
 </head>
 <body>
-<div class="easyui-layout" data-options="fit:true">
-    <div data-options="region:'center',border:false">
-        <!-- Begin of toolbar -->
-        <div id="classinfo-toolbar">
-            <div class="wu-toolbar-button">
-                <!-- <a href="javascript:;" class="easyui-linkbutton" iconCls="icon-add" onclick="openAddChoice()"
-                   plain="true">添加</a>
-                <a href="javascript:;" class="easyui-linkbutton" iconCls="icon-edit" onclick="openEditChoice()"
-                   plain="true">修改</a>
-                <a href="javascript:;" class="easyui-linkbutton" iconCls="icon-remove" onclick="openRemoveChoice()"
-                   plain="true">删除</a>
-                <a href="javascript:;" class="easyui-linkbutton" iconCls="icon-ok" onclick="openImportChoice()"
-                   plain="true">导入</a> -->
-                <!-- <form id="choice-search-form" style="display: inline-block">
-			                    学号：<input class="easyui-textbox" id="choice-course-value"/>
-			                    学生姓名：<input class="easyui-textbox" id="choice-course-value2"/>
-                    <a id="choice-search-btn" class="easyui-linkbutton">搜索</a>
-                    <a id="choice-search-reset" class="easyui-linkbutton">重置</a>
-                </form> -->
-                <!-- <select id="cc" class="easyui-combobox" name="dept" style="width:200px;" onclick="LoadSuccess()" > 
-                	  <option selected="selected">请选择</option>
-				</select> -->
-				消息来源：<select id="dd" class="easyui-combobox" name="dept" style="width:200px;"> 
-                	  <option selected="selected">--请选择--</option>
-                	  <option value="1">老师消息</option>
-                	  <option value="3">学生消息</option>
-				</select>
-				<input type="checkbox" id="history">:显示所有历史消息
-				&nbsp;<a id="choice-search-btn" class="easyui-linkbutton">查看</a>
-                <!-- <a href="javascript:;" style="text-align: right;" class="easyui-linkbutton" iconAlign="right" iconCls="icon-ok" onclick="goReapair()"
-                   >重修选课</a> -->
-            </div>
-
-        </div>
-        <!-- End of toolbar -->
-        <table id="classinfo-datagrid" toolbar="#classinfo-toolbar"></table>
-    </div>
-</div>
+	<div class="easyui-layout" data-options="fit:true">
+	    <div data-options="region:'center',border:false">
+	        <!-- Begin of toolbar -->
+	        <div id="classinfo-toolbar">
+	            <div class="wu-toolbar-button">
+	                <!-- <a href="javascript:;" class="easyui-linkbutton" iconCls="icon-add" onclick="openAddChoice()"
+	                   plain="true">添加</a>
+	                <a href="javascript:;" class="easyui-linkbutton" iconCls="icon-edit" onclick="openEditChoice()"
+	                   plain="true">修改</a>
+	                <a href="javascript:;" class="easyui-linkbutton" iconCls="icon-remove" onclick="openRemoveChoice()"
+	                   plain="true">删除</a>
+	                <a href="javascript:;" class="easyui-linkbutton" iconCls="icon-ok" onclick="openImportChoice()"
+	                   plain="true">导入</a> -->
+	                <!-- <form id="choice-search-form" style="display: inline-block">
+				                    学号：<input class="easyui-textbox" id="choice-course-value"/>
+				                    学生姓名：<input class="easyui-textbox" id="choice-course-value2"/>
+	                    <a id="choice-search-btn" class="easyui-linkbutton">搜索</a>
+	                    <a id="choice-search-reset" class="easyui-linkbutton">重置</a>
+	                </form> -->
+	                <!-- <select id="cc" class="easyui-combobox" name="dept" style="width:200px;" onclick="LoadSuccess()" > 
+	                	  <option selected="selected">请选择</option>
+					</select> -->
+					&nbsp;&nbsp;消息来源：&nbsp;&nbsp;<select id="dd" class="easyui-combobox" name="dept" style="width:200px;"> 
+	                	  <option selected="selected">--请选择--</option>
+	                	  <option value="1">老师消息</option>
+	                	  <option value="3">学生消息</option>
+					</select>
+					&nbsp;&nbsp;<input type="checkbox" id="history">:显示所有历史消息&nbsp;&nbsp;
+					&nbsp;<a id="choice-search-btn" iconCls="icon-search" class="easyui-linkbutton">查看</a>
+	                <!-- <a href="javascript:;" style="text-align: right;" class="easyui-linkbutton" iconAlign="right" iconCls="icon-ok" onclick="goReapair()"
+	                   >重修选课</a> -->
+	            </div>
+	
+	        </div>
+	        <!-- End of toolbar -->
+	        <table id="classinfo-datagrid" toolbar="#classinfo-toolbar"></table>
+	    </div>
+	</div>
 	<script type="text/javascript">
 		
 			/**
@@ -64,6 +65,7 @@
 		        pagination: true,
 		        queryParams: formChoiceJson(),
 		        multiSort: true,
+		        striped:true,
 		        fitColumns: true,
 		        fit: true,
 		        columns: [[
@@ -95,7 +97,7 @@
 					}}
 				]],
 				onLoadSuccess:function(data){    
-					$("a[name='opera']").linkbutton({text:'前往',plain:true,iconCls:'icon-edit'});    
+					$("a[name='opera']").linkbutton({text:'前往',plain:true,iconCls:'icon-back'});    
 				}
 		    });
 			

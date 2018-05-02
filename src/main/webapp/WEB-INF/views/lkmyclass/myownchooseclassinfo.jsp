@@ -6,41 +6,55 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@include file="/common/easyui.jspf"%>
 <link rel="stylesheet" type="text/css" href="${basePath}/static/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="${basePath}/static/css/lktable.css"/>
 <title>我的课程表</title>
 </head>
 <body>
-	<table width="100%" height="500px" border="1" style="border-color: #99CCFF; border-collapse : collapse">
-		<thead>
-			<tr>
-				<th colspan="8" >课程表</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<th></th>
-				<th>星期一</th>
-				<th>星期二</th>
-				<th>星期三</th>
-				<th>星期四</th>
-				<th>星期五</th>
-				<th>星期六</th>
-				<th>星期日</th>
-			</tr>
-			<tr align="center" id="1"></tr>
-			<tr align="center" id="2"></tr>
-			<tr align="center" id="3"></tr>
-			<tr align="center" id="4"></tr>
-			<tr align="center" id="5"></tr>
-			<tr align="center" id="6"></tr>
-			<tr align="center" id="7"></tr>
-			<tr align="center" id="8"></tr>
-			<tr align="center" id="9"></tr>
-			<tr align="center" id="10"></tr>
-			<tr align="center" id="11"></tr>
-			<tr align="center" id="12"></tr>
-		</tbody>
-	</table>
-	<center><a class="easyui-linkbutton" onclick="backToAlreadyChoose()" >返回</a></center>
+	<div id="bod" class="easyui-layout" data-options="fit:true" data-options="region:'center',border:false">
+		<div class="tab">
+			<div class="tab1">
+			<!--  <div id="cc" class="easyui-calendar" data-options="formatter:formatDay" style="width:290px;height:230px;"></div>  -->
+			
+			</div>
+			<div class="tab2">
+				<div class="tab3">
+					<span color="#CCC" id="wei">&nbsp;&nbsp;我的课程/预览我的课程表</span>
+				</div>
+				<table width="100%" height="400px" border="1" style="border-color: #99CCFF; border-collapse : collapse">
+					<thead>
+						<tr>
+							<th colspan="8" >课程表</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th></th>
+							<th>星期一</th>
+							<th>星期二</th>
+							<th>星期三</th>
+							<th>星期四</th>
+							<th>星期五</th>
+							<th>星期六</th>
+							<th>星期日</th>
+						</tr>
+						<tr align="center" id="1"></tr>
+						<tr align="center" id="2"></tr>
+						<tr align="center" id="3"></tr>
+						<tr align="center" id="4"></tr>
+						<tr align="center" id="5"></tr>
+						<tr align="center" id="6"></tr>
+						<tr align="center" id="7"></tr>
+						<tr align="center" id="8"></tr>
+						<tr align="center" id="9"></tr>
+						<tr align="center" id="10"></tr>
+						<tr align="center" id="11"></tr>
+						<tr align="center" id="12"></tr>
+					</tbody>
+				</table>
+				<center><a class="easyui-linkbutton" iconCls="icon-back" onclick="backToAlreadyChoose()" >返回</a></center>
+			</div>	
+		</div>	
+	</div>
 	<script type="text/javascript">
 	$(function(){	
 		var param = {

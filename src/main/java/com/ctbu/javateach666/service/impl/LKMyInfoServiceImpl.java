@@ -1,15 +1,24 @@
 package com.ctbu.javateach666.service.impl;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,7 +32,9 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import com.ctbu.javateach666.constant.Constant;
 import com.ctbu.javateach666.dao.LKMyInfoDao;
 import com.ctbu.javateach666.pojo.bo.BaseInfoBO;
+import com.ctbu.javateach666.pojo.bo.CheckOldPassReqBO;
 import com.ctbu.javateach666.pojo.bo.DeleteMyFileReqBO;
+import com.ctbu.javateach666.pojo.bo.LKDownloadFileReqBO;
 import com.ctbu.javateach666.pojo.bo.LKMyClassInfoListRepBO;
 import com.ctbu.javateach666.pojo.bo.LKMyClassInfoListRspBO;
 import com.ctbu.javateach666.pojo.bo.LKMyFileListReqBO;
@@ -36,6 +47,7 @@ import com.ctbu.javateach666.pojo.po.LKAccessoryPO;
 import com.ctbu.javateach666.pojo.po.LKNoticePO;
 import com.ctbu.javateach666.pojo.po.LKStudentInfoPO;
 import com.ctbu.javateach666.service.interfac.LKMyInfoService;
+import com.ctbu.javateach666.util.BCryptEncoderUtil;
 import com.ctbu.javateach666.util.RedisUtil;
 
 /**
@@ -129,6 +141,12 @@ public class LKMyInfoServiceImpl implements LKMyInfoService{
 			stuname = "%" + lKMyClassInfoListRepBO.getStuname() + "%";
 			lKMyClassInfoListRepBO.setStuname(stuname);
 		}
+		
+		//取得当前用户信息；
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		//取得登录学生的id和姓名
+		LKStudentInfoPO logstu = lKMyInfoDao.initStuInfo(userDetails.getUsername());
+		lKMyClassInfoListRepBO.setClassid(logstu.getClassid());
 		
 		int total = lKMyInfoDao.getTotalByQuestion(lKMyClassInfoListRepBO);
 		if(total < 1){
@@ -241,6 +259,55 @@ public class LKMyInfoServiceImpl implements LKMyInfoService{
 		
 		return rsp;
 	}
+	
+	public String downloadFile(LKDownloadFileReqBO lKDownloadFileReqBO, HttpServletResponse response, HttpServletRequest request){
+		//定义出参
+		//BaseInfoBO rsp =new BaseInfoBO();
+		//lKDownloadFileReqBO.setAccurl("\\javateach666\\static\\file\\public.jpg");
+		
+		String stuname = null;
+		try {
+			stuname=new String(lKDownloadFileReqBO.getAccurl().getBytes("ISO-8859-1"),"utf-8");
+			lKDownloadFileReqBO.setAccurl(stuname);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} 
+		
+		response.setContentType("application/octet-stream");
+		//定义文件上传路径
+		String savepath = request.getServletContext().getRealPath("/")+"static\\file\\";
+		//定义文件保存的名称
+		String filename = lKDownloadFileReqBO.getAccurl().substring(lKDownloadFileReqBO.getAccurl().indexOf("file") + 5);
+		
+		File downloadFile=new File(savepath,filename);
+		if(!downloadFile.exists()){
+			lKMyInfoDao.deleteMyFile(lKDownloadFileReqBO.getId());
+			//request.setAttribute("responseDesc", "文件不存在！");
+			return "文件不存在！";
+		}
+		try {
+			// 以流的形式下载文件。
+            InputStream fis = new BufferedInputStream(new FileInputStream(downloadFile));
+            byte[] buffer = new byte[fis.available()];
+            fis.read(buffer);
+            fis.close();
+            // 清空response
+            response.reset();
+            // 设置response的Header
+            response.addHeader("Content-Disposition", "attachment;filename=" + new String(filename.getBytes("UTF-8"), "ISO-8859-1"));
+            response.addHeader("Content-Length", "" + downloadFile.length());
+            OutputStream toClient = new BufferedOutputStream(response.getOutputStream());
+            //response.setContentType("application/octet-stream");
+            toClient.write(buffer);
+            toClient.flush();
+            toClient.close();
+            return "";
+		} catch (Exception e) {
+			//request.setAttribute("responseDesc", "文件下载失败！");
+			return "文件下载失败！";
+		}
+		//return "lkmyinfo/myfile";
+	}
 
 	@Transactional(propagation=Propagation.REQUIRED)
 	public BaseInfoBO deleteMyFile(DeleteMyFileReqBO deleteMyFileReqBO, HttpServletRequest request) {
@@ -297,6 +364,69 @@ public class LKMyInfoServiceImpl implements LKMyInfoService{
 			return false;
 		}
 		return true;
+	}
+
+	//@Transactional(propagation=Propagation.REQUIRED)
+	public BaseInfoBO checkOldPass(CheckOldPassReqBO checkOldPassReqBO) {
+		
+		BaseInfoBO rsp = new BaseInfoBO();
+		
+		String pass = lKMyInfoDao.checkOldPass(checkOldPassReqBO);
+		boolean ismatch = BCryptEncoderUtil.passwordMatch(checkOldPassReqBO.getOldpass(), pass);
+		
+		if(!ismatch){
+			rsp.setResponseCode(Constant.RSP_FALSE_CODE);
+			rsp.setResponseDesc("原密码输入错误！");
+			return rsp;
+		}
+		
+		rsp.setResponseCode(Constant.RSP_SUCCESS_CODE);
+		rsp.setResponseDesc(Constant.RSP_SUCCESS_MESSAGE);
+		return rsp;
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED)
+	public BaseInfoBO updatePass(CheckOldPassReqBO checkOldPassReqBO) {
+		
+		BaseInfoBO rsp = new BaseInfoBO();
+		
+		String passEncoder = BCryptEncoderUtil.passwordEncoder(checkOldPassReqBO.getOldpass().trim());
+		//String passEncoder = BCryptEncoderUtil.passwordEncoder(checkOldPassReqBO.getOldpass().trim());
+		//passEncoder = BCryptEncoderUtil.passwordEncoder(checkOldPassReqBO.getOldpass().trim());
+		//boolean ismatch = BCryptEncoderUtil.passwordMatch(checkOldPassReqBO.getOldpass(), passEncoder);
+		//if(!ismatch){
+		//	rsp.setResponseCode(Constant.RSP_FALSE_CODE);
+		//	rsp.setResponseDesc("未知原因，密码修改失败！");
+		//	return rsp;
+		//}
+		checkOldPassReqBO.setOldpass(passEncoder.trim());
+		
+		int isupdate = lKMyInfoDao.updatePass(checkOldPassReqBO);
+		if(isupdate < 1){
+			rsp.setResponseCode(Constant.RSP_FALSE_CODE);
+			rsp.setResponseDesc("未知原因，密码修改失败！");
+			return rsp;
+		}
+		
+		rsp.setResponseCode(Constant.RSP_SUCCESS_CODE);
+		rsp.setResponseDesc("密码修改成功！");
+		return rsp;
+	}
+
+	public BaseInfoBO flushDb() {
+		
+		BaseInfoBO rsp = new BaseInfoBO();
+		
+		boolean isflush = redisUtil.flushdb();
+		if(isflush){
+			rsp.setResponseCode(Constant.RSP_SUCCESS_CODE);
+			rsp.setResponseDesc("缓存清理成功！");
+			return rsp;
+		}else{
+			rsp.setResponseCode(Constant.RSP_FALSE_CODE);
+			rsp.setResponseDesc("未知原因，缓存清理失败！");
+			return rsp;
+		}
 	}
 
 }

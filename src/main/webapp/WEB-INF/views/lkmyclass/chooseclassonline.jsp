@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@include file="/common/easyui.jspf"%>
+<link rel="stylesheet" type="text/css" href="${basePath}/static/css/lklist.css"/>
 <title>网上选课</title>
 <!-- <style type="text/css">
 	#classinfo-datagrid tr{height:40px;}
@@ -25,12 +26,12 @@
                 <a href="javascript:;" class="easyui-linkbutton" iconCls="icon-ok" onclick="openImportChoice()"
                    plain="true">导入</a> -->
                 <form id="choice-search-form" style="display: inline-block">
-			                    教师姓名：<input class="easyui-textbox" id="choice-course-value"/>
-			                    课程名字：<input class="easyui-textbox" id="choice-course-value2"/>
-                    <a id="choice-search-btn" class="easyui-linkbutton">搜索</a>
-                    <a id="choice-search-reset" class="easyui-linkbutton">重置</a>
+			        &nbsp;&nbsp;教师姓名：&nbsp;&nbsp;<input class="easyui-textbox" id="choice-course-value"/>
+			        &nbsp;&nbsp;课程名字：&nbsp;&nbsp;<input class="easyui-textbox" id="choice-course-value2"/>
+                    &nbsp;&nbsp;<a id="choice-search-btn" iconCls="icon-search" class="easyui-linkbutton">搜索</a>
+                    &nbsp;&nbsp;<a id="choice-search-reset" iconCls="icon-undo" class="easyui-linkbutton">重置</a>
                 </form>
-                <a class="easyui-linkbutton" iconAlign="right" iconCls="icon-ok" onclick="goAlreadyChoose()">查看我的已选课程</a>
+                <a class="easyui-linkbutton" iconAlign="right" iconCls="icon-redo" onclick="goAlreadyChoose()">查看我的已选课程</a>
             </div>
 
         </div>
@@ -53,6 +54,7 @@
 		        pagination: true,
 		        queryParams: formChoiceJson(),
 		        multiSort: true,
+		        striped:true,
 		        fitColumns: true,
 		        fit: true,
 		        columns: [[
@@ -70,7 +72,7 @@
 					}}
 				]],
 				onLoadSuccess:function(data){    
-						$("a[name='opera']").linkbutton({text:'选课',plain:true,iconCls:'icon-edit'});    
+						$("a[name='opera']").linkbutton({text:'选课',plain:true,iconCls:'icon-add'});    
 				}
 		    });
 		    /* 搜索方法*/
@@ -112,7 +114,7 @@
 					success:function(result){
 						//alert(result.stuimage);
 						alert(result.responseDesc);
-						window.location.reload(true);
+						$("#classinfo-datagrid").datagrid("reload");
 					} 
 				});
 		    }

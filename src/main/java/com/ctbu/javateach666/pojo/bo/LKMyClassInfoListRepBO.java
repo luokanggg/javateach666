@@ -4,9 +4,16 @@ package com.ctbu.javateach666.pojo.bo;
 public class LKMyClassInfoListRepBO {
 	private int page;
 	private int rows;
+	private int classid;
 	private String stuno;
 	private String stuname;
 	
+	public int getClassid() {
+		return classid;
+	}
+	public void setClassid(int classid) {
+		this.classid = classid;
+	}
 	public String getStuno() {
 		return stuno;
 	}

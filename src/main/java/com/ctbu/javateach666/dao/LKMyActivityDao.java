@@ -7,6 +7,9 @@ import com.ctbu.javateach666.pojo.bo.ChooseActivityReqBO;
 import com.ctbu.javateach666.pojo.bo.ChooseActivityRspBO;
 import com.ctbu.javateach666.pojo.bo.LKGetChooseActivityListReqBO;
 import com.ctbu.javateach666.pojo.bo.LKGetChooseActivityListRspBO;
+import com.ctbu.javateach666.pojo.bo.LKGetManageActivityReqBO;
+import com.ctbu.javateach666.pojo.bo.LKGetManageActivityRspBO;
+import com.ctbu.javateach666.pojo.bo.LKMyPubNameCombBoxBO;
 import com.ctbu.javateach666.pojo.bo.LKPubActivityReqBO;
 import com.ctbu.javateach666.pojo.bo.LKcancelClassReqBO;
 import com.ctbu.javateach666.pojo.bo.UpdatePubNumberReqBO;
@@ -23,8 +26,12 @@ public interface LKMyActivityDao {
 	List<LKGetChooseActivityListRspBO> getMyChooseActivityList(LKGetChooseActivityListReqBO lKGetChooseActivityListReqBO);
 	int cancelChooseActivity(LKcancelClassReqBO lKcancelClassReqBO);
 	int updatePubActivity(LKPubActivityReqBO lKPubActivityReqBO);
+	int updatePerActivity(LKPubActivityReqBO lKPubActivityReqBO);
 	LKPubActivityReqBO getUpdatePubActivity(LKPubActivityReqBO lKPubActivityReqBO);
 	int getCancelPubId(LKcancelClassReqBO lKcancelClassReqBO);
 	int updateCancelAlPubNumber(LKcancelClassReqBO lKcancelClassReqBO);
 	int CheckAlPubNumber(LKcancelClassReqBO lKcancelClassReqBO);
+	List<LKMyPubNameCombBoxBO> getMyPubNameCombList(LKGetChooseActivityListReqBO lKGetChooseActivityListReqBO);
+	List<LKGetManageActivityRspBO> getManageActivityList(LKGetManageActivityReqBO lKGetManageActivityReqBO);
+	int getTotalManageActivityList(LKGetManageActivityReqBO lKGetManageActivityReqBO);
 }

@@ -143,5 +143,53 @@
    	set alcounumber = alcounumber - 1
    	where id = #{id}
    </update>
+   
+   <select id="getSemesterTeacherList" resultType="com.ctbu.javateach666.pojo.bo.LKGetSemesterTeacherListRspBO" parameterType="com.ctbu.javateach666.pojo.bo.LKGetSemesterTeacherListReqBO">
+  	select t.`id`, t.`teaid`, s.`stuid`, s.`couname`, s.`teaname`, t.`couyear`, t.`semester`, t.`couaddress`, t.`counumber`, t.`alcounumber`
+  	from teacourse t, stucourse s
+  	where s.`stuid` = #{stuid}
+  	AND s.`teacourseid` = t.`id`
+  	AND t.`couyear` = #{couyear}
+  	AND t.`semester` = #{semester}
+  	limit #{page}, #{rows}
+  </select>
+  
+  <select id="getTotalSemesterTeacher" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.LKGetSemesterTeacherListReqBO">
+  	select count(*)
+  	from teacourse t, stucourse s
+  	where s.`stuid` = #{stuid}
+  	AND s.`teacourseid` = t.`id`
+  	AND t.`couyear` = #{couyear}
+  	AND t.`semester` = #{semester}
+  </select>
+  
+  <select id="getClassStudentsList" resultType="com.ctbu.javateach666.pojo.bo.LKGetClassStudentsListRspBO" parameterType="com.ctbu.javateach666.pojo.bo.LKGetClassStudentsListReqBO">
+  	select si.stuno, si.stuname, si.classname, si.college, si.major, si.classyear
+  	from studentinfo si , stucourse sr
+  	where 1=1
+  	<if test="stuno != null and stuno != '' ">
+  		and si.stuno = #{stuno}
+  	</if>
+  	<if test="stuname != null and stuname != '' ">
+  		and si.stuname like #{stuname}
+  	</if>
+  	and sr.teacourseid = #{id}
+  	and sr.stuid = si.id
+  	limit #{page}, #{rows}
+  </select>
+  
+  <select id="getTotalClassStudents" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.LKGetClassStudentsListReqBO">
+  	select count(*)
+  	from studentinfo si , stucourse sr
+  	where 1=1
+  	<if test="stuno != null and stuno != '' ">
+  		and si.stuno = #{stuno}
+  	</if>
+  	<if test="stuname != null and stuname != '' ">
+  		and si.stuname like #{stuname}
+  	</if>
+  	and sr.teacourseid = #{id}
+  	and sr.stuid = si.id
+  </select>
   
 </mapper>

@@ -2,6 +2,8 @@ package com.ctbu.javateach666.dao;
 
 import java.util.List;
 
+
+import com.ctbu.javateach666.pojo.bo.CheckOldPassReqBO;
 import com.ctbu.javateach666.pojo.bo.LKMyClassInfoListRepBO;
 import com.ctbu.javateach666.pojo.bo.LKMyClassInfoListRspBO;
 import com.ctbu.javateach666.pojo.bo.LKMyFileListReqDaoBO;
@@ -27,4 +29,6 @@ public interface LKMyInfoDao {
 	public int getTotalByQuestionFile(LKMyFileListReqDaoBO lKMyFileListReqDaoBO);
 	public int deleteMyFile(int id);
 	public int uploadMyFile(LKAccessoryPO lKAccessoryPO);
+	String checkOldPass(CheckOldPassReqBO checkOldPassReqBO);
+	int updatePass(CheckOldPassReqBO checkOldPassReqBO);
 }

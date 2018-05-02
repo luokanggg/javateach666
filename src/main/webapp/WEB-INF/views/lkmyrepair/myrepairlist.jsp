@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@include file="/common/easyui.jspf"%>
+<link rel="stylesheet" type="text/css" href="${basePath}/static/css/lklist.css"/>
 <title>我的已选课程</title>
 <!-- <style type="text/css">
 	#classinfo-datagrid tr{height:40px;}
@@ -33,14 +34,14 @@
                 <!-- <select id="cc" class="easyui-combobox" name="dept" style="width:200px;" onclick="LoadSuccess()" > 
                 	  <option selected="selected">请选择</option>
 				</select> -->
-				学年：<input id="cc" name="dept" value="--请选择--">  
-				学期：<select id="dd" class="easyui-combobox" name="dept" style="width:200px;"> 
+				&nbsp;&nbsp;学年：&nbsp;&nbsp;<input id="cc" name="dept" value="--请选择--">  
+				&nbsp;&nbsp;学期：&nbsp;&nbsp;<select id="dd" class="easyui-combobox" name="dept" style="width:200px;"> 
                 	  <option selected="selected">--请选择--</option>
                 	  <option>1</option>
                 	  <option>2</option>
 				</select>
-				<a id="choice-search-btn" class="easyui-linkbutton">查看</a>
-                <a href="javascript:;" style="text-align: right;" class="easyui-linkbutton" iconAlign="right" iconCls="icon-ok" onclick="goReapair()"
+				&nbsp;&nbsp;<a id="choice-search-btn" iconCls="icon-search" class="easyui-linkbutton">查看</a>
+                &nbsp;&nbsp;<a href="javascript:;" style="text-align: right;" class="easyui-linkbutton" iconAlign="right" iconCls="icon-redo" onclick="goReapair()"
                    >重修选课</a>
             </div>
 
@@ -64,6 +65,7 @@
 		        pagination: true,
 		        queryParams: formChoiceJson(),
 		        multiSort: true,
+		        striped:true,
 		        fitColumns: true,
 		        fit: true,
 		        columns: [[

@@ -9,6 +9,10 @@ import com.ctbu.javateach666.pojo.bo.LKCheckCouyearAndSemesterIsOKBO;
 import com.ctbu.javateach666.pojo.bo.LKCheckIsTimeOKReqBO;
 import com.ctbu.javateach666.pojo.bo.LKChooseClassOnlineListReqBO;
 import com.ctbu.javateach666.pojo.bo.LKChooseClassReqBO;
+import com.ctbu.javateach666.pojo.bo.LKGetClassStudentsListReqBO;
+import com.ctbu.javateach666.pojo.bo.LKGetClassStudentsListRspBO;
+import com.ctbu.javateach666.pojo.bo.LKGetSemesterTeacherListReqBO;
+import com.ctbu.javateach666.pojo.bo.LKGetSemesterTeacherListRspBO;
 import com.ctbu.javateach666.pojo.bo.LKGetSubmitClassWorkDataSBSDaoBO;
 import com.ctbu.javateach666.pojo.bo.LKInitMyClassInfoReqBO;
 import com.ctbu.javateach666.pojo.bo.LKInitMyClassInfoRspBO;
@@ -37,4 +41,8 @@ public interface LKMyClassDao {
 	public int updateAlCouNumber(UpdateAlCouNumberReqBO updateAlCouNumberReqBO);
 	public int getCancelClassId(LKcancelClassReqBO lKcancelClassReqBO);
 	public int UpCancelAlCounumber(LKcancelClassReqBO lKcancelClassReqBO);
+	public List<LKGetSemesterTeacherListRspBO> getSemesterTeacherList(LKGetSemesterTeacherListReqBO lKGetSemesterTeacherListReqBO);
+	public int getTotalSemesterTeacher(LKGetSemesterTeacherListReqBO lKGetSemesterTeacherListReqBO);
+	public List<LKGetClassStudentsListRspBO> getClassStudentsList(LKGetClassStudentsListReqBO lKGetClassStudentsListReqBO);
+	public int getTotalClassStudents(LKGetClassStudentsListReqBO lKGetClassStudentsListReqBO);
 }

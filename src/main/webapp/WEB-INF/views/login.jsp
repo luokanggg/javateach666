@@ -91,6 +91,7 @@
 					//alert("验证正确！");
 				}else{
 					alert("验证错误！");
+					$("#input_vcode").val("");
 					return false;
 				}
 			});

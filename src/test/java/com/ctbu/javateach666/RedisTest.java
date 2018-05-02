@@ -8,9 +8,12 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -25,10 +28,14 @@ public class RedisTest {
 	@Resource
 	private RedisTemplate<String, Object> redisTemplate;
 	
-    //@Test
+	//@Autowired
+	//private StringRedisTemplate stringRedisTemplate;
+	
+	//@Ignore
+    @Test
     public void testJedis() {  
         User user = new User();
-        user.setUsername("thc");
+        user.setUsername("thc2");
         user.setPassword("0000334");
         user.setAge(10);
         //int count = userService.insertUser(user);       
@@ -51,7 +58,7 @@ public class RedisTest {
         redisTemplate.opsForList().rightPush("user2", user2);  
     }
     
-    @Test
+    //@Test
     public void testJedis2() {  
         User user2 = new User();
         user2 = (User) redisTemplate.opsForValue().get("thc");
@@ -94,5 +101,24 @@ public class RedisTest {
     	//System.out.println(keys.toString());
     	boolean is = redisTemplate.hasKey("thc2");
     	System.out.println(is);
+    }
+    
+    //@Test
+    public void testJedis8() {  
+    	/*Set<String> keys = redisTemplate.keys("user2");
+    	System.out.println(keys.size());
+    	Iterator<String> i = keys.iterator();
+    	while(i.hasNext()){
+    		System.out.println(i.next()); 
+    	}*/
+    	//System.out.println(keys.toString());
+    	//Set<String> keys = stringRedisTemplate.keys("*");
+    	
+    	Set<String> keys = redisTemplate.keys("*");
+    	for (String string : keys) {
+			System.out.println("key" + string);
+		}
+    	redisTemplate.delete(keys);
+    	//System.out.println(is);
     }
 }

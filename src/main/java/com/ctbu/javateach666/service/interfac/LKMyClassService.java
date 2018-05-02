@@ -14,9 +14,14 @@ import com.ctbu.javateach666.pojo.bo.LKAlreadyChooseRspBO;
 import com.ctbu.javateach666.pojo.bo.LKChooseClassOnlineListReqBO;
 import com.ctbu.javateach666.pojo.bo.LKChooseClassOnlineListRspBO;
 import com.ctbu.javateach666.pojo.bo.LKChooseClassReqBO;
+import com.ctbu.javateach666.pojo.bo.LKGetClassStudentsListReqBO;
+import com.ctbu.javateach666.pojo.bo.LKGetClassStudentsListRspBO;
+import com.ctbu.javateach666.pojo.bo.LKGetSemesterTeacherListReqBO;
+import com.ctbu.javateach666.pojo.bo.LKGetSemesterTeacherListRspBO;
 import com.ctbu.javateach666.pojo.bo.LKGetSubmitClassWorkDataRspBO;
 import com.ctbu.javateach666.pojo.bo.LKInitMyClassInfoReqBO;
 import com.ctbu.javateach666.pojo.bo.LKInitMyClassInfoRspBO;
+import com.ctbu.javateach666.pojo.bo.LKSendMessageToTeaReqBO;
 import com.ctbu.javateach666.pojo.bo.LKcancelClassReqBO;
 import com.ctbu.javateach666.pojo.bo.PageInfoBo;
 
@@ -35,4 +40,7 @@ public interface LKMyClassService {
 	public BaseInfoBO cancelClass(LKcancelClassReqBO lKcancelClassReqBO);
 	public LKGetSubmitClassWorkDataRspBO getSubmitClassWorkData(int id);
 	public int submitWork(int id, @RequestParam("file") CommonsMultipartFile file, HttpServletRequest request);
+	PageInfoBo<LKGetSemesterTeacherListRspBO> getSemesterTeacherList(LKGetSemesterTeacherListReqBO lKGetSemesterTeacherListReqBO);
+	BaseInfoBO sendMessageToTea(LKSendMessageToTeaReqBO lKSendMessageToTeaReqBO);
+	PageInfoBo<LKGetClassStudentsListRspBO> getClassStudentsList(LKGetClassStudentsListReqBO lKGetClassStudentsListReqBO);
 }

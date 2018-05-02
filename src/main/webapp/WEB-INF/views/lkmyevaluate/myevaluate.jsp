@@ -6,68 +6,80 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@include file="/common/easyui.jspf"%>
 <link rel="stylesheet" type="text/css" href="${basePath}/static/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="${basePath}/static/css/lktable.css"/>
 <title>教学质量评价</title>
 </head>
 <body>
-	<div id="bod">
-		<table width="100%" height="500px" border="1" style="border-color: #99CCFF; border-collapse : collapse">
-		  <tr>
-		    <td width="12%">课程名称：</td>
-		    <td width="12%">{{ data[count].couname }}</td>
-		    <td width="12%">教师名称：</td>
-		    <td width="12%">{{ data[count].teaname }}</td>
-		    <td width="12%">评分：</td>
-		    <td width="12%">
-		    		<span v-if="data[count].evaluate == 0">未评价</span>
-		    		<span v-if="data[count].evaluate == 1">不满意</span>
-		    		<span v-if="data[count].evaluate == 2">较满意</span>
-		    		<span v-if="data[count].evaluate == 3">满意</span>
-		    		<span v-if="data[count].evaluate == 4">很满意</span>
-			</td>
-		  </tr>
-		  <tr>
-		  	<td colspan="6">
-		  		<h3>该教师的教学态度评分：</h3>
-		  		<input type="radio" class="evaluate" name="evaluate1" value="4"/>很满意<br>
-		  		<input type="radio" class="evaluate" name="evaluate1" value="3"/>满意<br>
-		  		<input type="radio" class="evaluate" name="evaluate1" value="2"/>较满意<br>
-		  		<input type="radio" class="evaluate" name="evaluate1" value="1"/>不满意
-		  	</td>
-		  </tr>
-		  <tr>
-		  	<td colspan="6">
-		  		<h3>该教师的教学水平评分：</h3>
-		  		<input type="radio" class="evaluate" name="evaluate2" value="4"/>很满意<br>
-		  		<input type="radio" class="evaluate" name="evaluate2" value="3"/>满意<br>
-		  		<input type="radio" class="evaluate" name="evaluate2" value="2"/>较满意<br>
-		  		<input type="radio" class="evaluate" name="evaluate2" value="1"/>不满意
-		  	</td>
-		  </tr>
-		  <tr>
-		  	<td colspan="6">
-		  		<h3>该教师的教学方法和手段评分：</h3>
-		  		<input type="radio" class="evaluate" name="evaluate3" value="4"/>很满意<br>
-		  		<input type="radio" class="evaluate" name="evaluate3" value="3"/>满意<br>
-		  		<input type="radio" class="evaluate" name="evaluate3" value="2"/>较满意<br>
-		  		<input type="radio" class="evaluate" name="evaluate3" value="1"/>不满意
-		  	</td>
-		  </tr>
-		  <tr>
-		  	<td colspan="6">
-		  		<h3>该教师的教学能力评分：</h3>
-		  		<input type="radio" class="evaluate" name="evaluate4" value="4"/>很满意<br>
-		  		<input type="radio" class="evaluate" name="evaluate4" value="3"/>满意<br>
-		  		<input type="radio" class="evaluate" name="evaluate4" value="2"/>较满意<br>
-		  		<input type="radio" class="evaluate" name="evaluate4" value="1"/>不满意
-		  	</td>
-		  </tr>
-		  <tr>
-		    <td align="center" colspan="6">
-		    	<button id="save" class="easyui-linkbutton" v-on:click="save">保存</button>
-		    	<button id="submits" class="easyui-linkbutton" v-on:click="submits">提交</button>
-		    </td>
-		  </tr>
-		</table>
+	<div id="bod" class="easyui-layout" data-options="fit:true" data-options="region:'center',border:false">
+		<div class="tab">
+				<div class="tab1">
+				<!--  <div id="cc" class="easyui-calendar" data-options="formatter:formatDay" style="width:290px;height:230px;"></div>  -->
+				
+				</div>
+				<div class="tab2">
+					<div class="tab3">
+						<span color="#CCC" id="wei">&nbsp;&nbsp;教学质量评价/教学评价</span>
+					</div>
+					<table width="100%" height="500px" border="1" style="border-color: #99CCFF; border-collapse : collapse">
+					  <tr>
+					    <td width="12%" align="center" valign="middle" >课程名称：</td>
+					    <td width="12%" align="center" valign="middle" >{{ data[count].couname }}</td>
+					    <td width="12%" align="center" valign="middle" >教师名称：</td>
+					    <td width="12%" align="center" valign="middle" >{{ data[count].teaname }}</td>
+					    <td width="12%" align="center" valign="middle" >评分：</td>
+					    <td width="12%" align="center" valign="middle" >
+					    		<span v-if="data[count].evaluate == 0">未评价</span>
+					    		<span v-if="data[count].evaluate == 1">不满意</span>
+					    		<span v-if="data[count].evaluate == 2">较满意</span>
+					    		<span v-if="data[count].evaluate == 3">满意</span>
+					    		<span v-if="data[count].evaluate == 4">很满意</span>
+						</td>
+					  </tr>
+					  <tr>
+					  	<td colspan="6">
+					  		<h3>该教师的教学态度评分：</h3>
+					  		<input type="radio" class="evaluate" name="evaluate1" value="4"/>很满意<br>
+					  		<input type="radio" class="evaluate" name="evaluate1" value="3"/>满意<br>
+					  		<input type="radio" class="evaluate" name="evaluate1" value="2"/>较满意<br>
+					  		<input type="radio" class="evaluate" name="evaluate1" value="1"/>不满意
+					  	</td>
+					  </tr>
+					  <tr>
+					  	<td colspan="6">
+					  		<h3>该教师的教学水平评分：</h3>
+					  		<input type="radio" class="evaluate" name="evaluate2" value="4"/>很满意<br>
+					  		<input type="radio" class="evaluate" name="evaluate2" value="3"/>满意<br>
+					  		<input type="radio" class="evaluate" name="evaluate2" value="2"/>较满意<br>
+					  		<input type="radio" class="evaluate" name="evaluate2" value="1"/>不满意
+					  	</td>
+					  </tr>
+					  <tr>
+					  	<td colspan="6">
+					  		<h3>该教师的教学方法和手段评分：</h3>
+					  		<input type="radio" class="evaluate" name="evaluate3" value="4"/>很满意<br>
+					  		<input type="radio" class="evaluate" name="evaluate3" value="3"/>满意<br>
+					  		<input type="radio" class="evaluate" name="evaluate3" value="2"/>较满意<br>
+					  		<input type="radio" class="evaluate" name="evaluate3" value="1"/>不满意
+					  	</td>
+					  </tr>
+					  <tr>
+					  	<td colspan="6">
+					  		<h3>该教师的教学能力评分：</h3>
+					  		<input type="radio" class="evaluate" name="evaluate4" value="4"/>很满意<br>
+					  		<input type="radio" class="evaluate" name="evaluate4" value="3"/>满意<br>
+					  		<input type="radio" class="evaluate" name="evaluate4" value="2"/>较满意<br>
+					  		<input type="radio" class="evaluate" name="evaluate4" value="1"/>不满意
+					  	</td>
+					  </tr>
+					  <tr>
+					    <td align="center" colspan="6">
+					    	<button id="save" iconCls="icon-save" class="easyui-linkbutton" v-on:click="save">保存</button>
+					    	<button id="submits" iconCls="icon-ok" class="easyui-linkbutton" v-on:click="submits">提交</button>
+					    </td>
+					  </tr>
+					</table>
+			</div>	
+		</div>
 	</div>
 <script type="text/javascript" src="${basePath}/static/js/vue.js"></script>
 <script type="text/javascript">

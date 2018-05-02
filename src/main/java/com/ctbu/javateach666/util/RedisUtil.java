@@ -2,6 +2,7 @@ package com.ctbu.javateach666.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -49,5 +50,18 @@ public class RedisUtil {
 	
 	public boolean exist(String key){
 		return redisTemplate.hasKey(key);
+	}
+	
+	public boolean flushdb(){
+		try {
+			Set<String> keys = redisTemplate.keys("*");
+	    	for (String string : keys) {
+				System.out.println("key" + string);
+			}
+	    	redisTemplate.delete(keys);
+	    	return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 }
