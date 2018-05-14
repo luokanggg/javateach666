@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.THCTeacherDao">  
+  <!-- 教师信息管理 -->
+  <select id="getTeaListbyPage" resultType="map" parameterType = "com.ctbu.javateach666.pojo.bo.thcbo.THCAccountListRepBO">
+  	select ac.*, tea.*
+  	from account ac, authorities au, teachersinfo tea
+  	where 1=1
+  	and ac.username = au.username
+  	and au.authorities = "TEACHER"
+  	and ac.userdetailid = tea.id
+  	<if test="username != null and username != ''">
+  		and ac.username like concat('%',#{username},'%')
+  	</if>
+  	<if test="teaname != null and teaname != ''">
+  		and tea.teaname like concat('%',#{teaname},'%')
+  	</if>
+  	limit #{page}, #{rows}
+  </select>
+  
+  <select id="getTeaTotal" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCAccountListRepBO">
+  	select count(*)
+  	from account ac, authorities au, teachersinfo tea
+  	where 1=1
+  	and ac.username = au.username
+  	and au.authorities = "TEACHER"
+  	and ac.userdetailid = tea.id
+  	<if test="username != null and username != ''">
+  		and ac.username like concat('%',#{username},'%')
+  	</if>
+  	<if test="teaname != null and teaname != ''">
+  		and tea.teaname like concat('%',#{teaname},'%')
+  	</if>
+  </select>
+  
+  <select id="getTeaPostListbyPage" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCTeaPostListRspBO" parameterType = "com.ctbu.javateach666.pojo.bo.thcbo.THCTeaPostListRepBO">
+  	select id, teano, teaname, teacollage, professional
+  	from teachersinfo
+  	where isdelete = 0
+  	<if test="teano != null and teano != ''">
+  		and teano like concat('%',#{teano},'%')
+  	</if>
+  	<if test="teaname != null and teaname != ''">
+  		and teaname like concat('%',#{teaname},'%')
+  	</if>
+  	limit #{page}, #{rows}
+  </select>
+  
+  <select id="getTeaPostListTotal" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCTeaPostListRepBO">
+  	select count(*)
+  	from teachersinfo
+  	where isdelete = 0
+  	<if test="teano != null and teano != ''">
+  		and teano like concat('%',#{teano},'%')
+  	</if>
+  	<if test="teaname != null and teaname != ''">
+  		and teaname like concat('%',#{teaname},'%')
+  	</if>
+  </select>
+  
+  <select id="getPostRecordListbyPage" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCProfessionalRanksListRspBO" parameterType = "com.ctbu.javateach666.pojo.bo.thcbo.THCProfessionalRanksListRepBO">
+  	select id, prof_person_name, now_prof_saltv, prof_saltv, prof_reason, prof_time, is_prof
+  	from professional_ranks
+	where 1=1
+  	<if test="s_is_prof != null and s_is_prof != '' and s_is_prof != '--请选择--'">
+  		and is_prof = #{s_is_prof}
+  	</if>
+  	<if test="s_prof_person_name != null and s_prof_person_name != ''">
+  		and prof_person_name like concat('%',#{s_prof_person_name},'%')
+  	</if>
+  	limit #{page}, #{rows}
+  </select>
+  
+  <select id="getPostRecordListTotal" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCProfessionalRanksListRepBO">
+  	select count(*)
+  	from professional_ranks
+	where 1=1
+  	<if test="s_is_prof != null and s_is_prof != ''">
+  		and is_prof = #{s_is_prof}
+  	</if>
+  	<if test="s_prof_person_name != null and s_prof_person_name != ''">
+  		and prof_person_name like concat('%',#{s_prof_person_name},'%')
+  	</if>
+  </select>
+  
+  <insert id="insert" parameterType="com.ctbu.javateach666.pojo.po.thcpo.THCAccountPO">
+  	insert into account(username, password, enable, userdetailid)
+  	values(#{username}, #{password}, #{enable}, #{userdetailid})
+  </insert>
+  
+  <insert id="inserttea" parameterType="com.ctbu.javateach666.pojo.po.thcpo.THCTeachersInfoPO">
+  	insert into teachersinfo(teaname, teaage, teano, joined_date, professional, teaphone, teasex, teacollage, teanation, political)
+  	values(#{teaname}, #{teaage}, #{teano}, #{joined_date}, #{professional}, #{teaphone}, #{teasex}, #{teacollage}, #{teanation}, #{political})
+  </insert>
+  
+  <insert id="insertauth">
+  	insert into authorities(username, authorities)
+  	values(#{username}, #{authorities})
+  </insert>
+  
+  <update id="deleteByLogic">
+	UPDATE account SET 
+	enable = 0
+	WHERE id = #{id}
+  </update>
+  
+  <update id="deleteByLogicTea">
+	UPDATE teachersinfo SET 
+	isdelete = 1
+	WHERE id = #{id}
+  </update>
+  
+  <update id="deleteByLogicAuth">
+	UPDATE authorities SET 
+	is_delete = 1
+	WHERE username = #{username}
+  </update>
+  
+  <update id="update">
+  	update account set
+  	password = #{password}, enable = #{enable}
+  	where id = #{id}
+  </update>
+  
+  <update id="updateTea">
+  	update teachersinfo set
+  	teano = #{teano}, teaname = #{teaname}, teasex = #{teasex}, teaage = #{teaage}
+  	, political = #{political}, teanation = #{teanation}, teacollage = #{teacollage}, professional = #{professional}
+  	, joined_date = #{joined_date}, teaphone = #{teaphone}
+  	where teano = #{teano}
+  </update>
+  
+  <select id="selectById" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCAccountPO" parameterType="com.ctbu.javateach666.pojo.po.thcpo.THCAccountPO">
+  	select userdetailid, username
+  	from account
+  	where id = #{id}
+  </select>
+  
+  <select id="selectIdbyTeano" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCTeachersInfoPO" parameterType="com.ctbu.javateach666.pojo.po.thcpo.THCTeachersInfoPO">
+  	select id
+  	from teachersinfo
+  	where teano = #{teano}
+  </select>
+  
+  <update id="updateTeaPost">
+  	update teachersinfo set
+  	teacollage = #{teacollage}, professional = #{professional}
+  	where teano = #{teano}
+  </update>
+  
+  <update id="updatePostRecord">
+  	update professional_ranks set
+  	is_prof = #{is_prof}, approve_time = #{approve_time}
+  	where id = #{id}
+  </update>
+  
+  <select id="getTeacherIntroduce" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCTeachersInfoPO">
+  	select * from teachersinfo
+  	where isdelete = 0
+  </select>
+  
+  <update id="updateTeaIntroduce">
+  	update teachersinfo set
+  	teaname = #{teaname}, professional = #{professional}, teaimage = #{teaimage}, prosonal_statement = #{prosonal_statement}
+  	where id = #{id}
+  </update>
+  
+  <select id="checkUsername" parameterType="String" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCAccountPO">
+  	select * from account
+  	where username = #{username}
+  </select>
+  
+  <select id="checkTeano" parameterType="String" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCTeachersInfoPO">
+  	select * from teachersinfo
+  	where teano = #{teano}
+  </select>
+</mapper>

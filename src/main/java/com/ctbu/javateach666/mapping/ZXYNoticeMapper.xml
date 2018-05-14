@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.NoticeDao_zxy">
+  <select id="getStudentById" resultType="com.ctbu.javateach666.pojo.po.StudentInfo_zxy" parameterType="int">
+   SELECT * FROM studentinfo WHERE id= #{id}
+  </select>
+ <select id="getTeacherById" resultType="com.ctbu.javateach666.pojo.po.TeacherInfo_zxy" parameterType="int">
+   SELECT * FROM teachersinfo WHERE id= #{id}
+  </select>
+  <insert id="insertNotice"  parameterType="com.ctbu.javateach666.pojo.po.Notice_zxy">
+  
+INSERT INTO notice(notid,tonotid,nottype,notname,nottitle,notcontent,noturl,starttime,endtime,is_delete) VALUES (#{notid},#{tonotid},#{nottype},#{notname},#{nottitle},#{notcontent},#{noturl},#{starttime},#{endtime},#{is_delete});
+  </insert>
+  <!-- 插入被通知人的信息 -->
+  
+  <insert id="insertToNotice"  parameterType="com.ctbu.javateach666.pojo.po.Notice_zxy">
+  
+INSERT INTO tonotice(notid,tonotid,nottype,notname,nottitle,notcontent,noturl,starttime,endtime,is_delete) VALUES (#{notid},#{tonotid},#{nottype},#{notname},#{nottitle},#{notcontent},#{noturl},#{starttime},#{endtime},#{is_delete});
+  </insert>
+  
+  
+  <select id="TotalALlNoticeinfoByStu" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.NoticeReqBo_zxy">
+  SELECT count(*)
+  FROM notice n,studentinfo s 
+  WHERE n.nottype=1 AND n.tonotid=s.id 
+  <if test="notname != null and notname != '' ">
+  		and n.notname like #{notname}
+  </if>
+  <if test="tonotname != null and tonotname != '' ">
+  		and s.stuname like #{tonotname}
+  </if>
+  <if test="starttime != null and endtime != '' ">
+  		and starttime between #{starttime} and #{endtime}
+  </if>
+
+  </select>
+  
+    <select id="getAllNOticeBySeachAndPageStu" resultType="com.ctbu.javateach666.pojo.bo.NoticeResBo_zxy" parameterType="com.ctbu.javateach666.pojo.bo.NoticeReqBo_zxy">
+  SELECT n.id as id,n.notname as notname,s.stuname as tonotname,n.notcontent as notcontent,n.nottitle as nottitle,n.nottype as nottype,n.noturl as noturl,n.starttime as starttime,n.endtime as endtime
+  FROM notice n,studentinfo s 
+  WHERE n.nottype=1 AND n.tonotid=s.id 
+  <if test="notname != null and notname != '' ">
+  		and n.notname like #{notname}
+  </if>
+  <if test="tonotname != null and tonotname != '' ">
+  		and s.stuname like #{tonotname}
+  </if>
+  <if test="starttime != null and endtime != '' ">
+  		and starttime between #{starttime} and #{endtime}
+  </if>
+  limit #{page}, #{rows}
+  </select>
+  
+  
+    <select id="TotalALlNoticeinfoByTea" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.NoticeReqBo_zxy">
+  SELECT count(*)
+  FROM notice n,teachersinfo t 
+  WHERE n.nottype=4 AND n.tonotid=t.id 
+  <if test="notname != null and notname != '' ">
+  		and n.notname like #{notname}
+  </if>
+  <if test="tonotname != null and tonotname != '' ">
+  		and t.teaname like #{tonotname}
+  </if>
+  <if test="starttime != null and endtime != '' ">
+  		and starttime between #{starttime} and #{endtime}
+  </if>
+  </select>
+  
+  <select id="getAllNOticeBySeachAndPageTea" resultType="com.ctbu.javateach666.pojo.bo.NoticeResBo_zxy" parameterType="com.ctbu.javateach666.pojo.bo.NoticeReqBo_zxy">
+  SELECT n.id,n.notname,t.teaname as tonotname,n.notcontent,n.nottitle,n.nottype,n.noturl,n.starttime,n.endtime
+  FROM notice n,teachersinfo t 
+  WHERE n.nottype=4 AND n.tonotid=t.id 
+  <if test="notname != null and notname != '' ">
+  		and n.notname like #{notname}
+  </if>
+  <if test="tonotname != null and tonotname != '' ">
+  		and t.teaname like #{tonotname}
+  </if>
+  <if test="starttime != null and endtime != '' ">
+  		and starttime between #{starttime} and #{endtime}
+  </if>
+  limit #{page}, #{rows}
+  </select>
+  
+  <select id="getNoticeById" resultType="com.ctbu.javateach666.pojo.po.Notice_zxy" parameterType="int">
+  SELECT * FROM notice WHERE id=#{id}
+  </select>
+  
+  <delete id="deleteNoticeById" parameterType="int">
+  delete from notice where id=#{id}
+  </delete>
+  
+  <select id="getStudentInfoById" parameterType="int" resultType="com.ctbu.javateach666.pojo.po.StudentInfo_zxy">
+    SELECT * FROM studentinfo WHERE id=#{id}
+  </select>
+  
+  <select id="getTeacherInfoById" parameterType="int" resultType="com.ctbu.javateach666.pojo.po.TeacherInfo_zxy">
+    SELECT * FROM teachersinfo WHERE id=#{id}
+  </select>
+  
+  <update id="updateNotice" parameterType="com.ctbu.javateach666.pojo.bo.NoticeBo_zxy">
+  update notice set nottitle=#{nottitle},noturl=#{noturl},notcontent=#{notcontent},endtime=#{endtime} where id=#{id}
+  </update>
+  <!-- 教师未查看的通知记录 2表示学生通知老师的，4表示教师通知教师的-->
+  <select id="getNoLookNoticeById" parameterType="int" resultType="int">
+  SELECT COUNT(*)  FROM tonotice n WHERE n.is_look=0 AND tonotid=#{id} AND  (nottype=2 OR nottype=4);
+  </select>
+  <select id="totalToNoticeinfo" parameterType="com.ctbu.javateach666.pojo.bo.ToNoticeReqBo_zxy"  resultType="int">
+	 SELECT count(*)
+ FROM tonotice n,teachersinfo t WHERE n.is_look=0 AND n.tonotid=#{id} AND  (nottype=2 OR nottype=4) AND t.id=n.tonotid;  
+  </select>
+  <select id="getNOReadNotice"  parameterType="com.ctbu.javateach666.pojo.bo.ToNoticeReqBo_zxy"  resultType="com.ctbu.javateach666.pojo.bo.ToNoticeBoRsp_zxy">
+   SELECT n.id AS id,t.teaname AS tonotname,n.endtime AS endtime,n.is_look AS is_look,n.notcontent AS notcontent,n.notname AS notname,n.nottitle AS nottitle,n.nottype AS nottype,n.noturl AS noturl,n.starttime AS starttime,n.is_delete AS is_delete
+ FROM tonotice n,teachersinfo t WHERE n.is_look=0 AND n.tonotid=#{id} AND  (n.nottype=2 OR nottype=4) AND t.id=n.tonotid  limit #{page}, #{rows};
+  </select>
+  <update id="ReadNotice" parameterType="int">
+  UPDATE tonotice SET is_look=1 WHERE id=#{id};
+  </update>
+  <select id="getToNoticeById" parameterType="int" resultType="com.ctbu.javateach666.pojo.po.Tonotice_zxy">
+  select * from tonotice where id=#{id}
+  </select>
+  <delete id="deleteToNotice" parameterType="int">
+  delete from tonotice where id=#{id}
+  </delete>
+  
+  <select id="getAllTonoticelist"   parameterType="com.ctbu.javateach666.pojo.bo.ToNoticeReqBo_zxy"  resultType="com.ctbu.javateach666.pojo.bo.ToNoticeBoRsp_zxy">
+   SELECT n.id AS id,t.teaname AS tonotname,n.endtime AS endtime,n.is_look AS is_look,n.notcontent AS notcontent,n.notname AS notname,n.nottitle AS nottitle,n.nottype AS nottype,n.noturl AS noturl,n.starttime AS starttime,n.is_delete AS is_delete
+ FROM tonotice n,teachersinfo t WHERE  n.tonotid=1 AND  (n.nottype=2 OR nottype=4) AND t.id=n.tonotid limit #{page}, #{rows};
+  </select>
+  <select id="TotalTonotice" parameterType="com.ctbu.javateach666.pojo.bo.ToNoticeReqBo_zxy"  resultType="int">
+  SELECT COUNT(*)
+ FROM tonotice n,teachersinfo t WHERE  n.tonotid=1 AND  (n.nottype=2 OR nottype=4) AND t.id=n.tonotid;
+ 
+  </select>
+  
+  <select id="getTeaClassSJByTeaid" parameterType="int" resultType="com.ctbu.javateach666.pojo.bo.NoticeReqBO2_zxy">
+  SELECT DISTINCT s.classid as classid,s.classname as classname FROM studentinfo s,teacourse,teacourse tc,stucourse sc WHERE tc.teaid=#{teaid} AND tc.id=sc.teacourseid AND sc.stuid=s.id 
+  </select>
+  
+  <select id="getAllStuByClassId" parameterType="int" resultType="com.ctbu.javateach666.pojo.po.StudentInfoPO_zxy">
+  SELECT * FROM studentinfo WHERE classid=#{classid}
+  </select>
+</mapper>

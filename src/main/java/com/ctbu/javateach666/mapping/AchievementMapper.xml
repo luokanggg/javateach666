@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.AchievementDao">
+    
+	<sql id="AchievementColumns">
+	a.id AS "id",
+	a.stu_id AS "stuId",
+	a.tea_id AS "teaId",
+	a.score AS "score",
+	a.paper_id AS "paperId",
+	a.single_score AS "singleScore",
+	a.multiple_score AS "multipleScore",
+	a.judgment_score AS "judgmentScore",
+	a.completion_score AS "completionScore",
+	a.subjective_score AS "subjectiveScore",
+	a.is_delete AS "isDelete",
+	a.couyear AS "couyear",
+	a.semester AS "semester",
+	
+	stu.stuname AS "stuName",
+	
+	e.exam_paper_name AS "paperName",
+	
+	c.id AS "course.id",
+	c.couname AS "course.couname",
+	c.couname AS "coursename"
+	</sql>
+	
+	<sql id="AchievementJoins">
+	left join studentinfo stu on stu.id = a.stu_id
+	left join exampaper e on e.id = a.paper_id
+	left join course c on c.id = e.couse_id
+	</sql>
+	
+	<select id="get" resultType="com.ctbu.javateach666.pojo.po.exam.Achievement">
+		SELECT 
+			<include refid="AchievementColumns"/>
+		FROM achievement a
+		<include refid="AchievementJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="com.ctbu.javateach666.pojo.po.exam.Achievement">
+		SELECT 
+			<include refid="AchievementColumns"/>
+		FROM achievement a
+		<include refid="AchievementJoins"/>
+		<where>
+		a.is_delete = '0'
+		 <if test="stuId != null and stuId !=''">
+		 	and a.stu_id = #{stuId}
+		 </if>
+		 <if test="paperId != null and paperId !=''">
+		 	and a.paper_id = #{paperId}
+		 </if>
+		 <if test="stuName != null and stuName !=''">
+		 	and stu.stuname LIKE CONCAT('%',#{stuName},'%')
+		 </if>
+		 <if test="couyear != null and couyear !=''">
+		 	and a.couyear = #{couyear}
+		 </if>
+		 <if test="semester != null and semester !=''">
+		 	and a.semester = #{semester}
+		 </if>
+		</where>
+		order by a.score desc
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO achievement(
+			id,
+			stu_id,
+			tea_id,
+			score,
+			paper_id,
+			single_score,
+			multiple_score,
+			judgment_score,
+			completion_score,
+			subjective_score,
+			is_delete
+		) VALUES (
+			#{id},
+			#{stuId},
+			#{teaId},
+			#{score},
+			#{paperId},
+			#{singleScore},
+			#{multipleScore},
+			#{judgmentScore},
+			#{completionScore},
+			#{subjectiveScore},
+			0
+		)
+	</insert>
+	<update id="update">
+		UPDATE achievement SET 	
+			stu_id = #{stuId},
+			tea_id = #{teaId},
+			score = #{score},
+			paper_id = #{paperId},
+			single_score = #{singleScore},
+			multiple_score = #{multipleScore},
+			judgment_score = #{judgmentScore},
+			completion_score = #{completionScore},
+			subjective_score = #{subjectiveScore}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!--物理删除-->
+	<delete id="delete">
+		DELETE FROM achievement
+		WHERE id = #{id}
+	</delete>
+	
+	<!--逻辑删除-->
+	<update id="deleteByLogic">
+		UPDATE achievement SET 
+			is_delete = 1
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.THCWebIntroduceDao">
+	<select id="getWebIntroduce" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCWebIntroducePO">
+		select * from webintroduce
+	</select>
+	
+	<update id="update">
+		update webintroduce set wtitle=#{wtitle}, wcontent=#{wcontent}
+	</update>
+</mapper>

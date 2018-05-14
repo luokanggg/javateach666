@@ -137,32 +137,101 @@
 						</ul>
 					</li>
 				</security:authorize>
+				<!-- 管理员菜单 -->
 				<security:authorize ifAnyGranted="ADMIN" >
 					<li class="nav_top">
 						<a class="nav_top_link">
-							<span class="down">网上选课管理员1</span>
+							<span class="down">个人设置</span>
 						</a>
 						
 						<ul class="sub">
 							<li>
-								<a href="#">全校性选课</a>
+								<a onclick="subtab('个人资料')" href="admininfo" target="_son">个人资料</a>
 							</li>
 							<li>
-								<a href="#">课程行课情况查询</a>
+								<a onclick="subtab('密码管理')" href="adminsetpass" target="_son">密码管理</a>
 							</li>
 						</ul>
 					</li>
 					<li class="nav_top">
 						<a class="nav_top_link">
-							<span class="down">网上选课管理员2</span>
+							<span class="down">首页管理</span>
 						</a>
 						
 						<ul class="sub">
 							<li>
-								<a href="#">全校性选课</a>
+								<a onclick="subtab('轮播图片信息')" href="indeximg" target="_son">轮播图片信息</a>
 							</li>
 							<li>
-								<a href="#">课程行课情况查询</a>
+								<a onclick="subtab('新闻信息管理')" href="gonewsinfo" target="_son">新闻信息管理</a>
+							</li>
+							<li>
+								<a onclick="subtab('公告信息管理')" href="gopubinfo" target="_son">公告信息管理</a>
+							</li>
+							<li>
+								<a onclick="subtab('网站介绍管理')" href="gowebintroduce" target="_son">网站介绍管理</a>
+							</li>
+							<li>
+								<a onclick="subtab('课程简介管理')" href="gocourseintroduce" target="_son">课程简介管理</a>
+							</li>
+							<li>
+								<a onclick="subtab('师资力量管理')" href="goteacherintroduce" target="_son">师资力量管理</a>
+							</li>
+							<li>
+								<a onclick="subtab('学习资源管理')" href="gomaterials" target="_son">学习资源管理</a>
+							</li>
+<!-- 							<li>
+								<a onclick="subtab('关于我们管理')" href="goourinfo" target="_son">关于我们管理</a>
+							</li> -->
+						</ul>
+					</li>
+					<li class="nav_top">
+						<a class="nav_top_link">
+							<span class="down">教师信息管理</span>
+						</a>
+						
+						<ul class="sub">
+							<li>
+								<a onclick="subtab('教师账户信息')" href="goteaaccount" target="_son">教师账户信息</a>
+							</li>
+<!-- 							<li>
+								<a onclick="subtab('教师职位信息')" href="goteapost" target="_son">教师职位信息</a>
+							</li>
+							<li>
+								<a onclick="subtab('职位申请记录')" href="gopostrecord" target="_son">职位申请记录</a>
+							</li> -->
+						</ul>
+					</li>
+					<li class="nav_top">
+						<a class="nav_top_link">
+							<span class="down">学生信息管理</span>
+						</a>
+						
+						<ul class="sub">
+							<li>
+								<a onclick="subtab('学生账户信息')" href="gostuaccount" target="_son">学生账户信息</a>
+							</li>
+						</ul>
+					</li>
+					<li class="nav_top">
+						<a class="nav_top_link">
+							<span class="down">数据字典管理</span>
+						</a>
+						
+						<ul class="sub">
+							<li>
+								<a onclick="subtab('数据字典信息')" href="godiclist" target="_son">数据字典信息</a>
+							</li>
+						</ul>
+					</li>
+					<li class="nav_top">
+						<a class="nav_top_link">
+							<span class="down">学科管理</span>
+						</a>
+						
+						<ul class="sub">
+							<li>
+								<a onclick="subtab('学科信息')" href="gocourseinfo" target="_son">学科信息</a>
 							</li>
 						</ul>
 					</li>
@@ -220,6 +289,11 @@
 				});
 			}	
 		
+		</script>
+		<script type="text/javascript">
+			function subtab(param) { 
+				$("#subtab").text(param);
+			}
 		</script>
 	</body>
 </html>

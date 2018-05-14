@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.THCIndexImgDao">
+  <!-- 首页图片管理 -->
+  <select id="getIndexImgbyPage" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCIndexImgListRspBO" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCIndexImgListRepBO">
+  	select id, imgno, imgname, imgurl, create_time, is_pub
+  	from rollpicture
+  	where is_delete = 0
+  	<if test="imgname != null and imgname != '' ">
+  		and imgname like concat('%',#{imgname},'%')
+  	</if>
+  	limit #{page}, #{rows}
+  </select>
+  
+  <select id="getTotal" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCIndexImgListRepBO">
+  	select count(*)
+  	from rollpicture
+  	where is_delete = 0
+  	<if test="imgname != null and imgname != '' ">
+  		and imgname like concat('%',#{imgname},'%')
+  	</if>
+  </select>
+  
+  <update id="deleteByLogic">
+  	update rollpicture set is_delete = 1
+  	where id = #{id}
+  </update>
+  
+  <insert id="insert">
+    insert into rollpicture(imgno, imgname, imgurl, create_time, is_pub)
+    values(#{imgno}, #{imgname}, #{imgurl}, now(), #{is_pub})
+  </insert>
+  
+  <update id="update">
+  	update rollpicture set is_pub = 1
+  	where id = #{id};
+  </update>
+  
+  <update id="hideimg">
+  	update rollpicture set is_pub = 0
+  	where id = #{id};
+  </update>
+  
+  <select id="selectImgno" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCIndexImgPO" parameterType="String">
+  	select * from rollpicture
+  	where imgno = #{imgno}
+  </select>
+  
+  <!-- 首页展示图片 -->
+  <select id="getPicture" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCIndexImgPO">
+  	select imgurl
+  	from rollpicture
+  	where is_pub = 1
+  </select>
+</mapper>

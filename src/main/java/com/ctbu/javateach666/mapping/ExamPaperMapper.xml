@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.ExamPaperDao">
+    
+	<sql id="ExamPaperColumns">
+	a.id AS "id",
+	a.exam_paper_name AS "examPaperName",
+	a.rule_id AS "examRule.id",
+	a.exam_score AS "examScore",
+	a.is_delete AS "isDelete",
+	
+	b.id AS "course.id",
+	b.couname AS "course.couname",
+	b.couname AS "couname",
+	
+	r.rule_name AS "examRuleName",
+	r.rule_name AS "examRule.ruleName"
+	</sql>
+	
+	<sql id="ExamPaperJoins">
+	left join course b on b.id = a.couse_id
+	left join examrule r on r.id = a.rule_id
+	left join teacourse tc on tc.couid = b.id
+	</sql>
+	
+	<select id="get" resultType="com.ctbu.javateach666.pojo.po.exam.ExamPaper">
+		SELECT 
+			<include refid="ExamPaperColumns"/>
+		FROM exampaper a
+		<include refid="ExamPaperJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="com.ctbu.javateach666.pojo.po.exam.ExamPaper">
+		SELECT 
+			<include refid="ExamPaperColumns"/>
+		FROM exampaper a
+		<include refid="ExamPaperJoins"/>
+		<where>
+		 a.is_delete = '0'
+		 <if test="couname != null and couname !=''">
+		  and b.couname LIKE CONCAT('%',#{couname},'%')  
+		 </if>
+		 <if test="course != null and course.id !=null and course.id !=''">
+		  and a.couse_id = #{course.id}
+		 </if>
+		 <if test="examPaperName != null and examPaperName !=''">
+		  and a.exam_paper_name LIKE CONCAT('%',#{examPaperName},'%')  
+		 </if>
+		 <if test="examRuleName != null and examRuleName !=''">
+		  and r.rule_name LIKE CONCAT('%',#{examRuleName},'%')  
+		 </if>
+		 <if test="teaId !=null and teaId !=''">
+		  and tc.teaid = #{teaId}
+		 </if>
+		</where>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO exampaper(
+			couse_id,
+			exam_paper_name,
+			rule_id,
+			exam_score,
+			is_delete
+		) VALUES (
+			#{course.id},
+			#{examPaperName},
+			#{examRule.id},
+			#{examScore},
+			0
+		)
+	</insert>
+	<update id="update">
+		UPDATE exampaper SET 	
+			couse_id = #{course.id},
+			exam_paper_name = #{examPaperName},
+			rule_id = #{examRule.id},
+			exam_score = #{examScore}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!--物理删除-->
+	<delete id="delete">
+		DELETE FROM exampaper
+		WHERE id = #{id}
+	</delete>
+	
+	<!--逻辑删除-->
+	<update id="deleteByLogic">
+		UPDATE exampaper SET 
+			is_delete = 1
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

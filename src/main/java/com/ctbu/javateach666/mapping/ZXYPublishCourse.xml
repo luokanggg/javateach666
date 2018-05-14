@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.PublishCourseDao">
+  
+  <select id="getCourseList" resultType="com.ctbu.javateach666.pojo.po.Course_zxy">
+  	SELECT * FROM course
+  </select>
+  
+  <select id="getAllTeacher" resultType="com.ctbu.javateach666.pojo.po.TeacherInfo_zxy">
+  SELECT * FROM teachersinfo
+  </select>
+  
+  <select id="getDictionariesByType" parameterType="String" resultType="com.ctbu.javateach666.pojo.po.Dictionaries_zxy" >
+  SELECT * FROM dictionaries WHERE dtype=#{dtype}
+  </select>
+  
+  <select id="TotalTeaCourse"  resultType="int">
+  SELECT COUNT(*) FROM teacourse tc,teachersinfo t WHERE tc.teaid=t.id;
+  </select>
+  
+  <select id="getAllTeaCourse" parameterType="com.ctbu.javateach666.pojo.bo.TeaCourseReqBo" resultType="com.ctbu.javateach666.pojo.po.TeacoursePo_zxy">
+  SELECT tc.id as id,tc.couname as couname,tc.couyear as couyear,tc.semester as semester,
+  tc.counumber as counumber,tc.couaddress as couaddress,tc.alcounumber as alcounumber,t.teaname as teaname,tc.coutime as coutime FROM teacourse tc,teachersinfo t WHERE tc.teaid=t.id limit #{page}, #{rows};
+  </select>
+  
+  <select id="getCourseById" parameterType="int" resultType="com.ctbu.javateach666.pojo.po.Course_zxy">
+  SELECT * FROM course WHERE id=#{id}
+  </select>
+  
+  <insert id="insertTeaCourse" parameterType="com.ctbu.javateach666.pojo.bo.TeacourseBo_zxy">
+  INSERT INTO teacourse(teaid,couname,couyear,semester,counumber,couaddress,alcounumber) 
+  VALUES(#{teaid},#{couname},#{couyear},#{semester},#{counumber},#{couaddress},#{alcounumber});
+  </insert>
+  <select id="Is_HaveTeaCou" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.TeacourseBo_zxy">
+  
+	SELECT count(*) FROM teacourse WHERE 
+	teaid=#{teaid} AND couname=#{couname} AND couyear=#{couyear} AND semester=#{semester} AND couaddress=#{couaddress}
+  </select>
+  
+  
+  
+  <select id="getTeadeail_idByTeaname" parameterType="String" resultType="int">
+	SELECT id FROM teachersinfo WHERE teaname=#{teaname}
+  </select>
+  
+  <!-- 查询教师，课程学年学期地址相同的信息 -->
+  <select id="getSameTimeTeaCou" resultType="com.ctbu.javateach666.pojo.bo.TeacourseBo_zxy" parameterType="com.ctbu.javateach666.pojo.bo.TeacourseBo_zxy">
+  SELECT * FROM teacourse 
+  WHERE teaid=#{teaid} AND couname=#{couname} AND couyear=#{couyear} AND semester=#{semester} and id!=#{id}
+  </select>
+  <update id="UpdateTeaCou" parameterType="com.ctbu.javateach666.pojo.bo.TeacourseBo_zxy">
+  UPDATE teacourse SET coutime=#{coutime},couhour=#{couhour},coufhour=#{coufhour} WHERE id=#{id};
+  </update>
+  
+  <select id="totalStuTeaCourse" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.StuTeaCourseBo_zxy">
+  SELECT count(*) FROM teachersinfo t,class c,studentinfo s,stucourse sc,teacourse tc WHERE 
+  sc.stuid=s.id AND sc.teacourseid=tc.id AND tc.teaid=t.id AND s.classid=c.id AND t.teano=#{teano}
+   <if test="couyear != null and couyear != '' ">
+  		and tc.couyear like #{couyear}
+  </if>
+  <if test="semester != null and semester != '' ">
+  		and tc.semester like #{semester}
+  </if>
+  </select>
+  
+   <select id="getStuTeaCourseByPage" resultType="com.ctbu.javateach666.pojo.bo.StuTeaCourseBo_zxy" parameterType="com.ctbu.javateach666.pojo.bo.StuTeaCourseBo_zxy">
+  SELECT s.stuno AS stuno,s.stuname AS stuname,c.claname AS claname,s.classyear AS classyear,c.major AS major,c.college AS collage,t.teano AS teano,t.teaname AS teaname,tc.couname AS couname,tc.semester as semester,tc.couyear as couyear,tc.couaddress AS couaddress
+   FROM teachersinfo t,class c,studentinfo s,stucourse sc,teacourse tc WHERE 
+  sc.stuid=s.id AND sc.teacourseid=tc.id AND tc.teaid=t.id AND s.classid=c.id AND t.teano=#{teano}
+   <if test="couyear != null and couyear != '' ">
+  		and tc.couyear like #{couyear}
+  </if>
+  <if test="semester != null and semester != '' ">
+  		and tc.semester like #{semester}
+  </if>
+  limit #{page}, #{rows}
+  </select>
+  
+  <select id="getAllTeaStuClassExport" resultType="com.ctbu.javateach666.pojo.bo.StuTeaCourseBo_zxy"  parameterType="com.ctbu.javateach666.pojo.bo.StuTeaCourseBo_zxy">
+  SELECT s.stuno AS stuno,s.stuname AS stuname,c.claname AS claname,s.classyear AS classyear,c.major AS major,c.college AS collage,t.teano AS teano,t.teaname AS teaname,tc.couname AS couname,tc.semester as semester,tc.couyear as couyear,tc.couaddress AS couaddress
+   FROM teachersinfo t,class c,studentinfo s,stucourse sc,teacourse tc WHERE 
+  sc.stuid=s.id AND sc.teacourseid=tc.id AND tc.teaid=t.id AND s.classid=c.id AND t.teano=#{teano}
+   <if test="couyear != null and couyear != '' ">
+  		and tc.couyear = #{couyear}
+  </if>
+  <if test="semester != null and semester != '' ">
+  		and tc.semester = #{semester}
+  </if>
+  </select>
+  
+  <!-- 教师课程表信息 -->
+  <select id="getTeaCourseKB" resultType="com.ctbu.javateach666.pojo.po.TeacoursePo_zxy"  parameterType="map">
+  SELECT tc.*,t.teaname AS teaname FROM teacourse tc,teachersinfo t  
+  WHERE teaid=#{teaid} AND tc.teaid=t.id
+  <if test="couyear != null and couyear != '' ">
+  		and couyear = #{couyear}
+  </if>
+  <if test="semester != null and semester != '' ">
+  		and semester = #{semester}
+  </if>
+  </select>
+</mapper>

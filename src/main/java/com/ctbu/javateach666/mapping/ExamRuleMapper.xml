@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.ExamRuleDao">
+    
+	<sql id="ExamRuleColumns">
+	a.id AS "id",
+	a.couse_id AS "couseId",
+	a.rule_name AS "ruleName",
+	a.single_rules AS "singleRules",
+	a.single_num AS "singleNum",
+	a.single_score AS "singleScore",
+	a.multiple_rules AS "multipleRules",
+	a.multiple_num AS "multipleNum",
+	a.multiple_score AS "multipleScore",
+	a.judgment_rules AS "judgmentRules",
+	a.judgment_num AS "judgmentNum",
+	a.judgment_score AS "judgmentScore",
+	a.completion_rules AS "completionRules",
+	a.completion_num AS "completionNum",
+	a.completion_score AS "completionScore",
+	a.subjective_rules AS "subjectiveRules",
+	a.subjective_num AS "subjectiveNum",
+	a.subjective_score AS "subjectiveScore",
+	a.all_score AS "allScore",
+	a.rule_type AS "ruleType",
+	a.is_delete AS "isDelete",
+	
+	b.id AS "course.id",
+	b.couname AS "couname"
+	</sql>
+	
+	<sql id="ExamRuleJoins">
+	left join course b on b.id = a.couse_id
+	left join teacourse tc on tc.couid = b.id
+	</sql>
+	
+	<select id="get" resultType="com.ctbu.javateach666.pojo.po.exam.ExamRule">
+		SELECT 
+			<include refid="ExamRuleColumns"/>
+		FROM examrule a
+		<include refid="ExamRuleJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="com.ctbu.javateach666.pojo.po.exam.ExamRule">
+		SELECT 
+			<include refid="ExamRuleColumns"/>
+		FROM examrule a
+		<include refid="ExamRuleJoins"/>
+		<where>
+		 a.is_delete = '0'
+		 <if test="couname != null and couname !=''">
+		  and b.couname LIKE CONCAT('%',#{couname},'%')  
+		 </if>
+		 <if test="ruleName != null and ruleName !=''">
+		  and a.rule_name LIKE CONCAT('%',#{ruleName},'%')  
+		 </if>
+		 <if test="ruleType != null and ruleType !=''">
+		  and a.rule_type = #{ruleType}
+		 </if>
+		 <if test="course != null and course.id !=null and course.id !=''">
+		  and a.couse_id = #{course.id}
+		 </if>
+		 <if test="teaId !=null and teaId !=''">
+		  and tc.teaid = #{teaId}
+		 </if>
+		</where>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO examrule(
+			couse_id,
+			rule_name,
+			single_rules,
+			single_num,
+			single_score,
+			multiple_rules,
+			multiple_num,
+			multiple_score,
+			judgment_rules,
+			judgment_num,
+			judgment_score,
+			completion_rules,
+			completion_num,
+			completion_score,
+			subjective_rules,
+			subjective_num,
+			subjective_score,
+			all_score,
+			rule_type,
+			is_delete
+		) VALUES (
+			#{course.id},
+			#{ruleName},
+			#{singleRules},
+			#{singleNum},
+			#{singleScore},
+			#{multipleRules},
+			#{multipleNum},
+			#{multipleScore},
+			#{judgmentRules},
+			#{judgmentNum},
+			#{judgmentScore},
+			#{completionRules},
+			#{completionNum},
+			#{completionScore},
+			#{subjectiveRules},
+			#{subjectiveNum},
+			#{subjectiveScore},
+			#{allScore},
+			#{ruleType},
+			0
+		)
+	</insert>
+	<update id="update">
+		UPDATE examrule SET 	
+			couse_id = #{course.id},
+			rule_name = #{ruleName},
+			single_rules = #{singleRules},
+			single_num = #{singleNum},
+			single_score = #{singleScore},
+			multiple_rules = #{multipleRules},
+			multiple_num = #{multipleNum},
+			multiple_score = #{multipleScore},
+			judgment_rules = #{judgmentRules},
+			judgment_num = #{judgmentNum},
+			judgment_score = #{judgmentScore},
+			completion_rules = #{completionRules},
+			completion_num = #{completionNum},
+			completion_score = #{completionScore},
+			subjective_rules = #{subjectiveRules},
+			subjective_num = #{subjectiveNum},
+			subjective_score = #{subjectiveScore},
+			all_score = #{allScore},
+			rule_type = #{ruleType}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!--物理删除-->
+	<delete id="delete">
+		DELETE FROM examrule
+		WHERE id = #{id}
+	</delete>
+	
+	<!--逻辑删除-->
+	<update id="deleteByLogic">
+		UPDATE examrule SET 
+			is_delete = 1
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.TeacherInfoDao_zxy">
+  <select id="getTeacherInfo" resultType="com.ctbu.javateach666.pojo.po.TeacherInfo_zxy">
+    SELECT t.* 
+    FROM account a, teachersinfo t 
+    WHERE a.`userdetailid` = t.`id` AND a.`username` = #{username}
+  </select>
+  
+  <update id="updateTeacherInfo"  parameterType="com.ctbu.javateach666.pojo.bo.TeacherInfoBo_zxy">
+    update teachersinfo
+    set teaage=#{teaage},teasex=#{teasex},major=#{major},
+    teacollage=#{teacollage},political=#{political},teaphone=#{teaphone},email=#{email},
+    prosonal_statement=#{prosonal_statement} WHERE teano=#{teano}
+  </update>
+  
+  <select id="getTeacherInfoByTeano" resultType="com.ctbu.javateach666.pojo.po.TeacherInfo_zxy">
+    SELECT * FROM teachersinfo WHERE teano=#{teano};
+  </select>
+  
+  <select id="getAuthoritiesByUsername" resultType="com.ctbu.javateach666.pojo.po.Authorities_zxy">
+  	SELECT * FROM authorities WHERE username=#{username};
+  </select>
+  
+  
+  <select id="getAccountByUsername" resultType="com.ctbu.javateach666.pojo.po.Account_zxy">
+   SELECT * FROM account WHERE username=#{username};
+  </select>
+  
+  <update id="updateTeaPasswordById" parameterType="Map"> 
+  UPDATE account set password=#{password} where id=#{id};
+  </update>
+  
+  <select id="getAllTeainfo" resultType="com.ctbu.javateach666.pojo.po.TeacherInfo_zxy">
+  SELECT * FROM teachersinfo LIMIT #{pageno},#{pagesize}
+  </select>
+  
+  <select id="totalTeainfoBySeach" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.TeacherInfoBo_zxy">
+  SELECT count(*) from teachersinfo where 1=1
+  <if test="teaname != null and teaname != '' ">
+  		and teaname like #{teaname}
+  	</if>
+  	<if test="professional != null and professional != '' ">
+  		and professional like #{professional}
+  	</if>
+  </select>
+  
+   <select id="getAllTeainfoBypage" resultType="com.ctbu.javateach666.pojo.po.TeacherInfo_zxy" parameterType="com.ctbu.javateach666.pojo.bo.TeacherInfoBo_zxy">
+  SELECT * from teachersinfo where 1=1
+  <if test="teaname != null and teaname != '' ">
+  		and teaname like #{teaname}
+  	</if>
+  	<if test="professional != null and professional != '' ">
+  		and professional like #{professional}
+  	</if>
+  	limit #{page}, #{rows}
+  </select>
+  <update id="updateTeaImageById" parameterType="map">
+  update teachersinfo set teaimage=#{teaimage} where id=#{id}
+  </update>
+</mapper>

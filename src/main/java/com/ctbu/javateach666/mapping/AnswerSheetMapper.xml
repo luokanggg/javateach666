@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.AnswerSheetDao">
+    
+	<sql id="AnswerSheetColumns">
+	a.id AS "id",
+	a.stu_id AS "stuId",
+	a.tea_id AS "teaId",
+	a.exam_id AS "examId",
+	a.single_answer AS "singleAnswer",
+	a.multiple_answer AS "multipleAnswer",
+	a.judgment_answer AS "judgmentAnswer",
+	a.completion_answer AS "completionAnswer",
+	a.completion_comment AS "completionComment",
+	a.subjective_answer AS "subjectiveAnswer",
+	a.subjective_comment AS "subjectiveComment",
+	a.state AS "state",
+	a.is_delete AS "isDelete",
+	
+	s.stuname AS "stuName",
+	
+	e.exam_paper_name AS "examName"
+	</sql>
+	
+	<sql id="AnswerSheetJoins">
+	left join studentinfo s on a.stu_id = s.id
+	left join exampaper e on e.id = a.exam_id
+	</sql>
+	
+	<select id="get" resultType="com.ctbu.javateach666.pojo.po.exam.AnswerSheet">
+		SELECT 
+			<include refid="AnswerSheetColumns"/>
+		FROM answersheet a
+		<include refid="AnswerSheetJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="com.ctbu.javateach666.pojo.po.exam.AnswerSheet">
+		SELECT 
+			<include refid="AnswerSheetColumns"/>
+		FROM answersheet a
+		<include refid="AnswerSheetJoins"/>
+		<where>
+		a.is_delete = '0'
+		 <if test="stuId != null and stuId !=''">
+		 	and a.stu_id = #{stuId}
+		 </if>
+		 <if test="teaId != null and teaId !=''">
+		 	and a.tea_id = #{teaId}
+		 </if>
+		 <if test="examId != null and examId !=''">
+		 	and a.exam_id = #{examId}
+		 </if>
+		 <if test="state != null and state !=''">
+		 	and a.state = #{state}
+		 </if>
+		</where>
+		order by a.state
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO answersheet(
+			stu_id,
+			tea_id,
+			exam_id,
+			single_answer,
+			multiple_answer,
+			judgment_answer,
+			completion_answer,
+			completion_comment,
+			subjective_answer,
+			subjective_comment,
+			state,
+			is_delete
+		) VALUES (
+			#{stuId},
+			#{teaId},
+			#{examId},
+			#{singleAnswer},
+			#{multipleAnswer},
+			#{judgmentAnswer},
+			#{completionAnswer},
+			#{completionComment},
+			#{subjectiveAnswer},
+			#{subjectiveComment},
+			#{state},
+			0
+		)
+	</insert>
+	<update id="update">
+		UPDATE answersheet SET 	
+			stu_id = #{stuId},
+			tea_id = #{teaId},
+			exam_id = #{examId},
+			single_answer = #{singleAnswer},
+			multiple_answer = #{multipleAnswer},
+			judgment_answer = #{judgmentAnswer},
+			completion_answer = #{completionAnswer},
+			completion_comment = #{completionComment},
+			subjective_answer = #{subjectiveAnswer},
+			subjective_comment = #{subjectiveComment},
+			state = #{state}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!--物理删除-->
+	<delete id="delete">
+		DELETE FROM answersheet
+		WHERE id = #{id}
+	</delete>
+	
+	<!--逻辑删除-->
+	<update id="deleteByLogic">
+		UPDATE answersheet SET 
+			is_delete = 1
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

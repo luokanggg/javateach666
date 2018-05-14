@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.StuExamDao">
+    
+	<sql id="StuExamColumns">
+	stu.teacourseid AS 'teacourse.teaid',
+	tea.couid AS 'course.id',
+	re.id AS 'release.id',
+	re.couyear AS 'release.couyear',
+	re.semester AS 'release.semester',
+	re.couyear AS 'couyear',
+	re.semester AS 'semester',
+	re.paper_id AS 'release.examPaper.id',
+	re.exam_time AS 'release.examTime',
+	re.begin_time AS 'release.beginTime',
+	re.exam_time AS 'examTime',
+	re.begin_time AS 'beginTime',
+	ep.exam_paper_name AS 'release.examPaper.examPaperName',
+	ep.exam_paper_name AS 'examPaperName',
+	c.couname AS 'course.couname',
+	c.couname AS 'couname'
+	</sql>
+	
+	<sql id="StuExamJoins">
+	LEFT JOIN teacourse tea ON stu.teacourseid = tea.id
+	LEFT JOIN releaseexam re ON tea.couid = re.couse_id
+	LEFT JOIN course c ON c.id = tea.couid
+	LEFT JOIN exampaper ep ON re.paper_id = ep.id
+	</sql>
+	
+	<select id="get" resultType="com.ctbu.javateach666.pojo.po.exam.StuExam">
+		SELECT 
+			<include refid="StuExamColumns"/>
+		FROM stucourse stu
+		<include refid="StuExamJoins"/>
+		WHERE stu.id = #{stucourse.stuid}
+	</select>
+	
+	<select id="findList" resultType="com.ctbu.javateach666.pojo.po.exam.StuExam">
+		SELECT 
+			<include refid="StuExamColumns"/>
+		FROM stucourse stu
+		<include refid="StuExamJoins"/>
+		<where>
+		 re.is_delete = 0
+		 <if test="stucourse != null and stucourse.stuid !=null and stucourse.stuid !=''">
+		  AND stu.stuid = #{stucourse.stuid}
+		 </if>
+		 <if test="release != null and release.couyear != null and release.couyear !=''">
+		  AND re.couyear = #{release.couyear}
+		 </if>
+		 <if test="release != null and release.semester != null and release.semester !=''">
+		  AND re.semester = #{release.semester}  
+		 </if>
+		</where>
+	</select>
+</mapper>

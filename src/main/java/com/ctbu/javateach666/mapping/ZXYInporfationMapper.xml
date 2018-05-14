@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.InformationDao_zxy">
+ 
+  
+  <insert id="insertInformation" parameterType="com.ctbu.javateach666.pojo.bo.InformationBo_zxy">
+  	INSERT INTO 
+  	information(title,infotype,statement,content,publish_person,publish_date) 
+  	VALUES (#{title},#{infotype},#{statement},#{content},#{publish_person},#{publish_date})
+  </insert>
+  
+  <select id="getInformationListBySeach" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.InformationBo_zxy">
+  SELECT COUNT(*) FROM information i,teachersinfo t WHERE 1=1 and i.publish_person=t.teano 
+    <if test="publish_person_name != null and publish_person_name != '' ">
+  		AND t.teaname like #{publish_person_name}
+    </if>
+  	<if test="infotype != null and infotype != '' ">
+  		and infotype like #{infotype}
+  	</if>
+  </select>
+  
+    <select id="getInformationListByPage" resultType="com.ctbu.javateach666.pojo.bo.InformationBo_zxy" parameterType="com.ctbu.javateach666.pojo.bo.InformationBo_zxy">
+  SELECT i.publish_person  as publish_person,i.id as id,i.title as title,i.infotype as infotype,i.publish_date as publish_date,i.statement as statement,i.content as content,t.teaname as publish_person_name
+  FROM information i,teachersinfo t WHERE 1=1 and i.publish_person=t.teano 
+    <if test="publish_person_name != null and publish_person_name != '' ">
+  		AND t.teaname LIKE #{publish_person_name}
+    </if>
+  	<if test="infotype != null and infotype != '' ">
+  		and i.infotype like #{infotype}
+  	</if>
+  	limit #{page}, #{rows}
+  </select>
+  
+  <delete id="deleteInformationById" parameterType="int">
+  delete from information where id=#{id}
+  </delete>  
+</mapper>
