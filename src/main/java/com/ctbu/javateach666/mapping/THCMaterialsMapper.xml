@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.THCMaterialsDao">
+
+	<select id="getMaterials" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCMaterialsPO">
+		select * from materials
+		where is_delete = 0
+	</select>
+  	<select id="getMaterialsByPage" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCMaterialsPO" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCMaterialsRepBO">
+	  	select *
+	  	from materials
+	  	where is_delete = 0
+	  	<if test="mtitle != null and mtitle != '' ">
+	  		and mtitle like concat('%',#{mtitle},'%')
+	  	</if>
+	  	limit #{page}, #{rows}
+  	</select>
+  
+  	<select id="getTotal" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCMaterialsRepBO">
+	  	select count(*)
+	  	from materials
+	  	where is_delete = 0
+	  	<if test="mtitle != null and mtitle != '' ">
+	  		and mtitle like concat('%',#{mtitle},'%')
+	  	</if>
+  	</select>
+  	
+  	<update id="deleteByLogic">
+		UPDATE materials SET 
+			is_delete = 1
+		WHERE id = #{id}
+  	</update>
+  
+  	<insert id="insert">
+	  	insert into materials(mtitle, murl, mtime)
+	  	values(#{mtitle}, #{murl}, #{mtime})
+  	</insert>
+  
+  	<update id="update">
+	  	update materials set 	
+		mtitle = #{mtitle},
+		murl = #{murl},
+		mtime = #{mtime}
+		where id = #{id}
+  	</update>
+  	
+  	<select id="checkMtitle" parameterType="String" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCMaterialsPO">
+  		select * from materials
+  		where mtitle = #{mtitle}
+  	</select>
+</mapper>

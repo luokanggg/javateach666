@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.THCStudentDao">
+  <!-- 学生信息管理 -->
+  <select id="getStuListbyPage" resultType="map" parameterType = "com.ctbu.javateach666.pojo.bo.thcbo.THCAccountListRepBO">
+  	select ac.*, st.*
+  	from account ac, authorities au, studentinfo st
+  	where 1=1
+  	and ac.username = au.username
+  	and au.authorities = "STUDENT"
+  	and ac.userdetailid = st.id
+  	<if test="username != null and username != ''">
+  		and ac.username like concat('%',#{username},'%')
+  	</if>
+  	limit #{page}, #{rows}
+  </select>
+  
+  <select id="getStuTotal" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCAccountListRepBO">
+  	select count(*)
+  	from account ac, authorities au
+  	where 1=1
+  	and ac.username = au.username
+  	and au.authorities = "STUDENT"
+  	<if test="username != null and username != ''">
+  		and ac.username like concat('%',#{username},'%')
+  	</if>
+  </select>
+  
+  <insert id="insert" parameterType="com.ctbu.javateach666.pojo.po.thcpo.THCAccountPO">
+  	insert into account(username, password, enable, userdetailid)
+  	values(#{username}, #{password}, #{enable}, #{userdetailid})
+  </insert>
+  
+  <insert id="insertstu" parameterType="com.ctbu.javateach666.pojo.po.thcpo.THCStudentInfoPO">
+  	insert into studentinfo(stuno, stuname, stusex, stuage, classyear, classid, major, college, stuphone, political, nation, classname)
+  	values(#{stuno}, #{stuname}, #{stusex}, #{stuage}, #{classyear}, #{classid}, #{major}, #{college}, #{stuphone}, #{political}, #{nation}, #{classname})
+  </insert>
+  
+  <insert id="insertauth">
+  	insert into authorities(username, authorities)
+  	values(#{username}, #{authorities})
+  </insert>
+  
+  <select id="getSelectList" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCDictionariesListRspBO" parameterType="String">
+  	select dicname
+  	from dictionaries
+  	where is_delete = 0
+  	and dtype = #{dtype}
+  </select>
+  
+  <select id="getCollegeList" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCClassPO">
+  	select college
+  	from class
+  	group by(college)
+  </select>
+  
+  <select id="getMajorList" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCClassPO" parameterType="String">
+  	select major
+  	from class
+  	where college = #{college}
+  	group by (major)
+  </select>
+  
+  <select id="getClassnameList" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCClassPO" parameterType="String">
+  	select claname
+  	from class
+  	where major = #{major}
+  </select>
+  
+  <select id="getClassid" resultType="int" parameterType="String">
+  	select id
+  	from class
+  	where claname = #{classname}
+  </select>
+  
+  <update id="deleteByLogic">
+	UPDATE account SET 
+	enable = 0
+	WHERE id = #{id}
+  </update>
+  
+  <update id="deleteByLogicStu">
+	UPDATE studentinfo SET 
+	isdelete = 1
+	WHERE id = #{id}
+  </update>
+  
+  <update id="deleteByLogicAuth">
+	UPDATE authorities SET 
+	is_delete = 1
+	WHERE username = #{username}
+  </update>
+  
+  <update id="update">
+  	update account set
+  	password = #{password}, enable = #{enable}
+  	where id = #{id}
+  </update>
+  
+  <update id="updateStu">
+  	update studentinfo set
+  	stuno = #{stuno}, stuname = #{stuname}, stusex = #{stusex}, political = #{political}
+  	, nation = #{nation}, stuage = #{stuage}, college = #{college}, classyear = #{classyear}
+  	, major = #{major}, classname = #{classname}, stuphone = #{stuphone}
+  	where stuno = #{stuno}
+  </update>
+  
+  <select id="selectById" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCAccountPO" parameterType="com.ctbu.javateach666.pojo.po.thcpo.THCAccountPO">
+  	select userdetailid, username
+  	from account
+  	where id = #{id}
+  </select>
+  
+  <select id="selectIdbyStuno" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCStudentInfoPO" parameterType="com.ctbu.javateach666.pojo.po.thcpo.THCStudentInfoPO">
+  	select id
+  	from studentinfo
+  	where stuno = #{stuno}
+  </select>
+  
+  <select id="checkStuno" parameterType="String" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCStudentInfoPO">
+  	select * from studentinfo
+  	where stuno = #{stuno}
+  </select>
+</mapper>

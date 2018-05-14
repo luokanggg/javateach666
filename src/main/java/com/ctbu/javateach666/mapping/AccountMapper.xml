@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.AccountDao">
+    
+	<sql id="AccountColumns">
+	a.id AS "id",
+	a.username AS "username",
+	a.password AS "password",
+	a.enable AS "enable",
+	a.userdetailid AS "userdetailid"
+	</sql>
+	
+	<sql id="AccountJoins">
+	</sql>
+	
+	<select id="get" resultType="com.ctbu.javateach666.pojo.po.kingother.Account">
+		SELECT 
+			<include refid="AccountColumns"/>
+		FROM account a
+		<include refid="AccountJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="com.ctbu.javateach666.pojo.po.kingother.Account">
+		SELECT 
+			<include refid="AccountColumns"/>
+		FROM account a
+		<include refid="AccountJoins"/>
+		<where>
+		 <if test="username != null and username !=''">
+		  a.username = #{username}
+		 </if>
+		</where>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO account(
+			id,
+			username,
+			password,
+			enable,
+			userdetailid
+		) VALUES (
+			#{id},
+			#{username},
+			#{password},
+			#{enable},
+			#{userdetailid}
+		)
+	</insert>
+	<update id="update">
+		UPDATE account SET 	
+			username = #{username},
+			password = #{password},
+			enable = #{enable},
+			userdetailid = #{userdetailid}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!--物理删除-->
+	<delete id="delete">
+		DELETE FROM account
+		WHERE id = #{id}
+	</delete>
+	
+	<!--逻辑删除-->
+	<update id="deleteByLogic">
+		UPDATE account SET 
+			is_delete = 1
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

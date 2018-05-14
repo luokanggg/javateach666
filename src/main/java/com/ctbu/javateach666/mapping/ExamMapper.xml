@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.ExamDao">
+    
+	<sql id="ExamColumns">
+	a.id AS "id",
+	a.couse_id AS "course.id",
+	a.paper_id AS "examPaper.id",
+	a.release_username AS "releaseUsername",
+	a.exam_time AS "examTime",
+	a.begin_time AS "beginTime",
+	a.is_delete AS "isDelete",
+	a.couyear AS "couyear",
+	a.semester AS "semester",
+	
+	
+	b.couname AS "course.couname",
+	b.couname AS "courseName",
+	
+	p.exam_paper_name AS "examPaper.examPaperName",
+	p.exam_score AS "examPaper.examScore",
+	p.exam_paper_name AS "examPaperName"
+	</sql>
+	
+	<sql id="ExamJoins">
+	left join course b on b.id = a.couse_id
+	left join exampaper p on p.id = a.paper_id
+	</sql>
+	
+	<select id="get" resultType="com.ctbu.javateach666.pojo.po.exam.ReleaseExam">
+		SELECT 
+			<include refid="ExamColumns"/>
+		FROM releaseexam a
+		<include refid="ExamJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="com.ctbu.javateach666.pojo.po.exam.ReleaseExam">
+		SELECT 
+			<include refid="ExamColumns"/>
+		FROM releaseexam a
+		<include refid="ExamJoins"/>
+		<where>
+		 a.is_delete = '0'
+		 <if test="course != null and course.id !=null and course.id !=''">
+		  and a.couse_id = #{course.id}
+		 </if>
+		 <if test="courseName != null and courseName !=''">
+		  and b.couname LIKE CONCAT('%',#{courseName},'%')  
+		 </if>
+		 <if test="examPaperName != null and examPaperName !=''">
+		  and p.exam_paper_name LIKE CONCAT('%',#{examPaperName},'%')  
+		 </if>
+		</where>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO releaseexam(
+			id,
+			couse_id,
+			paper_id,
+			release_username,
+			exam_time,
+			begin_time,
+			couyear,
+			semester,
+			is_delete
+		) VALUES (
+			#{id},
+			#{course.id},
+			#{examPaper.id},
+			#{releaseUsername},
+			#{examTime},
+			#{beginTime},
+			#{couyear},
+			#{semester},
+			0
+		)
+	</insert>
+	<update id="update">
+		UPDATE releaseexam SET 	
+			couse_id = #{course.id},
+			paper_id = #{examPaper.id},
+			release_username = #{releaseUsername},
+			exam_time = #{examTime},
+			begin_time = #{beginTime},
+			couyear = #{couyear},
+			semester = #{semester}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!--物理删除-->
+	<delete id="delete">
+		DELETE FROM releaseexam
+		WHERE id = #{id}
+	</delete>
+	
+	<!--逻辑删除-->
+	<update id="deleteByLogic">
+		UPDATE releaseexam SET 
+			is_delete = 1
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

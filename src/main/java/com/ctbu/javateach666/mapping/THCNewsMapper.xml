@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.THCNewsDao">
+  <!-- 新闻公告管理 -->
+  <select id="getJourbyPage" resultType="map" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCJournalismListRepBO">
+  	select j.id, j.joutitle, j.joucontent, d.dicname, j.starttime, j.endtime, a.adminname
+  	from journalism j, adminsinfo a, dictionaries d
+  	where j.pubid = a.id
+  	and j.joutype = d.dvalue
+  	and d.dtype = #{dtype}
+  	and j.is_delete = 0
+  	and j.j_type = #{j_type}
+  	<if test="joutitle != null and joutitle != '' ">
+  		and j.joutitle like concat('%',#{joutitle},'%')
+  	</if>
+  	<if test="joucontent != null and joucontent != '' ">
+  		and j.joucontent like concat('%',#{joucontent},'%')
+  	</if>
+  	limit #{page}, #{rows}
+  </select>
+  
+  <select id="getJourTotal" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCJournalismListRepBO">
+  	select count(*)
+  	from journalism
+  	where is_delete = 0
+  	and j_type = #{j_type}
+  	<if test="joutitle != null and joutitle != '' ">
+  		and joutitle like concat('%',#{joutitle},'%')
+  	</if>
+  	<if test="joucontent != null and joucontent != '' ">
+  		and joucontent like concat('%',#{joucontent},'%')
+  	</if>
+  </select>
+  
+
+  
+  <select id="getJoutypeList" parameterType="String" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCDictionariesListRspBO">
+  	select dvalue,dicname
+  	from dictionaries
+  	where is_delete = 0
+  	and dtype = #{dtype}
+  </select>
+  
+  <select id="getAdminId" resultType="int" parameterType="String">
+  	select ad.id
+  	from adminsinfo ad, account ac, authorities au
+  	where ac.username = au.username
+  	and au.authorities = "ADMIN"
+  	and ad.is_delete = 0
+  	and ac.username = #{username}
+  </select>
+  
+  <insert id="insert">
+  	insert into journalism(joutitle, joucontent, joutype, starttime, endtime, pubid, j_type)
+  	values(#{joutitle}, #{joucontent}, #{joutype}, #{starttime}, #{endtime}, #{pubid}, #{j_type})
+  </insert>
+  
+  <update id="update">
+  	update journalism
+  	set joutitle = #{joutitle}, joucontent = #{joucontent}, joutype = #{joutype}
+  	where id = #{id}
+  </update>
+  
+  <update id="deleteByLogic">
+	UPDATE journalism SET 
+		is_delete = 1
+	WHERE id = #{id}
+  </update>
+  
+  <select id="getList" parameterType="int" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCJournalismPO">
+  	select * from journalism
+  	where is_delete = 0
+  	and j_type=#{j_type}
+  </select>
+  
+  <select id="checkTitle" parameterType="String" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCJournalismPO">
+  	select * from journalism
+  	where joutitle = #{title}
+  </select>
+  
+  <select id="getJouDetail" parameterType="int" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCJournalismPO">
+  	select * from journalism
+  	where id = #{id}
+  </select>
+</mapper>

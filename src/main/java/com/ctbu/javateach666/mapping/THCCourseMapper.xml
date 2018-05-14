@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.THCCourseDao">
+  <!-- 课程信息管理 -->
+  <select id="getCoursebyPage" resultType="map" parameterType = "com.ctbu.javateach666.pojo.bo.thcbo.THCCourseListRepBO">
+  	SELECT c.id, c.couname, d.dicname, c.credit, c.is_delete
+  	FROM course c, dictionaries d
+  	WHERE 1 = 1
+  	AND c.ctype =d.dvalue
+  	AND d.dtype = "课程类型"
+  	<if test="ctype != null and ctype != '' and ctype != '--请选择--'">
+  		and c.ctype = #{ctype}
+  	</if>
+  	<if test="couname != null and couname != ''">
+  		and c.couname like concat('%',#{couname},'%')
+  	</if>
+  	limit #{page}, #{rows}
+  </select>
+  
+  <select id="getCourseTotal" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCCourseListRepBO">
+  	select count(*)
+  	from course
+  	where 1 = 1
+  	<if test="ctype != null and ctype != '' and ctype != '--请选择--'">
+  		and ctype = #{ctype}
+  	</if>
+  	<if test="couname != null and couname != ''">
+  		and couname like concat('%',#{couname},'%')
+  	</if>
+  </select>
+  
+  <select id="getCtypeList" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCDictionariesPO">
+  	select dicname
+  	from dictionaries
+  	where dtype = "课程类型"
+  	and is_delete = 0
+  </select>
+  
+  <update id="deleteByLogic">
+	UPDATE course SET 
+		is_delete = 1
+	WHERE id = #{id}
+  </update>
+  
+  <insert id="insert">
+  	insert into course(couname, credit, ctype)
+  	values(#{couname}, #{credit}, #{ctype})
+  </insert>
+  
+  <update id="update">
+  	update course set 	
+	couname = #{couname},
+	credit = #{credit},
+	ctype = #{ctype}
+	where id = #{id}
+  </update>
+  
+  <select id="checkCoursename" parameterType="String" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCCoursePO">
+  	select * from course
+  	where couname = #{couname}
+  </select>
+</mapper>

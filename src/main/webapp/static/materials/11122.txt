@@ -1,0 +1,5480 @@
+{
+  "message": "完成",
+  "data": [
+    {
+      "dtypeName": "最高学历",
+      "dtype": "EduType",
+      "code": "00",
+      "nameChs": "硕士及以上",
+      "originalType": "EDU_TYP"
+    },
+    {
+      "dtypeName": "最高学历",
+      "dtype": "EduType",
+      "code": "10",
+      "nameChs": "本科",
+      "originalType": "EDU_TYP"
+    },
+    {
+      "dtypeName": "最高学历",
+      "dtype": "EduType",
+      "code": "20",
+      "nameChs": "大专",
+      "originalType": "EDU_TYP"
+    },
+    {
+      "dtypeName": "房产现状",
+      "dtype": "houseStatus",
+      "code": "01",
+      "nameChs": "自住",
+      "originalType": "HOUSESTATUS"
+    },
+    {
+      "dtypeName": "房产现状",
+      "dtype": "houseStatus",
+      "code": "02",
+      "nameChs": "出租",
+      "originalType": "HOUSESTATUS"
+    },
+    {
+      "dtypeName": "房产现状",
+      "dtype": "houseStatus",
+      "code": "03",
+      "nameChs": "空置",
+      "originalType": "HOUSESTATUS"
+    },
+    {
+      "dtypeName": "是否附带花园",
+      "dtype": "parkingFlag",
+      "code": "01",
+      "nameChs": "是",
+      "originalType": "PARKINGFLAG"
+    },
+    {
+      "dtypeName": "是否附带花园",
+      "dtype": "parkingFlag",
+      "code": "02",
+      "nameChs": "否",
+      "originalType": "PARKINGFLAG"
+    },
+    {
+      "dtypeName": "是否附带车位",
+      "dtype": "gardenFlag",
+      "code": "01",
+      "nameChs": "是",
+      "originalType": "GARDENFLAG"
+    },
+    {
+      "dtypeName": "是否附带车位",
+      "dtype": "gardenFlag",
+      "code": "02",
+      "nameChs": "否",
+      "originalType": "GARDENFLAG"
+    },
+    {
+      "dtypeName": "是否主城区",
+      "dtype": "urbanFlag",
+      "code": "01",
+      "nameChs": "是",
+      "originalType": "URBANFLAG"
+    },
+    {
+      "dtypeName": "是否主城区",
+      "dtype": "urbanFlag",
+      "code": "02",
+      "nameChs": "否",
+      "originalType": "URBANFLAG"
+    },
+    {
+      "dtypeName": "配偶是否知晓贷款",
+      "dtype": "knowInd",
+      "code": "Y",
+      "nameChs": "是",
+      "originalType": "KNOWIND"
+    },
+    {
+      "dtypeName": "配偶是否知晓贷款",
+      "dtype": "knowInd",
+      "code": "N",
+      "nameChs": "否",
+      "originalType": "KNOWIND"
+    },
+    {
+      "dtypeName": "抵押类型",
+      "dtype": "mortgageType",
+      "code": "02",
+      "nameChs": "二押",
+      "originalType": "MORTGAGETYPE"
+    },
+    {
+      "dtypeName": "押贷款种类",
+      "dtype": "loanType",
+      "code": "01",
+      "nameChs": "住房按揭贷款",
+      "originalType": "LOANTYPE"
+    },
+    {
+      "dtypeName": "是否为商业银行",
+      "dtype": "commercialBankFlag",
+      "code": "01",
+      "nameChs": "是",
+      "originalType": "COMMERCIALBANKFLAG"
+    },
+    {
+      "dtypeName": "是否为商业银行",
+      "dtype": "commercialBankFlag",
+      "code": "02",
+      "nameChs": "否",
+      "originalType": "COMMERCIALBANKFLAG"
+    },
+    {
+      "dtypeName": "区域类型",
+      "dtype": "areaKind",
+      "code": "areaKind01",
+      "nameChs": "特惠（广州、深圳）",
+      "originalType": "areaKind"
+    },
+    {
+      "dtypeName": "区域类型",
+      "dtype": "areaKind",
+      "code": "areaKind02",
+      "nameChs": "特惠（天津、南京）",
+      "originalType": "areaKind"
+    },
+    {
+      "dtypeName": "区域类型",
+      "dtype": "areaKind",
+      "code": "areaKind03",
+      "nameChs": "一类",
+      "originalType": "areaKind"
+    },
+    {
+      "dtypeName": "区域类型",
+      "dtype": "areaKind",
+      "code": "areaKind04",
+      "nameChs": "二类",
+      "originalType": "areaKind"
+    },
+    {
+      "dtypeName": "区域类型",
+      "dtype": "areaKind",
+      "code": "areaKind05",
+      "nameChs": "三类",
+      "originalType": "areaKind"
+    },
+    {
+      "dtypeName": "区域类型",
+      "dtype": "areaKind",
+      "code": "areaKind06",
+      "nameChs": "民信渠道",
+      "originalType": "areaKind"
+    },
+    {
+      "dtypeName": "区域类型",
+      "dtype": "repaymentKind",
+      "code": "repaymentKind01",
+      "nameChs": "24期-等额本息气球贷（10年循环）",
+      "originalType": "repaymentKind"
+    },
+    {
+      "dtypeName": "区域类型",
+      "dtype": "repaymentKind",
+      "code": "repaymentKind02",
+      "nameChs": "24期-等额本息气球贷（非循环）",
+      "originalType": "repaymentKind"
+    },
+    {
+      "dtypeName": "区域类型",
+      "dtype": "repaymentKind",
+      "code": "repaymentKind03",
+      "nameChs": "24期-等本等息气球贷（10年循环）",
+      "originalType": "repaymentKind"
+    },
+    {
+      "dtypeName": "区域类型",
+      "dtype": "repaymentKind",
+      "code": "repaymentKind04",
+      "nameChs": "24期-等本等息气球贷（非循环）",
+      "originalType": "repaymentKind"
+    },
+    {
+      "dtypeName": "区域类型",
+      "dtype": "repaymentKind",
+      "code": "repaymentKind05",
+      "nameChs": "6期-先息后本（1年循环）",
+      "originalType": "repaymentKind"
+    },
+    {
+      "dtypeName": "区域类型",
+      "dtype": "repaymentKind",
+      "code": "repaymentKind06",
+      "nameChs": "6期-先息后本（非循环）",
+      "originalType": "repaymentKind"
+    },
+    {
+      "dtypeName": "区域类型",
+      "dtype": "fixCapitalRate",
+      "code": "fixCapitalRate01",
+      "nameChs": "1.5%",
+      "originalType": "fixCapitalRate"
+    },
+    {
+      "dtypeName": "区域类型",
+      "dtype": "fixCapitalRate",
+      "code": "fixCapitalRate02",
+      "nameChs": "2%",
+      "originalType": "fixCapitalRate"
+    },
+    {
+      "dtypeName": "区域类型",
+      "dtype": "fixCapitalRate",
+      "code": "fixCapitalRate03",
+      "nameChs": "2.5%",
+      "originalType": "fixCapitalRate"
+    },
+    {
+      "dtypeName": "区域类型",
+      "dtype": "fixCapitalRate",
+      "code": "fixCapitalRate04",
+      "nameChs": "3%",
+      "originalType": "fixCapitalRate"
+    },
+    {
+      "dtypeName": "区域类型",
+      "dtype": "fixCapitalRate",
+      "code": "fixCapitalRate05",
+      "nameChs": "4%",
+      "originalType": "fixCapitalRate"
+    },
+    {
+      "dtypeName": "现住房情况",
+      "dtype": "CurrSituation",
+      "code": "20",
+      "nameChs": "自购现有贷款",
+      "originalType": "CURR_SITUATION"
+    },
+    {
+      "dtypeName": "现住房情况",
+      "dtype": "CurrSituation",
+      "code": "30",
+      "nameChs": "与父母同住",
+      "originalType": "CURR_SITUATION"
+    },
+    {
+      "dtypeName": "现住房情况",
+      "dtype": "CurrSituation",
+      "code": "40",
+      "nameChs": "租房",
+      "originalType": "CURR_SITUATION"
+    },
+    {
+      "dtypeName": "现住房情况",
+      "dtype": "CurrSituation",
+      "code": "99",
+      "nameChs": "其他",
+      "originalType": "CURR_SITUATION"
+    },
+    {
+      "dtypeName": "最高学历",
+      "dtype": "EduType",
+      "code": "30",
+      "nameChs": "高中",
+      "originalType": "EDU_TYP"
+    },
+    {
+      "dtypeName": "最高学历",
+      "dtype": "EduType",
+      "code": "40",
+      "nameChs": "初中及以下",
+      "originalType": "EDU_TYP"
+    },
+    {
+      "dtypeName": "共有人/担保人标志",
+      "dtype": "relationFlag",
+      "code": "02",
+      "nameChs": "共有人",
+      "originalType": "RELATIONFLAG"
+    },
+    {
+      "dtypeName": "共有人/担保人标志",
+      "dtype": "relationFlag",
+      "code": "03",
+      "nameChs": "担保人",
+      "originalType": "RELATIONFLAG"
+    },
+    {
+      "dtypeName": "现住房情况",
+      "dtype": "CurrSituation",
+      "code": "10",
+      "nameChs": "自购现无贷款",
+      "originalType": "CURR_SITUATION"
+    },
+    {
+      "dtypeName": "最高学历",
+      "dtype": "EduType",
+      "code": "50",
+      "nameChs": "职高",
+      "originalType": "EDU_TYP"
+    },
+    {
+      "dtypeName": "最高学历",
+      "dtype": "EduType",
+      "code": "60",
+      "nameChs": "自考",
+      "originalType": "EDU_TYP"
+    },
+    {
+      "dtypeName": "学历类型",
+      "dtype": "EduClass",
+      "code": "10",
+      "nameChs": "全日制",
+      "originalType": "EDU_CLZ"
+    },
+    {
+      "dtypeName": "学历类型",
+      "dtype": "EduClass",
+      "code": "20",
+      "nameChs": "其他",
+      "originalType": "EDU_CLZ"
+    },
+    {
+      "dtypeName": "押贷款种类",
+      "dtype": "loanType",
+      "code": "02",
+      "nameChs": "抵押分期贷款",
+      "originalType": "LOANTYPE"
+    },
+    {
+      "dtypeName": "房产类型",
+      "dtype": "houseType",
+      "code": "01",
+      "nameChs": "普通住宅",
+      "originalType": "HOUSETYPE"
+    },
+    {
+      "dtypeName": "房产性质",
+      "dtype": "houseNature",
+      "code": "01",
+      "nameChs": "商品房",
+      "originalType": "HOUSENATURE"
+    },
+    {
+      "dtypeName": "房产性质",
+      "dtype": "houseNature",
+      "code": "02",
+      "nameChs": "房改房",
+      "originalType": "HOUSENATURE"
+    },
+    {
+      "dtypeName": "房产性质",
+      "dtype": "houseNature",
+      "code": "03",
+      "nameChs": "拆迁安置房",
+      "originalType": "HOUSENATURE"
+    },
+    {
+      "dtypeName": "房产性质",
+      "dtype": "houseNature",
+      "code": "04",
+      "nameChs": "经济适用房",
+      "originalType": "HOUSENATURE"
+    },
+    {
+      "dtypeName": "房产性质",
+      "dtype": "houseNature",
+      "code": "05",
+      "nameChs": "其他",
+      "originalType": "HOUSENATURE"
+    },
+    {
+      "dtypeName": "土地来源",
+      "dtype": "landSource",
+      "code": "01",
+      "nameChs": "出让",
+      "originalType": "LANDSOURCE"
+    },
+    {
+      "dtypeName": "土地来源",
+      "dtype": "landSource",
+      "code": "02",
+      "nameChs": "划拨",
+      "originalType": "LANDSOURCE"
+    },
+    {
+      "dtypeName": "土地来源",
+      "dtype": "landSource",
+      "code": "03",
+      "nameChs": "转让",
+      "originalType": "LANDSOURCE"
+    },
+    {
+      "dtypeName": "土地来源",
+      "dtype": "landSource",
+      "code": "04",
+      "nameChs": "其他",
+      "originalType": "LANDSOURCE"
+    },
+    {
+      "dtypeName": "是否有其他共有人",
+      "dtype": "coownerFlag",
+      "code": "01",
+      "nameChs": "是",
+      "originalType": "COOWNERFLAG"
+    },
+    {
+      "dtypeName": "是否有其他共有人",
+      "dtype": "coownerFlag",
+      "code": "02",
+      "nameChs": "否",
+      "originalType": "COOWNERFLAG"
+    },
+    {
+      "dtypeName": "是否有配偶",
+      "dtype": "mateFlag",
+      "code": "01",
+      "nameChs": "是",
+      "originalType": "MATEFLAG"
+    },
+    {
+      "dtypeName": "是否有配偶",
+      "dtype": "mateFlag",
+      "code": "02",
+      "nameChs": "否",
+      "originalType": "MATEFLAG"
+    },
+    {
+      "dtypeName": "抵押类型",
+      "dtype": "mortgageType",
+      "code": "01",
+      "nameChs": "一押",
+      "originalType": "MORTGAGETYPE"
+    },
+    {
+      "dtypeName": "联系人关系",
+      "dtype": "relation",
+      "code": "01",
+      "nameChs": "父母",
+      "originalType": "relation"
+    },
+    {
+      "dtypeName": "联系人关系",
+      "dtype": "relation",
+      "code": "02",
+      "nameChs": "子女及兄弟姐妹",
+      "originalType": "relation"
+    },
+    {
+      "dtypeName": "联系人关系",
+      "dtype": "relation",
+      "code": "03",
+      "nameChs": "同事",
+      "originalType": "relation"
+    },
+    {
+      "dtypeName": "联系人关系",
+      "dtype": "relation",
+      "code": "04",
+      "nameChs": "同学",
+      "originalType": "relation"
+    },
+    {
+      "dtypeName": "联系人关系",
+      "dtype": "relation",
+      "code": "05",
+      "nameChs": "朋友",
+      "originalType": "relation"
+    },
+    {
+      "dtypeName": "联系人关系",
+      "dtype": "relation",
+      "code": "99",
+      "nameChs": "其他",
+      "originalType": "relation"
+    },
+    {
+      "dtypeName": "支持银行",
+      "dtype": "sptBank",
+      "code": "0102",
+      "nameChs": "中国工商银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "支持银行",
+      "dtype": "sptBank",
+      "code": "0103",
+      "nameChs": "中国农业银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "支持银行",
+      "dtype": "sptBank",
+      "code": "0105",
+      "nameChs": "中国建设银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "支持银行",
+      "dtype": "sptBank",
+      "code": "0403",
+      "nameChs": "中国邮政储蓄银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "支持银行",
+      "dtype": "sptBank",
+      "code": "0303",
+      "nameChs": "中国光大银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "支持银行",
+      "dtype": "sptBank",
+      "code": "0309",
+      "nameChs": "兴业银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "支持银行",
+      "dtype": "sptBank",
+      "code": "0410",
+      "nameChs": "平安银行股份有限公司",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "支持银行",
+      "dtype": "sptBank",
+      "code": "0305",
+      "nameChs": "中国民生银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "借款人与企业关系",
+      "dtype": "MANAGE_RELATION_ENT",
+      "code": "10",
+      "nameChs": "企业法定代表人",
+      "originalType": "MANAGE_RELATION"
+    },
+    {
+      "dtypeName": "借款人与企业关系",
+      "dtype": "MANAGE_RELATION_ENT",
+      "code": "11",
+      "nameChs": "企业股东",
+      "originalType": "MANAGE_RELATION"
+    },
+    {
+      "dtypeName": "借款人与企业关系",
+      "dtype": "MANAGE_RELATION_ENT",
+      "code": "12",
+      "nameChs": "企业法定代表人配偶",
+      "originalType": "MANAGE_RELATION"
+    },
+    {
+      "dtypeName": "借款人与企业关系",
+      "dtype": "MANAGE_RELATION_ENT",
+      "code": "13",
+      "nameChs": "企业法定代表人直系亲属",
+      "originalType": "MANAGE_RELATION"
+    },
+    {
+      "dtypeName": "借款人与企业关系",
+      "dtype": "MANAGE_RELATION_ENT",
+      "code": "14",
+      "nameChs": "企业股东配偶",
+      "originalType": "MANAGE_RELATION"
+    },
+    {
+      "dtypeName": "借款人与企业关系",
+      "dtype": "MANAGE_RELATION_ENT",
+      "code": "15",
+      "nameChs": "企业股东直系亲属",
+      "originalType": "MANAGE_RELATION"
+    },
+    {
+      "dtypeName": "借款人与个体工商户关系",
+      "dtype": "MANAGE_RELATION_HOLD",
+      "code": "20",
+      "nameChs": "个体工商户经营者",
+      "originalType": "MANAGE_RELATION"
+    },
+    {
+      "dtypeName": "借款人与个体工商户关系",
+      "dtype": "MANAGE_RELATION_HOLD",
+      "code": "21",
+      "nameChs": "个体工商户经营者配偶",
+      "originalType": "MANAGE_RELATION"
+    },
+    {
+      "dtypeName": "借款人与个体工商户关系",
+      "dtype": "MANAGE_RELATION_HOLD",
+      "code": "22",
+      "nameChs": "个体工商户经营者直系亲属",
+      "originalType": "MANAGE_RELATION"
+    },
+    {
+      "dtypeName": "婚姻状况",
+      "dtype": "MARR_STS",
+      "code": "10",
+      "nameChs": "未婚",
+      "originalType": "MARR_STS"
+    },
+    {
+      "dtypeName": "婚姻状况",
+      "dtype": "MARR_STS",
+      "code": "20",
+      "nameChs": "已婚已育",
+      "originalType": "MARR_STS"
+    },
+    {
+      "dtypeName": "婚姻状况",
+      "dtype": "MARR_STS",
+      "code": "90",
+      "nameChs": "其他",
+      "originalType": "MARR_STS"
+    },
+    {
+      "dtypeName": "婚姻状况",
+      "dtype": "MARR_STS",
+      "code": "40",
+      "nameChs": "离异",
+      "originalType": "MARR_STS"
+    },
+    {
+      "dtypeName": "婚姻状况",
+      "dtype": "MARR_STS",
+      "code": "50",
+      "nameChs": "丧偶",
+      "originalType": "MARR_STS"
+    },
+    {
+      "dtypeName": "婚姻状况",
+      "dtype": "MARR_STS",
+      "code": "30",
+      "nameChs": "已婚未育",
+      "originalType": "MARR_STS"
+    },
+    {
+      "dtypeName": "有与无",
+      "dtype": "HAS_NO",
+      "code": "01",
+      "nameChs": "有",
+      "originalType": "HAS_NO"
+    },
+    {
+      "dtypeName": "有与无",
+      "dtype": "HAS_NO",
+      "code": "02",
+      "nameChs": "无",
+      "originalType": "HAS_NO"
+    },
+    {
+      "dtypeName": "借款人与企业关系",
+      "dtype": "MANAGE_RELATION_ENT",
+      "code": "99",
+      "nameChs": "其他",
+      "originalType": "MANAGE_RELATION"
+    },
+    {
+      "dtypeName": "借款人与企业关系",
+      "dtype": "MANAGE_RELATION_HOLD",
+      "code": "99",
+      "nameChs": "其他",
+      "originalType": "MANAGE_RELATION"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0102",
+      "nameChs": "中国工商银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0103",
+      "nameChs": "中国农业银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0104",
+      "nameChs": "中国银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0105",
+      "nameChs": "中国建设银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0201",
+      "nameChs": "国家开发银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0202",
+      "nameChs": "中国进出口银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0203",
+      "nameChs": "中国农业发展银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0301",
+      "nameChs": "交通银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0302",
+      "nameChs": "中信银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0303",
+      "nameChs": "中国光大银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0304",
+      "nameChs": "华夏银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0305",
+      "nameChs": "中国民生银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0306",
+      "nameChs": "广发银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0307",
+      "nameChs": "平安银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0308",
+      "nameChs": "招商银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0309",
+      "nameChs": "兴业银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0310",
+      "nameChs": "浦发银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0313",
+      "nameChs": "城市商业银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0314",
+      "nameChs": "农村商业银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0315",
+      "nameChs": "恒丰银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0316",
+      "nameChs": "浙商银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0317",
+      "nameChs": "农村合作银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0318",
+      "nameChs": "渤海银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0319",
+      "nameChs": "徽商银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0320",
+      "nameChs": "村镇银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0321",
+      "nameChs": "重庆三峡银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0322",
+      "nameChs": "上海农村商业银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0401",
+      "nameChs": "城市信用社",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0402",
+      "nameChs": "农村信用联社",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0403",
+      "nameChs": "中国邮政储蓄银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0501",
+      "nameChs": "香港上海汇丰银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0502",
+      "nameChs": "东亚银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0503",
+      "nameChs": "南洋商业银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0504",
+      "nameChs": "恒生银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0505",
+      "nameChs": "中国银行（香港）",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0506",
+      "nameChs": "集友银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0509",
+      "nameChs": "星展银行（香港）",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0510",
+      "nameChs": "永亨银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0531",
+      "nameChs": "美国花旗银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0532",
+      "nameChs": "美国银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0533",
+      "nameChs": "美国摩根大通银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0561",
+      "nameChs": "日本三菱东京日联银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0562",
+      "nameChs": "日本日联银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0563",
+      "nameChs": "日本三井住友银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0564",
+      "nameChs": "日本瑞穗实业银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0565",
+      "nameChs": "日本山口银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0591",
+      "nameChs": "韩国外换银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0593",
+      "nameChs": "韩国友利银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0594",
+      "nameChs": "韩国产业银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0595",
+      "nameChs": "新韩银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0596",
+      "nameChs": "韩国中小企业银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0597",
+      "nameChs": "韩亚银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0621",
+      "nameChs": "华侨银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0622",
+      "nameChs": "大华银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0623",
+      "nameChs": "新加坡星展银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0641",
+      "nameChs": "奥地利中央合作银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0651",
+      "nameChs": "比利时联合银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0661",
+      "nameChs": "荷兰银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0662",
+      "nameChs": "荷兰商业银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0671",
+      "nameChs": "渣打银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0691",
+      "nameChs": "法国兴业银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0692",
+      "nameChs": "法国巴黎银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0694",
+      "nameChs": "法国东方汇理银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0711",
+      "nameChs": "德国德累斯登银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0712",
+      "nameChs": "德意志银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0713",
+      "nameChs": "德国商业银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0714",
+      "nameChs": "德国西德银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0715",
+      "nameChs": "德国巴伐利亚州银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0741",
+      "nameChs": "瑞士信贷银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0752",
+      "nameChs": "加拿大蒙特利尔银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0761",
+      "nameChs": "澳大利亚和新西兰银行集团",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0775",
+      "nameChs": "德富泰银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0781",
+      "nameChs": "厦门国际银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0782",
+      "nameChs": "法国巴黎银行（中国）",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0785",
+      "nameChs": "华商银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0786",
+      "nameChs": "青岛国际银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0787",
+      "nameChs": "华一银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0788",
+      "nameChs": "重庆金交所",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0789",
+      "nameChs": "重庆市瀚华小额贷款有限责任公司",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0790",
+      "nameChs": "其他银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0962",
+      "nameChs": "中原银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0989",
+      "nameChs": "永隆银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "0999",
+      "nameChs": "重庆富民银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "1000",
+      "nameChs": "招商CBS",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "S_ACC_BANK",
+      "dtype": "S_ACC_BANK",
+      "code": "313001",
+      "nameChs": "北京银行",
+      "originalType": "S_ACC_BANK"
+    },
+    {
+      "dtypeName": "SEX",
+      "dtype": "SEX",
+      "code": "20",
+      "nameChs": "女",
+      "originalType": "SEX"
+    },
+    {
+      "dtypeName": "SEX",
+      "dtype": "SEX",
+      "code": "10",
+      "nameChs": "男",
+      "originalType": "SEX"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "01",
+      "nameChs": "汉族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "02",
+      "nameChs": "蒙古族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "03",
+      "nameChs": "回族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "04",
+      "nameChs": "藏族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "05",
+      "nameChs": "维吾尔族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "06",
+      "nameChs": "苗族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "07",
+      "nameChs": "彝族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "08",
+      "nameChs": "壮族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "09",
+      "nameChs": "布依族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "10",
+      "nameChs": "朝鲜族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "11",
+      "nameChs": "满族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "12",
+      "nameChs": "侗族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "13",
+      "nameChs": "瑶族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "14",
+      "nameChs": "白族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "15",
+      "nameChs": "土家族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "16",
+      "nameChs": "哈尼族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "17",
+      "nameChs": "哈萨克族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "18",
+      "nameChs": "傣族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "19",
+      "nameChs": "黎族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "20",
+      "nameChs": "僳僳族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "21",
+      "nameChs": "佤族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "22",
+      "nameChs": "畲族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "23",
+      "nameChs": "高山族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "24",
+      "nameChs": "拉祜族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "25",
+      "nameChs": "水族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "26",
+      "nameChs": "东乡族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "27",
+      "nameChs": "纳西族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "28",
+      "nameChs": "景颇族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "29",
+      "nameChs": "柯尔克孜族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "30",
+      "nameChs": "土族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "31",
+      "nameChs": "达斡尔族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "32",
+      "nameChs": "仫佬族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "33",
+      "nameChs": "羌族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "34",
+      "nameChs": "布朗族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "35",
+      "nameChs": "撒拉族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "36",
+      "nameChs": "毛难族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "37",
+      "nameChs": "仡佬族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "38",
+      "nameChs": "锡伯族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "39",
+      "nameChs": "阿昌族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "40",
+      "nameChs": "普米族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "41",
+      "nameChs": "塔吉克族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "42",
+      "nameChs": "怒族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "43",
+      "nameChs": "乌孜别克族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "44",
+      "nameChs": "俄罗斯族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "45",
+      "nameChs": "鄂温克族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "46",
+      "nameChs": "崩龙族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "47",
+      "nameChs": "保安族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "48",
+      "nameChs": "裕固族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "49",
+      "nameChs": "京族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "50",
+      "nameChs": "塔塔尔族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "51",
+      "nameChs": "独龙族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "52",
+      "nameChs": "鄂伦春族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "53",
+      "nameChs": "赫哲族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "54",
+      "nameChs": "门巴族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "55",
+      "nameChs": "珞巴族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "NATION",
+      "dtype": "NATION",
+      "code": "56",
+      "nameChs": "基诺族",
+      "originalType": "NATION"
+    },
+    {
+      "dtypeName": "IDEN_ATTR",
+      "dtype": "IDEN_ATTR",
+      "code": "00",
+      "nameChs": "个人",
+      "originalType": "IDEN_ATTR"
+    },
+    {
+      "dtypeName": "IDEN_ATTR",
+      "dtype": "IDEN_ATTR",
+      "code": "01",
+      "nameChs": "企业",
+      "originalType": "IDEN_ATTR"
+    },
+    {
+      "dtypeName": "IDEN_ATTR",
+      "dtype": "IDEN_ATTR",
+      "code": "02",
+      "nameChs": "个体工商户",
+      "originalType": "IDEN_ATTR"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "A",
+      "nameChs": "农、林、牧、渔业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "A01",
+      "nameChs": "农业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "A014",
+      "nameChs": "蔬菜、食用菌及园艺作物种植",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "A0142",
+      "nameChs": "食用菌种植",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "A04",
+      "nameChs": "渔业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "A041",
+      "nameChs": "水产养殖",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "A0412",
+      "nameChs": "内陆养殖",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "B",
+      "nameChs": "采矿业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C",
+      "nameChs": "制造业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C13",
+      "nameChs": "农副食品加工业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C131",
+      "nameChs": "谷物磨制",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1310",
+      "nameChs": "谷物磨制",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C132",
+      "nameChs": "饲料加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1320",
+      "nameChs": "饲料加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C133",
+      "nameChs": "植物油加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1331",
+      "nameChs": "食用植物油加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1332",
+      "nameChs": "非食用植物油加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C135",
+      "nameChs": "屠宰及肉类加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1353",
+      "nameChs": "肉制品及副产品加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C136",
+      "nameChs": "水产品加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1361",
+      "nameChs": "水产品冷冻加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1363",
+      "nameChs": "水产饲料制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C137",
+      "nameChs": "蔬菜、水果和坚果加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1371",
+      "nameChs": "蔬菜加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1372",
+      "nameChs": "水果和坚果加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C139",
+      "nameChs": "其他农副食品加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1391",
+      "nameChs": "淀粉及淀粉制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1392",
+      "nameChs": "豆制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1393",
+      "nameChs": "蛋品加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1399",
+      "nameChs": "其他未列明农副食品加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C14",
+      "nameChs": "食品制造业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C141",
+      "nameChs": "焙烤食品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1411",
+      "nameChs": "糕点、面包制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1419",
+      "nameChs": "饼干及其他焙烤食品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C142",
+      "nameChs": "糖果、巧克力及蜜饯制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1421",
+      "nameChs": "糖果、巧克力制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1422",
+      "nameChs": "蜜饯制作",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C143",
+      "nameChs": "方便食品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1431",
+      "nameChs": "米、面制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1432",
+      "nameChs": "速冻食品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1439",
+      "nameChs": "方便面及其他方便食品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C144",
+      "nameChs": "乳制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1440",
+      "nameChs": "乳制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C146",
+      "nameChs": "调味品、发酵制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1461",
+      "nameChs": "味精制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1469",
+      "nameChs": "其他调味品、发酵制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C149",
+      "nameChs": "其他食品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1499",
+      "nameChs": "其他未列明食品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C15",
+      "nameChs": "酒、饮料和精制茶制造业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C151",
+      "nameChs": "酒的制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1511",
+      "nameChs": "酒精制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1512",
+      "nameChs": "白酒制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1513",
+      "nameChs": "啤酒制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1515",
+      "nameChs": "葡萄酒制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1519",
+      "nameChs": "其他酒制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C152",
+      "nameChs": "饮料制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1522",
+      "nameChs": "瓶（罐）装饮用水制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1524",
+      "nameChs": "含乳饮料和植物蛋白饮料制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C153",
+      "nameChs": "精制茶加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1530",
+      "nameChs": "精制茶加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C17",
+      "nameChs": "纺织业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C171",
+      "nameChs": "棉纺织及印染精加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1711",
+      "nameChs": "棉纺纱加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C175",
+      "nameChs": "化纤织造及印染精加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1751",
+      "nameChs": "化纤织造加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C177",
+      "nameChs": "家用纺织制成品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1773",
+      "nameChs": "窗帘、布艺类产品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1779",
+      "nameChs": "其他家用纺织制成品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C18",
+      "nameChs": "纺织服装、服饰业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C181",
+      "nameChs": "机织服装制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1810",
+      "nameChs": "机织服装制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C182",
+      "nameChs": "针织或钩针编织服装制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1820",
+      "nameChs": "针织或钩针编织服装制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C183",
+      "nameChs": "服饰制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1830",
+      "nameChs": "服饰制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C19",
+      "nameChs": "皮革、毛皮、羽毛及其制品和制鞋业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C192",
+      "nameChs": "皮革制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1921",
+      "nameChs": "皮革服装制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1922",
+      "nameChs": "皮箱、包(袋)制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1923",
+      "nameChs": "皮手套及皮装饰制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C193",
+      "nameChs": "毛皮鞣制及制品加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1932",
+      "nameChs": "毛皮服装加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C195",
+      "nameChs": "制鞋业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1952",
+      "nameChs": "皮鞋制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1953",
+      "nameChs": "塑料鞋制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1954",
+      "nameChs": "橡胶鞋制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C1959",
+      "nameChs": "其他制鞋业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C20",
+      "nameChs": "木材加工和木、竹、藤、棕、草制品业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C201",
+      "nameChs": "木材加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2013",
+      "nameChs": "单板加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2019",
+      "nameChs": "其他木材加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C202",
+      "nameChs": "人造板制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2021",
+      "nameChs": "胶合板制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2023",
+      "nameChs": "刨花板制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2029",
+      "nameChs": "其他人造板制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C203",
+      "nameChs": "木制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2031",
+      "nameChs": "建筑用木料及木材组件加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2032",
+      "nameChs": "木门窗、楼梯制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2033",
+      "nameChs": "地板制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C21",
+      "nameChs": "家具制造业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C211",
+      "nameChs": "木质家具制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2110",
+      "nameChs": "木质家具制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C219",
+      "nameChs": "其他家具制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2190",
+      "nameChs": "其他家具制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C22",
+      "nameChs": "造纸和纸制品业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C222",
+      "nameChs": "造纸",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2222",
+      "nameChs": "手工纸制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C223",
+      "nameChs": "纸制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2239",
+      "nameChs": "其他纸制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C23",
+      "nameChs": "印刷和记录媒介复制业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C231",
+      "nameChs": "印刷",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2311",
+      "nameChs": "书、报刊印刷",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2312",
+      "nameChs": "本册印制",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2319",
+      "nameChs": "包装装潢及其他印刷",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C232",
+      "nameChs": "装订及印刷相关服务",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2320",
+      "nameChs": "装订及印刷相关服务",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C24",
+      "nameChs": "文教、工美、体育和娱乐用品制造业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C241",
+      "nameChs": "文教办公用品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2411",
+      "nameChs": "文具制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2419",
+      "nameChs": "其他文教办公用品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C243",
+      "nameChs": "工艺美术品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2431",
+      "nameChs": "雕塑工艺品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C244",
+      "nameChs": "体育用品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2442",
+      "nameChs": "体育器材及配件制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2449",
+      "nameChs": "其他体育用品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C26",
+      "nameChs": "化学原料和化学制品制造业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C263",
+      "nameChs": "农药制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2631",
+      "nameChs": "化学农药制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2632",
+      "nameChs": "生物化学农药及微生物农药制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C264",
+      "nameChs": "涂料、油墨、颜料及类似产品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2641",
+      "nameChs": "涂料制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C268",
+      "nameChs": "日用化学产品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2682",
+      "nameChs": "化妆品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2689",
+      "nameChs": "其他日用化学产品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C27",
+      "nameChs": "医药制造业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C277",
+      "nameChs": "卫生材料及医药用品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2770",
+      "nameChs": "卫生材料及医药用品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C29",
+      "nameChs": "橡胶和塑料制品业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C291",
+      "nameChs": "橡胶制品业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2911",
+      "nameChs": "轮胎制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C292",
+      "nameChs": "塑料制品业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2921",
+      "nameChs": "塑料薄膜制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2922",
+      "nameChs": "塑料板、管、型材制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2926",
+      "nameChs": "塑料包装箱及容器制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2927",
+      "nameChs": "日用塑料制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C2929",
+      "nameChs": "其他塑料制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C30",
+      "nameChs": "非金属矿物制品业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C302",
+      "nameChs": "石膏、水泥制品及类似制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3021",
+      "nameChs": "水泥制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C303",
+      "nameChs": "砖瓦、石材等建筑材料制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3032",
+      "nameChs": "建筑陶瓷制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3033",
+      "nameChs": "建筑用石加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3039",
+      "nameChs": "其他建筑材料制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C304",
+      "nameChs": "玻璃制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3041",
+      "nameChs": "平板玻璃制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3049",
+      "nameChs": "其他玻璃制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C305",
+      "nameChs": "玻璃制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3054",
+      "nameChs": "日用玻璃制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3055",
+      "nameChs": "玻璃包装容器制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3059",
+      "nameChs": "其他玻璃制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C307",
+      "nameChs": "陶瓷制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3071",
+      "nameChs": "卫生陶瓷制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3073",
+      "nameChs": "日用陶瓷制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C31",
+      "nameChs": "黑色金属冶炼和压延加工业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C315",
+      "nameChs": "铁合金冶炼",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3150",
+      "nameChs": "铁合金冶炼",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C33",
+      "nameChs": "金属制品业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C331",
+      "nameChs": "结构性金属制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3311",
+      "nameChs": "金属结构制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3312",
+      "nameChs": "金属门窗制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C335",
+      "nameChs": "建筑、安全用金属制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3351",
+      "nameChs": "建筑、家具用金属配件制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3352",
+      "nameChs": "建筑装饰及水暖管道零件制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3359",
+      "nameChs": "其他建筑、安全用金属制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C337",
+      "nameChs": "搪瓷制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3373",
+      "nameChs": "搪瓷卫生洁具制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C338",
+      "nameChs": "金属制日用品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3381",
+      "nameChs": "金属制厨房用器具制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3383",
+      "nameChs": "金属制卫生器具制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3389",
+      "nameChs": "其他金属制日用品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C339",
+      "nameChs": "其他金属制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3392",
+      "nameChs": "交通及公共管理用金属标牌制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C34",
+      "nameChs": "通用设备制造业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C341",
+      "nameChs": "锅炉及原动设备制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3411",
+      "nameChs": "锅炉及辅助设备制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C342",
+      "nameChs": "金属加工机械制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3421",
+      "nameChs": "金属切削机床制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3422",
+      "nameChs": "金属成形机床制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3423",
+      "nameChs": "铸造机械制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3425",
+      "nameChs": "机床附件制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3429",
+      "nameChs": "其他金属加工机械制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C343",
+      "nameChs": "物料搬运设备制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3435",
+      "nameChs": "电梯、自动扶梯及升降机制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C346",
+      "nameChs": "烘炉、风机、衡器、包装等设备制",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3461",
+      "nameChs": "烘炉、熔炉及电炉制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3468",
+      "nameChs": "包装专用设备制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C347",
+      "nameChs": "文化、办公用机械制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3473",
+      "nameChs": "照相机及器材制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C348",
+      "nameChs": "通用零部件制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3484",
+      "nameChs": "机械零部件加工",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5299",
+      "nameChs": "其他未列明零售业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "G",
+      "nameChs": "交通运输、仓储和邮政业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "G54",
+      "nameChs": "道路运输业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "G542",
+      "nameChs": "公路旅客运输",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "G5420",
+      "nameChs": "公路旅客运输",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "G543",
+      "nameChs": "道路货物运输",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "G5430",
+      "nameChs": "道路货物运输",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "H",
+      "nameChs": "住宿和餐饮业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "H61",
+      "nameChs": "住宿业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "H611",
+      "nameChs": "旅游饭店",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "H6110",
+      "nameChs": "旅游饭店",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "H612",
+      "nameChs": "旅游饭店",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "H6120",
+      "nameChs": "旅游饭店",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "H62",
+      "nameChs": "餐饮业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "H621",
+      "nameChs": "正餐服务",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "H6210",
+      "nameChs": "正餐服务",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "H622",
+      "nameChs": "快餐服务",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "H6220",
+      "nameChs": "快餐服务",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "H623",
+      "nameChs": "饮料及冷饮服务",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "H6231",
+      "nameChs": "茶馆服务",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "H6239",
+      "nameChs": "其他饮料及冷饮服务",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "H629",
+      "nameChs": "其他餐饮业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "H6291",
+      "nameChs": "小吃服务",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "H6292",
+      "nameChs": "餐饮配送服务",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "H6299",
+      "nameChs": "其他未列明餐饮业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "I",
+      "nameChs": "信息传输、软件和信息技术服务业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "I64",
+      "nameChs": "互联网和相关服务",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "I649",
+      "nameChs": "其他互联网服务",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "I6490",
+      "nameChs": "其他互联网服务",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "J",
+      "nameChs": "金融业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "J68",
+      "nameChs": "保险业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "J685",
+      "nameChs": "保险经纪与代理服务",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "J6850",
+      "nameChs": "保险经纪与代理服务",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "K",
+      "nameChs": "房地产业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "L",
+      "nameChs": "租赁和商务服务业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "L71",
+      "nameChs": "租赁业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "L711",
+      "nameChs": "机械设备租赁",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "L7113",
+      "nameChs": "建筑工程机械与设备租赁",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "L72",
+      "nameChs": "商务服务业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "L724",
+      "nameChs": "广告业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "L7240",
+      "nameChs": "广告业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "M",
+      "nameChs": "科学研究和技术服务业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "N",
+      "nameChs": "水利、环境和公共设施管理业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "O",
+      "nameChs": "居民服务、修理和其他服务业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "P",
+      "nameChs": "教育",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "P82",
+      "nameChs": "教育",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "P821",
+      "nameChs": "学前教育",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "P8210",
+      "nameChs": "学前教育",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "Q",
+      "nameChs": "卫生和社会工作",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "R",
+      "nameChs": "文化、体育和娱乐业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "R86",
+      "nameChs": "广播、电视、电影和影视录音制作业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "R865",
+      "nameChs": "电影放映",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "R8650",
+      "nameChs": "电影放映",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "R88",
+      "nameChs": "体育",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "R883",
+      "nameChs": "休闲健身活动",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "R8830",
+      "nameChs": "休闲健身活动",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "R89",
+      "nameChs": "娱乐业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "R891",
+      "nameChs": "室内娱乐活动",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "R8913",
+      "nameChs": "网吧活动",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "R893",
+      "nameChs": "彩票活动",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "R8930",
+      "nameChs": "彩票活动",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "S",
+      "nameChs": "公共管理、社会保障和社会组织",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "T",
+      "nameChs": "国际组织",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "Z9999",
+      "nameChs": "其他",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5119",
+      "nameChs": "其他农牧产品批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F512",
+      "nameChs": "食品、饮料及烟草制品批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5121",
+      "nameChs": "米、面制品及食用油批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3489",
+      "nameChs": "其他通用零部件制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C349",
+      "nameChs": "其他通用设备制造业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3490",
+      "nameChs": "其他通用设备制造业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C35",
+      "nameChs": "专用设备制造业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C351",
+      "nameChs": "采矿、冶金、建筑专用设备制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3511",
+      "nameChs": "矿山机械制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3512",
+      "nameChs": "石油钻采专用设备制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C352",
+      "nameChs": "化工、木材、非金属加工专用设备制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3525",
+      "nameChs": "模具制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C354",
+      "nameChs": "印刷、制药、日化及日用品生产专用设备制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3549",
+      "nameChs": "其他日用品生产专用设备制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C357",
+      "nameChs": "农、林、牧、渔专用机械制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3576",
+      "nameChs": "农林牧渔机械配件制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C358",
+      "nameChs": "医疗仪器设备及器械制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3581",
+      "nameChs": "医疗诊断、监护及治疗设备制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3584",
+      "nameChs": "医疗、外科及兽医用器械制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C36",
+      "nameChs": "汽车制造业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C361",
+      "nameChs": "汽车整车制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3610",
+      "nameChs": "汽车整车制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C362",
+      "nameChs": "改装汽车制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3620",
+      "nameChs": "改装汽车制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C365",
+      "nameChs": "汽车车身、挂车制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3650",
+      "nameChs": "汽车车身、挂车制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C366",
+      "nameChs": "汽车零部件及配件制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3660",
+      "nameChs": "汽车零部件及配件制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C37",
+      "nameChs": "铁路、船舶、航空航天和其他运输设备制造业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C375",
+      "nameChs": "摩托车制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3752",
+      "nameChs": "摩托车零部件及配件制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C376",
+      "nameChs": "自行车制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3762",
+      "nameChs": "助动自行车制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C38",
+      "nameChs": "电气机械和器材制造业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C383",
+      "nameChs": "电线、电缆、光缆及电工器材制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3831",
+      "nameChs": "电线、电缆制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3833",
+      "nameChs": "绝缘制品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3839",
+      "nameChs": "其他电工器材制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C385",
+      "nameChs": "家用电力器具制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3851",
+      "nameChs": "家用制冷电器具制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3852",
+      "nameChs": "家用空气调节器制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3853",
+      "nameChs": "家用通风电器具制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3854",
+      "nameChs": "家用厨房电器具制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3855",
+      "nameChs": "家用清洁卫生电器具制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3856",
+      "nameChs": "家用美容、保健电器具制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3857",
+      "nameChs": "家用电力器具专用配件制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3859",
+      "nameChs": "其他家用电力器具制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C387",
+      "nameChs": "照明器具制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3872",
+      "nameChs": "照明灯具制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C39",
+      "nameChs": "计算机、通信和其他电子设备制造业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C391",
+      "nameChs": "计算机制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3913",
+      "nameChs": "计算机外围设备制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C399",
+      "nameChs": "其他电子设备制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C3990",
+      "nameChs": "其他电子设备制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C40",
+      "nameChs": "仪器仪表制造业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C401",
+      "nameChs": "通用仪器仪表制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C4013",
+      "nameChs": "绘图、计算及测量仪器制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C402",
+      "nameChs": "专用仪器仪表制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C4028",
+      "nameChs": "电子测量仪器制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C41",
+      "nameChs": "其他制造业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C411",
+      "nameChs": "日用杂品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C4111",
+      "nameChs": "鬃毛加工、制刷及清扫工具制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C4119",
+      "nameChs": "其他日用杂品制造",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C419",
+      "nameChs": "其他未列明制造业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C4190",
+      "nameChs": "其他未列明制造业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C42",
+      "nameChs": "废弃资源综合利用业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C421",
+      "nameChs": "金属废料和碎屑加工处理",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "C4210",
+      "nameChs": "金属废料和碎屑加工处理",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "D",
+      "nameChs": "电力、热力、燃气及水生产和供应业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "D46",
+      "nameChs": "水的生产和供应业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "D462",
+      "nameChs": "污水处理及其再生利用",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "D4620",
+      "nameChs": "污水处理及其再生利用",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "E",
+      "nameChs": "建筑业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "E47",
+      "nameChs": "房屋建筑业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "E470",
+      "nameChs": "房屋建筑业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "E4700",
+      "nameChs": "房屋建筑业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "E48",
+      "nameChs": "土木工程建筑业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "E481",
+      "nameChs": "铁路、道路、隧道和桥梁工程建筑",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "E4813",
+      "nameChs": "市政道路工程建筑",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "E485",
+      "nameChs": "架线和管道工程建筑",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "E4851",
+      "nameChs": "架线及设备工程建筑",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "E4852",
+      "nameChs": "管道工程建筑",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "E49",
+      "nameChs": "建筑安装业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "E491",
+      "nameChs": "电气安装",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "E4910",
+      "nameChs": "电气安装",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "E492",
+      "nameChs": "管道和设备安装",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "E4920",
+      "nameChs": "管道和设备安装",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "E499",
+      "nameChs": "其他建筑安装业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "E4990",
+      "nameChs": "其他建筑安装业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "E50",
+      "nameChs": "建筑装饰和其他建筑业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "E501",
+      "nameChs": "建筑装饰业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "E5010",
+      "nameChs": "建筑装饰业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "E509",
+      "nameChs": "其他未列明建筑业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "E5090",
+      "nameChs": "其他未列明建筑业处理",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F",
+      "nameChs": "批发和零售业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F51",
+      "nameChs": "批发业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F511",
+      "nameChs": "农、林、牧产品批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5112",
+      "nameChs": "种子批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5113",
+      "nameChs": "饲料批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5115",
+      "nameChs": "林业产品批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5174",
+      "nameChs": "摩托车及零配件批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5175",
+      "nameChs": "五金产品批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5176",
+      "nameChs": "电气设备批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5177",
+      "nameChs": "计算机、软件及辅助设备批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5179",
+      "nameChs": "其他机械设备及电子产品批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F518",
+      "nameChs": "贸易经纪与代理",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5181",
+      "nameChs": "贸易代理",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F519",
+      "nameChs": "其他批发业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5191",
+      "nameChs": "再生物资回收与批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5199",
+      "nameChs": "其他未列明批发业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F52",
+      "nameChs": "零售业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5122",
+      "nameChs": "糕点、糖果及糖批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5123",
+      "nameChs": "果品、蔬菜批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5124",
+      "nameChs": "肉、禽、蛋、奶及水产品批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5125",
+      "nameChs": "盐及调味品批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5127",
+      "nameChs": "酒、饮料及茶叶批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5128",
+      "nameChs": "烟草制品批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5129",
+      "nameChs": "其他食品批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F513",
+      "nameChs": "纺织、服装及家庭用品批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5131",
+      "nameChs": "纺织品、针织品及原料批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5132",
+      "nameChs": "服装批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5133",
+      "nameChs": "鞋帽批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5134",
+      "nameChs": "化妆品及卫生用品批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5135",
+      "nameChs": "厨房、卫生间用具及日用杂货批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5136",
+      "nameChs": "灯具、装饰物品批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5137",
+      "nameChs": "家用电器批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5139",
+      "nameChs": "其他家庭用品批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F514",
+      "nameChs": "文化、体育用品及器材批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5141",
+      "nameChs": "文具用品批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5142",
+      "nameChs": "体育用品及器材批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5143",
+      "nameChs": "图书批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5146",
+      "nameChs": "首饰、工艺品及收藏品批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5149",
+      "nameChs": "其他文化用品批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F515",
+      "nameChs": "医药及医疗器材批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5151",
+      "nameChs": "西药批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5152",
+      "nameChs": "中药批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5153",
+      "nameChs": "医疗用品及器材批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F516",
+      "nameChs": "矿产品、建材及化工产品批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5162",
+      "nameChs": "石油及制品批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5163",
+      "nameChs": "非金属矿及制品批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5164",
+      "nameChs": "金属及金属矿批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5165",
+      "nameChs": "建材批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5166",
+      "nameChs": "化肥批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5167",
+      "nameChs": "农药批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5169",
+      "nameChs": "其他化工产品批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F517",
+      "nameChs": "机械设备、五金产品及电子产品批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5171",
+      "nameChs": "农业机械批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5172",
+      "nameChs": "汽车批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5173",
+      "nameChs": "汽车零配件批发",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F521",
+      "nameChs": "综合零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5211",
+      "nameChs": "百货零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5212",
+      "nameChs": "超级市场零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5219",
+      "nameChs": "其他综合零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F522",
+      "nameChs": "食品、饮料及烟草制品专门零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5221",
+      "nameChs": "粮油零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5222",
+      "nameChs": "糕点、面包零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5223",
+      "nameChs": "果品、蔬菜零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5224",
+      "nameChs": "肉、禽、蛋、奶及水产品零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5225",
+      "nameChs": "营养和保健品零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5226",
+      "nameChs": "酒、饮料及茶叶零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5229",
+      "nameChs": "其他食品零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F523",
+      "nameChs": "纺织、服装及日用品专门零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5231",
+      "nameChs": "纺织品及针织品零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5232",
+      "nameChs": "服装零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5233",
+      "nameChs": "鞋帽零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5234",
+      "nameChs": "化妆品及卫生用品零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5236",
+      "nameChs": "箱、包零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5237",
+      "nameChs": "厨房用具及日用杂品零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5239",
+      "nameChs": "其他日用品零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F524",
+      "nameChs": "文化、体育用品及器材专门零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5241",
+      "nameChs": "文具用品零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5242",
+      "nameChs": "体育用品及器材零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5247",
+      "nameChs": "乐器零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F525",
+      "nameChs": "医药及医疗器材专门零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5251",
+      "nameChs": "药品零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5252",
+      "nameChs": "医疗用品及器材零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F526",
+      "nameChs": "汽车、摩托车、燃料及零配件专门零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5261",
+      "nameChs": "汽车零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5262",
+      "nameChs": "汽车零配件零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5263",
+      "nameChs": "摩托车及零配件零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F527",
+      "nameChs": "家用电器及电子产品专门零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5271",
+      "nameChs": "家用视听设备零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5272",
+      "nameChs": "日用家电设备零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5273",
+      "nameChs": "计算机、软件及辅助设备零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5279",
+      "nameChs": "其他电子产品零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F528",
+      "nameChs": "五金、家具及室内装饰材料专门零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5281",
+      "nameChs": "五金零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5282",
+      "nameChs": "灯具零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5283",
+      "nameChs": "家具零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5285",
+      "nameChs": "卫生洁具零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5286",
+      "nameChs": "木质装饰材料零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5287",
+      "nameChs": "陶瓷、石材装饰材料零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5289",
+      "nameChs": "其他室内装饰材料零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F529",
+      "nameChs": "货摊、无店铺及其他零售业",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "ALL_INDUSTRY",
+      "dtype": "ALL_INDUSTRY",
+      "code": "F5292",
+      "nameChs": "货摊纺织、服装及鞋零售",
+      "originalType": "ALL_INDUSTRY"
+    },
+    {
+      "dtypeName": "YES_NO",
+      "dtype": "YES_NO",
+      "code": "N",
+      "nameChs": "否",
+      "originalType": "YES_NO"
+    },
+    {
+      "dtypeName": "YES_NO",
+      "dtype": "YES_NO",
+      "code": "Y",
+      "nameChs": "是",
+      "originalType": "YES_NO"
+    },
+    {
+      "dtypeName": "TOP_BOTTOM_FLAG",
+      "dtype": "TOP_BOTTOM_FLAG",
+      "code": "T",
+      "nameChs": "顶层",
+      "originalType": "TOP_BOTTOM_FLAG"
+    },
+    {
+      "dtypeName": "TOP_BOTTOM_FLAG",
+      "dtype": "TOP_BOTTOM_FLAG",
+      "code": "B",
+      "nameChs": "底层",
+      "originalType": "TOP_BOTTOM_FLAG"
+    },
+    {
+      "dtypeName": "TOP_BOTTOM_FLAG",
+      "dtype": "TOP_BOTTOM_FLAG",
+      "code": "N",
+      "nameChs": "非顶层底层",
+      "originalType": "TOP_BOTTOM_FLAG"
+    },
+    {
+      "dtypeName": "GARDEN_FLAG",
+      "dtype": "GARDEN_FLAG",
+      "code": "01",
+      "nameChs": "是",
+      "originalType": "GARDEN_FLAG"
+    },
+    {
+      "dtypeName": "GARDEN_FLAG",
+      "dtype": "GARDEN_FLAG",
+      "code": "02",
+      "nameChs": "否",
+      "originalType": "GARDEN_FLAG"
+    },
+    {
+      "dtypeName": "PARKING_FLAG",
+      "dtype": "PARKING_FLAG",
+      "code": "01",
+      "nameChs": "是",
+      "originalType": "PARKING_FLAG"
+    },
+    {
+      "dtypeName": "PARKING_FLAG",
+      "dtype": "PARKING_FLAG",
+      "code": "02",
+      "nameChs": "否",
+      "originalType": "PARKING_FLAG"
+    },
+    {
+      "dtypeName": "URBAN_FLAG",
+      "dtype": "URBAN_FLAG",
+      "code": "01",
+      "nameChs": "是",
+      "originalType": "URBAN_FLAG"
+    },
+    {
+      "dtypeName": "URBAN_FLAG",
+      "dtype": "URBAN_FLAG",
+      "code": "02",
+      "nameChs": "否",
+      "originalType": "URBAN_FLAG"
+    },
+    {
+      "dtypeName": "HOLDER_COOWNER_REL",
+      "dtype": "HOLDER_COOWNER_REL",
+      "code": "05",
+      "nameChs": "朋友",
+      "originalType": "HOLDER_COOWNER_REL"
+    },
+    {
+      "dtypeName": "HOLDER_COOWNER_REL",
+      "dtype": "HOLDER_COOWNER_REL",
+      "code": "03",
+      "nameChs": "同事",
+      "originalType": "HOLDER_COOWNER_REL"
+    },
+    {
+      "dtypeName": "HOLDER_COOWNER_REL",
+      "dtype": "HOLDER_COOWNER_REL",
+      "code": "06",
+      "nameChs": "配偶",
+      "originalType": "HOLDER_COOWNER_REL"
+    },
+    {
+      "dtypeName": "HOLDER_COOWNER_REL",
+      "dtype": "HOLDER_COOWNER_REL",
+      "code": "01",
+      "nameChs": "父母",
+      "originalType": "HOLDER_COOWNER_REL"
+    },
+    {
+      "dtypeName": "HOLDER_COOWNER_REL",
+      "dtype": "HOLDER_COOWNER_REL",
+      "code": "02",
+      "nameChs": "子女",
+      "originalType": "HOLDER_COOWNER_REL"
+    },
+    {
+      "dtypeName": "HOLDER_COOWNER_REL",
+      "dtype": "HOLDER_COOWNER_REL",
+      "code": "99",
+      "nameChs": "其他亲属",
+      "originalType": "HOLDER_COOWNER_REL"
+    },
+    {
+      "dtypeName": "HOUSE_TYPE",
+      "dtype": "HOUSE_TYPE",
+      "code": "01",
+      "nameChs": "普通住宅",
+      "originalType": "HOUSE_TYPE"
+    },
+    {
+      "dtypeName": "HOUSE_NATURE",
+      "dtype": "HOUSE_NATURE",
+      "code": "01",
+      "nameChs": "商品房",
+      "originalType": "HOUSE_NATURE"
+    },
+    {
+      "dtypeName": "HOUSE_NATURE",
+      "dtype": "HOUSE_NATURE",
+      "code": "02",
+      "nameChs": "房改房",
+      "originalType": "HOUSE_NATURE"
+    },
+    {
+      "dtypeName": "HOUSE_NATURE",
+      "dtype": "HOUSE_NATURE",
+      "code": "03",
+      "nameChs": "拆迁安置房",
+      "originalType": "HOUSE_NATURE"
+    },
+    {
+      "dtypeName": "HOUSE_NATURE",
+      "dtype": "HOUSE_NATURE",
+      "code": "04",
+      "nameChs": "经济适用房",
+      "originalType": "HOUSE_NATURE"
+    },
+    {
+      "dtypeName": "HOUSE_NATURE",
+      "dtype": "HOUSE_NATURE",
+      "code": "05",
+      "nameChs": "其他",
+      "originalType": "HOUSE_NATURE"
+    },
+    {
+      "dtypeName": "HOUSE_NATURE",
+      "dtype": "HOUSE_NATURE",
+      "code": "06",
+      "nameChs": "商住两用",
+      "originalType": "HOUSE_NATURE"
+    },
+    {
+      "dtypeName": "HOUSE_NATURE",
+      "dtype": "HOUSE_NATURE",
+      "code": "07",
+      "nameChs": "公寓（非经营酒店）",
+      "originalType": "HOUSE_NATURE"
+    },
+    {
+      "dtypeName": "HOUSE_NATURE",
+      "dtype": "HOUSE_NATURE",
+      "code": "08",
+      "nameChs": "集资房",
+      "originalType": "HOUSE_NATURE"
+    },
+    {
+      "dtypeName": "HOUSE_NATURE",
+      "dtype": "HOUSE_NATURE",
+      "code": "09",
+      "nameChs": "别墅",
+      "originalType": "HOUSE_NATURE"
+    },
+    {
+      "dtypeName": "HOUSE_NATURE",
+      "dtype": "HOUSE_NATURE",
+      "code": "10",
+      "nameChs": "商铺",
+      "originalType": "HOUSE_NATURE"
+    },
+    {
+      "dtypeName": "HOUSE_NATURE",
+      "dtype": "HOUSE_NATURE",
+      "code": "11",
+      "nameChs": "写字楼",
+      "originalType": "HOUSE_NATURE"
+    },
+    {
+      "dtypeName": "HOUSE_NATURE",
+      "dtype": "HOUSE_NATURE",
+      "code": "12",
+      "nameChs": "酒店",
+      "originalType": "HOUSE_NATURE"
+    },
+    {
+      "dtypeName": "HOUSE_NATURE",
+      "dtype": "HOUSE_NATURE",
+      "code": "13",
+      "nameChs": "自建房",
+      "originalType": "HOUSE_NATURE"
+    },
+    {
+      "dtypeName": "HOUSE_NATURE",
+      "dtype": "HOUSE_NATURE",
+      "code": "14",
+      "nameChs": "车库",
+      "originalType": "HOUSE_NATURE"
+    },
+    {
+      "dtypeName": "HOUSE_NATURE",
+      "dtype": "HOUSE_NATURE",
+      "code": "15",
+      "nameChs": "厂房",
+      "originalType": "HOUSE_NATURE"
+    },
+    {
+      "dtypeName": "HOUSE_NATURE",
+      "dtype": "HOUSE_NATURE",
+      "code": "16",
+      "nameChs": "教育用地",
+      "originalType": "HOUSE_NATURE"
+    },
+    {
+      "dtypeName": "LAND_SOURCE",
+      "dtype": "LAND_SOURCE",
+      "code": "01",
+      "nameChs": "出让",
+      "originalType": "LAND_SOURCE"
+    },
+    {
+      "dtypeName": "LAND_SOURCE",
+      "dtype": "LAND_SOURCE",
+      "code": "02",
+      "nameChs": "划拨",
+      "originalType": "LAND_SOURCE"
+    },
+    {
+      "dtypeName": "LAND_SOURCE",
+      "dtype": "LAND_SOURCE",
+      "code": "03",
+      "nameChs": "转让",
+      "originalType": "LAND_SOURCE"
+    },
+    {
+      "dtypeName": "LAND_SOURCE",
+      "dtype": "LAND_SOURCE",
+      "code": "04",
+      "nameChs": "其他",
+      "originalType": "LAND_SOURCE"
+    },
+    {
+      "dtypeName": "MORTGAGE_TYPE",
+      "dtype": "MORTGAGE_TYPE",
+      "code": "01",
+      "nameChs": "一押",
+      "originalType": "MORTGAGE_TYPE"
+    },
+    {
+      "dtypeName": "MORTGAGE_TYPE",
+      "dtype": "MORTGAGE_TYPE",
+      "code": "02",
+      "nameChs": "二押",
+      "originalType": "MORTGAGE_TYPE"
+    },
+    {
+      "dtypeName": "MTD_TYP",
+      "dtype": "MTD_TYP",
+      "code": "01",
+      "nameChs": "等额本息",
+      "originalType": "MTD_TYP"
+    },
+    {
+      "dtypeName": "MTD_TYP",
+      "dtype": "MTD_TYP",
+      "code": "02",
+      "nameChs": "等额本金",
+      "originalType": "MTD_TYP"
+    },
+    {
+      "dtypeName": "MTD_TYP",
+      "dtype": "MTD_TYP",
+      "code": "03",
+      "nameChs": "利随本清",
+      "originalType": "MTD_TYP"
+    },
+    {
+      "dtypeName": "MTD_TYP",
+      "dtype": "MTD_TYP",
+      "code": "04",
+      "nameChs": "按期还息到期还本",
+      "originalType": "MTD_TYP"
+    },
+    {
+      "dtypeName": "MTD_TYP",
+      "dtype": "MTD_TYP",
+      "code": "05",
+      "nameChs": "本息不同间隔",
+      "originalType": "MTD_TYP"
+    },
+    {
+      "dtypeName": "MTD_TYP",
+      "dtype": "MTD_TYP",
+      "code": "06",
+      "nameChs": "弹性还款",
+      "originalType": "MTD_TYP"
+    },
+    {
+      "dtypeName": "MTD_TYP",
+      "dtype": "MTD_TYP",
+      "code": "07",
+      "nameChs": "气球贷",
+      "originalType": "MTD_TYP"
+    },
+    {
+      "dtypeName": "MTD_TYP",
+      "dtype": "MTD_TYP",
+      "code": "08",
+      "nameChs": "本金递增递减",
+      "originalType": "MTD_TYP"
+    },
+    {
+      "dtypeName": "MTD_TYP",
+      "dtype": "MTD_TYP",
+      "code": "99",
+      "nameChs": "其他",
+      "originalType": "MTD_TYP"
+    },
+    {
+      "dtypeName": "MTD_TYP",
+      "dtype": "MTD_TYP",
+      "code": "09",
+      "nameChs": "等本等息",
+      "originalType": "MTD_TYP"
+    },
+    {
+      "dtypeName": "MTD_TYP",
+      "dtype": "MTD_TYP",
+      "code": "10",
+      "nameChs": "气球贷等本等息",
+      "originalType": "MTD_TYP"
+    },
+    {
+      "dtypeName": "MTD_PRCP_RATIO_TYPE",
+      "dtype": "MTD_PRCP_RATIO_TYPE",
+      "code": "01",
+      "nameChs": "0.015",
+      "originalType": "MTD_PRCP_RATIO_TYPE"
+    },
+    {
+      "dtypeName": "MTD_PRCP_RATIO_TYPE",
+      "dtype": "MTD_PRCP_RATIO_TYPE",
+      "code": "02",
+      "nameChs": "0.02",
+      "originalType": "MTD_PRCP_RATIO_TYPE"
+    },
+    {
+      "dtypeName": "MTD_PRCP_RATIO_TYPE",
+      "dtype": "MTD_PRCP_RATIO_TYPE",
+      "code": "03",
+      "nameChs": "0.025",
+      "originalType": "MTD_PRCP_RATIO_TYPE"
+    },
+    {
+      "dtypeName": "MTD_PRCP_RATIO_TYPE",
+      "dtype": "MTD_PRCP_RATIO_TYPE",
+      "code": "04",
+      "nameChs": "0.03",
+      "originalType": "MTD_PRCP_RATIO_TYPE"
+    },
+    {
+      "dtypeName": "MTD_PRCP_RATIO_TYPE",
+      "dtype": "MTD_PRCP_RATIO_TYPE",
+      "code": "05",
+      "nameChs": "0.04",
+      "originalType": "MTD_PRCP_RATIO_TYPE"
+    },
+    {
+      "dtypeName": "COMMERCIAL_BANK_FLAG",
+      "dtype": "COMMERCIAL_BANK_FLAG",
+      "code": "01",
+      "nameChs": "是",
+      "originalType": "COMMERCIAL_BANK_FLAG"
+    },
+    {
+      "dtypeName": "COMMERCIAL_BANK_FLAG",
+      "dtype": "COMMERCIAL_BANK_FLAG",
+      "code": "02",
+      "nameChs": "否",
+      "originalType": "COMMERCIAL_BANK_FLAG"
+    },
+    {
+      "dtypeName": "LOAN_TYPE",
+      "dtype": "LOAN_TYPE",
+      "code": "01",
+      "nameChs": "住房按揭贷款",
+      "originalType": "LOAN_TYPE"
+    },
+    {
+      "dtypeName": "LOAN_TYPE",
+      "dtype": "LOAN_TYPE",
+      "code": "02",
+      "nameChs": "抵押分期贷款",
+      "originalType": "LOAN_TYPE"
+    },
+    {
+      "dtypeName": "MTD_TYP",
+      "dtype": "MTD_TYP",
+      "code": "01",
+      "nameChs": "等额本息",
+      "originalType": "MTD_TYP"
+    },
+    {
+      "dtypeName": "MTD_TYP",
+      "dtype": "MTD_TYP",
+      "code": "02",
+      "nameChs": "等额本金",
+      "originalType": "MTD_TYP"
+    },
+    {
+      "dtypeName": "MTD_TYP",
+      "dtype": "MTD_TYP",
+      "code": "03",
+      "nameChs": "利随本清",
+      "originalType": "MTD_TYP"
+    },
+    {
+      "dtypeName": "MTD_TYP",
+      "dtype": "MTD_TYP",
+      "code": "04",
+      "nameChs": "按期还息到期还本",
+      "originalType": "MTD_TYP"
+    },
+    {
+      "dtypeName": "MTD_TYP",
+      "dtype": "MTD_TYP",
+      "code": "05",
+      "nameChs": "本息不同间隔",
+      "originalType": "MTD_TYP"
+    },
+    {
+      "dtypeName": "MTD_TYP",
+      "dtype": "MTD_TYP",
+      "code": "06",
+      "nameChs": "弹性还款",
+      "originalType": "MTD_TYP"
+    },
+    {
+      "dtypeName": "MTD_TYP",
+      "dtype": "MTD_TYP",
+      "code": "07",
+      "nameChs": "气球贷",
+      "originalType": "MTD_TYP"
+    },
+    {
+      "dtypeName": "MTD_TYP",
+      "dtype": "MTD_TYP",
+      "code": "08",
+      "nameChs": "本金递增递减",
+      "originalType": "MTD_TYP"
+    },
+    {
+      "dtypeName": "MTD_TYP",
+      "dtype": "MTD_TYP",
+      "code": "99",
+      "nameChs": "其他",
+      "originalType": "MTD_TYP"
+    },
+    {
+      "dtypeName": "MTD_TYP",
+      "dtype": "MTD_TYP",
+      "code": "09",
+      "nameChs": "等本等息",
+      "originalType": "MTD_TYP"
+    },
+    {
+      "dtypeName": "MTD_TYP",
+      "dtype": "MTD_TYP",
+      "code": "10",
+      "nameChs": "气球贷等本等息",
+      "originalType": "MTD_TYP"
+    },
+    {
+      "dtypeName": "LAND_SOURCE",
+      "dtype": "LAND_SOURCE",
+      "code": "01",
+      "nameChs": "出让",
+      "originalType": "LAND_SOURCE"
+    },
+    {
+      "dtypeName": "LAND_SOURCE",
+      "dtype": "LAND_SOURCE",
+      "code": "02",
+      "nameChs": "划拨",
+      "originalType": "LAND_SOURCE"
+    },
+    {
+      "dtypeName": "LAND_SOURCE",
+      "dtype": "LAND_SOURCE",
+      "code": "03",
+      "nameChs": "转让",
+      "originalType": "LAND_SOURCE"
+    },
+    {
+      "dtypeName": "LAND_SOURCE",
+      "dtype": "LAND_SOURCE",
+      "code": "04",
+      "nameChs": "其他",
+      "originalType": "LAND_SOURCE"
+    },
+    {
+      "dtypeName": "REPAYMENT_METHOTD",
+      "dtype": "REPAYMENT_METHOTD",
+      "code": "01",
+      "nameChs": "等额本息",
+      "originalType": "REPAYMENT_METHOTD"
+    },
+    {
+      "dtypeName": "REPAYMENT_METHOTD",
+      "dtype": "REPAYMENT_METHOTD",
+      "code": "02",
+      "nameChs": "等额本金",
+      "originalType": "REPAYMENT_METHOTD"
+    },
+    {
+      "dtypeName": "REPAYMENT_METHOTD",
+      "dtype": "REPAYMENT_METHOTD",
+      "code": "03",
+      "nameChs": "先息后本",
+      "originalType": "REPAYMENT_METHOTD"
+    },
+    {
+      "dtypeName": "REPAYMENT_METHOTD",
+      "dtype": "REPAYMENT_METHOTD",
+      "code": "04",
+      "nameChs": "到期一次性还本付息",
+      "originalType": "REPAYMENT_METHOTD"
+    },
+    {
+      "dtypeName": "REPAYMENT_METHOTD",
+      "dtype": "REPAYMENT_METHOTD",
+      "code": "05",
+      "nameChs": "其他",
+      "originalType": "REPAYMENT_METHOTD"
+    }
+  ],
+  "code": "200"
+}
