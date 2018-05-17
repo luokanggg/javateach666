@@ -15,7 +15,7 @@ import com.ctbu.javateach666.service.interfac.UserService;
 
 
 @Controller
-// @RequestMapping("/lk")
+//  @RequestMapping("/lk")
 public class UserController {
 	
 	@Autowired
