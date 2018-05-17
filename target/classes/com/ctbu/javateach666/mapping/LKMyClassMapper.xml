@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.LKMyClassDao">
+  <select id="initMyClassInfo" parameterType="com.ctbu.javateach666.pojo.bo.LKInitMyClassInfoReqBO" resultType="com.ctbu.javateach666.pojo.bo.LKInitMyClassInfoRspBO">
+    SELECT s.* 
+    FROM stucourse s, teacourse t 
+    WHERE s.`stuid` = #{stuid}
+    	AND s.`teacourseid` = t.`id` 
+    	AND t.`couyear` = #{couyear}
+    	AND t.`semester` = #{semester}
+  </select>
+  
+  <select id="getChooseClassOnlineList" parameterType="com.ctbu.javateach666.pojo.bo.LKChooseClassOnlineListReqBO" resultType="com.ctbu.javateach666.pojo.po.LKTeacoursePO">
+  	SELECT ta.`id`, ta.`couname`, ta.`couyear`, ta.`counumber`, ta.`couaddress`, ta.`coutime`, ta.`alcounumber`, ti.`teaname`, ta.`couhour`, ta.`coufhour` 
+  	FROM teacourse ta, teachersinfo ti
+  	WHERE 1 = 1
+  	<if test="couname != null and couname != '' ">
+  		and ta.couname like #{couname}
+  	</if>
+  	<if test="teaname != null and teaname != '' ">
+  		and ti.teaname like #{teaname}
+  	</if>
+  	AND ta.`teaid` = ti.`id`
+  	AND ta.`couyear` = #{couyear}
+  	AND ta.`semester` = #{semester}
+  	limit #{page}, #{rows}
+  </select>
+  
+  <select id="getTotalByQuestion" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.LKChooseClassOnlineListReqBO">
+  	SELECT count(*)
+  	FROM teacourse ta, teachersinfo ti
+  	WHERE 1 = 1
+  	<if test="couname != null and couname != '' ">
+  		and ta.couname like #{couname}
+  	</if>
+  	<if test="teaname != null and teaname != '' ">
+  		and ti.teaname like #{teaname}
+  	</if>
+  	AND ta.`teaid` = ti.`id`
+  	AND ta.`couyear` = #{couyear}
+  	AND ta.`semester` = #{semester}
+  </select>
+  
+  <select id="checkIsChoose" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.LKChooseClassOnlineListReqBO">
+  	select count(*)
+  	from stucourse
+  	where stuid = #{stuid}
+	AND teacourseid = #{teacourseid}
+  </select>
+  
+  <select id="getTeacourseById" resultType="com.ctbu.javateach666.pojo.po.LKTeacoursePO" parameterType="com.ctbu.javateach666.pojo.bo.LKChooseClassReqBO">
+  	select ta.`id`,ti.`teaname`,ta.`couname`,ta.`couyear`,ta.`semester`,ta.`counumber`,ta.`couaddress`,ta.`coutime`,ta.`couhour`,ta.`coufhour`,ta.`examid`,ta.`couid`,ta.`alcounumber` 
+  	from teacourse ta, teachersinfo ti
+  	where ta.`id` = #{teacourseid}
+  	AND ta.`teaid` = ti.`id`
+  </select>
+  
+  <insert id="createNewStucourser" parameterType="com.ctbu.javateach666.pojo.po.LKStucoursePO">
+  	insert into
+  	stucourse(stuid,teacourseid,coutime,couhour,coufhour,teaname,couname,couid)
+  	values(#{stuid},#{teacourseid},#{coutime},#{couhour},#{coufhour},#{teaname},#{couname},#{couid})
+  </insert>
+  
+  <select id="checkIsTimeOK" resultType="com.ctbu.javateach666.pojo.po.LKStucoursePO" parameterType="com.ctbu.javateach666.pojo.bo.LKCheckIsTimeOKReqBO">
+  	select *
+  	from stucourse s, teacourse t
+  	where s.`teacourseid` = t.`id`
+  	AND s.`stuid` = #{stuid}
+  	AND t.`couyear` = #{couyear}
+  	AND t.`semester` = #{semester}
+  </select>
+  
+  <select id="goAlreadyChoose" resultType="com.ctbu.javateach666.pojo.bo.LKAlreadyChooseRspBO" parameterType="com.ctbu.javateach666.pojo.bo.LKAlreadyChooseReqBO">
+  	select s.`id`, s.`couname`, s.`teaname`, t.`couyear`, t.`semester`, t.`couaddress`, t.`counumber`, t.`alcounumber`
+  	from teacourse t, stucourse s
+  	where s.`stuid` = #{stuid}
+  	AND s.`teacourseid` = t.`id`
+  	AND t.`couyear` = #{couyear}
+  	AND t.`semester` = #{semester}
+  	limit #{page}, #{rows}
+  </select>
+  
+  <delete id="cancelClass" parameterType="com.ctbu.javateach666.pojo.bo.LKcancelClassReqBO">
+  	delete from
+  	stucourse
+  	where id = #{id}
+  </delete>
+  
+  <select id="checkCouyearAndSemesterIsOK" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.LKCheckCouyearAndSemesterIsOKBO">
+  	select count(*)
+  	from stucourse s, teacourse t
+  	where s.`id` = #{id}
+  	AND s.`teacourseid` = t.`id`
+  	AND t.`couyear` = #{couyear}
+  	AND t.`semester` = #{semester}
+   </select>
+   
+   <select id="getTotalAlreadyChooseByQuestion" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.LKAlreadyChooseReqBO">
+   	select count(*)
+  	from teacourse t, stucourse s
+  	where s.`stuid` = #{stuid}
+  	AND s.`teacourseid` = t.`id`
+  	AND t.`couyear` = #{couyear}
+  	AND t.`semester` = #{semester}
+   </select>
+   
+   <select id="getSubmitClassWorkDataTAC" parameterType="int" resultType="java.util.Map">
+   	select teaname, couname
+   	from stucourse
+   	where id = #{id}
+   </select>
+   
+   <select id="getSubmitClassWorkDataSBS" resultType="com.ctbu.javateach666.pojo.bo.LKSubmotsWorkBO" parameterType="com.ctbu.javateach666.pojo.bo.LKGetSubmitClassWorkDataSBSDaoBO">
+   	select accname, uploadtime
+   	from accessory
+   	where ownid = #{ownid}
+   	AND acctype = #{acctype}
+   </select>
+   
+   <insert id="submitWork" parameterType="com.ctbu.javateach666.pojo.po.LKAccessoryPO">
+   	insert into 
+   	accessory(ownid, accname, accurl, acctype, uploadtime)
+   	values(#{ownid}, #{accname}, #{accurl}, #{acctype}, #{uploadtime})
+   	
+   </insert>
+   
+   <update id="updateAlCouNumber" parameterType="com.ctbu.javateach666.pojo.bo.UpdateAlCouNumberReqBO">
+   	update teacourse
+   	set alcounumber = #{alcounumber}
+   	where id = #{id}
+   </update>
+   
+   <select id="getCancelClassId" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.LKcancelClassReqBO">
+   	select teacourseid 
+   	from stucourse
+   	where id = #{id}
+   </select>
+   
+   <update id="UpCancelAlCounumber" parameterType="com.ctbu.javateach666.pojo.bo.LKcancelClassReqBO">
+   	update teacourse
+   	set alcounumber = alcounumber - 1
+   	where id = #{id}
+   </update>
+   
+   <select id="getSemesterTeacherList" resultType="com.ctbu.javateach666.pojo.bo.LKGetSemesterTeacherListRspBO" parameterType="com.ctbu.javateach666.pojo.bo.LKGetSemesterTeacherListReqBO">
+  	select t.`id`, t.`teaid`, s.`stuid`, s.`couname`, s.`teaname`, t.`couyear`, t.`semester`, t.`couaddress`, t.`counumber`, t.`alcounumber`
+  	from teacourse t, stucourse s
+  	where s.`stuid` = #{stuid}
+  	AND s.`teacourseid` = t.`id`
+  	AND t.`couyear` = #{couyear}
+  	AND t.`semester` = #{semester}
+  	limit #{page}, #{rows}
+  </select>
+  
+  <select id="getTotalSemesterTeacher" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.LKGetSemesterTeacherListReqBO">
+  	select count(*)
+  	from teacourse t, stucourse s
+  	where s.`stuid` = #{stuid}
+  	AND s.`teacourseid` = t.`id`
+  	AND t.`couyear` = #{couyear}
+  	AND t.`semester` = #{semester}
+  </select>
+  
+  <select id="getClassStudentsList" resultType="com.ctbu.javateach666.pojo.bo.LKGetClassStudentsListRspBO" parameterType="com.ctbu.javateach666.pojo.bo.LKGetClassStudentsListReqBO">
+  	select si.stuno, si.stuname, si.classname, si.college, si.major, si.classyear
+  	from studentinfo si , stucourse sr
+  	where 1=1
+  	<if test="stuno != null and stuno != '' ">
+  		and si.stuno = #{stuno}
+  	</if>
+  	<if test="stuname != null and stuname != '' ">
+  		and si.stuname like #{stuname}
+  	</if>
+  	and sr.teacourseid = #{id}
+  	and sr.stuid = si.id
+  	limit #{page}, #{rows}
+  </select>
+  
+  <select id="getTotalClassStudents" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.LKGetClassStudentsListReqBO">
+  	select count(*)
+  	from studentinfo si , stucourse sr
+  	where 1=1
+  	<if test="stuno != null and stuno != '' ">
+  		and si.stuno = #{stuno}
+  	</if>
+  	<if test="stuname != null and stuname != '' ">
+  		and si.stuname like #{stuname}
+  	</if>
+  	and sr.teacourseid = #{id}
+  	and sr.stuid = si.id
+  </select>
+  
+</mapper>
