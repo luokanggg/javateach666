@@ -1,13 +1,7 @@
 package com.ctbu.javateach666.util;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import com.ctbu.javateach666.pojo.po.kingother.Account;
-import com.ctbu.javateach666.service.interfac.kingother.AccountService;
 
 
 /**
@@ -16,8 +10,6 @@ import com.ctbu.javateach666.service.interfac.kingother.AccountService;
  * @author Direct
  */
 public class UserMessageUtils {
-	@Autowired
-	private static AccountService AccountService;
 	
 	/**
 	 * 获取当前用户的用户名

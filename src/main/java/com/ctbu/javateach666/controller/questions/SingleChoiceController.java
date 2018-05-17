@@ -77,7 +77,7 @@ public class SingleChoiceController {
         String eTime = request.getParameter("eTime");
         if(cousename != null && !"".equals(cousename)) {
         	THCCoursePO course = new THCCoursePO();
-        	course.setCouname(cousename);
+        	course.setId(Integer.valueOf(cousename));
         	singleChoice.setCourse(course);
         }
         if(choiceTitle != null && !"".equals(choiceTitle)) {

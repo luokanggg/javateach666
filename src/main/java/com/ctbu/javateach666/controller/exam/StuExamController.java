@@ -113,6 +113,7 @@ public class StuExamController {
 	 * @param response
 	 * @return
 	 */
+	@SuppressWarnings("deprecation")
 	@ResponseBody
 	@RequestMapping("/stuexams")
 	public String listStuExam(HttpServletRequest request, HttpServletResponse response) {

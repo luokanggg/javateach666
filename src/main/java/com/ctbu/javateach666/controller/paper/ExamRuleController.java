@@ -165,8 +165,6 @@ public class ExamRuleController {
      */
 	@RequestMapping("/initHandPaper")
     public String initHandPaper(Model model) {
-//        List<Course> query = new CourseServiceImpl().courseQuery();
-//        request.setAttribute("courses", query);
     	
         return "paper/handPaper";
     }

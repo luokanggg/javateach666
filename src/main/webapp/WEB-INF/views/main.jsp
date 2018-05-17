@@ -45,10 +45,13 @@
 						
 						<ul class="sub">
 							<li>
-								<a href="#">考试考试111</a>
+								<a href="${basePath }/practice/initPractice" target="_son">练习导航</a>
 							</li>
 							<li>
-								<a href="#">考试考试222</a>
+								<a href="${basePath }/stuexam/stuexam" target="_son">参加考试</a>
+							</li>
+							<li>
+								<a href="${basePath }/stuscore/initStuScore" target="_son">查询成绩</a>
 							</li>
 						</ul>
 					</li>
@@ -235,8 +238,31 @@
 							</li>
 						</ul>
 					</li>
+					<li class="nav_top">
+						<a class="nav_top_link">
+							<span class="down">课题管理</span>
+						</a>
+						
+						<ul class="sub">
+							<li>
+								<a href="publishtask" target="_son">发布/查看课题</a>
+							</li>
+							<li>
+								<a href="Mypublishtask" target="_son">我发布的课题</a>
+							</li>
+							<li>
+								<a href="looktaskinfo" target="_son">课题选择情况</a>
+							</li>
+							<li>
+								<a href="lookMyTeataskinfo" target="_son">我的课题选择情况</a>
+							</li>
+							<li>
+								<a href="looktaskuploadinfo" target="_son">课题提交情况</a>
+							</li>
+						</ul>
+					</li>
 				</security:authorize>
-								<security:authorize ifAnyGranted="TEACHER" >
+				<security:authorize ifAnyGranted="TEACHER" >
 				  <!-- <li class="nav_top">
 						<a class="nav_top_link" href="fanhuimain">
 							<span class="index">返回首页</span>
@@ -352,7 +378,60 @@
 							</li>
 						</ul>
 					</li>
-												
+					<li class="nav_top">
+						<a class="nav_top_link">
+							<span class="down">题库管理</span>
+						</a>
+						
+						<ul class="sub">
+							<li>
+								<a href="${basePath }/single/singlechoice" target="_son">单选题库</a>
+							</li>
+							<li>
+								<a href="${basePath }/multiple/multiplechoice" target="_son">多选题库</a>
+							</li>
+							<li>
+								<a href="${basePath }/judgment/judge" target="_son">判断题库</a>
+							</li>
+							<li>
+								<a href="${basePath }/completion/completion" target="_son">填空题库</a>
+							</li>
+							<li>
+								<a href="${basePath }/subjective/subjective" target="_son">主观题库</a>
+							</li>
+						</ul>
+					</li>	
+					<li class="nav_top">
+						<a class="nav_top_link">
+							<span class="down">试卷管理</span>
+						</a>
+						
+						<ul class="sub">
+							<li>
+								<a href="${basePath }/examrule/examrule" target="_son">试卷规则</a>
+							</li>
+							<li>
+								<a href="${basePath }/exampaper/exampaper" target="_son">试卷列表</a>
+							</li>
+						</ul>
+					</li>	
+					<li class="nav_top">
+						<a class="nav_top_link">
+							<span class="down">考试管理</span>
+						</a>
+						
+						<ul class="sub">
+							<li>
+								<a href="${basePath }/exam/exam" target="_son">考试发布</a>
+							</li>
+							<li>
+								<a href="${basePath }/exam/initCorrecting" target="_son">批改试卷</a>
+							</li>
+							<li>
+								<a href="${basePath }/teascore/initTeaScore" target="_son">成绩统计</a>
+							</li>
+						</ul>
+					</li>								
 				</security:authorize>
 			</ul>
 			<!--选项卡-->

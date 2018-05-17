@@ -175,7 +175,7 @@
 									title = choicetitle;
 								}); 
 								$.ajaxSettings.async = true;
-								$("#singles").append("<tr><td><input type='checkbox' checked='checked' style='display:none;' id ='"+id+"' value='"+id+"'/>"+title+"</td><td><input type='text' id ='score"+id+"' placeholder='输入分数' name='score' size='4' value='"+score+"'/></td><td><a href='#' onclick='removeTitle(this);' >删除</a></td></tr>");
+								$("#singles").append("<tr><td><input type='checkbox' checked='checked' style='display:none;' id ='"+id+"' value='"+id+"'/>"+title+"</td><td><input type='text' id ='score"+id+"' placeholder='输入分数' name='score' size='4' value='"+score+"'/></td><td><a href='javascript:;' onclick='removeTitle(this);' >删除</a></td></tr>");
 							} else if(name == "multipleIds") {
 								$.ajaxSettings.async = false;
 								var title = "";
@@ -183,7 +183,7 @@
 									title = choicetitle;
 								}); 
 								$.ajaxSettings.async = true;
-								$("#multiples").append("<tr><td><input type='checkbox' checked='checked' style='display:none;' id ='"+id+"' value='"+id+"'/>"+title+"</td><td><input type='text' id ='score"+id+"' placeholder='输入分数' name='score' size='4' value='"+score+"'/></td><td><a href='#' onclick='removeTitle(this);' >删除</a></td></tr>");
+								$("#multiples").append("<tr><td><input type='checkbox' checked='checked' style='display:none;' id ='"+id+"' value='"+id+"'/>"+title+"</td><td><input type='text' id ='score"+id+"' placeholder='输入分数' name='score' size='4' value='"+score+"'/></td><td><a href='javascript:;' onclick='removeTitle(this);' >删除</a></td></tr>");
 							} else if(name == "blankIds") {
 								$.ajaxSettings.async = false;
 								var title = "";
@@ -191,7 +191,7 @@
 									title = choicetitle;
 								}); 
 								$.ajaxSettings.async = true;
-								$("#completion").append("<tr><td><input type='checkbox' checked='checked' style='display:none;' id ='"+id+"' value='"+id+"'/>"+title+"</td><td><input type='text' id ='score"+id+"' placeholder='输入分数' name='score' size='4' value='"+score+"'/></td><td><a href='#' onclick='removeTitle(this);' >删除</a></td></tr>");
+								$("#completion").append("<tr><td><input type='checkbox' checked='checked' style='display:none;' id ='"+id+"' value='"+id+"'/>"+title+"</td><td><input type='text' id ='score"+id+"' placeholder='输入分数' name='score' size='4' value='"+score+"'/></td><td><a href='javascript:;' onclick='removeTitle(this);' >删除</a></td></tr>");
 							} else if(name == "judgeIds") {
 								$.ajaxSettings.async = false;
 								var title = "";
@@ -199,7 +199,7 @@
 									title = choicetitle;
 								}); 
 								$.ajaxSettings.async = true;
-								$("#singles").append("<tr><td><input type='checkbox' checked='checked' style='display:none;' id ='"+id+"' value='"+id+"'/>"+title+"</td><td><input type='text' id ='score"+id+"' placeholder='输入分数' name='score' size='4' value='"+score+"'/></td><td><a href='#' onclick='removeTitle(this);' >删除</a></td></tr>");
+								$("#singles").append("<tr><td><input type='checkbox' checked='checked' style='display:none;' id ='"+id+"' value='"+id+"'/>"+title+"</td><td><input type='text' id ='score"+id+"' placeholder='输入分数' name='score' size='4' value='"+score+"'/></td><td><a href='javascript:;' onclick='removeTitle(this);' >删除</a></td></tr>");
 							} else if(name == "subjectiveIds") {
 								$.ajaxSettings.async = false;
 								var title = "";
@@ -207,7 +207,7 @@
 									title = choicetitle;
 								}); 
 								$.ajaxSettings.async = true;
-								$("#singles").append("<tr><td><input type='checkbox' checked='checked' style='display:none;' id ='"+id+"' value='"+id+"'/>"+title+"</td><td><input type='text' id ='score"+id+"' placeholder='输入分数' name='score' size='4' value='"+score+"'/></td><td><a href='#' onclick='removeTitle(this);' >删除</a></td></tr>");
+								$("#singles").append("<tr><td><input type='checkbox' checked='checked' style='display:none;' id ='"+id+"' value='"+id+"'/>"+title+"</td><td><input type='text' id ='score"+id+"' placeholder='输入分数' name='score' size='4' value='"+score+"'/></td><td><a href='javascript:;' onclick='removeTitle(this);' >删除</a></td></tr>");
 							}
 						}
 					}

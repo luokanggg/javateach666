@@ -20,8 +20,8 @@
 	            <form id="Rule-search-form" style="display: inline-block">
 			                     课程：<input id="rule-course-value"  editable="false" panelMaxHeight="100"/>
 			                     规则名(yyyy/MM/dd-hh:mm)：<input class="easyui-textbox" id="rule-name-value"/>
-	                <a id="choice-search-btn" class="easyui-linkbutton">搜索</a>
-	                <a id="choice-search-reset" class="easyui-linkbutton">重置</a>
+	                <a id="rule-search-btn" class="easyui-linkbutton">搜索</a>
+	                <a id="rule-search-reset" class="easyui-linkbutton">重置</a>
 	            </form>
 	             <br/>
             </div>
@@ -186,14 +186,14 @@
     });
     
     /* 搜索方法*/
-    $("#choice-search-btn").click(function () {
+    $("#rule-search-btn").click(function () {
         //点击搜索
         $('#rules-list-datagrid').datagrid({
             queryParams: formChoiceJson()
         });
     });
     /*重置方法*/
-    $("#choice-search-reset").click(function () {
+    $("#rule-search-reset").click(function () {
         $("#Rule-search-form").form('clear');
         $('#rules-list-datagrid').datagrid({
             queryParams: formChoiceJson()
