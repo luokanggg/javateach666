@@ -63,45 +63,7 @@
 margin: auto;
 border-radius:7px;
 }
-.calendar-day {
- 
-    cursor: pointer;
-    border: 1px solid #fff;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
-}
 
-.calendar-title {
-    text-align: center;
-    height: 30px;
-}
-.calendar-title span {
-    position: relative;
-    display: inline-block;
-    top: 2px;
-    padding: 2 3px;
-    height: 18px;
-    line-height: 18px;
-    font-size: 14px;
-    cursor: pointer;
-    font-weight:bolder;
-    -moz-border-radius: 5px 5px 5px 5px;
-    -webkit-border-radius: 5px 5px 5px 5px;
-    border-radius: 5px 5px 5px 5px;
-}
-.calendar-header {
-    position: relative;
-    background:#C8DEFC;
-    font-size: 14px;
-    height: 30px;
-}
-.calendar-saturday,.calendar-sunday {
-    color: #3399cc;
-    font-weight:bold;
-    line-height:16px;
-	background-position:2px center;
-}
 .txt01{font:Verdana, Geneva, sans-serif,宋体;padding:3px 2px 2px 2px; border-width:1px; border-color:#ddd;  color:#000;}
 </style>
 <style scoped="scoped">
@@ -175,13 +137,13 @@ border-radius:7px;
 		    <td bgcolor="#FFFFFF" align="center" valign="middle" >个人说明</td>
 		    <td bgcolor="#FFFFFF" height="70px" colspan="3" align="center" valign="middle" >${ TeaInfo.prosonal_statement}</td>
 		  </tr>
-		  <tr>
+		  <!-- <tr>
 		    <td colspan="4" bgcolor="#FFFFFF" align="center" valign="middle">
 		    	
 		    	<a href="modifyteainfo" target="_son" iconCls="icon-edit" class="easyui-linkbutton" ><font style="font-weight: bolder;font-size: 15px">编&nbsp;辑</font></a>
 		    	
 		    </td>
-		  </tr>
+		  </tr> -->
 		</table>
 		
 		 <!--修改密码窗口-->
@@ -266,8 +228,9 @@ function serverLogin() {
 		//dataType:"json",
 		success:function(result){
 			if(result.info=="0000"){
-				$.messager.alert('提示','密码更新成功！','info'); 
+				$.messager.alert('提示','密码更新成功!','info'); 
 				closePwd();
+				window.open("logout","_parent");
 			}else{
 				$.messager.alert('提示','密码更新失败！','info');
 				$('#txtNewPass').val("");

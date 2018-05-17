@@ -143,24 +143,24 @@ border-radius:5px;
 			</div>&nbsp;&nbsp; 
 			<div class="tab2">
 				<div class="tab3">
-					<span color="#CCC" id="wei">&nbsp;&nbsp;通知管理/发布通知</span>
+					<span color="#CCC" id="wei">&nbsp;&nbsp;信件管理/发布信件</span>
 					
 				
 				</div>
 				
 		<table width="93%" height="400px" border="0" style="margin-left:6px;margin-top:13px; border-color: #99CCFF; border-collapse : collapse">
 		  <tr>
-		  	<td width="100px" height="32px" style="border-right-style:none;" bgcolor="#FFFFFF" align="left" valign="middle"><font style="font-size:13px">通知标题</font><font style="color:red">&nbsp;*</font></td>
+		  	<td width="100px" height="32px" style="border-right-style:none;" bgcolor="#FFFFFF" align="left" valign="middle"><font style="font-size:13px">信件标题</font><font style="color:red">&nbsp;*</font></td>
 		    <td  bgcolor="#FFFFFF" align="left" style="border-left-style:none;" valign="middle">
 		    <input style="width:420px;height:28px" type="text" id="nottitle" class="easyui-textbox"  data-options="prompt:'Enter a notice title...'"  >
-		    <span class="right"><a href="lookNoReadNotice" style="height:23px" class="easyui-linkbutton" data-options="iconCls:'icon-help'"><font >您有${nolook }条通知，待查看</font></a></span>	</td>
+		    <span class="right"><a href="lookNoReadNotice" style="height:23px" class="easyui-linkbutton" data-options="iconCls:'icon-help'"><font >您有${nolook }条信件，待查看</font></a></span>	</td>
 		  </tr>
 		  <tr>
-		    <td bgcolor="#FFFFFF" height="32px" style="border-right-style:none" align="left" valign="middle"><font style="font-size:13px">通知类型</font><font style="color:red">&nbsp;*</font></td>
+		    <td bgcolor="#FFFFFF" height="32px" style="border-right-style:none" align="left" valign="middle"><font style="font-size:13px">信件类型</font><font style="color:red">&nbsp;*</font></td>
 		    <td  bgcolor="#FFFFFF" align="left" style="border-left-style:none" valign="middle">
-		     <select id="nottypt" style="width:110px;height:27px;display: block" >
-				<option  value="1" >&nbsp;&nbsp;老师to学生</option>
-				<option  value="4" >&nbsp;&nbsp;老师to老师</option>
+		     <select id="nottypt" style="width:130px;height:27px;display: block" >
+				<option  value="1" >&nbsp;&nbsp;老师发送给学生</option>
+				<option  value="4" >&nbsp;&nbsp;老师发送给老师</option>
 		    </select>
 		    &nbsp;&nbsp;&nbsp;
 		    <button id="btn" onclick="noticeClass();"  height="20px" class="easyui-linkbutton" data-options="iconCls:'icon-reload'"><span style="font-size:14px">通知班级</span></button>
@@ -172,7 +172,7 @@ border-radius:5px;
 		    <input class="easyui-textbox" style="width:420px;height:28px" data-options="prompt:'Enter a notice ID...'"   type="text" id="tonotid"></td>
 		  </tr>
 		  <tr>
-		    <td  height="32px" bgcolor="#FFFFFF"  style="border-right-style:none" align="left" valign="middle"><font style="font-size:13px">通知内容</font><font style="color:red">&nbsp;*</font></td>
+		    <td  height="32px" bgcolor="#FFFFFF"  style="border-right-style:none" align="left" valign="middle"><font style="font-size:13px">信件内容</font><font style="color:red">&nbsp;*</font></td>
 		    <td   bgcolor="#FFFFFF" style="border-left-style:none" align="left" valign="middle">
 		   <!--  <textarea id="notcontent" rows="3" cols="48" ></textarea> -->
 		   <input style="width:420px;height:28px" class="easyui-textbox" id="notcontent" data-options="multiline:true,prompt:'Enter a notice content...'"/>
@@ -181,19 +181,21 @@ border-radius:5px;
 		  <tr>
 		    <td  bgcolor="#FFFFFF" style="border-right-style:none" align="left" height="32px" valign="middle"><font style="font-size:13px">过期时间</font><font style="color:red">&nbsp;*</font></td>
 		    <td  bgcolor="#FFFFFF" style="border-left-style:none" align="left" valign="middle">
-		    <input type="date" id="endtime" style="width:200px;height:25px;border-radius:3px;border:1px solid #c9dffd;" /></td>
+		    <input type="text" class="easyui-datebox" required="required" id="endtime" style="width:200px;" /></td>
 		  </tr>
-		  <tr>
-		   <td  height="32px" bgcolor="#FFFFFF" style="border-right-style:none" align="left" valign="middle"><font style="font-size:13px">链接页面&nbsp;</font></td>
-		    <td  bgcolor="#FFFFFF" style="border-left-style:none" align="left" valign="middle">
-		   
-		   <input data-options="prompt:'Enter a notice url...'" style="width:420px;height:28px" class="easyui-textbox" data-options="multiline:true" id="noturl"/>
-		    </td>
-		  </tr>
+		  
 		   <tr>
 		    <td  height="32px" bgcolor="#FFFFFF" style="border-right-style:none" align="left" valign="middle"></td>
 		    <td  height="32px"  bgcolor="#FFFFFF" align="left" valign="middle">
-		    	<button height="20px" width="90px" id="submits" v-on:click="sibmits" class="easyui-linkbutton" data-options="iconCls:'icon-ok'"><span style="font-size:14px">提&nbsp;交</span></button>
+		    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button height="20px" width="90px" id="submits" v-on:click="sibmits" class="easyui-linkbutton" data-options="iconCls:'icon-ok'"><span style="font-size:14px">提&nbsp;交</span></button>
+		    </td>
+		  </tr>
+		  <tr>
+		   <td  height="32px" bgcolor="#FFFFFF" style="border-right-style:none" align="left" valign="middle"><font style="font-size:13px">&nbsp;</font></td>
+		    <td  bgcolor="#FFFFFF" style="border-left-style:none" align="left" valign="middle">
+		   
+		   <input  style="width:0px;height:0px;border:none"  id="noturl"/>
 		    </td>
 		  </tr>
 		</table>
@@ -229,24 +231,40 @@ border-radius:5px;
 				$.messager.alert('警告','通知人ID不能为空，请填写通知人ID','warning');
 				$("#tonotid").focus();
 				return;
+			}else{
+				var reg=/^[1-9]\d*$|^0$/;
+				if(reg.test(tonotid)==true){
+            		
+                	
+            	}else{
+            		$.messager.alert("警告",'通知人的ID为数字类型',"warning");
+            		$("#tonotid").val("");
+            		$("#tonotid").focus();
+                	return false;
+            	}
 			}
 			var endtime=$("#endtime").val();
 			if(""==endtime){
 				//alert("为空");
 				endtime="9999-01-01";
-			}else
-				{
-				//alert(endtime);
-				}
+			}else{
+				dy=endtime.substring(0,2);
+				endtime=$("#endtime").val();
+				dr=endtime.substring(3,5);
+				endtime=$("#endtime").val();
+				dn=endtime.substring(6,10);
+				endtime=dn+"-"+dy+"-"+dr;
+			}
 			var notcontent="";
 			notcontent=$("#notcontent").val();
 			if(notcontent==""){
-				$.messager.alert('警告','通知的内容不能为空，请填写通知内容','warning');
+				$.messager.alert('警告','信件的内容不能为空，请填写信件内容','warning');
 				$("#notcontent").focus();
 				return;
 			}
-			var noturl="";
+			var noturl="#";
 			noturl=$("#noturl").val();
+			
 			 $.extend($.fn.validatebox.defaults.rules, {    
 			    minLength: {    
 			        validator: function(value, param){    

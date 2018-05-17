@@ -16,6 +16,7 @@ public interface THCIndexImgDao extends BaseDao<THCIndexImgPO>{
 	public List<THCIndexImgListRspBO> getIndexImgbyPage(THCIndexImgListRepBO tHCIndexImgListRepBO);
 	public int getTotal(THCIndexImgListRepBO tHCIndexImgListRepBO);
 	public int insertImg(CommonsMultipartFile file, HttpServletRequest request);
+	public int showimg(THCIndexImgPO tHCIndexImgPO);
 	public int hideimg(THCIndexImgPO tHCIndexImgPO);
 	public List<THCIndexImgPO> getPicture();
 	public THCIndexImgPO selectImgno(String imgno);

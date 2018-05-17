@@ -31,7 +31,8 @@ public class NoticeResBo_zxy {
 	public Date endtime;
 	
 	public int is_delete;
-
+	public int is_look;
+	
 	public int getId() {
 		return id;
 	}
@@ -129,6 +130,20 @@ public class NoticeResBo_zxy {
 
 	public void setTonotname(String tonotname) {
 		this.tonotname = tonotname;
+	}
+
+	/**
+	 * @return the is_look
+	 */
+	public int getIs_look() {
+		return is_look;
+	}
+
+	/**
+	 * @param is_look the is_look to set
+	 */
+	public void setIs_look(int is_look) {
+		this.is_look = is_look;
 	}
 
 }

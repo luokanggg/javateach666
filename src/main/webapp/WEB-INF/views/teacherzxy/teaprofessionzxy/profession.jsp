@@ -11,7 +11,7 @@
 <meta name="_csrf_header"  content="${_csrf.headerName}"/> --%>
 <%@include file="/common/easyui.jspf"%>
 <link rel="stylesheet" type="text/css" href="${basePath}/static/css/main.css"/>
-<title>升职管理</title>
+<title>课程计划管理</title>
 </head>
 <style>
 select {
@@ -83,35 +83,35 @@ font-size:13px;
 			</div>
 			<div class="tab2">
 				<div class="tab3">
-					<span color="#CCC" id="wei">&nbsp;&nbsp;升职管理/升职请求</span>
+					<span color="#CCC" id="wei">&nbsp;&nbsp;教学计划方案</span>
 				</div>
 		 <table  border="0"  width="55%"  style="margin-left:6px;margin-top:13px; border-color: #99CCFF; border-collapse : collapse">
 		  <tr>
-		    <td width="90px" height="52px" bgcolor="#FFFFFF" align="left" valign="middle"  style="border-right-style:none">申请人编号</td>
+		    <td width="90px" height="52px" bgcolor="#FFFFFF" align="left" valign="middle"  style="border-right-style:none"></td>
 		     <td bgcolor="#FFFFFF" align="left" valign="middle" style="border-left-style:none" >
-		     <input class="easyui-textbox" readonly="true" style="width:420px;height:30px;" type="text" value="${TeaInfo.teano }" id="prof_person_id"></td>
+		     <input class="easyui-textbox"  style="width:420px;height:30px;" type="text"  id="teaid"></td>
 		  </tr>
 		  <tr>
 		  <td colspan="2" height="8px"></td>
 		  </tr>
 		  <tr>
-		  	 <td width="90px" height="52px" bgcolor="#FFFFFF" align="left" valign="middle" style="border-right-style:none">申请人姓名</td>
+		  	 <td width="90px" height="52px" bgcolor="#FFFFFF" align="left" valign="middle" style="border-right-style:none">计划标题</td>
 		     <td bgcolor="#FFFFFF" align="left" valign="middle" style="border-left-style:none">
-		     <input class="easyui-textbox" readonly="true" style="width:420px;height:30px;" style="border:none" type="text" value="${TeaInfo.teaname }" id="prof_person_name"></td>
+		     <input class="easyui-textbox"  style="width:420px;height:30px;" style="border:none" type="text"  id="plantitle"></td>
 		  </tr>
 		  <tr>
 		  <td colspan="2" height="8px"></td>
 		  </tr>
 		   <tr>
-		    <td width="90px" height="52px" bgcolor="#FFFFFF" align="left" valign="middle" style="border-right-style:none" >现任的职称</td>
+		    <td width="90px" height="52px" bgcolor="#FFFFFF" align="left" valign="middle" style="border-right-style:none" >计划目标</td>
 		    <td bgcolor="#FFFFFF" align="left" valign="middle" style="border-left-style:none">
-		    <input class="easyui-textbox" readonly="true" style="width:420px;height:30px;" style="border:none" type="text" value="${TeaInfo.professional }" id="professional"></td>
+		    <input class="easyui-textbox" readonly="true" style="width:420px;height:30px;" style="border:none" type="text"  id="plangoal"></td>
 		  </tr>
 		  <tr>
 		  <td colspan="2" height="8px"></td>
 		  </tr>
 		  <tr>
-		    <td width="90px" height="52px" bgcolor="#FFFFFF" align="left" valign="middle" style="border-right-style:none">申请的职称</td>
+		    <td width="90px" height="52px" bgcolor="#FFFFFF" align="left" valign="middle" style="border-right-style:none">计划课程</td>
 		    <td bgcolor="#FFFFFF" align="left" valign="middle" style="border-left-style:none" >
 		    <select id="prof" style="padding-left:70px;width:200px;height:27px">
 				<c:forEach items="${dic}" var="diclist">
@@ -124,19 +124,20 @@ font-size:13px;
 		  <td colspan="2" height="8px"></td>
 		  </tr>
 		  <tr>
-		    <td  bgcolor="#FFFFFF" align="left" valign="middle" height="52px" style="border-right-style:none">申请的原因</td>
+		    <td  bgcolor="#FFFFFF" align="left" valign="middle" height="52px" style="border-right-style:none">计划内容</td>
 		    <td bgcolor="#FFFFFF"   align="left" valign="middle" style="border-left-style:none">
 		   <!--  <textarea rows="3" cols="38" id="reason"></textarea> -->
-		     <input style="width:420px;height:28px" class="easyui-textbox" id="reason" data-options="multiline:true,prompt:'Enter a professional reason...'"/>
+		     <input style="width:420px;height:28px" class="easyui-textbox" id="plancontent" data-options="multiline:true,prompt:'Enter a plan detail...'"/>
 		    </td>
 		  </tr>
 		  <tr>
 		  <td colspan="2" height="8px"></td>
 		  </tr>
 		  <tr>
-		    <td width="90px" height="52px" bgcolor="#FFFFFF" align="left" valign="middle" style="border-right-style:none" >申请的时间</td>
+		    <td width="90px" height="52px" bgcolor="#FFFFFF" align="left" valign="middle" style="border-right-style:none" >计划执行时间&nbsp;&nbsp;&nbsp;&nbsp;<input style="width:150px" type="text" class="easyui-datebox" required="required" id="plantime1"></td>
+		    
 		    <td bgcolor="#FFFFFF"   align="left" valign="middle" style="border-left-style:none;border-top-style:none">
-		    <input style="width:200px" type="text" class="easyui-datebox" required="required" id="proftime"></td>
+		    <input style="width:150px" type="text" class="easyui-datebox" required="required" id="plantime2"></td>
 		  </tr>
 		  <tr>
 		  <td colspan="2" height="8px"></td>

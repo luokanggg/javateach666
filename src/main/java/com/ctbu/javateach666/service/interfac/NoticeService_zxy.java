@@ -50,7 +50,7 @@ public interface NoticeService_zxy {
 	public TeacherInfo_zxy getTeacherInfoById(int id);
 	
 	//更新通知
-	public int updateNotice(NoticeBo_zxy reqBO);
+	public int updateNotice(Notice_zxy reqBO);
 
 	//根据登录人的id查看有多少条未查看的通知记录
 	public int getNoLookNoticeById(int id);
@@ -77,4 +77,11 @@ public interface NoticeService_zxy {
 	
 	//根据班级id查询所有的该班级的学生信息
 	public List<StudentInfoPO_zxy> getAllStuByClassId(int classid);
+	
+	//自动回复场景
+	public Tonotice_zxy getTonotice_zxy(int id);
+	//我接收的所有信件
+	public int totalMyGetNotice(NoticeBo_zxy notice);
+	public List<NoticeResBo_zxy> getMyGetBotice(NoticeBo_zxy notice);
+	public PageInfoBo<NoticeResBo_zxy> getAllMyGet(NoticeBo_zxy notice);
 }

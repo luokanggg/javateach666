@@ -11,11 +11,12 @@
 <meta name="_csrf_header"  content="${_csrf.headerName}"/> --%>
 <%@include file="/common/easyui.jspf"%>
 <link rel="stylesheet" type="text/css" href="${basePath}/static/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="${basePath}/static/css/lktable.css"/>
 <title>个人信息修改</title>
 </head>
 <body>
-	<div id="bod">
-		<table width="80%" height="400px" bgcolor="#f2f6fb" border="1" style="border-color: #99CCFF; border-collapse : collapse">
+	<div id="bod" class="easyui-layout" data-options="fit:true" data-options="region:'center',border:false">
+		<table width="80%" height="400px" border="1" style="border-color: #99CCFF; border-collapse : collapse">
 		  <tr>
 		    <td width="20%">头像：</td>
 		    <td width="20%" colspan="3"><img width="100px" height="100px" src=""></td>
@@ -39,7 +40,7 @@
 		    <td><input type="text" v-model="AdminInfo.adminemail" /></td>
 		  </tr>
 		  <tr>
-		    <td colspan="4">
+		    <td colspan="4" align="center" valign="middle">
 		    	<button class="easyui-linkbutton" style="width:100px;height:30px;" id="submits" v-on:click="submits">提交</button>
 		    </td>
 		  </tr>

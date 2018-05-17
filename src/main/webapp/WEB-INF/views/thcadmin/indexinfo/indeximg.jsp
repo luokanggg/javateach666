@@ -229,8 +229,9 @@
 					type: 'post',
 					url: 'showimg',
 					contentType: 'application/json',
-					data: rows[0],
+					data: JSON.stringify(rows[0]),
 					success: function(result){
+						alert(result);
 						$("#imginfo-datagrid").datagrid("reload");
 					}
 				});

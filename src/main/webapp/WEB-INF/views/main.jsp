@@ -236,21 +236,123 @@
 						</ul>
 					</li>
 				</security:authorize>
-				<security:authorize ifAnyGranted="TEACHER" >
+								<security:authorize ifAnyGranted="TEACHER" >
+				  <!-- <li class="nav_top">
+						<a class="nav_top_link" href="fanhuimain">
+							<span class="index">返回首页</span>
+						</a>
+					</li> -->
 					<li class="nav_top">
 						<a class="nav_top_link">
-							<span class="down">网上选课教师</span>
+							<span class="down">信息设置</span>
 						</a>
 						
 						<ul class="sub">
 							<li>
-								<a href="#">全校性选课</a>
+								<a href="teainfo" target="_son">个人资料</a>
 							</li>
 							<li>
-								<a href="#">课程行课情况查询</a>
+								<a href="modifyteainfo" target="_son">修改资料</a>
+							</li>
+							<li>
+								<a href="allteainfo" target="_son">教师信息</a>
+							</li>
+							<li>
+								<a href="allstuinfo" target="_son">学生信息</a>
 							</li>
 						</ul>
-					</li>	
+					</li>
+					<li class="nav_top">
+						<a class="nav_top_link">
+							<span class="down">信件管理</span>
+						</a>
+						
+						<ul class="sub">
+							<li>
+								<a href="noticeinfo" target="_son">发布信件</a>
+							</li>
+							<li>
+								<a href="getAllTonotice" target="_son">我接收的信件</a>
+							</li>
+							<li>
+								<a href="getAllMeSendnotice" target="_son">我发送的信件</a>
+							</li>
+							<!-- <li>
+								<a href="noticeinfolist" target="_son">信件管理</a>
+							</li> -->
+						</ul>
+					</li>
+					<li class="nav_top">
+						<a class="nav_top_link">
+							<span class="down">资料管理</span>
+						</a>
+						
+						<ul class="sub">
+							<li>
+								<a href="uploadinformation" target="_son">资料上传</a>
+							</li>
+							<li>
+								<a href="informationlist"  target="_son">资料管理</a>
+							</li>
+						</ul>
+					</li>
+					<li class="nav_top">
+						<a class="nav_top_link">
+							<span class="down">课程管理</span>
+						</a>
+						
+						<ul class="sub">
+							<li>
+								<a href="publishcourse" target="_son">发布选课</a>
+							</li>
+							<li>
+								<a href="mycourseinfos" target="_son">授课信息</a>
+							</li>
+							<li>
+								<a href="mycourseplandetail" target="_son">教学计划</a>
+							</li>
+							<li>
+								<a href="stucourseinfo" target="_son">学生选课信息</a>
+							</li>
+							<li>
+								<a href="initmyteaclassinfo" target="_son">教师课表</a>
+							</li>
+							
+						</ul>
+					</li>
+					
+					<li class="nav_top">
+						<a class="nav_top_link">
+							<span class="down">课题管理</span>
+						</a>
+						
+						<ul class="sub">
+							<li>
+								<a href="searchtask" target="_son">课题选择</a>
+							</li>
+							<li>
+								<a href="searchmytask" target="_son">查看我的课题</a>
+							</li>
+							<li>
+								<a href="uploadmytaskfile" target="_son">提交课题文件</a>
+							</li>
+						</ul>
+					</li>
+					<li class="nav_top">
+						<a class="nav_top_link">
+							<span class="down">今日安排</span>
+						</a>
+						
+						<ul class="sub">
+							<li>
+								<a href="lookmycouse" target="_son">今日课程</a>
+							</li>
+							<li>
+								<a href="lookmynotice" target="_son">今日信件</a>
+							</li>
+						</ul>
+					</li>
+												
 				</security:authorize>
 			</ul>
 			<!--选项卡-->

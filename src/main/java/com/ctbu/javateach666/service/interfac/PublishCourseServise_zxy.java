@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import com.ctbu.javateach666.pojo.bo.PageInfoBo;
+import com.ctbu.javateach666.pojo.bo.PlanCoutseBo_zxy;
 import com.ctbu.javateach666.pojo.bo.StuTeaCourseBo_zxy;
 import com.ctbu.javateach666.pojo.bo.TeaCourseReqBo;
 import com.ctbu.javateach666.pojo.bo.TeacourseBo_zxy;
 import com.ctbu.javateach666.pojo.po.Course_zxy;
 import com.ctbu.javateach666.pojo.po.Dictionaries_zxy;
+import com.ctbu.javateach666.pojo.po.PlanCoutsePo_zxy;
 import com.ctbu.javateach666.pojo.po.TeacherInfo_zxy;
 import com.ctbu.javateach666.pojo.po.TeacoursePo_zxy;
 
@@ -53,4 +55,22 @@ public interface PublishCourseServise_zxy {
 	
 	//查询课程表信息
 	public List<TeacoursePo_zxy> getTeaCourseKB(Map map);
+	
+	//查询课程表信息
+	public List<TeacoursePo_zxy> getTeaCourseKBforExcel(Map map);
+	
+	//获取教师授课信息
+	public int totalTeaCourse(PlanCoutseBo_zxy pcBo);
+	public List<TeacoursePo_zxy> TeaCourseByPage(PlanCoutseBo_zxy pcBo);
+	public PageInfoBo<TeacoursePo_zxy> getTeaCourse(PlanCoutseBo_zxy pcBo);
+	//插入计划课程安排
+	public int insertPlanCOurse(PlanCoutseBo_zxy pcBo);
+	//查看计划
+	public int totalPlanCourse(PlanCoutseBo_zxy pcBo);
+	public List<PlanCoutsePo_zxy> getPlanCourseByPage(PlanCoutseBo_zxy pcBo);
+	public PageInfoBo<PlanCoutsePo_zxy> getmycourseplanBySearch(PlanCoutseBo_zxy pcBo);
+	//根据ID查询该记录的方案
+	public PlanCoutsePo_zxy getPlanCoutseById(int id);
+	//根据ID更新教学计划的附加地址
+	public int updatePlanById(PlanCoutseBo_zxy pcBo);
 }

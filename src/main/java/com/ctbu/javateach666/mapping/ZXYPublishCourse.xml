@@ -65,6 +65,18 @@
   </if>
   </select>
   
+  
+ <!-- <select id="totalMyClass" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.StuTeaCourseBo_zxy">
+  SELECT count(*) FROM teachersinfo t,class c,studentinfo s,stucourse sc,teacourse tc WHERE 
+  sc.stuid=s.id AND sc.teacourseid=tc.id AND tc.teaid=t.id AND s.classid=c.id AND t.teano=#{teano}
+   <if test="couyear != null and couyear != '' ">
+  		and tc.couyear like #{couyear}
+  </if>
+  <if test="semester != null and semester != '' ">
+  		and tc.semester like #{semester}
+  </if>
+  </select>  -->
+  
    <select id="getStuTeaCourseByPage" resultType="com.ctbu.javateach666.pojo.bo.StuTeaCourseBo_zxy" parameterType="com.ctbu.javateach666.pojo.bo.StuTeaCourseBo_zxy">
   SELECT s.stuno AS stuno,s.stuname AS stuname,c.claname AS claname,s.classyear AS classyear,c.major AS major,c.college AS collage,t.teano AS teano,t.teaname AS teaname,tc.couname AS couname,tc.semester as semester,tc.couyear as couyear,tc.couaddress AS couaddress
    FROM teachersinfo t,class c,studentinfo s,stucourse sc,teacourse tc WHERE 
@@ -93,7 +105,7 @@
   <!-- 教师课程表信息 -->
   <select id="getTeaCourseKB" resultType="com.ctbu.javateach666.pojo.po.TeacoursePo_zxy"  parameterType="map">
   SELECT tc.*,t.teaname AS teaname FROM teacourse tc,teachersinfo t  
-  WHERE teaid=#{teaid} AND tc.teaid=t.id
+  WHERE teaid=#{teaid} AND tc.teaid=t.id 
   <if test="couyear != null and couyear != '' ">
   		and couyear = #{couyear}
   </if>
@@ -101,4 +113,70 @@
   		and semester = #{semester}
   </if>
   </select>
+  
+  
+ <select id="getTeaCourseKBforExcel" resultType="com.ctbu.javateach666.pojo.po.TeacoursePo_zxy"  parameterType="map">
+  SELECT tc.*,t.teaname AS teaname FROM teacourse tc,teachersinfo t  
+  WHERE teaid=#{teaid} AND tc.teaid=t.id  AND tc.coutime IS NOT null
+  <if test="couyear != null and couyear != '' ">
+  		and couyear = #{couyear}
+  </if>
+  <if test="semester != null and semester != '' ">
+  		and semester = #{semester}
+  </if>
+  </select>
+  
+   <select id="totalTeaCourse" resultType="int"  parameterType="com.ctbu.javateach666.pojo.bo.PlanCoutseBo_zxy">
+  select COUNT(DISTINCT teaid,couname,couyear,semester) FROM teacourse WHERE teaid=#{teaid}
+  <if test="couyear != null and couyear != '' ">
+  		and couyear = #{couyear}
+  </if>
+  <if test="semester != null and semester != '' ">
+  		and semester = #{semester}
+  </if>
+  </select>
+  
+   <select id="TeaCourseByPage" resultType="com.ctbu.javateach666.pojo.po.TeacoursePo_zxy"  parameterType="com.ctbu.javateach666.pojo.bo.PlanCoutseBo_zxy">
+  select DISTINCT teaid,couname,couyear,semester FROM teacourse WHERE teaid=#{teaid}
+  <if test="couyear != null and couyear != '' ">
+  		and couyear = #{couyear}
+  </if>
+  <if test="semester != null and semester != '' ">
+  		and semester = #{semester}
+  </if>
+  limit #{page}, #{rows}
+  </select>
+  
+  <insert id="insertPlanCOurse" parameterType="com.ctbu.javateach666.pojo.bo.PlanCoutseBo_zxy">
+  INSERT INTO courseplan(teaid,couname,semester,couyear,plantime1,plantime2,plantitle,plangoal,plancontent,planclass) 
+  VALUES(#{teaid},#{couname},#{semester},#{couyear},#{plantime1},#{plantime2},#{plantitle},#{plangoal},#{plancontent},#{planclass});
+  </insert>
+  
+    <select id="totalPlanCourse" resultType="int"  parameterType="com.ctbu.javateach666.pojo.bo.PlanCoutseBo_zxy">
+  select COUNT(*) FROM courseplan WHERE 1=1
+  <if test="couyear != null and couyear != '' ">
+  		and couyear = #{couyear}
+  </if>
+  <if test="semester != null and semester != '' ">
+  		and semester = #{semester}
+  </if>
+  </select>
+    <select id="getPlanCourseByPage" resultType="com.ctbu.javateach666.pojo.po.PlanCoutsePo_zxy"  parameterType="com.ctbu.javateach666.pojo.bo.PlanCoutseBo_zxy">
+  select * FROM courseplan WHERE 1=1
+  <if test="couyear != null and couyear != '' ">
+  		and couyear = #{couyear}
+  </if>
+  <if test="semester != null and semester != '' ">
+  		and semester = #{semester}
+  </if>
+  limit #{page}, #{rows}
+  </select>
+  
+  <select id="getPlanCoutseById" resultType="com.ctbu.javateach666.pojo.po.PlanCoutsePo_zxy"  parameterType="int">
+  select * FROM courseplan where id=#{id}
+  </select>
+  
+  <update id="updatePlanById" parameterType="com.ctbu.javateach666.pojo.bo.PlanCoutseBo_zxy">
+  update courseplan set planfile=#{planfile} where id=#{id}
+  </update>
 </mapper>

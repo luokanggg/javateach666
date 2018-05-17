@@ -3,10 +3,10 @@ package com.ctbu.javateach666.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,16 +25,22 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.ctbu.javateach666.pojo.bo.DemoPassWordReqBo;
 import com.ctbu.javateach666.pojo.bo.PageInfoBo;
+import com.ctbu.javateach666.pojo.bo.StudentInfoReqBO_zxy;
 import com.ctbu.javateach666.pojo.bo.TeacherInfoBo_zxy;
 import com.ctbu.javateach666.pojo.po.Account_zxy;
+import com.ctbu.javateach666.pojo.po.ClassPo_zxy;
+import com.ctbu.javateach666.pojo.po.Dictionaries_zxy;
+import com.ctbu.javateach666.pojo.po.StudentInfoPO_zxy;
 import com.ctbu.javateach666.pojo.po.TeacherInfo_zxy;
+import com.ctbu.javateach666.service.interfac.PublishCourseServise_zxy;
 import com.ctbu.javateach666.service.interfac.TeacherInfoService_zxy;
 
 @Controller
 public class ZXYTeacherInfoController {
 	@Autowired
 	private TeacherInfoService_zxy teainfoservice;
-	
+	@Autowired
+	PublishCourseServise_zxy publishcourse;
 	
 	@RequestMapping("/teainfo")
 	public String goTeainfo(HttpServletRequest request) throws UnsupportedEncodingException{
@@ -44,7 +50,6 @@ public class ZXYTeacherInfoController {
 		Date date=tea.getJoined_date();
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		String date1=sdf.format(date);
-		
 		HttpSession session=request.getSession();
 		session.setAttribute("TeaInfo", tea);
 		session.setAttribute("Joined_date", date1);
@@ -65,6 +70,17 @@ public class ZXYTeacherInfoController {
 	
 	@RequestMapping("/modifyteainfo")
 	public String goModifyTeainfo(HttpServletRequest request){
+		
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		TeacherInfo_zxy tea=teainfoservice.getTeacherInfo(userDetails.getUsername());
+		HttpSession session=request.getSession();
+		session.setAttribute("TeaInfo", tea);
 		return "teacherzxy/teamyinfozxy/modifyteainfo";
 	}
 	@ResponseBody
@@ -168,7 +184,7 @@ public class ZXYTeacherInfoController {
 		}
 		String pass="";
 		pass=reqBo.getPass();
-		System.out.println("新密码："+pass);
+		
 		Map map=new HashMap<String, String>();
 		Map info=new HashMap<String, String>();
 		map.put("password", pass);
@@ -181,6 +197,29 @@ public class ZXYTeacherInfoController {
 		}
 		return info;
 	}
+	@RequestMapping("allstuinfo")
+	public String goallstuinfo(HttpServletRequest request){
+		HttpSession session=request.getSession();
+		String dtype="学年";
+		//获取所有的学年信息根据字典表
+		List<Dictionaries_zxy> diccouyear=publishcourse.getDictionariesByType(dtype);
+		session.setAttribute("diccouyear", diccouyear);
+		//获取所有的班级信息
+		List<ClassPo_zxy> classlist=teainfoservice.getClassInfo();
+		session.setAttribute("classlist", classlist);
+		return "teacherzxy/teamyinfozxy/stuinfolist";
+	}
+	@ResponseBody
+	@RequestMapping("getstuinfolist")
+	public PageInfoBo<StudentInfoPO_zxy> getAllStuinfo(StudentInfoReqBO_zxy stuBo){
+		PageInfoBo<StudentInfoPO_zxy> page=new PageInfoBo<StudentInfoPO_zxy>();
+		page=teainfoservice.getStuBySeach(stuBo);
+		return page;
+	}
 	
-	
+	@RequestMapping("fanhuimain")
+	public String goFanhui(){
+		return "main";
+	}
+
 }

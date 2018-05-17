@@ -36,6 +36,7 @@ public class NoticeServiceImpl_zxy implements NoticeService_zxy{
 	}
 	
 	public PageInfoBo<NoticeResBo_zxy> getAllNoticeInfo(NoticeBo_zxy notice){
+		//System.out.println(notice.getNotname()+"通知人姓名1==");
 		//定义出参
 		PageInfoBo<NoticeResBo_zxy> rsp=new PageInfoBo<NoticeResBo_zxy>();
 		//设置page为下标
@@ -48,7 +49,7 @@ public class NoticeServiceImpl_zxy implements NoticeService_zxy{
 			notname="%"+notice.getNotname()+"%";
 			notice.setNotname(notname);
 		}
-		//System.out.println(notice.getTonotname()+"被通知人姓名==");
+		//System.out.println(notice.getNotname()+"通知人姓名2==");
 		if(notice.getTonotname()!=null&&!"".equals(notice.getTonotname())){
 			String tonotname="";
 			tonotname="%"+notice.getTonotname()+"%";
@@ -125,7 +126,7 @@ public class NoticeServiceImpl_zxy implements NoticeService_zxy{
 		// TODO Auto-generated method stub
 		return noticedao.getAllNOticeBySeachAndPageTea(notice);
 	}
-	public int updateNotice(NoticeBo_zxy reqBO) {
+	public int updateNotice(Notice_zxy reqBO) {
 		// TODO Auto-generated method stub
 		return noticedao.updateNotice(reqBO);
 	}
@@ -197,6 +198,38 @@ public class NoticeServiceImpl_zxy implements NoticeService_zxy{
 	public List<StudentInfoPO_zxy> getAllStuByClassId(int classid) {
 		// TODO Auto-generated method stub
 		return noticedao.getAllStuByClassId(classid);
+	}
+	@Override
+	public Tonotice_zxy getTonotice_zxy(int id) {
+		// TODO Auto-generated method stub
+		return noticedao.getTonotice_zxy(id);
+	}
+	@Override
+	public int totalMyGetNotice(NoticeBo_zxy notice) {
+		// TODO Auto-generated method stub
+		return noticedao.totalMyGetNotice(notice);
+	}
+	@Override
+	public List<NoticeResBo_zxy> getMyGetBotice(NoticeBo_zxy notice) {
+		// TODO Auto-generated method stub
+		return noticedao.getMyGetBotice(notice);
+	}
+	@Override
+	public PageInfoBo<NoticeResBo_zxy> getAllMyGet(NoticeBo_zxy notice) {
+		// TODO Auto-generated method stub
+		PageInfoBo<NoticeResBo_zxy> rsp=new PageInfoBo<NoticeResBo_zxy>();
+		int page=0;
+		page=(notice.getPage()-1)*notice.getRows();
+		notice.setPage(page);
+		int total=noticedao.totalMyGetNotice(notice);
+		if(total < 1){
+			return rsp;
+		}else{
+			List<NoticeResBo_zxy> list=noticedao.getMyGetBotice(notice);
+			rsp.setRows(list);
+			rsp.setTotal(total);
+			return rsp;
+		}
 	}
 	
 }

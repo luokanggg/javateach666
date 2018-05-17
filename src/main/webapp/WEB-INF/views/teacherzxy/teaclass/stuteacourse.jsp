@@ -68,10 +68,10 @@
 		            {field: 'classyear', title: '年级', width: 100,align:'center'},
 		            {field: 'major', title: '专业', width: 100,align:'center'},
 		            {field: 'collage', title: '学院', width: 120,align:'center'},
-		            {field: 'teano', title: '教师编号', width: 60,align:'center'},
+		          /*   {field: 'teano', title: '教师编号', width: 60,align:'center'},
 		            {field: 'teaname', title: '教师姓名', width: 80,align:'center'},
 		            {field: 'couyear', title: '学年', width: 40,align:'center'},
-		            {field: 'semester', title: '学期', width: 40,align:'center'},
+		            {field: 'semester', title: '学期', width: 40,align:'center'}, */
 		            {field: 'couname', title: '课程名', width: 100,align:'center'},
 		            {field: 'couaddress', title: '教室', width: 100,align:'center'}
 				]],
