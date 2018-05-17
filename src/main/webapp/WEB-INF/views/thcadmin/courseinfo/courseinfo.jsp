@@ -113,12 +113,12 @@
 		            {field: 'couname', title: '课程名称', width: 50, sortable: false},
 		            {field: 'dicname', title: '课程类型', width: 50, sortable: false},
 		            {field: 'credit', title: '学分', width: 100, sortable: false},
-		            {field: 'is_delete', title: '是否已删除', width: 50, sortable: false,
+/* 		            {field: 'is_delete', title: '是否已删除', width: 50, sortable: false,
 					  	formatter : function(value,row,index){ 
 			                 if(value=='0'){return '否'} 
 			                 else {return '是'}
 		                }	
-		            },
+		            }, */
 		            {field: 'operate', title: '操作', align:'center',width:$(this).width()*0.1,formatter:function(value, row, index){  
 						var str = '<a href="javascript:;" name="opera" class="easyui-linkbutton" onclick="editCourse()" ></a>';  
 						return str;  

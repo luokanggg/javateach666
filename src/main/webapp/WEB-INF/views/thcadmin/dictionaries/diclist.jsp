@@ -175,7 +175,7 @@
 		        }
 		    }
 		  	function addDic(){
-		  		//$('#addnews-form').form('clear');
+		  		$('#adddic-form').form('clear');
 		        $('#adddic-dialog').dialog({
 		            closed: false,
 		            modal: true,

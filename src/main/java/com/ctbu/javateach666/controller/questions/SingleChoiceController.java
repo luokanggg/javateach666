@@ -190,11 +190,15 @@ public class SingleChoiceController {
 		        List<Object> importFile = ExcelUtils.importFile(name, in, SingleChoice.class);
 		        for(Object object : importFile) {
 		        	SingleChoice singleChoice = (SingleChoice) object;
-		        	THCCoursePO course = new THCCoursePO();
-		        	course.setId(Integer.valueOf(singleChoice.getCourseId()));
-		        	singleChoice.setCourse(course);
-		        	singleChoice.setCreateTime(new Date());
-		        	SingleChoiceService.insert(singleChoice);
+		        	if(singleChoice.getCourseId() != null) {
+			        	THCCoursePO course = new THCCoursePO();
+			        	course.setId(Integer.valueOf(singleChoice.getCourseId()));
+			        	singleChoice.setCourse(course);
+			        	singleChoice.setCreateTime(new Date());
+			        	SingleChoiceService.insert(singleChoice);
+		        	} else {
+		        		break;
+		        	}
 		        }
 		        return "OK";
 			}

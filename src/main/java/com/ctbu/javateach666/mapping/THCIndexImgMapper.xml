@@ -7,7 +7,7 @@
   <select id="getIndexImgbyPage" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCIndexImgListRspBO" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCIndexImgListRepBO">
   	select id, imgno, imgname, imgurl, create_time, is_pub
   	from rollpicture
-  	where is_delete = 0
+  	where 1=1
   	<if test="imgname != null and imgname != '' ">
   		and imgname like concat('%',#{imgname},'%')
   	</if>
@@ -17,16 +17,16 @@
   <select id="getTotal" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCIndexImgListRepBO">
   	select count(*)
   	from rollpicture
-  	where is_delete = 0
+  	where 1=1
   	<if test="imgname != null and imgname != '' ">
   		and imgname like concat('%',#{imgname},'%')
   	</if>
   </select>
   
-  <update id="deleteByLogic">
-  	update rollpicture set is_delete = 1
+  <delete id="deleteByLogic">
+  	delete from rollpicture
   	where id = #{id}
-  </update>
+  </delete>
   
   <insert id="insert">
     insert into rollpicture(imgno, imgname, imgurl, create_time, is_pub)
@@ -53,6 +53,5 @@
   	select imgurl
   	from rollpicture
   	where is_pub = 1
-  	and is_delete = 0
   </select>
 </mapper>

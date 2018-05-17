@@ -148,7 +148,7 @@ public class THCTeacherServiceImpl extends BaseServiceImpl<THCTeacherDao, THCAcc
 		String imgurl = "static\\img\\teacher\\" + imgname;
 		//定义文件上传路径
 		//String saveserverpath = request.getServletContext().getRealPath("/") + "static\\img\\course";
-		String savepath = "C:\\Users\\Administrator\\Desktop\\javateach6666\\src\\main\\webapp\\" + "static\\img\\teacher";
+		String savepath = "F:\\11111111\\javateach666\\src\\main\\webapp\\" + "static\\img\\teacher";
 		
 		// 判断上传目录是否存在
 		File savePath = new File(savepath);
