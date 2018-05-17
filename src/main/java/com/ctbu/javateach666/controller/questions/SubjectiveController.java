@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ctbu.javateach666.pojo.po.kingother.Account;
-import com.ctbu.javateach666.pojo.po.questions.SingleChoice;
 import com.ctbu.javateach666.pojo.po.questions.Subjective;
 import com.ctbu.javateach666.pojo.po.thcpo.THCCoursePO;
 import com.ctbu.javateach666.service.interfac.kingother.AccountService;

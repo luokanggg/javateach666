@@ -16,7 +16,13 @@
             <div class="wu-toolbar-button">
                 <form id="choice-search-form" style="display: inline-block">
                                                      题目：<input class="easyui-textbox" id="choice-name-value"/>
-			                     难度等级：<input class="easyui-textbox" id="choice-degree-value"/>
+			                     难度等级：<select class="easyui-combobox" id="choice-degree-value" style="width:80px;" panelMaxHeight="100" editable="false">
+			               	<option></option>
+			               	<option value="1">1</option>
+			               	<option value="2">2</option>
+			               	<option value="3">3</option>
+			               	<option value="4">4</option>
+			               </select>
 			                     时间：<input type="date" id="bdaytime-course-value"/>~<input type="date" id="edaytime-course-value"/>
                     <a id="choice-search-btn" class="easyui-linkbutton">搜索</a>
                     <a id="choice-search-reset" class="easyui-linkbutton">重置</a>
@@ -39,7 +45,7 @@
      * Name 载入数据
      */
     $('#choice-datagrid').datagrid({
-        url: 'multiple?courseId='+${courseId},
+        url: 'multiple',
         rownumbers: true,
         singleSelect: true,
         pageSize: 10,
@@ -49,7 +55,6 @@
         fitColumns: true,
         fit: false,
         columns: [[
-            {field: '', checkbox: true, hidden: true},
             {field: 'id', title: '编号', width: 50, hidden: true},
             {field: 'multipleTitle', title: '题目', width: 180},
             {field: 'answera', title: '答案A', width: 100},

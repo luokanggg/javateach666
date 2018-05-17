@@ -15,7 +15,13 @@
             <div class="wu-toolbar-button">
                 <form id="judge-search-form" style="display: inline-block">
 			                    题目：<input class="easyui-textbox" id="judge-name-value"/>
-			                    难度等级：<input class="easyui-textbox" id="judge-degree-value"/>
+			                    难度等级：<select class="easyui-combobox" id="judge-degree-value" style="width:80px;" panelMaxHeight="100" editable="false">
+			               	<option></option>
+			               	<option value="1">1</option>
+			               	<option value="2">2</option>
+			               	<option value="3">3</option>
+			               	<option value="4">4</option>
+			               </select>
 			                     时间：<input type="date" id="bdaytime-course-value"/>~<input type="date" id="edaytime-course-value"/>
                     <a id="judge-search-btn" class="easyui-linkbutton">搜索</a>
                     <a id="judge-search-reset" class="easyui-linkbutton">重置</a>
@@ -41,7 +47,7 @@
         queryParams: formJudgeJson(),
         rownumbers: true,
         singleSelect: true,
-        pageSize: 20,
+        pageSize: 10,
         pagination: true,
         multiSort: true,
         fitColumns: true,
