@@ -132,7 +132,7 @@ public class ZXYNoticeController {
 			}
 		}else{
 			if(type.equals("class")){
-				List<StudentInfoPO_zxy> stus=new ArrayList<>();
+				List<StudentInfoPO_zxy> stus=new ArrayList<StudentInfoPO_zxy>();
 				stus=noticeservice.getAllStuByClassId(classid);
 				int tag=0;
 				if(stus.size()>0){
@@ -300,7 +300,7 @@ public class ZXYNoticeController {
 		
 		HttpSession session=request.getSession();
 		NoticeResBo_zxy res=(NoticeResBo_zxy) session.getAttribute("resnotice");
-		int notid=(int) session.getAttribute("notid");
+		int notid=Integer.parseInt(String.valueOf(session.getAttribute("notid")));
 		tonot.setNotid(notid);
 		tonot.setTonotid(Integer.parseInt(res.getTonotid()));
 		tonot.setNottype(Integer.parseInt(res.getNottype()));

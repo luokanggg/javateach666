@@ -257,7 +257,7 @@ public class LKMyActivityServiceImpl implements LKMyActivityService{
 		}
 		
 		int count2 = lKMyActivityDao.updatePerActivity(lKPubActivityReqBO);
-		if(count2 < 1){
+		if(count2 < 1 && lKPubActivityReqBO.getAlpubnumber() > 0){
 			rsp.setResponseCode(Constant.RSP_FALSE_CODE);
 			rsp.setResponseDesc("活动更新失败！");
 			return rsp;

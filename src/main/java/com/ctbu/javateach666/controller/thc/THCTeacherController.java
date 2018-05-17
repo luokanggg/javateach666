@@ -28,6 +28,7 @@ import com.ctbu.javateach666.pojo.po.thcpo.THCProfessionalRanksPO;
 import com.ctbu.javateach666.pojo.po.thcpo.THCStudentInfoPO;
 import com.ctbu.javateach666.pojo.po.thcpo.THCTeachersInfoPO;
 import com.ctbu.javateach666.service.interfac.thc.THCTeacherService;
+import com.ctbu.javateach666.util.BCryptEncoderUtil;
 
 @Controller
 public class THCTeacherController {
@@ -112,6 +113,8 @@ public class THCTeacherController {
 			THCTeachersInfoPO tHCTeachersInfoPO1 = new THCTeachersInfoPO();
 			tHCTeachersInfoPO1 = tHCTeacherService.selectIdbyTeano(tHCTeachersInfoPO);
 			tHCAccountPO.setUserdetailid(tHCTeachersInfoPO1.getId());
+			String password = BCryptEncoderUtil.passwordEncoder(tHCAccountPO.getPassword());
+			tHCAccountPO.setPassword(password);
 			int m = tHCTeacherService.insert(tHCAccountPO);
 			THCAuthoritiesPO tHCAuthoritiesPO = new THCAuthoritiesPO();
 			tHCAuthoritiesPO.setUsername(tHCAccountPO.getUsername());
@@ -194,6 +197,8 @@ public class THCTeacherController {
 	@ResponseBody
 	@RequestMapping("/updatetea")
 	public String updateTea(THCAccountPO tHCAccountPO, THCTeachersInfoPO tHCTeachersInfoPO){
+		String password = BCryptEncoderUtil.passwordEncoder(tHCAccountPO.getPassword());
+		tHCAccountPO.setPassword(password);
 		int m = tHCTeacherService.update(tHCAccountPO);
 		int n = tHCTeacherService.updateTea(tHCTeachersInfoPO);
 		if(m == 1 && n == 1){

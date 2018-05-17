@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.THCDicDao">  
+  <!-- 数据字典管理 -->
+  <select id="getDicListbyPage" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCDictionariesListRspBO" parameterType = "com.ctbu.javateach666.pojo.bo.thcbo.THCDictionariesListRepBO">
+  	select id, dicname, dtype, dvalue, remark, is_delete
+  	from dictionaries
+  	where is_delete = 0
+  	<if test="dtype != null and dtype != '' and dtype != '--请选择--'">
+  		and dtype = #{dtype}
+  	</if>
+  	limit #{page}, #{rows}
+  </select>
+  
+  <select id="getDicTotal" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCDictionariesListRepBO">
+  	select count(*)
+  	from dictionaries
+  	where is_delete = 0
+  	<if test="dtype != null and dtype != '' and dtype != '--请选择--' ">
+  		and dtype = #{dtype}
+  	</if>
+  </select>
+  
+  <update id="deleteByLogic">
+	UPDATE dictionaries SET 
+		is_delete = 1
+	WHERE id = #{id}
+  </update>
+  
+  <insert id="insert">
+  	insert into dictionaries(dicname, remark, dtype, dvalue)
+  	values(#{dicname}, #{remark}, #{dtype}, #{dvalue})
+  </insert>
+  
+  <update id="update">
+  	update dictionaries set 	
+	dicname = #{dicname},
+	remark = #{remark},
+	dtype = #{dtype},
+	dvalue = #{dvalue}
+	where id = #{id}
+  </update>
+  
+  <select id="getDicNameList" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCDictionariesListRspBO">
+  	select dtype
+  	from dictionaries
+  	where is_delete = 0
+  	group by (dtype)
+  </select>
+  
+  <select id="checkDicname" parameterType="String" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCDictionariesPO">
+  	select * from dictionaries
+  	where dicname = #{dicname}
+  </select>
+</mapper>

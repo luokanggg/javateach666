@@ -238,7 +238,7 @@ public class PracticeController {
 //		request.setAttribute("course", course);
         
         // 单选题
-        List<SingleChoice> choices = new ArrayList<>();
+        List<SingleChoice> choices = new ArrayList<SingleChoice>();
         List<QuestionPaper> choiceQues = JSONArray.parseArray(choiceCk, QuestionPaper.class);
 		for (QuestionPaper choiceQue : choiceQues) {
 			SingleChoice singleChoice = SingleChoiceService.get(choiceQue.getId());

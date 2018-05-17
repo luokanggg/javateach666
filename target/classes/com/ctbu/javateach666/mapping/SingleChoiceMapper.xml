@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.SingleChoiceDao">
+    
+	<sql id="SingleColumns">
+	a.id AS "id",
+	a.couse_id AS "course.id",
+	a.single_title AS "singleTitle",
+	a.answerA AS "answera",
+	a.answerB AS "answerb",
+	a.answerC AS "answerc",
+	a.answerD AS "answerd",
+	a.single_answer AS "singleAnswer",
+	a.degree AS "degree",
+	a.create_time AS "createTime",
+	a.is_delete AS "isDelete",
+	
+	b.couname AS "course.couname",
+	b.couname AS "couname"
+	</sql>
+	
+	<sql id="SingleJoins">
+	left join course b on b.id = a.couse_id
+	left join teacourse tc on tc.couid = b.id
+	</sql>
+	
+	<select id="get" resultType="com.ctbu.javateach666.pojo.po.questions.SingleChoice">
+		SELECT 
+			<include refid="SingleColumns"/>
+		FROM singlechoice a
+		<include refid="SingleJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="com.ctbu.javateach666.pojo.po.questions.SingleChoice">
+		SELECT 
+			<include refid="SingleColumns"/>
+		FROM singlechoice a
+		<include refid="SingleJoins"/>
+		<where>
+		 a.is_delete = '0'
+		 <if test="course != null and course.id !=null and course.id !=''">
+		  and a.couse_id = #{course.id}
+		 </if>
+		 <if test="course != null and course.couname !=null and course.couname !=''">
+		  and b.couname LIKE CONCAT('%',#{course.couname},'%')  
+		 </if>
+		 <if test="singleTitle !=null and singleTitle !=''">
+		  and a.single_title LIKE CONCAT('%',#{singleTitle},'%')  
+		 </if>
+		 <if test="degree !=null and degree !=''">
+		  and a.degree = #{degree}
+		 </if>
+		 <if test="bTime !=null and bTime !=''">
+		  and a.create_time &gt;= #{bTime}
+		 </if>
+		 <if test="eTime !=null and eTime !=''">
+		  and a.create_time &lt;= #{eTime}
+		 </if>
+		 <if test="teaId !=null and teaId !=''">
+		  and tc.teaid = #{teaId}
+		 </if>
+		</where>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO singlechoice(
+			id,
+			couse_id,
+			single_title,
+			answerA,
+			answerB,
+			answerC,
+			answerD,
+			single_answer,
+			degree,
+			create_time,
+			is_delete
+		) VALUES (
+			#{id},
+			#{course.id},
+			#{singleTitle},
+			#{answera},
+			#{answerb},
+			#{answerc},
+			#{answerd},
+			#{singleAnswer},
+			#{degree},
+			#{createTime},
+			0
+		)
+	</insert>
+	<update id="update">
+		UPDATE singlechoice SET 	
+			couse_id = #{course.id},
+			single_title = #{singleTitle},
+			answerA = #{answera},
+			answerB = #{answerb},
+			answerC = #{answerc},
+			answerD = #{answerd},
+			single_answer = #{singleAnswer},
+			degree = #{degree},
+			create_time = #{createTime}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!--物理删除-->
+	<delete id="delete">
+		DELETE FROM singlechoice
+		WHERE id = #{id}
+	</delete>
+	
+	<!--逻辑删除-->
+	<update id="deleteByLogic">
+		UPDATE singlechoice SET 
+			is_delete = 1
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

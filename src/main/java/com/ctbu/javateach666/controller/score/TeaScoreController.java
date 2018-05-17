@@ -89,7 +89,7 @@ public class TeaScoreController {
 	@RequestMapping(value="/getScoreExcel",produces = "text/plain;charset=utf-8")
 	public void getScoreExcel(@RequestParam("paperId") String paperId,@RequestParam("stuId") String stuId,HttpServletRequest request, HttpServletResponse response) {
 		Achievement achievement = new Achievement();
-		List<Achievement> findList = new ArrayList<>();
+		List<Achievement> findList = new ArrayList<Achievement>();
         if(paperId != null && !"".equals(paperId)) {
         	achievement.setPaperId(Integer.valueOf(paperId));
         	if(stuId != null && !"".equals(stuId)) {
@@ -99,7 +99,7 @@ public class TeaScoreController {
         }
         
         // Excel头部标题
-        List<String> title = new ArrayList<>();
+        List<String> title = new ArrayList<String>();
         title.add("排名");
         title.add("学生姓名");
 		title.add("总成绩");

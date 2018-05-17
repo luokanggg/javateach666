@@ -106,7 +106,7 @@ public class StuScoreController {
         
         StuCourse stuCourse = new StuCourse();
         stuCourse.setStuid(account.getUserdetailid());
-        List<StuCourse> findList = new ArrayList<>();
+        List<StuCourse> findList = new ArrayList<StuCourse>();
         if(couyear != null && !"".equals(couyear) && semester != null && !"".equals(semester)) {
         	stuCourse.setCouyear(Integer.valueOf(couyear));
         	stuCourse.setSemester(Integer.valueOf(semester));
@@ -114,7 +114,7 @@ public class StuScoreController {
         }
         
         // Excel头部标题
-        List<String> title = new ArrayList<>();
+        List<String> title = new ArrayList<String>();
         title.add("课程名");
 		title.add("教师");
 		title.add("成绩");

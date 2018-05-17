@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.StuCourseDao">
+    
+	<sql id="StuCourseColumns">
+	a.id AS "id",
+	a.stuid AS "stuid",
+	a.teacourseid AS "teacourseid",
+	a.coutime AS "coutime",
+	a.couhour AS "couhour",
+	a.coufhour AS "coufhour",
+	a.score AS "score",
+	a.evaluate AS "evaluate",
+	a.teaname AS "teaname",
+	b.couname AS "couname",
+	a.couid AS "course.id",
+	a.rescore AS "rescore",
+	
+	b.couname AS "course.couname"
+	</sql>
+	
+	<sql id="StuCourseJoins">
+	left join course b on b.id = a.couid
+	left join teacourse tea on tea.id = a.teacourseid
+	</sql>
+	
+	<select id="get" resultType="com.ctbu.javateach666.pojo.po.kingother.StuCourse">
+		SELECT 
+			<include refid="StuCourseColumns"/>
+		FROM stucourse a
+		<include refid="StuCourseJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="com.ctbu.javateach666.pojo.po.kingother.StuCourse">
+		SELECT 
+			<include refid="StuCourseColumns"/>
+		FROM stucourse a
+		<include refid="StuCourseJoins"/>
+		<where>
+		 <if test="course != null and course.id != null and course.id !=''">
+		  a.couid = #{course.id}
+		 </if>
+		 <if test="stuid != null and stuid !=''">
+		  a.stuid = #{stuid}
+		 </if>
+		</where>
+	</select>
+	
+	<update id="update">
+		UPDATE stucourse SET 	
+			stuid = #{stuid},
+			teacourseid = #{teacourseid},
+			coutime = #{coutime},
+			couhour = #{couhour},
+			coufhour = #{coufhour},
+			score = #{score},
+			evaluate = #{evaluate},
+			teaname = #{teaname},
+			couname = #{couname},
+			couid = #{couid},
+			rescore = #{rescore}
+		WHERE id = #{id}
+	</update>
+</mapper>

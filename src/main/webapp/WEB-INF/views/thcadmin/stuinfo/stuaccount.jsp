@@ -206,7 +206,7 @@
 		            {field: '', checkbox: true, hidden: true},
 		            {field: 'id', title: '编号', width: 50, sortable: true, hidden: true},
 		            {field: 'username', title: '用户名', width: 50, sortable: false},
-		            {field: 'password', title: '密码', width: 50, sortable: false},
+		            {field: 'password', title: '密码', width: 50, hidden: true, sortable: false},
 		            {field: 'enable', title: '是否启用', width: 50, sortable: false,formatter: function (value, row, index) {
 		            	if(value == 1){
 		            		return "是";

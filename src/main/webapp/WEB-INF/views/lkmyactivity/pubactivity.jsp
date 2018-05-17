@@ -107,6 +107,15 @@
 							return false;
 						}
 						
+						var beforeuploadtime = new Date(man.PubInfo.pubtimestart);
+				        var afteruploadtime = new Date(man.PubInfo.pubtimeend);
+						if(beforeuploadtime.getTime() >= afteruploadtime.getTime()){
+				        	alert("开始时间不能大于结束时间！"); 
+				        	man.PubInfo.pubtimestart = "";
+				        	man.PubInfo.pubtimeend = "";
+				        	return false;
+				        }
+						
 						var reg=/^[1-9]\d*$|^0$/;   // 注意：故意限制了 0321 这种格式，如不需要，直接reg=/^\d+$/;
 						if(reg.test(man.PubInfo.pubnumber)==false){
 						    alert("活动人数栏请输出数字！");

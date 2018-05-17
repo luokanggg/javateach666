@@ -95,6 +95,14 @@
 		    });
 		    /* 搜索方法*/
 		    $("#choice-search-btn").click(function () {
+		    	var beforeuploadtime = new Date($("#start-time-value").val());
+		        var afteruploadtime = new Date($("#start-time-value2").val());
+		        if(beforeuploadtime.getTime() >= afteruploadtime.getTime()){
+		        	alert("开始时间不能大于结束时间！"); 
+		        	$("#start-time-value").val('');
+			        $("#start-time-value2").val('');
+		        	return false;
+		        }
 		        //点击搜索
 		        $('#classinfo-datagrid').datagrid({
 		            queryParams: formChoiceJson()
