@@ -150,6 +150,28 @@ border:none;
 			$('#submits').click(function(){
 				//var professional=$('#professional').val();
 				var teaage=$('#teaage').val();
+
+				if (!checkNumber(teaage)) {
+					$.messager.alert('警告',"请输入正确年龄(数字)","warning");
+					  return false;
+				}else{
+					if(teaage<1||teaage>150){
+						$.messager.alert('警告',"请输入正确年龄","warning");
+						  return false;
+					}
+				}
+					 
+					 
+					//验证字符串是否是数字
+					function checkNumber(theObj) {
+					  var reg = /^[0-9]+.?[0-9]*$/;
+					  if (reg.test(theObj)) {
+					    return true;
+					  }
+					  return false;
+					}
+
+				
 				var teasex=$('#teasex').val();
 				var major=$('#major').val();
 				var teacollage=$('#teacollage').val();

@@ -146,8 +146,7 @@
 						
 				}
 		    });
-		   // $('#publishclassinfo-datagrid').datagrid('hideColumn', 'id');  
-		  
+		   
 		    //设置登录窗口
 	        function openPwd() {
 	            $('#w').window({
@@ -211,7 +210,12 @@
 	                }else{
 	                	var reg=/^[1-9]\d*$|^0$/;
 	                	if(reg.test(couhour)==true){
-	                		
+	                		if(couhour<0||couhour>12){
+	                			$.messager.alert("警告",'输入的课时不合法，请重新输入！',"warning");
+		                		$("#couhour").val("");
+		                		$("#couhour").focus();
+			                	return false;
+	                		}
 		                	
 	                	}else{
 	                		$.messager.alert("警告",'请输入数字类型',"warning");
@@ -226,7 +230,22 @@
 	                }else{
 	                	var reg=/^[1-9]\d*$|^0$/;
 	                	if(reg.test(coufhour)==true){
-	                		
+	                		if(couhour>12){
+	                			$.messager.alert("警告",'输入的上课的开始节数不合法，请重新输入！',"warning");
+		                		$("#coufhour").val("");
+		                		$("#coufhour").focus();
+			                	return false;
+	                		}else {
+	                			var f=parseInt(coufhour);
+	                			var h=parseInt(couhour);
+	                			if((f+h)>13){
+	                				
+	                				$.messager.alert("警告",'时间安排不合法，请重新输入！',"warning");
+		                			$("#coufhour").val("");
+		                			$("#coufhour").focus();
+			                		return false;
+	                			}
+	                		}
 		                	
 	                	}else{
 	                		$.messager.alert("警告",'请输入数字类型',"warning");

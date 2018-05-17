@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@include file="/common/easyui.jspf"%>
-<title>我的通知</title>
+<title>接收的信件</title>
 </head>
 <style>
 .datagrid-row {
@@ -23,19 +23,20 @@
         <!-- Begin of toolbar -->
         <div id="#alltonoticeinfo-toolbar">
              <div class="wu-toolbar-button">
-              &nbsp;&nbsp;&nbsp;&nbsp; <a href="lookNoReadNotice" class="easyui-linkbutton" iconCls="icon-back" onclick="LookALlToNotice()">返回</a>
-                   &nbsp;&nbsp;&nbsp;&nbsp;
+             
                 <a href="javascript:;"  class="easyui-linkbutton" iconCls="icon-cancel" onclick="DeleteALLReadNoticePL()">批量删除</a> 
             </div> 
 		</div>
          <!-- End of toolbar -->
+         <div style="width:1343px;height:420px;">
         <table id="alltonoticeinfo-datagrid" toolbar="#alltonoticeinfo-toolbar"></table>  
+    </div>
     </div>
 	</div>
 	
 	<script type="text/javascript">
 		  $('#alltonoticeinfo-datagrid').datagrid({
-		        url:'getAllTonoticelist',
+		        url:'getAllSendnoticelist',
 		        rownumbers: true,
 		        checkbox:true,
 		        singleSelect:false,
@@ -44,9 +45,9 @@
 		        pageSize: 10,
 		        pagination: true,
 		        multiSort: true,
-		        //fitColumns: true,
+		        fitColumns: true,
 		        pageList:[10,15,20],
-		       // fit: true,
+		        fit: true,
 		       striped:true,
 		        columns: [[
 					{field: 'ck', width:"40" ,align:"center",checkbox: true},
@@ -64,7 +65,7 @@
 		            	}
 		            },
 		            {field: 'notcontent', align:"center",title: '内容', width: 240},
-		            {field: 'noturl', align:"center",title: 'url地址', width: 140},
+		            
 		            {field: 'starttime', align:"center",title: '开始时间', width: 115,
 		            	  formatter : function(value){
 		                        var date = new Date(value);
@@ -86,19 +87,19 @@
 		            },
 		            
 		            {field: 'is_look', align:"center",title: '是否已读', width: 80,
-		            	formatter : function(value){
+		            	 formatter : function(value){
 		            		if(value==1){
 		            			return "已读";
 		            		}else{
 		            			return "未读";
 		            		}
-		            	}	
+		            	}	 
 		            }
 				]],
 				onLoadSuccess:function(data){   
 				}
 		    });
-		  
+		  $("#alltonoticeinfo-datagrid").datagrid('hideColumn', "id");
 		  function DeleteALLReadNoticePL(){
 			  var rows = $('#alltonoticeinfo-datagrid').datagrid('getSelections');  
 		  		var _list="";
@@ -125,6 +126,23 @@
 					} 
 				});		
 		  }
+		  
+		 /*  function judgeurl(){
+				 var rows = $('#alltonoticeinfo-datagrid').datagrid('getSelections');
+			  		if (rows.length >1||rows.length==0) {
+						$.messager.alert('操作提示', "请选择一条记录！", 'warning');
+						return;
+					}
+			  		var uri=rows[0].noturl;
+			  		
+				 var URLRexExp = new RegExp(/^[A-Za-z]+:\/\/[A-Za-z0-9-_]+.[A-Za-z0-9-_%&\?\/.:=]+$/); 
+				 if(URLRexExp.test(uri)){
+					 window.location.href=uri;
+				 }else{
+					 window.open("goerror","_parent");
+				}
+				 
+			 } */
 	</script>
 </body>
 </html>

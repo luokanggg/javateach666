@@ -33,7 +33,7 @@
     values(#{imgno}, #{imgname}, #{imgurl}, now(), #{is_pub})
   </insert>
   
-  <update id="update">
+  <update id="showimg">
   	update rollpicture set is_pub = 1
   	where id = #{id};
   </update>
@@ -53,5 +53,6 @@
   	select imgurl
   	from rollpicture
   	where is_pub = 1
+  	and is_delete = 0
   </select>
 </mapper>

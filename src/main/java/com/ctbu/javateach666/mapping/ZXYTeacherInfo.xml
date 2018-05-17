@@ -60,4 +60,15 @@
   <update id="updateTeaImageById" parameterType="map">
   update teachersinfo set teaimage=#{teaimage} where id=#{id}
   </update>
+  <select id="getClassInfo" resultType="com.ctbu.javateach666.pojo.po.ClassPo_zxy">
+  	select * from class;
+  </select>
+  
+  <select id="totalStuInfo" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.StudentInfoReqBO_zxy">
+  SELECT COUNT(*) FROM studentinfo WHERE classid=#{classid} AND classyear=#{classyear}
+  </select>
+  
+  <select id="getAllStuinfoByPage" resultType="com.ctbu.javateach666.pojo.po.StudentInfoPO_zxy" parameterType="com.ctbu.javateach666.pojo.bo.StudentInfoReqBO_zxy">
+  SELECT * FROM studentinfo WHERE classid=#{classid} AND classyear=#{classyear} limit #{page}, #{rows}
+  </select>
 </mapper>

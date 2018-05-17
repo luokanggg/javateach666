@@ -17,8 +17,8 @@ public interface THCIndexImgService extends BaseService<THCIndexImgDao, THCIndex
 	//首页图片管理
 	public PageInfoBo<THCIndexImgListRspBO> getImgList(THCIndexImgListRepBO tHCIndexImgListRepBO);
 	public int insertImg(CommonsMultipartFile file, HttpServletRequest request);
+	public int showimg(THCIndexImgPO tHCIndexImgPO);
 	public int hideimg(THCIndexImgPO tHCIndexImgPO);
 	public List<THCIndexImgPO> getPicture();
 	public THCIndexImgPO selectImgno(String imgno);
-
 }

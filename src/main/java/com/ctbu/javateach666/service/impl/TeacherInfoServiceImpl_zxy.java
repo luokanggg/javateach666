@@ -8,9 +8,12 @@ import org.springframework.stereotype.Service;
 
 import com.ctbu.javateach666.dao.TeacherInfoDao_zxy;
 import com.ctbu.javateach666.pojo.bo.PageInfoBo;
+import com.ctbu.javateach666.pojo.bo.StudentInfoReqBO_zxy;
 import com.ctbu.javateach666.pojo.bo.TeacherInfoBo_zxy;
 import com.ctbu.javateach666.pojo.po.Account_zxy;
 import com.ctbu.javateach666.pojo.po.Authorities_zxy;
+import com.ctbu.javateach666.pojo.po.ClassPo_zxy;
+import com.ctbu.javateach666.pojo.po.StudentInfoPO_zxy;
 import com.ctbu.javateach666.pojo.po.TeacherInfo_zxy;
 import com.ctbu.javateach666.service.interfac.TeacherInfoService_zxy;
 @Service
@@ -82,9 +85,9 @@ public class TeacherInfoServiceImpl_zxy implements TeacherInfoService_zxy {
 			teaname="%"+teaBo.getTeaname()+"%";
 			teaBo.setTeaname(teaname);
 		}
-		System.out.println(teaBo.getTeaname()+"   "+teaBo.getProfessional());
+		//System.out.println(teaBo.getTeaname()+"   "+teaBo.getProfessional());
 		int total=teacherinfo.totalTeainfoBySeach(teaBo);
-		System.out.println(total+"total");
+		//System.out.println(total+"total");
 		if(total <1){
 			return rsp;
 		}
@@ -99,6 +102,41 @@ public class TeacherInfoServiceImpl_zxy implements TeacherInfoService_zxy {
 	public int updateTeaImageById(Map map) {
 		// TODO Auto-generated method stub
 		return teacherinfo.updateTeaImageById(map);
+	}
+
+	@Override
+	public List<ClassPo_zxy> getClassInfo() {
+		// TODO Auto-generated method stub
+		return teacherinfo.getClassInfo();
+	}
+
+	@Override
+	public int totalStuInfo(StudentInfoReqBO_zxy stuBo) {
+		// TODO Auto-generated method stub
+		return teacherinfo.totalStuInfo(stuBo);
+	}
+
+	@Override
+	public List<StudentInfoPO_zxy> getAllStuinfoByPage(StudentInfoReqBO_zxy stuBo) {
+		// TODO Auto-generated method stub
+		return teacherinfo.getAllStuinfoByPage(stuBo);
+	}
+
+	@Override
+	public PageInfoBo<StudentInfoPO_zxy> getStuBySeach(StudentInfoReqBO_zxy stuBo) {
+		// TODO Auto-generated method stub
+		PageInfoBo<StudentInfoPO_zxy> rsp=new PageInfoBo<StudentInfoPO_zxy>();
+		int page = 0;
+		page=(stuBo.getPage()-1)*stuBo.getRows();
+		stuBo.setPage(page);
+		int total=teacherinfo.totalStuInfo(stuBo);
+		if(total < 1){
+			return rsp;
+		}
+		List<StudentInfoPO_zxy> list=teacherinfo.getAllStuinfoByPage(stuBo);
+		rsp.setRows(list);
+		rsp.setTotal(total);
+		return rsp;
 	}
 
 }

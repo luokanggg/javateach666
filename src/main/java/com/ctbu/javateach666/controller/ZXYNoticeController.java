@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.druid.pool.vendor.SybaseExceptionSorter;
 import com.ctbu.javateach666.pojo.bo.NoticeBo_zxy;
 import com.ctbu.javateach666.pojo.bo.NoticeReqBO2_zxy;
 import com.ctbu.javateach666.pojo.bo.NoticeResBo_zxy;
@@ -46,6 +47,7 @@ public class ZXYNoticeController {
 		response.setCharacterEncoding("utf-8");
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		TeacherInfo_zxy tea=teainfoservice.getTeacherInfo(userDetails.getUsername());
+		
 		HttpSession session=request.getSession();
 		session.setAttribute("TeaInfo", tea);
 		//查询islook表，判断登录的用户有没有未查看的通知
@@ -75,6 +77,7 @@ public class ZXYNoticeController {
 		HttpSession session=request.getSession();
 		TeacherInfo_zxy tea=(TeacherInfo_zxy) session.getAttribute("TeaInfo");
 		String notname=tea.getTeaname();//通知人姓名
+		
 		int notid=tea.getId();//通知人ID
 		SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd");
 		Date date=new Date();
@@ -120,10 +123,10 @@ public class ZXYNoticeController {
 				try {
 					noticeservice.insertNotice(notice);
 					noticeservice.insertToNotice(notice);
-					map.put("mess", "通知成功");
+					map.put("mess", "信件发送成功");
 					return map;
 				} catch (Exception e) {
-					map.put("mess", "通知失败");
+					map.put("mess", "信件发送失败");
 					return map;
 				}
 			}
@@ -143,10 +146,10 @@ public class ZXYNoticeController {
 					}
 				}
 				if(tag==stus.size()){
-					map.put("mess", "通知成功");
+					map.put("mess", "信件发送成功");
 					
 				}else{
-					map.put("mess", "通知失败");
+					map.put("mess", "信件发送失败");
 					
 				}
 			}
@@ -183,10 +186,7 @@ public class ZXYNoticeController {
 		return page;
 	}
 	
-	@RequestMapping("/getAllTonotice")
-	public String getAllTonotice(){
-		return "teacherzxy/teanoticezxy/myalltonoticeinfo";
-	}
+	
 	@ResponseBody
 	@RequestMapping("/getAllTonoticelist")
 	public PageInfoBo<ToNoticeBoRsp_zxy> getAllTonoticelist(HttpServletRequest request,HttpServletResponse response,ToNoticeReqBo_zxy toReq){
@@ -217,10 +217,10 @@ public class ZXYNoticeController {
 		TeacherInfo_zxy tea=teainfoservice.getTeacherInfo(userDetails.getUsername());
 		int teaid=tea.getId();
 		if(teaid!=notid){
-			map.put("mess", "该通知不是您发布，不可以删除");
+			map.put("mess", "该信件不是您发布，不可以删除");
 			return map;
 		}else{
-			if(is_delete==1){
+		//	if(is_delete==1){
 				try {
 					noticeservice.deleteNoticeById(id);
 					map.put("mess", "删除成功");
@@ -229,10 +229,10 @@ public class ZXYNoticeController {
 					map.put("mess", "删除失败");
 				}
 				return map;
-			}else{
-				map.put("mess", "该通知不可以执行逻辑删除！");
-				return map;
-			}
+			//}else{
+				//map.put("mess", "该通知不可以执行逻辑删除！");
+				//return map;
+			//}
 		}
 		
 	}
@@ -240,25 +240,28 @@ public class ZXYNoticeController {
 	@ResponseBody
 	@RequestMapping(value="/notice_modify")
 	public Map goNotice_modify(HttpServletRequest request,int id){
-		//System.out.println("编辑Id:"+id);
+	/*	System.out.println("编辑Id:"+id);*/
+		HttpSession session=request.getSession();
 		Map map=new HashMap<String, String>();
 		Notice_zxy notice=noticeservice.getNoticeById(id);
 		int notid=0;//通知人Id
 		if(notice!=null){
 			notid=notice.getNotid();
+			//System.out.println("编辑时发布者的Id:"+notid);
+			session.setAttribute("notid", notid);
 		}
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		TeacherInfo_zxy tea=teainfoservice.getTeacherInfo(userDetails.getUsername());
 		int teaid=tea.getId();
 		if(teaid!=notid){
-			map.put("mess", "该通知不是您发布，不可以编辑");
+			map.put("mess", "该信件不是您发布，不可以编辑");
 			return map;
 		}else{
 			NoticeResBo_zxy res=new NoticeResBo_zxy();
 			res.setId(id);
 			res.setNotcontent(notice.getNotcontent());
 			res.setEndtime(notice.getEndtime());
-			res.setNotname(notice.notname);
+			res.setNotname(notice.getNotname());
 			res.setNottitle(notice.getNottitle());
 			res.setNoturl(notice.getNoturl());
 			res.setNottype(notice.getNottype()+"");
@@ -272,7 +275,7 @@ public class ZXYNoticeController {
 				String totname=teacher.getTeaname();
 				res.setTonotname(totname);
 			}
-			HttpSession session=request.getSession();
+			
 			session.setAttribute("resnotice",res);
 			map.put("mess", "modifynotice");
 			return map;
@@ -285,59 +288,58 @@ public class ZXYNoticeController {
 	}
 	@ResponseBody
 	@RequestMapping(value="/updatenotice")
-	public Map updateNotice(HttpServletRequest request,NoticeBo_zxy notice){
+	public Map updateNotice(HttpServletRequest request,NoticeBo_zxy notice) throws ParseException{
 		Map map=new HashMap();
-		//System.out.println("传入的参数："+notice.getId()+"  "+notice.getEndtime()+"  "+notice.getNotcontent()+"  "+notice.getNottitle());
+		System.out.println("传入的参数："+notice.getId()+"  "+notice.getEndtime()+"  "+notice.getNotcontent()+"  "+notice.getNottitle());
 		//id，notcontent,nottitle,noturl,endtime,satrttime,is_delete=1,
 		Notice_zxy tonot=new Notice_zxy();
+		Notice_zxy not=new Notice_zxy();
+		
 		int is_delete=1;
 		tonot.setIs_delete(is_delete);
+		
 		HttpSession session=request.getSession();
 		NoticeResBo_zxy res=(NoticeResBo_zxy) session.getAttribute("resnotice");
-		tonot.setNotid(res.getNotid());
+		int notid=(int) session.getAttribute("notid");
+		tonot.setNotid(notid);
 		tonot.setTonotid(Integer.parseInt(res.getTonotid()));
 		tonot.setNottype(Integer.parseInt(res.getNottype()));
 		tonot.setNotname(res.getNotname());
 		
 		if("".equals(notice.getNotcontent())){
-			notice.setNotcontent(res.getNotcontent());
+			not.setNotcontent(res.getNotcontent());
 			tonot.setNotcontent(res.getNotcontent());
 		}else{
 			tonot.setNotcontent(notice.getNotcontent());
+			not.setNotcontent(notice.getNotcontent());
 		}
+		
 		if("".equals(notice.getNottitle())){
-			notice.setNottitle(res.getNottitle());
+			not.setNottitle(res.getNottitle());
 			tonot.setNottitle(res.getNottitle());
 		}else{
 			tonot.setNottitle(notice.getNottitle());
+			not.setNottitle(notice.getNottitle());
 		}
-		if("".equals(notice.getNoturl())){
-			notice.setNoturl(res.getNoturl());
-			tonot.setNoturl(res.getNoturl());
-		}else{
-			tonot.setNoturl(notice.getNoturl());
-		}
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		Date date=res.getEndtime();
 		
-		String startdate=format.format(new Date());
-		//System.out.println("被通知的开始时间："+startdate+"    "+new Date());
-		tonot.setStarttime(new Date());
-		if("".equals(notice.getEndtime())){
-			notice.setEndtime(format.format(date));
-			tonot.setEndtime(date);
-			//System.out.println(notice.getEndtime()+"======");
-		}else{
-			try {
-				tonot.setEndtime(format.parse(startdate));
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		not.setNoturl("#");
+		tonot.setNoturl("#");
+		not.setId(notice.getId());
+		
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date startdate=new Date();
+		String start=format.format(startdate);
+		System.out.println("被通知的开始时间："+start+"   "+format.parse(start));
+		tonot.setStarttime(format.parse(start));
+		
+		tonot.setEndtime(format.parse(notice.getEndtime()));
+		not.setEndtime(format.parse(notice.getEndtime()));
+		
 		try {
 			int flag=0;
-			flag=noticeservice.updateNotice(notice);
+			flag=noticeservice.updateNotice(not);
 			noticeservice.insertToNotice(tonot);
 			if(flag==1){
 				map.put("mess", "更新成功！");
@@ -350,7 +352,7 @@ public class ZXYNoticeController {
 			
 		} catch (Exception e) {
 			// TODO: handle exception
-			map.put("mess", "更新失败！");
+			map.put("mess", "更新失败！!");
 			//System.out.println(e);
 			return map;
 		}
@@ -366,7 +368,7 @@ public class ZXYNoticeController {
 			flag=tonotice.getIs_look(); 
 		}
 		if(flag==1){
-			map.put("mess","该通知标志已是已读，不能再标志");
+			map.put("mess","该信件标志已是已读，不能再标志");
 			return map;
 		}else{
 			try {
@@ -466,5 +468,91 @@ public class ZXYNoticeController {
 			return map;
 		}
 		
+	}
+	
+	@ResponseBody
+	@RequestMapping("/zidonghuifu")
+	public Map zidonghuifu(int id) throws ParseException{
+		//System.out.println("自动回复的id==="+id);
+		//根据id查询该条记录
+		Tonotice_zxy tonotice=noticeservice.getTonotice_zxy(id);
+		Notice_zxy noticeReq=new Notice_zxy();
+		Map map=new HashMap();
+		if(tonotice!=null){
+			noticeReq.setNotid(tonotice.getTonotid());
+			noticeReq.setTonotid(tonotice.getNotid());
+			//int type=tonotice.getNottype();
+			String notname="";
+			if(tonotice.getNottype()==1){
+				StudentInfo_zxy stu=noticeservice.getStudentById(tonotice.getTonotid());
+				notname=stu.getStuname();
+			
+			}else if(tonotice.getNottype()==4){
+				TeacherInfo_zxy teacher=noticeservice.getTeacherById(tonotice.getTonotid());
+				notname=teacher.getTeaname();	
+			}
+			noticeReq.setNotcontent("您发送给 "+notname+" 的信件已被查收");
+			noticeReq.setNottype(tonotice.getNottype());
+			noticeReq.setNotname(notname);
+			
+			noticeReq.setNottitle("自动回复");
+			noticeReq.setNoturl("");
+			SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd");
+			Date date=new Date();
+			String starttime=dateFormater.format(date);//创建的时间
+			Date starttime1=dateFormater.parse(starttime);
+			noticeReq.setStarttime(starttime1);
+			noticeReq.setEndtime(starttime1);
+			try {
+				noticeservice.insertToNotice(noticeReq);
+				map.put("mess","自动回复成功");
+			} catch (Exception e) {
+				// TODO: handle exception
+				map.put("mess","自动回复失败");
+			}
+			return map;
+		}else{
+			map.put("mess","自动回复失败");
+			return map;
+		}
+	}
+	
+	
+	//我接收的所有信件全部信件
+	@RequestMapping("getAllTonotice")
+	public String goSendtomeNotice(){
+		return "teacherzxy/teanoticezxy/myalltonoticeinfo";
+	}
+	//我接收的所有信件
+	@ResponseBody
+	@RequestMapping("/getAllSendnoticelist")
+	public PageInfoBo<NoticeResBo_zxy> getAllSendnoticelist(NoticeBo_zxy notice,HttpServletResponse response,HttpServletRequest request){
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		TeacherInfo_zxy tea=teainfoservice.getTeacherInfo(userDetails.getUsername());
+		int tonotoiceid=tea.getId();
+		notice.setTonoticeid(tonotoiceid);
+		PageInfoBo<NoticeResBo_zxy> page=new PageInfoBo<NoticeResBo_zxy>();
+		page=noticeservice.getAllMyGet(notice);
+		return page;
+	}
+	
+	//我发送的所有信件
+	@RequestMapping("getAllMeSendnotice")
+	public String goAllMeSendnotice(){
+		return "teacherzxy/teanoticezxy/myallsendnotice";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/getAllMysendnotice")
+	public PageInfoBo<NoticeResBo_zxy> getAllSendNoticeinfos(HttpServletResponse response,HttpServletRequest request,NoticeBo_zxy notice) throws UnsupportedEncodingException, ParseException{
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		TeacherInfo_zxy tea=teainfoservice.getTeacherInfo(userDetails.getUsername());
+		String notname=tea.getTeaname();
+		notice.setNotname(notname);
+		
+		response.setCharacterEncoding("utf-8");
+		PageInfoBo<NoticeResBo_zxy> page=new PageInfoBo<NoticeResBo_zxy>();
+		page=noticeservice.getAllNoticeInfo(notice);
+		return page;
 	}
 }

@@ -27,7 +27,7 @@ public class THCIndexImgController {
 	private THCIndexImgService tHCIndexImgService;
 	
 	/**
-	 * 首页显示课程介绍列表
+	 * 首页显示轮播图
 	 */
 	@ResponseBody
 	@RequestMapping("/getpicture")
@@ -79,7 +79,8 @@ public class THCIndexImgController {
 	@ResponseBody
 	@RequestMapping("/showimg")
 	public String showImg(@RequestBody THCIndexImgPO tHCIndexImgPO){
-		int m = tHCIndexImgService.update(tHCIndexImgPO);
+		System.out.println("121212121"+JSON.toJSONString(tHCIndexImgPO));
+		int m = tHCIndexImgService.showimg(tHCIndexImgPO);
 		if(m == 1){
 			return "OK";
 		}else{

@@ -88,6 +88,10 @@ public class THCIndexImgServiceImpl extends BaseServiceImpl<THCIndexImgDao, THCI
 		return count;
 	}
 
+	public int showimg(THCIndexImgPO tHCIndexImgPO) {
+		return tHCIndexImgDao.showimg(tHCIndexImgPO);
+	}
+	
 	public int hideimg(THCIndexImgPO tHCIndexImgPO) {
 		return tHCIndexImgDao.hideimg(tHCIndexImgPO);
 	}

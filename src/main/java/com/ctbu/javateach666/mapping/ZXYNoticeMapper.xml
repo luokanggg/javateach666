@@ -101,7 +101,7 @@ INSERT INTO tonotice(notid,tonotid,nottype,notname,nottitle,notcontent,noturl,st
     SELECT * FROM teachersinfo WHERE id=#{id}
   </select>
   
-  <update id="updateNotice" parameterType="com.ctbu.javateach666.pojo.bo.NoticeBo_zxy">
+  <update id="updateNotice" parameterType="com.ctbu.javateach666.pojo.po.Notice_zxy">
   update notice set nottitle=#{nottitle},noturl=#{noturl},notcontent=#{notcontent},endtime=#{endtime} where id=#{id}
   </update>
   <!-- 教师未查看的通知记录 2表示学生通知老师的，4表示教师通知教师的-->
@@ -128,11 +128,11 @@ INSERT INTO tonotice(notid,tonotid,nottype,notname,nottitle,notcontent,noturl,st
   
   <select id="getAllTonoticelist"   parameterType="com.ctbu.javateach666.pojo.bo.ToNoticeReqBo_zxy"  resultType="com.ctbu.javateach666.pojo.bo.ToNoticeBoRsp_zxy">
    SELECT n.id AS id,t.teaname AS tonotname,n.endtime AS endtime,n.is_look AS is_look,n.notcontent AS notcontent,n.notname AS notname,n.nottitle AS nottitle,n.nottype AS nottype,n.noturl AS noturl,n.starttime AS starttime,n.is_delete AS is_delete
- FROM tonotice n,teachersinfo t WHERE  n.tonotid=1 AND  (n.nottype=2 OR nottype=4) AND t.id=n.tonotid limit #{page}, #{rows};
+ FROM tonotice n,teachersinfo t WHERE  n.tonotid=#{id} AND  (n.nottype=2 OR nottype=4) AND t.id=n.tonotid limit #{page}, #{rows};
   </select>
   <select id="TotalTonotice" parameterType="com.ctbu.javateach666.pojo.bo.ToNoticeReqBo_zxy"  resultType="int">
   SELECT COUNT(*)
- FROM tonotice n,teachersinfo t WHERE  n.tonotid=1 AND  (n.nottype=2 OR nottype=4) AND t.id=n.tonotid;
+ FROM tonotice n,teachersinfo t WHERE  n.tonotid=#{id} AND  (n.nottype=2 OR nottype=4) AND t.id=n.tonotid;
  
   </select>
   
@@ -143,4 +143,20 @@ INSERT INTO tonotice(notid,tonotid,nottype,notname,nottitle,notcontent,noturl,st
   <select id="getAllStuByClassId" parameterType="int" resultType="com.ctbu.javateach666.pojo.po.StudentInfoPO_zxy">
   SELECT * FROM studentinfo WHERE classid=#{classid}
   </select>
+  
+  <select id="getTonotice_zxy" parameterType="int" resultType="com.ctbu.javateach666.pojo.po.Tonotice_zxy">
+  SELECT *  FROM tonotice  WHERE id=#{id}
+  </select>
+  
+  <!-- 沃接收的 -->
+   <select id="totalMyGetNotice" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.NoticeBo_zxy">
+     SELECT COUNT(*)
+  FROM teachersinfo t,tonotice n
+  WHERE n.nottype=4 AND n.tonotid=t.id  AND n.tonotid=2
+   </select>
+    <select id="getMyGetBotice" resultType="com.ctbu.javateach666.pojo.bo.NoticeResBo_zxy" parameterType="com.ctbu.javateach666.pojo.bo.NoticeBo_zxy">
+     SELECT n.id,n.notname,t.teaname AS tonotname,n.notcontent,n.nottitle,n.nottype,n.noturl,n.starttime,n.endtime,n.is_look as is_look
+  FROM teachersinfo t,tonotice n
+  WHERE n.nottype=4 AND n.tonotid=t.id  AND n.tonotid=#{tonoticeid} limit  #{page}, #{rows};
+   </select>
 </mapper>

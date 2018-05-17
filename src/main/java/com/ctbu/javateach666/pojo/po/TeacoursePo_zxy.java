@@ -1,6 +1,8 @@
 package com.ctbu.javateach666.pojo.po;
 
-public class TeacoursePo_zxy {
+import java.io.Serializable;
+
+public class TeacoursePo_zxy implements Serializable{
 	private int id;
 	private String teaname;
 	private int teaid;

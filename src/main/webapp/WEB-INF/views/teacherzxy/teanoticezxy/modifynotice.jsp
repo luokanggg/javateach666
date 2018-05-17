@@ -11,7 +11,7 @@
 <meta name="_csrf_header"  content="${_csrf.headerName}"/> --%>
 <%@include file="/common/easyui.jspf"%>
 <link rel="stylesheet" type="text/css" href="${basePath}/static/css/main.css"/>
-<title>通知管理</title>
+<title>信件管理</title>
 </head>
 <style>
 select {
@@ -138,7 +138,7 @@ border-radius:7px;
 			</div>
 			<div class="tab2">
 				<div class="tab3">
-					<span color="#CCC" id="wei">&nbsp;&nbsp;通知管理/编辑通知</span>
+					<span color="#CCC" id="wei">&nbsp;&nbsp;信件管理/编辑信件</span>
 					
 				
 				</div>
@@ -154,7 +154,7 @@ border-radius:7px;
 		  </tr>
 		 
 		  <tr>
-		 	 <td width="80px" bgcolor="#FFFFFF" height="35px" style="border-right-style:none" align="right" valign="middle"><font style="font-size:13px">通知类型&nbsp;&nbsp;</font></td>
+		 	 <td width="80px" bgcolor="#FFFFFF" height="35px" style="border-right-style:none" align="right" valign="middle"><font style="font-size:13px">信件类型&nbsp;&nbsp;</font></td>
 		    <td  width="170px" bgcolor="#FFFFFF" style="border-left-style:none" align="left"  valign="middle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<c:if test="${resnotice.nottype == 1}">
 			老师通知学生
@@ -171,25 +171,17 @@ border-radius:7px;
 		 
 		 
 		  <tr>
-		  <td width="80px" height="35px" style="border-right-style:none;" bgcolor="#FFFFFF" align="right" valign="middle"><font style="font-size:13px">通知标题</font><font style="color:red">&nbsp;*</font></td>
-		    <td  width="170px" bgcolor="#FFFFFF" align="center" style="border-left-style:none;" valign="middle">
-		     <input style="width:220px;height:28px" type="text" id="nottitle" class="easyui-textbox"  value="${resnotice.nottitle }"  >
-		     </td>
-		      <td width="70px" height="35px" bgcolor="#FFFFFF" style="border-right-style:none" align="left" valign="middle"><font style="font-size:13px">链接页面&nbsp;</font><font style="color:red">&nbsp;*</font></td>
-		    <td  bgcolor="#FFFFFF" style="border-left-style:none" align="left" valign="middle">
-		  
-		   <input value="${ resnotice.noturl}" style="width:220px;height:28px" class="easyui-textbox" data-options="multiline:true" id="noturl"/>
-		    
-		   </td>
-		    
-		    
+		  <td width="80px" height="35px"  bgcolor="#FFFFFF" align="right" valign="middle"><font style="font-size:13px">信件标题</font><font style="color:red">&nbsp;*</font></td>
+		    <td  colspan="3"  bgcolor="#FFFFFF" align="center" style="border-left-style:none;" valign="middle">
+		     
+		     <input style="width:610px;height:28px"  id="nottitle" class="easyui-textbox"  value="${resnotice.nottitle }"  >
+		     </td> 
 		  </tr>
-		 
 		  <tr>
-		  <td  width="80px" height="38px" style="border-right-style:none;" bgcolor="#FFFFFF" align="right" valign="middle"><font style="font-size:13px">通知内容</font><font style="color:red">&nbsp;*</font></td>
+		  <td  width="80px" height="35px"  bgcolor="#FFFFFF" align="right" valign="middle"><font style="font-size:13px">信件内容</font><font style="color:red">&nbsp;*</font></td>
 		    <td  colspan="3" bgcolor="#FFFFFF"  style="border-left-style:none" align="left" valign="middle">
-		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		   <input style="width:620px;height:38px" class="easyui-textbox" id="notcontent" value="${ resnotice.notcontent}"/>
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		   <input style="width:610px;height:28px" class="easyui-textbox" id="notcontent" data-options="multiline:true" value="${ resnotice.notcontent}"/>
 		    </td>
 		  </tr>
 		  <tr><td colspan="4" height="3px"></td></tr>
@@ -199,7 +191,7 @@ border-radius:7px;
 		    	<a id="submitbtn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'"><span style="font-size:14px">提&nbsp;交</span></a> 
 		    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		    	<a id="fankuibtn" href="noticeinfolist" class="easyui-linkbutton" data-options="iconCls:'icon-back'"><span style="font-size:14px">返&nbsp;回</span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		    	<a id="fankuibtn" href="getAllMeSendnotice" class="easyui-linkbutton" data-options="iconCls:'icon-back'"><span style="font-size:14px">返&nbsp;回</span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 		    </td>
 		  </tr>
 		</table>
@@ -208,26 +200,8 @@ border-radius:7px;
 	</div>
 	</div>
 	<script type="text/javascript" src="${basePath}/static/js/vue.js"></script>
+	
 	<script type="text/javascript">
-	
-	 var d1 = Math.floor((Math.random()*30)+1);
-	 var d2 = Math.floor((Math.random()*30)+1);
-
-	 function formatDay(date){
-	 	var m = date.getMonth()+1;
-	 	var d = date.getDate();
-
-	 	var opts = $(this).calendar('options');
-	 	if (opts.month == m && d == 1){
-	 		return '<div class="icon-ok md">' + d + '</div>';
-	 	} else if (opts.month == m && d == 30){
-	 		//return '<div class="icon-search md">' + d + '</div>';
-	 	}else if (opts.month == m && d == 31){
-	 		return '<div class="icon-search md">' + d + '</div>';
-	 	}
-	 	return d;
-	 }
-	
 	$(function(){    
     	$('#submitbtn').bind('click', function(){   
     		var id=$("#id").val(); 
@@ -242,12 +216,12 @@ border-radius:7px;
 			if(""==endtime){
 				endtime="9999-01-01";
 			}  
-			var noturl="";
+			var noturl="#";
 			noturl=$("#noturl").val(); 
 			var notcontent="";
 			notcontent=$("#notcontent").val();
 			if(notcontent==""){
-				$.messager.alert('警告','通知的内容不能为空，请填写通知内容','warning');
+				$.messager.alert('警告','信件的内容不能为空，请填写信件内容','warning');
 			}
 			data={
 					"notcontent":notcontent,

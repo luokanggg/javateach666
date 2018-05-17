@@ -1,5 +1,6 @@
 package com.ctbu.javateach666.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -8,11 +9,13 @@ import org.springframework.stereotype.Service;
 
 import com.ctbu.javateach666.dao.PublishCourseDao;
 import com.ctbu.javateach666.pojo.bo.PageInfoBo;
+import com.ctbu.javateach666.pojo.bo.PlanCoutseBo_zxy;
 import com.ctbu.javateach666.pojo.bo.StuTeaCourseBo_zxy;
 import com.ctbu.javateach666.pojo.bo.TeaCourseReqBo;
 import com.ctbu.javateach666.pojo.bo.TeacourseBo_zxy;
 import com.ctbu.javateach666.pojo.po.Course_zxy;
 import com.ctbu.javateach666.pojo.po.Dictionaries_zxy;
+import com.ctbu.javateach666.pojo.po.PlanCoutsePo_zxy;
 import com.ctbu.javateach666.pojo.po.TeacherInfo_zxy;
 import com.ctbu.javateach666.pojo.po.TeacoursePo_zxy;
 import com.ctbu.javateach666.service.interfac.PublishCourseServise_zxy;
@@ -120,5 +123,80 @@ public class PublishCourseServiseImpl_zxy implements PublishCourseServise_zxy{
 		// TODO Auto-generated method stub
 		return publishcourse.getTeaCourseKB(map);
 	}
+	
+	@Override
+	public int totalTeaCourse(PlanCoutseBo_zxy pcBo) {
+		// TODO Auto-generated method stub
+		return publishcourse.totalTeaCourse(pcBo);
+	}
+	@Override
+	public List<TeacoursePo_zxy> TeaCourseByPage(PlanCoutseBo_zxy pcBo) {
+		// TODO Auto-generated method stub
+		return publishcourse.TeaCourseByPage(pcBo);
+	}
+	@Override
+	public PageInfoBo<TeacoursePo_zxy> getTeaCourse(PlanCoutseBo_zxy pcBo) {
+		// TODO Auto-generated method stub
+		PageInfoBo<TeacoursePo_zxy> rsp = new PageInfoBo<TeacoursePo_zxy>();
+		int page=0;
+		page=(pcBo.getPage()-1)*pcBo.getRows();
+		pcBo.setPage(page);
+		int total=publishcourse.totalTeaCourse(pcBo);
+		if(total < 1){
+			return rsp;
+		}
+		List<TeacoursePo_zxy> list=publishcourse.TeaCourseByPage(pcBo);
+		rsp.setRows(list);
+		rsp.setTotal(total);
+		return rsp;
+	}
+	@Override
+	public int insertPlanCOurse(PlanCoutseBo_zxy pcBo) {
+		// TODO Auto-generated method stub
+		return publishcourse.insertPlanCOurse(pcBo);
+	}
+	@Override
+	public int totalPlanCourse(PlanCoutseBo_zxy pcBo) {
+		// TODO Auto-generated method stub
+		return publishcourse.totalPlanCourse(pcBo);
+	}
+	@Override
+	public List<PlanCoutsePo_zxy> getPlanCourseByPage(PlanCoutseBo_zxy pcBo) {
+		// TODO Auto-generated method stub
+		return publishcourse.getPlanCourseByPage(pcBo);
+	}
+	@Override
+	public PageInfoBo<PlanCoutsePo_zxy> getmycourseplanBySearch(PlanCoutseBo_zxy pcBo) {
+		// TODO Auto-generated method stub
+		PageInfoBo<PlanCoutsePo_zxy> rsp=new PageInfoBo<PlanCoutsePo_zxy>();
+		int page=0;
+		page=(pcBo.getPage()-1)*pcBo.getRows();
+		pcBo.setPage(page);
+		int total=publishcourse.totalPlanCourse(pcBo);
+		if(total < 1){
+			return rsp;
+		}
+		List<PlanCoutsePo_zxy> list=new ArrayList<>();
+		list=publishcourse.getPlanCourseByPage(pcBo);
+		rsp.setRows(list);
+		rsp.setTotal(total);
+		return rsp;
+	}
+	@Override
+	public PlanCoutsePo_zxy getPlanCoutseById(int id) {
+		// TODO Auto-generated method stub
+		return publishcourse.getPlanCoutseById(id);
+	}
+	@Override
+	public int updatePlanById(PlanCoutseBo_zxy pcBo) {
+		// TODO Auto-generated method stub
+		return publishcourse.updatePlanById(pcBo);
+	}
+	@Override
+	public List<TeacoursePo_zxy> getTeaCourseKBforExcel(Map map) {
+		// TODO Auto-generated method stub
+		return publishcourse.getTeaCourseKBforExcel(map);
+	}
+	
 	
 }

@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@include file="/common/easyui.jspf"%>
-<title>未阅读通知</title>
+<title>未阅读信件</title>
 </head>
 <style>
 .datagrid-row {
@@ -24,8 +24,8 @@
         <div id="#noreadnoticeinfo-toolbar">
              <div class="wu-toolbar-button">
               <a href="noticeinfo" plain="true" iconCls="icon-back" class="easyui-linkbutton" >返&nbsp;回</a>
-              &nbsp;&nbsp;&nbsp;&nbsp; <a href="getAllTonotice" plain="true"  class="easyui-linkbutton" iconCls="icon-search" onclick="LookALlToNotice()"
-                   >查看所有通知</a>&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp; 
+              <!-- <a href="getAllTonotice" plain="true"  class="easyui-linkbutton" iconCls="icon-search" onclick="LookALlToNotice()">查看所有信件</a>&nbsp;&nbsp;&nbsp;&nbsp; -->
                 <a href="javascript:;" plain="true"  class="easyui-linkbutton" iconCls="icon-edit" onclick="ReadNoticePL()"
                    >批量标志</a>&nbsp;&nbsp;&nbsp;&nbsp;
                 <a href="javascript:;" plain="true"  class="easyui-linkbutton" iconCls="icon-cancel" onclick="DeleteNOReadNoticePL()">批量删除</a> 
@@ -33,7 +33,9 @@
             </div> 
 		</div>
          <!-- End of toolbar -->
+         <div style="width:1343px;height:420px;">
         <table id="noreadnoticeinfo-datagrid" toolbar="#noreadnoticeinfo-toolbar"></table>  
+    </div>
     </div>
 	</div>
 	
@@ -50,15 +52,15 @@
 		        multiSort: true,
 		       fitColumns: true,
 		        pageList:[10,15,20],
-		       //fit: true,
+		       fit: true,
 		       striped:true,
 		        columns: [[
 		            {field: 'ck', width:"40" ,align:"center",checkbox: true},
 		            {field: 'id', title:'ID',align:"center", width: 40},
 		            {field: 'notname', align:"center",title: '通知人姓名', width: 80},
 		            {field: 'tonotname', align:"center",title: '被通知人姓名', width: 80},
-		            {field: 'nottitle', align:"center",title: '标题', width: 135,editor:"text"},
-		            {field: 'nottype', align:"center",title: '类型', width: 150, 
+		            {field: 'nottitle', align:"center",title: '标题', width: 115,editor:"text"},
+		            {field: 'nottype', align:"center",title: '类型', width: 130, 
 		            	formatter : function(value){
 		            		if(value==1){
 		            			return "老师通知学生";
@@ -68,7 +70,7 @@
 		            	}
 		            },
 		            {field: 'notcontent', align:"center",title: '内容', width: 190,editor:"text"},
-		            {field: 'noturl', align:"center",title: 'url地址', width: 100,editor:"text"},
+		            
 		            {field: 'starttime', align:"center",title: '开始时间', width: 90,
 		            	  formatter : function(value){
 		                        var date = new Date(value);
@@ -98,8 +100,9 @@
 		            		}
 		            	}	
 		            },
-		            {field: 'operate', title: '操作', align:'center',width:$(this).width()*0.12,formatter:function(value, row, index){  
-						var str = '<a href="#" name="read" class="easyui-linkbutton" onclick="ReadNotice()"></a>'+"  "+'<a href="#" name="delete" onclick="DeleteNOReadNotice()"  class="easyui-linkbutton"></a>';  
+		            {field: 'operate', title: '操作', align:'center',width:190,formatter:function(value, row, index){  
+						var str = '<a href="#" name="read" class="easyui-linkbutton" onclick="ReadNotice()"></a>'+"  "+'<a href="#" name="delete" onclick="DeleteNOReadNotice()"  class="easyui-linkbutton"></a>'+
+						'<a href="#" name="huifu" onclick="ZiDongHuiFu()"  class="easyui-linkbutton"></a>';  
 						return str;  
 					}}
 				]],
@@ -107,6 +110,7 @@
 
 					$("a[name='read']").linkbutton({text:'标志',plain:true,iconCls:'icon-edit'});
 					$("a[name='delete']").linkbutton({text:'删除',plain:true,iconCls:'icon-remove'});
+					$("a[name='huifu']").linkbutton({text:'自动回复',plain:true,iconCls:'icon-ok'});
 					
 				}
 		    });
@@ -197,6 +201,37 @@
 				} 
 			});				
  		}
+ 		
+ 		
+ 		function ZiDongHuiFu(){
+ 			var rows = $('#noreadnoticeinfo-datagrid').datagrid('getSelections');
+ 			var param = {"id":rows[0].id};
+			$.ajax({
+				type:'post',
+				url:'zidonghuifu',
+				dataType:"json",    //必须配置
+				data:param,//转换成字符串，客户端作为生产者
+				success:function(result){
+					$.messager.alert("提示","     "+result.mess,"info");
+				} 
+			});	
+ 		}
+ 		 function judgeurl(){
+				 var rows = $('#noreadnoticeinfo-datagrid').datagrid('getSelections');
+			  		if (rows.length >1||rows.length==0) {
+						$.messager.alert('操作提示', "请选择一条记录！", 'warning');
+						return;
+					}
+			  		var uri=rows[0].noturl;
+			  		
+				 var URLRexExp = new RegExp(/^[A-Za-z]+:\/\/[A-Za-z0-9-_]+.[A-Za-z0-9-_%&\?\/.:=]+$/); 
+				 if(URLRexExp.test(uri)){
+					 window.location.href=uri;
+				 }else{
+					 window.open("goerror","_parent");
+				}
+				 
+			 }
 	</script>
 </body>
 </html>

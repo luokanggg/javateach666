@@ -15,7 +15,7 @@ public class NoticeBo_zxy {
 	private int rows;
 	
 	public String tonotid;
-	
+	public int tonoticeid;
 	public String nottype;
 	public String notname;
 	
@@ -30,7 +30,12 @@ public class NoticeBo_zxy {
 	//@JSONField(format = "yyyy-MM-dd")
 	public String endtime;
 
-	
+	@JSONField(format = "yyyy-MM-dd")
+
+	public Date starttime1;
+	@JSONField(format = "yyyy-MM-dd")
+
+	public Date endtime1;
 	public int is_delete;
 
 	public int getId() {
@@ -148,6 +153,48 @@ public class NoticeBo_zxy {
 
 	public void setRows(int rows) {
 		this.rows = rows;
+	}
+
+	/**
+	 * @return the tonoticeid
+	 */
+	public int getTonoticeid() {
+		return tonoticeid;
+	}
+
+	/**
+	 * @param tonoticeid the tonoticeid to set
+	 */
+	public void setTonoticeid(int tonoticeid) {
+		this.tonoticeid = tonoticeid;
+	}
+
+	/**
+	 * @return the starttime1
+	 */
+	public Date getStarttime1() {
+		return starttime1;
+	}
+
+	/**
+	 * @param starttime1 the starttime1 to set
+	 */
+	public void setStarttime1(Date starttime1) {
+		this.starttime1 = starttime1;
+	}
+
+	/**
+	 * @return the endtime1
+	 */
+	public Date getEndtime1() {
+		return endtime1;
+	}
+
+	/**
+	 * @param endtime1 the endtime1 to set
+	 */
+	public void setEndtime1(Date endtime1) {
+		this.endtime1 = endtime1;
 	}
 	
 	

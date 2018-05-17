@@ -4,9 +4,12 @@ package com.ctbu.javateach666.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.ctbu.javateach666.pojo.bo.StudentInfoReqBO_zxy;
 import com.ctbu.javateach666.pojo.bo.TeacherInfoBo_zxy;
 import com.ctbu.javateach666.pojo.po.Account_zxy;
 import com.ctbu.javateach666.pojo.po.Authorities_zxy;
+import com.ctbu.javateach666.pojo.po.ClassPo_zxy;
+import com.ctbu.javateach666.pojo.po.StudentInfoPO_zxy;
 import com.ctbu.javateach666.pojo.po.TeacherInfo_zxy;
 
 public interface TeacherInfoDao_zxy {
@@ -38,4 +41,12 @@ public interface TeacherInfoDao_zxy {
 	
 	//根据登录用户的id更新用户的头像
 	public int updateTeaImageById(Map map);
+	
+	//获取所有的班级信息
+	public List<ClassPo_zxy> getClassInfo();
+	
+	//获取学生信息的总数
+	public int totalStuInfo(StudentInfoReqBO_zxy stuBo);
+	//获取学生信息的列表
+	public List<StudentInfoPO_zxy> getAllStuinfoByPage(StudentInfoReqBO_zxy stuBo);
 }

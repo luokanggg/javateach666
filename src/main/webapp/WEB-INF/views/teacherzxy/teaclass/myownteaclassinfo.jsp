@@ -24,7 +24,6 @@ td {     text-align:center; }
 </span>
 </div>
 
-	
 		  学年：<select id="couyear" class="easyui-combobox" name="couyear" style="width:60px;">   
     					<c:forEach items="${diccouyear}" var="se">
     						<option  value="${se.value }" >${se.value }</option>
@@ -76,10 +75,8 @@ td {     text-align:center; }
 			type:'post',
 			url:'myteacourseKBinfo',
 			contentType:"application/json",    //必须配置
-			//data:JSON.stringify(param),//转换成字符串，客户端作为生产者
 			success:function(result){
 				for (var i = 1; i < 13; i++) {
-					//$("#" + i ).append("<td>" + i + "</td>");
 					for (var j = 1; j < 8; j++) {
 						var tag = 0;
 						for (var n = 0; n < result.length; n++) {
