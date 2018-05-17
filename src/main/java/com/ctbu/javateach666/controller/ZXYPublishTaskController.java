@@ -113,7 +113,7 @@ public class ZXYPublishTaskController {
 	@ResponseBody
 	@RequestMapping("task_delete")
 	public Map goDeleteTask(int id){
-		Map map=new HashMap<>();
+		Map map=new HashMap<Object, Object>();
 		
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		AdminInfoPO_zxy admin=taskService.getAdminInfo(userDetails.getUsername());
@@ -128,7 +128,7 @@ public class ZXYPublishTaskController {
 			teataskbo.setIscheck(1);
 			teataskbo.setCheckstatus(1);
 			teataskbo.setTaskid(id);
-			List<TeataskPo_zxy> teataskPo=new ArrayList<>();
+			List<TeataskPo_zxy> teataskPo=new ArrayList<TeataskPo_zxy>();
 			teataskPo=taskService.isChoicedAndAgree(teataskbo);
 			if(teataskPo.size()>0){
 				map.put("mess", "1111");
@@ -502,7 +502,7 @@ public class ZXYPublishTaskController {
 	@ResponseBody
 	@RequestMapping("searchmytaskfile")
 	public Map SearchMyTaskfile(HttpServletRequest request){
-		Map map=new HashMap<>();
+		Map map=new HashMap<Object, Object>();
 		HttpSession session=request.getSession();
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		TeacherInfo_zxy tea=teainfoservice.getTeacherInfo(userDetails.getUsername());
@@ -548,13 +548,10 @@ public class ZXYPublishTaskController {
 	             str += s;  
 	             s = rd.readLine();  
 	         }
-		 } catch (UnsupportedEncodingException | FileNotFoundException e) {
+		 } catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} 
 		 UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		 TeacherInfo_zxy tea=teainfoservice.getTeacherInfo(userDetails.getUsername());
 		 String username=tea.getTeaname();
@@ -591,7 +588,7 @@ public class ZXYPublishTaskController {
 		//根据id获取地址
 		//System.out.println("id=========="+id);
 		AccessaryPo_zxy accPo=taskService.getAccessaryById(id);
-		Map map=new HashMap<>();
+		Map map=new HashMap<Object, Object>();
 		if(accPo!=null){
 			map.put("mess", "0000");
 			String accurl=accPo.getAccurl();
@@ -605,13 +602,10 @@ public class ZXYPublishTaskController {
 		             str += s;  
 		             s = rd.readLine();  
 		         }
-			} catch (UnsupportedEncodingException | FileNotFoundException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			} 
 			 session.setAttribute("teaname",teaname);
 			 session.setAttribute("detailtask",str);
 			 //读取文件的内容显示在页面上

@@ -1,5 +1,6 @@
 package com.ctbu.javateach666.controller.thc;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,7 @@ import com.ctbu.javateach666.pojo.po.thcpo.THCJournalismPO;
 import com.ctbu.javateach666.pojo.po.thcpo.THCStudentInfoPO;
 import com.ctbu.javateach666.pojo.po.thcpo.THCTeachersInfoPO;
 import com.ctbu.javateach666.service.interfac.thc.THCStudentService;
+import com.ctbu.javateach666.util.BCryptEncoderUtil;
 
 @Controller
 public class THCStudentController {
@@ -64,6 +66,8 @@ public class THCStudentController {
 			THCStudentInfoPO tHCStudentInfoPO1 = new THCStudentInfoPO();
 			tHCStudentInfoPO1 = tHCStudentService.selectIdbyStuno(tHCStudentInfoPO);
 			tHCAccountPO.setUserdetailid(tHCStudentInfoPO1.getId());
+			String password = BCryptEncoderUtil.passwordEncoder(tHCAccountPO.getPassword());
+			tHCAccountPO.setPassword(password);
 			int m = tHCStudentService.insert(tHCAccountPO);
 			THCAuthoritiesPO tHCAuthoritiesPO = new THCAuthoritiesPO();
 			tHCAuthoritiesPO.setUsername(tHCAccountPO.getUsername());
@@ -86,8 +90,15 @@ public class THCStudentController {
 	@ResponseBody
 	@RequestMapping("/getSexList")
 	public List<THCDictionariesListRspBO> getSexList(@RequestParam("dtype") String dtype){
-		List<THCDictionariesListRspBO> list = tHCStudentService.getSelectList(dtype);
-		System.out.println(list);
+		String dtype1 = null;
+		try {
+			dtype1=new String(dtype.getBytes("ISO-8859-1"),"utf-8");
+			//lKMyClassInfoListRepBO.setStuname(stuname);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		List<THCDictionariesListRspBO> list = tHCStudentService.getSelectList(dtype1);
+		System.out.println("性别"+list);
 		return list;
 	}
 	
@@ -98,8 +109,16 @@ public class THCStudentController {
 	@ResponseBody
 	@RequestMapping("/getPoliticalList")
 	public List<THCDictionariesListRspBO> getPoliticalList(@RequestParam("dtype") String dtype){
-		List<THCDictionariesListRspBO> list = tHCStudentService.getSelectList(dtype);
-		System.out.println(list);
+		String dtype1 = null;
+		try {
+			dtype1=new String(dtype.getBytes("ISO-8859-1"),"utf-8");
+			//lKMyClassInfoListRepBO.setStuname(stuname);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		System.out.println(dtype1);
+		List<THCDictionariesListRspBO> list = tHCStudentService.getSelectList(dtype1);
+		System.out.println("政治面貌"+list);
 		return list;
 	}
 	
@@ -111,7 +130,7 @@ public class THCStudentController {
 	@RequestMapping("/getCollegeList")
 	public List<THCClassPO> getCollegeList(){
 		List<THCClassPO> list = tHCStudentService.getCollegeList();
-		System.out.println(list);
+		System.out.println("学院"+list);
 		return list;
 	}
 	
@@ -122,8 +141,15 @@ public class THCStudentController {
 	@ResponseBody
 	@RequestMapping("/getMajorList")
 	public List<THCClassPO> getMajorList(@RequestParam("college") String college){
-		List<THCClassPO> list = tHCStudentService.getMajorList(college);
-		System.out.println(list);
+		String college1 = null;
+		try {
+			college1=new String(college.getBytes("ISO-8859-1"),"utf-8");
+			//lKMyClassInfoListRepBO.setStuname(stuname);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		List<THCClassPO> list = tHCStudentService.getMajorList(college1);
+		System.out.println("专业"+list);
 		return list;
 	}
 	
@@ -134,8 +160,15 @@ public class THCStudentController {
 	@ResponseBody
 	@RequestMapping("/getClassnameList")
 	public List<THCClassPO> getClassnameList(@RequestParam("major") String major){
-		List<THCClassPO> list = tHCStudentService.getClassnameList(major);
-		System.out.println(list);
+		String major1 = null;
+		try {
+			major1=new String(major.getBytes("ISO-8859-1"),"utf-8");
+			//lKMyClassInfoListRepBO.setStuname(stuname);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		List<THCClassPO> list = tHCStudentService.getClassnameList(major1);
+		System.out.println("班级"+list);
 		return list;
 	}
 	
@@ -173,6 +206,8 @@ public class THCStudentController {
 	@ResponseBody
 	@RequestMapping("/updatestu")
 	public String updateStu(THCAccountPO tHCAccountPO, THCStudentInfoPO tHCStudentInfoPO){
+		String password = BCryptEncoderUtil.passwordEncoder(tHCAccountPO.getPassword());
+		tHCAccountPO.setPassword(password);
 		int m = tHCStudentService.update(tHCAccountPO);
 		int n = tHCStudentService.updateStu(tHCStudentInfoPO);
 		if(m == 1 && n == 1){

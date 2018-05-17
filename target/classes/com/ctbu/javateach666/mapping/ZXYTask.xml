@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.TaskDao_zxy">
+  <select id="getTaskInfo" resultType="com.ctbu.javateach666.pojo.po.Dictionaries_zxy" parameterType="String">
+    SELECT * FROM dictionaries WHERE dtype=#{dtype}
+  </select>
+  <select id="getAdminInfo" resultType="com.ctbu.javateach666.pojo.po.AdminInfoPO_zxy" parameterType="String"> 
+  SELECT ad.* 
+  FROM account a, adminsinfo ad 
+  WHERE a.`userdetailid` = ad.`id` AND a.`username` = #{username}
+  </select>
+  <insert id="insertTaskInfo" parameterType="com.ctbu.javateach666.pojo.bo.TaskBo_zxy">
+  	INSERT INTO task(taskname,tasktype,taskcontent,taskpublisher,taskpublishid,taskpubtime) VALUE (#{taskname},#{tasktype},#{taskcontent},#{taskpublisher},#{taskpublishid},#{taskpubtime});
+  </insert>
+  <select id="getTaskByTaskInfo" parameterType="com.ctbu.javateach666.pojo.bo.TaskBo_zxy" resultType="com.ctbu.javateach666.pojo.po.TaskPo_zxy">
+  select * from task where taskname=#{taskname} and tasktype=#{tasktype}  and taskcontent=#{taskcontent}
+  </select>
+  
+  <select id="totalTask" parameterType="com.ctbu.javateach666.pojo.bo.TaskBo_zxy" resultType="int"> 
+  select count(*) from task 
+  </select>
+    <select id="getTaskByPage" parameterType="com.ctbu.javateach666.pojo.bo.TaskBo_zxy" resultType="com.ctbu.javateach666.pojo.bo.TaskBo_zxy"> 
+  select * from task limit #{page},#{rows}
+  </select>
+  <delete id="deleteTaskById" parameterType="int">
+  delete from task where id=#{id}
+  </delete>
+  
+  <select id="getTaskById" parameterType="int" resultType="com.ctbu.javateach666.pojo.po.TaskPo_zxy">
+  select * from task where id=#{id}
+  </select>
+  
+  <select id="totalTaskToChoice" parameterType="com.ctbu.javateach666.pojo.bo.TaskBo_zxy" resultType="int">
+  select count(*) from task where 1=1
+  <if test="tasktype != null and tasktype!=''">
+		and tasktype like #{tasktype} 
+  </if> 
+  </select>
+  <select id="getAllTask" parameterType="com.ctbu.javateach666.pojo.bo.TaskBo_zxy" resultType="com.ctbu.javateach666.pojo.po.TaskPo_zxy">
+  select * from task where 1=1
+  <if test="tasktype != null and tasktype!=''">
+		and tasktype like #{tasktype} 
+  </if> 
+  limit #{page},#{rows}
+  </select>
+  
+  <select id="IsCanChoice" parameterType="com.ctbu.javateach666.pojo.bo.TeataskBo_zxy" resultType="com.ctbu.javateach666.pojo.po.TeataskPo_zxy">
+  SELECT * FROM teatask WHERE teaid=#{teaid} AND ischeck=#{ischeck}
+  </select>
+  <select id="IsCanChoiceById" parameterType="int" resultType="com.ctbu.javateach666.pojo.po.TeataskPo_zxy">
+   SELECT * FROM teatask WHERE teaid=#{teaid} 
+  </select>
+  
+  <select id="ChoiceAndIsAgree" parameterType="com.ctbu.javateach666.pojo.bo.TeataskBo_zxy" resultType="com.ctbu.javateach666.pojo.po.TeataskPo_zxy">
+   SELECT * FROM teatask WHERE teaid=#{teaid} AND ischeck=#{ischeck} and checkstatus=#{checkstatus}
+  </select>
+  
+  <insert id="inserTeaTask" parameterType="com.ctbu.javateach666.pojo.bo.TeataskBo_zxy" >
+  INSERT INTO teatask(taskid,teaid,teaname,checkstatus,ischeck) VALUES (#{taskid},#{teaid},#{teaname},#{checkstatus},#{ischeck});
+  </insert>
+  <update id="updateTeaTask" parameterType="com.ctbu.javateach666.pojo.bo.TeataskBo_zxy"  >
+  UPDATE teatask SET taskid=#{taskid},checkstatus=#{checkstatus},ischeck=#{ischeck} where id=#{id}
+  </update>
+  
+  <update id="updateTeaTaskDis" parameterType="com.ctbu.javateach666.pojo.bo.TeataskBo_zxy"  >
+  UPDATE teatask SET checktime=NULL,checkid=NULL,checker=NULL,rank='未评',taskid=#{taskid},checkstatus=#{checkstatus},ischeck=#{ischeck} where id=#{id}
+  </update>
+  
+  
+  
+  <select id="getMytask" parameterType="com.ctbu.javateach666.pojo.bo.MyTaskReqBo" resultType="com.ctbu.javateach666.pojo.po.MyTeaTaskPo_zxy">
+  SELECT tt.rank AS rank,tt.id as id,t.taskname,t.tasktype,t.taskcontent,t.taskpubtime,t.taskpublisher,t.tasktype,tt.checker,tt.ischeck,tt.checkstatus,tt.checktime FROM task t,teatask tt WHERE tt.taskid=t.id AND tt.teaid=#{teaid} limit #{page},#{rows};
+  </select>
+  <select id="totalMyTask" parameterType="com.ctbu.javateach666.pojo.bo.MyTaskReqBo" resultType="int">
+  SELECT COUNT(*) FROM task t,teatask tt WHERE tt.taskid=t.id AND tt.teaid=#{teaid};
+  </select>
+  
+  <select id="getTaskChoiceinfo" parameterType="com.ctbu.javateach666.pojo.bo.MyTaskReqBo" resultType="com.ctbu.javateach666.pojo.po.MyTeaTaskPo_zxy">
+  SELECT tt.rank AS rank,tt.id as id,t.taskname,t.tasktype,t.taskcontent,t.taskpubtime,t.taskpublisher,t.tasktype,tt.checker,tt.ischeck,tt.checkstatus,tt.checktime,tt.teaname FROM task t,teatask tt WHERE tt.taskid=t.id 
+  <if test="taskpublisher != null and taskpublisher!=''">
+				and taskpublisher like #{taskpublisher} 
+  </if> 
+  <if test="tasktype != null and tasktype !=''">
+				and tasktype like  #{tasktype}
+	</if>
+   limit #{page},#{rows};
+  </select>
+  <select id="totalTaskChoiceinfo" parameterType="com.ctbu.javateach666.pojo.bo.MyTaskReqBo" resultType="int">
+  SELECT COUNT(*) FROM task t,teatask tt WHERE tt.taskid=t.id 
+  <if test="taskpublisher != null and taskpublisher!=''">
+				and taskpublisher like #{taskpublisher} 
+  </if> 
+  <if test="tasktype != null and tasktype !=''">
+				and tasktype like  #{tasktype}
+	</if>
+  </select>
+  
+  <update id="updateTaskChoice" parameterType="com.ctbu.javateach666.pojo.bo.TeataskBo_zxy" >
+  UPDATE teatask SET ischeck=#{ischeck},checkstatus=#{checkstatus},checkid=#{checkid},checktime=#{checktime},checker=#{checker} WHERE id=#{id}
+  </update>
+  
+  <update id="updateTask" parameterType="com.ctbu.javateach666.pojo.bo.TaskBo_zxy">
+  update task set taskname=#{taskname},taskcontent=#{taskcontent},tasktype=#{tasktype} where id=#{id}
+  </update>
+  
+  <select id="isAdmined" parameterType="com.ctbu.javateach666.pojo.bo.TeataskBo_zxy" resultType="com.ctbu.javateach666.pojo.po.TeataskPo_zxy">
+  SELECT * FROM teatask WHERE teaid=#{teaid} AND ischeck=#{ischeck} and checkstatus=#{checkstatus}
+  </select>
+  
+  <insert id="insertAcceaasryTask" parameterType="com.ctbu.javateach666.pojo.bo.AccessaryBo_zxy">
+  INSERT INTO accessory(ownid,accname,accurl,acctype,uploadtime) VALUES(#{ownid},#{accname},#{accurl},#{acctype},#{uploadtime});
+  </insert>
+  <select id="getMyTaskFile" parameterType="com.ctbu.javateach666.pojo.bo.AccessaryBo_zxy" resultType="com.ctbu.javateach666.pojo.po.AccessaryPo_zxy">
+  SELECT * FROM accessory WHERE ownid=#{ownid} AND acctype=#{acctype} 
+  </select>
+  
+  <update id="updateAccessaryTask" parameterType="com.ctbu.javateach666.pojo.bo.AccessaryBo_zxy">
+  update accessory set accurl=#{accurl},uploadtime=#{uploadtime} where id=#{id}
+  </update>
+  
+  
+  <select id="getTaskUploadInfoByPage" parameterType="com.ctbu.javateach666.pojo.bo.TaskUploadInfoBo_zxy" resultType="com.ctbu.javateach666.pojo.po.TaskUploadInfoPo_zxy">
+  SELECT a.id AS id,a.ownid AS ownid,a.accurl,a.uploadtime ,t.taskname,tt.teaname FROM accessory a,task t,teatask tt WHERE tt.taskid=t.id AND tt.ischeck=1 AND tt.checkstatus=1 AND (a.acctype=100 AND tt.teaid=a.ownid ) and t.taskpublishid=#{taskpublishid} limit #{page},#{rows};
+  </select>
+  <select id="TotalTaskuploadinfo" parameterType="com.ctbu.javateach666.pojo.bo.TaskUploadInfoBo_zxy" resultType="int">
+  SELECT COUNT(*) FROM accessory a,task t,teatask tt WHERE tt.taskid=t.id AND tt.ischeck=1 AND tt.checkstatus=1 AND (a.acctype=100 AND tt.teaid=a.ownid ) and t.taskpublishid=#{taskpublishid}
+  </select>
+  
+  <select id="getAccessaryById" parameterType="int" resultType="com.ctbu.javateach666.pojo.po.AccessaryPo_zxy">
+  SELECT * FROM accessory where id=#{id}
+  </select>
+  
+  <!-- 查看当前登录的管理员所发布的课题 -->
+  <select id="totalMyTaskinfo" parameterType="com.ctbu.javateach666.pojo.bo.TaskBo_zxy" resultType="int">
+  select count(*) from task where 1=1 and taskpublishid=#{taskpublishid}
+  <if test="tasktype != null and tasktype!=''">
+		and tasktype like #{tasktype} 
+  </if> 
+  </select>
+  <select id="getMyTaskinfo" parameterType="com.ctbu.javateach666.pojo.bo.TaskBo_zxy" resultType="com.ctbu.javateach666.pojo.po.TaskPo_zxy">
+  select * from task where 1=1 and taskpublishid=#{taskpublishid}
+  <if test="tasktype != null and tasktype!=''">
+		and tasktype like #{tasktype} 
+  </if> 
+  limit #{page},#{rows}
+  </select>
+  
+  
+   <select id="getMyTaskChoiceinfo" parameterType="com.ctbu.javateach666.pojo.bo.MyTaskReqBo" resultType="com.ctbu.javateach666.pojo.po.MyTeaTaskPo_zxy">
+  SELECT tt.rank AS rank,tt.id as id,t.taskname,t.tasktype,t.taskcontent,t.taskpubtime,t.taskpublisher,t.tasktype,tt.checker,tt.ischeck,tt.checkstatus,tt.checktime,tt.teaname FROM task t,teatask tt WHERE tt.taskid=t.id and t.taskpublishid=#{taskpublishid} limit #{page},#{rows};
+  </select>
+  <select id="totalMyTaskChoiceinfo" parameterType="com.ctbu.javateach666.pojo.bo.MyTaskReqBo" resultType="int">
+  SELECT COUNT(*) FROM task t,teatask tt WHERE tt.taskid=t.id AND t.taskpublishid=#{taskpublishid};
+  </select>
+  
+  <select id="isChoicedAndAgree" parameterType="com.ctbu.javateach666.pojo.bo.TeataskBo_zxy" resultType="com.ctbu.javateach666.pojo.po.TeataskPo_zxy" >
+  SELECT * FROM teatask WHERE taskid=#{taskid} AND ischeck=#{ischeck} AND checkstatus=#{checkstatus}
+  </select>
+  
+  <delete id="deleteTeaTaskByTaskId" parameterType="int">
+  DELETE FROM teatask WHERE taskid=#{taskid}
+  </delete>
+  
+  <update id="updaterank" parameterType="com.ctbu.javateach666.pojo.bo.TeataskBo_zxy">
+  UPDATE teatask SET rank=#{rank} WHERE teaid=#{teaid} AND ischeck=#{ischeck} AND checkstatus=#{checkstatus}
+  </update>
+</mapper>

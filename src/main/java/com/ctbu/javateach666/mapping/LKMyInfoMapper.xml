@@ -67,6 +67,7 @@
   		and s.stuname like #{stuname}
   	</if>
   	and s.classid = c.id
+  	and s.classid = #{classid}
   </select>
   
   <insert id="createNoticeTypeThree" parameterType="com.ctbu.javateach666.pojo.po.LKNoticePO">

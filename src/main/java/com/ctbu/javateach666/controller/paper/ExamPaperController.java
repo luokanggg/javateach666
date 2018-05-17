@@ -355,9 +355,9 @@ public class ExamPaperController {
 		examPaper.setCourse(course);
 		List<ExamPaper> findList = ExamPaperService.findList(examPaper);
 		String jsonString = "";
-		ArrayList<HashMap<String, Object>> list = new ArrayList<>();
+		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
 		for(ExamPaper ep : findList) {
-			HashMap<String, Object> map = new HashMap<>();
+			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("id", ep.getId());
 			map.put("name", ep.getExamPaperName());
 			list.add(map);

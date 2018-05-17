@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.TodayIndoDao">
+  <select id="getTodayTeaCourse" resultType="com.ctbu.javateach666.pojo.po.TeacoursePo_zxy" parameterType="com.ctbu.javateach666.pojo.bo.TeacourseBo_zxy">
+ SELECT t.teaname,tc.couname,tc.couaddress,tc.coutime,tc.couhour,tc.coufhour 
+FROM teacourse tc,teachersinfo t  
+WHERE couyear=#{couyear} AND coutime=#{coutime} AND tc.teaid=#{teaid} AND tc.teaid=t.id and tc.semester=#{semester};
+  </select>
+  
+  <select id="getTodayNotice" resultType="com.ctbu.javateach666.pojo.bo.ToNoticeBoRsp_zxy" parameterType="com.ctbu.javateach666.pojo.bo.ToNoticeReqBo_zxy">
+  SELECT n.id,n.notname,t.teaname AS tonotname,n.notcontent,n.nottitle,n.nottype,n.noturl,n.starttime,n.endtime,n.is_look AS is_look
+  FROM teachersinfo t,tonotice n WHERE n.tonotid=#{tonotid} AND (n.nottype=2 OR n.nottype=4) AND t.id=n.tonotid  and n.starttime=#{starttime} limit  #{page}, #{rows};
+  </select>
+  <select id="todayTodayinfo" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.ToNoticeReqBo_zxy">
+   SELECT COUNT(*)
+  FROM teachersinfo t,tonotice n WHERE n.tonotid=#{tonotid} AND (n.nottype=2 OR n.nottype=4) AND t.id=n.tonotid and n.starttime=#{starttime}
+  </select>
+</mapper>

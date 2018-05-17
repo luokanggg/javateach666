@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.TeaCourseDao">
+    
+	<sql id="TeaCourseColumns">
+	a.id AS "id",
+	a.teaid AS "teaid",
+	a.couid AS "course.id",
+	
+	b.couname AS "course.couname"
+	</sql>
+	
+	<sql id="TeaCourseJoins">
+	left join course b on b.id = a.couid
+	</sql>
+	
+	<select id="get" resultType="com.ctbu.javateach666.pojo.po.kingother.TeaCourse">
+		SELECT 
+			<include refid="TeaCourseColumns"/>
+		FROM teacourse a
+		<include refid="TeaCourseJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="com.ctbu.javateach666.pojo.po.kingother.TeaCourse">
+		SELECT 
+			<include refid="TeaCourseColumns"/>
+		FROM teacourse a
+		<include refid="TeaCourseJoins"/>
+		<where>
+		 <if test="course != null and course.id != null and course.id !=''">
+		  a.couid = #{course.id}
+		 </if>
+		 <if test="teaid != null and teaid !=''">
+		  a.teaid = #{teaid}
+		 </if>
+		</where>
+	</select>
+</mapper>

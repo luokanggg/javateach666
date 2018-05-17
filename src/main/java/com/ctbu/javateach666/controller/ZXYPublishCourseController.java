@@ -585,7 +585,7 @@ public class ZXYPublishCourseController {
 	public Map goLookPlanContent(int id,HttpServletRequest request,HttpServletResponse response){
 		response.setCharacterEncoding("utf-8");
 		PlanCoutsePo_zxy pc=null;
-		Map map=new HashMap<>();
+		Map map=new HashMap<Object, Object>();
 		HttpSession session=request.getSession();
 		pc=publishcourse.getPlanCoutseById(id);
 	    if(pc!=null){
@@ -662,7 +662,7 @@ public class ZXYPublishCourseController {
 				response.getWriter().print("<script> alert('附件上传失败') </script>");
 			}
 			
-		} catch (IllegalStateException | IOException e2) {
+		} catch (Exception e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 			try {

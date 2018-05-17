@@ -369,14 +369,14 @@ public class ExamController {
         teaCourse.setTeaid(account.getUserdetailid());
         List<TeaCourse> teacourseList = TeaCourseService.findList(teaCourse);
         
-        ArrayList<HashMap<String, Object>> arrayList = new ArrayList<>();
+        ArrayList<HashMap<String, Object>> arrayList = new ArrayList<HashMap<String, Object>>();
         for(TeaCourse tc : teacourseList) {
         	THCCoursePO course = tc.getCourse();
         	ExamPaper examPaper = new ExamPaper();
         	examPaper.setCourse(course);
         	List<ExamPaper> exampaperList = ExamPaperService.findList(examPaper);
         	for(ExamPaper ep : exampaperList) {
-        		HashMap<String, Object> map = new HashMap<>();
+        		HashMap<String, Object> map = new HashMap<String, Object>();
         		map.put("id", ep.getId());
         		map.put("name", ep.getExamPaperName());
         		arrayList.add(map);

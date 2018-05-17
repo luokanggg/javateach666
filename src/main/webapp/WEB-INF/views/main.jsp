@@ -151,9 +151,9 @@
 							<li>
 								<a onclick="subtab('个人资料')" href="admininfo" target="_son">个人资料</a>
 							</li>
-							<li>
+<!-- 							<li>
 								<a onclick="subtab('密码管理')" href="adminsetpass" target="_son">密码管理</a>
-							</li>
+							</li> -->
 						</ul>
 					</li>
 					<li class="nav_top">

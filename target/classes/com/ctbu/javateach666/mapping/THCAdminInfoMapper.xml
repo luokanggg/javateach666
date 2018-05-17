@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.THCAdminInfoDao">
+<!-- 个人信息管理 -->
+  <select id="initAdminInfo" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCAdminInfoPO">
+    SELECT ad.* 
+    FROM account a, adminsinfo ad 
+    WHERE a.`userdetailid` = ad.`id` AND a.`username` = #{username}
+  </select>
+  
+  <select id="getAdminInfoByAdminno" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCAdminInfoPO">
+    SELECT * 
+    FROM adminsinfo
+    WHERE adminno = #{adminno}
+  </select>
+  <update id="updateAdminInfo" parameterType="com.ctbu.javateach666.pojo.po.thcpo.THCAdminInfoPO">
+	update adminsinfo
+  	set adminphone = #{adminphone}, adminemail = #{adminemail}
+  	where adminno = #{adminno}
+  </update>
+  
+  <select id="getAdminPass" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCAccountPO">
+    SELECT * 
+    FROM account
+    WHERE username = #{username}
+  </select>
+  
+  <update id="updateAdminPass" parameterType="com.ctbu.javateach666.pojo.po.thcpo.THCAccountPO">
+	update account
+  	set password = #{password}
+  	where username = #{username}
+  </update>
+  
+  <!-- 首页图片管理 -->
+  <select id="getIndexImgbyPage" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCIndexImgListRspBO" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCIndexImgListRepBO">
+  	select imgno, imgname, imgurl, create_time, is_pub
+  	from rollpicture
+  	where is_delete = 0
+  	<if test="imgname != null and imgname != '' ">
+  		and imgname like concat('%',#{imgname},'%')
+  	</if>
+  	limit #{page}, #{rows}
+  </select>
+  
+  <select id="getTotal" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCIndexImgListRepBO">
+  	select count(*)
+  	from rollpicture
+  	where is_delete = 0
+  	<if test="imgname != null and imgname != '' ">
+  		and imgname like concat('%',#{imgname},'%')
+  	</if>
+  </select>
+  
+  <select id="getIndexImgbySearch" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCIndexImgListRepBO" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCIndexImgListRspBO">
+  	select imgno, imgname, imgurl, create_time, is_pub
+  	from rollpicture
+  	where is_delete = 0
+  	<if test="imgname != null and imgname != '' ">
+  		and imgname like concat('%',#{imgname},'%')
+  	</if>
+  </select>
+  
+  <update id="deleteIndexImg" parameterType="String">
+  	update rollpicture set is_delete = 1
+  	where imgno = #{imgno}
+  </update>
+  
+  <insert id="addIndexImg" parameterType="com.ctbu.javateach666.pojo.po.thcpo.THCIndexImgPO">
+    insert into rollpicture(imgno, imgname, imgurl, create_time, is_pub)
+    values(#{imgno}, #{imgname}, #{imgurl}, now(), #{is_pub})
+  </insert>
+  
+  <!-- 新闻公告管理 -->
+  <select id="getJourbyPage" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCJournalismListRspBO" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCJournalismListRepBO">
+  	select j.id, j.joutitle, j.joucontent, j.joutype, j.starttime, j.endtime, a.adminname
+  	from journalism j, adminsinfo a
+  	where j.pubid = a.id
+  	and j.is_delete = 0
+  	and j.j_type = #{j_type}
+  	<if test="joutitle != null and joutitle != '' ">
+  		and j.joutitle like concat('%',#{joutitle},'%')
+  	</if>
+  	<if test="joucontent != null and joucontent != '' ">
+  		and j.joucontent like concat('%',#{joucontent},'%')
+  	</if>
+  	limit #{page}, #{rows}
+  </select>
+  
+  <select id="getJourTotal" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCJournalismListRepBO">
+  	select count(*)
+  	from journalism
+  	where is_delete = 0
+  	and j_type = #{j_type}
+  	<if test="joutitle != null and joutitle != '' ">
+  		and joutitle like concat('%',#{joutitle},'%')
+  	</if>
+  	<if test="joucontent != null and joucontent != '' ">
+  		and joucontent like concat('%',#{joucontent},'%')
+  	</if>
+  </select>
+  
+  <select id="getJourbySearch" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCJournalismListRspBO" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCJournalismListRepBO">
+  	select j.id, j.joutitle, j.joucontent, j.joutype, j.starttime, j.endtime, a.adminname
+  	from journalism j, adminsinfo a
+  	where j.pubid = a.id
+  	and j.is_delete = 0
+  	and j.j_type = #{j_type}
+  	<if test="joutitle != null and joutitle != '' ">
+  		and j.joutitle like concat('%',#{joutitle},'%')
+  	</if>
+  	<if test="joucontent != null and joucontent != '' ">
+  		and j.joucontent like concat('%',#{joucontent},'%')
+  	</if>
+  </select>
+  
+  <select id="getJoutypeList" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCDictionariesListRspBO">
+  	select dicname
+  	from dictionaries
+  	where is_delete = 0
+  	and dtype = "新闻类型"
+  </select>
+  
+  <select id="getAdminId" resultType="int" parameterType="String">
+  	select ad.id
+  	from adminsinfo ad, account ac, authorities au
+  	where ac.username = au.username
+  	and au.authorities = "ADMIN"
+  	and ad.is_delete = 0
+  	and ac.username = #{username}
+  </select>
+  
+  <insert id="addNews">
+  	insert into journalism(joutitle, joucontent, joutype, starttime, endtime, pubid, j_type)
+  	values(#{joutitle}, #{joucontent}, #{joutype}, #{starttime}, #{endtime}, #{pubid}, #{j_type})
+  </insert>
+  
+  <update id="updateNews">
+  	update journalism
+  	set joutitle = #{joutitle}, joucontent = #{joucontent}, joutype = #{joutype}
+  	where id = #{id}
+  </update>
+  
+  <select id="getJoutypeList1" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCDictionariesListRspBO">
+  	select dicname
+  	from dictionaries
+  	where is_delete = 0
+  	and dtype = "公告类型"
+  </select>
+  
+  <insert id="addPubs">
+  	insert into journalism(joutitle, joucontent, joutype, starttime, endtime, pubid, j_type)
+  	values(#{joutitle}, #{joucontent}, #{joutype}, #{starttime}, #{endtime}, #{pubid}, #{j_type})
+  </insert>
+  
+  <!-- 数据字典管理 -->
+  <select id="getDicListbyPage" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCDictionariesListRspBO" parameterType = "com.ctbu.javateach666.pojo.bo.thcbo.THCDictionariesListRepBO">
+  	select id, dicname, dtype, dvalue, remark, is_delete
+  	from dictionaries
+  	where is_delete = 0
+  	<if test="dtype != null and dtype != '' ">
+  		and dtype = #{dtype}
+  	</if>
+  	limit #{page}, #{rows}
+  </select>
+  
+  <select id="getDicTotal" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCDictionariesListRepBO">
+  	select count(*)
+  	from dictionaries
+  	where is_delete = 0
+  	<if test="dtype != null and dtype != '' ">
+  		and dtype = #{dtype}
+  	</if>
+  </select>
+  
+  <select id="getDicbySearch" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCDictionariesListRepBO" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCDictionariesListRspBO">
+  	select id, dicname, dtype, dvalue, remark, is_delete
+  	from dictionaries
+  	where is_delete = 0
+  	<if test="dtype != null and dtype != '' ">
+  		and dtype = #{dtype}
+  	</if>
+  </select>
+  
+  <update id="deleteDic" parameterType="String">
+  	update dictionaries set is_delete = 1
+  	where dicname = #{dicname}
+  </update>
+  
+  <select id="getDicNameList" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCDictionariesListRspBO">
+  	select dtype
+  	from dictionaries
+  	where is_delete = 0
+  	group by (dtype)
+  </select>
+  
+  <!-- 课程信息管理 -->
+  <select id="getCoursebyPage" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCCourseListRspBO" parameterType = "com.ctbu.javateach666.pojo.bo.thcbo.THCCourseListRepBO">
+  	select couname, ctype, credit, is_delete
+  	from course
+  	where is_delete = 0
+  	<if test="ctype != null and ctype != '' and ctype != '--请选择--'">
+  		and dtype = #{dtype}
+  	</if>
+  	<if test="couname != null and couname != ''">
+  		and couname like concat('%',#{couname},'%')
+  	</if>
+  	limit #{page}, #{rows}
+  </select>
+  
+  <select id="getCourseTotal" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCCourseListRepBO">
+  	select count(*)
+  	from course
+  	where is_delete = 0
+  	<if test="ctype != null and ctype != '' and ctype != '--请选择--'">
+  		and dtype = #{dtype}
+  	</if>
+  	<if test="couname != null and couname != ''">
+  		and couname like concat('%',#{couname},'%')
+  	</if>
+  </select>
+  
+  <select id="getCoursebySearch" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCCourseListRepBO" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCCourseListRspBO">
+  	select couname, ctype, credit, is_delete
+  	from course
+  	where is_delete = 0
+  	<if test="ctype != null and ctype != '' and ctype != '--请选择--'">
+  		and dtype = #{dtype}
+  	</if>
+  	<if test="couname != null and couname != ''">
+  		and couname like concat('%',#{couname},'%')
+  	</if>
+  </select>
+  
+  <select id="getCtypeList" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCDictionariesPO">
+  	select dicname
+  	from dictionaries
+  	where dtype = "课程类型"
+  	and is_delete = 0
+  </select>
+  
+  <!-- 教师信息管理 -->
+  <select id="getTeaListbyPage" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCAccountListRspBO" parameterType = "com.ctbu.javateach666.pojo.bo.thcbo.THCAccountListRepBO">
+  	select ac.id, ac.username, ac.password
+  	from account ac, authorities au
+  	where 1=1
+  	and ac.username = au.username
+  	and au.authorities = "TEACHER"
+  	<if test="username != null and username != ''">
+  		and ac.username like concat('%',#{username},'%')
+  	</if>
+  	limit #{page}, #{rows}
+  </select>
+  
+  <select id="getTeaTotal" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCAccountListRepBO">
+  	select count(*)
+  	from account ac, authorities au
+  	where 1=1
+  	and ac.username = au.username
+  	and au.authorities = "TEACHER"
+  	<if test="username != null and username != ''">
+  		and ac.username like concat('%',#{username},'%')
+  	</if>
+  </select>
+  
+  <select id="getTeabySearch" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCAccountListRspBO" parameterType = "com.ctbu.javateach666.pojo.bo.thcbo.THCAccountListRepBO">
+  	select ac.id, ac.username, ac.password
+  	from account ac, authorities au
+  	where 1=1
+  	and ac.username = au.username
+  	and au.authorities = "TEACHER"
+  	<if test="username != null and username != ''">
+  		and ac.username like concat('%',#{username},'%')
+  	</if>
+  </select>
+  
+  
+  <select id="getTeaPostListbyPage" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCTeaPostListRspBO" parameterType = "com.ctbu.javateach666.pojo.bo.thcbo.THCTeaPostListRepBO">
+  	select id, teano, teaname, teacollage, professional
+  	from teachersinfo
+  	where isdelete = 0
+  	<if test="teano != null and teano != ''">
+  		and teano like concat('%',#{teano},'%')
+  	</if>
+  	<if test="teaname != null and teaname != ''">
+  		and teaname like concat('%',#{teaname},'%')
+  	</if>
+  	limit #{page}, #{rows}
+  </select>
+  
+  <select id="getTeaPostListTotal" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCTeaPostListRepBO">
+  	select count(*)
+  	from teachersinfo
+  	where isdelete = 0
+  	<if test="teano != null and teano != ''">
+  		and teano like concat('%',#{teano},'%')
+  	</if>
+  	<if test="teaname != null and teaname != ''">
+  		and teaname like concat('%',#{teaname},'%')
+  	</if>
+  </select>
+  
+  <select id="getTeaPostbySearch" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCTeaPostListRspBO" parameterType = "com.ctbu.javateach666.pojo.bo.thcbo.THCTeaPostListRepBO">
+  	select id, teano, teaname, teacollage, professional
+  	from teachersinfo
+  	where isdelete = 0
+  	<if test="teano != null and teano != ''">
+  		and teano like concat('%',#{teano},'%')
+  	</if>
+  	<if test="teaname != null and teaname != ''">
+  		and teaname like concat('%',#{teaname},'%')
+  	</if>
+  </select>
+  
+  
+  <select id="getPostRecordListbyPage" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCProfessionalRanksListRspBO" parameterType = "com.ctbu.javateach666.pojo.bo.thcbo.THCProfessionalRanksListRepBO">
+  	select id, prof_person_name, now_prof_saltv, prof_saltv, prof_reason, prof_time, is_prof
+  	from professional_ranks
+	where 1=1
+  	<if test="is_prof != null and is_prof != '' and is_prof != '--请选择--'">
+  		and is_prof = #{is_prof}
+  	</if>
+  	<if test="prof_person_name != null and prof_person_name != ''">
+  		and prof_person_name like concat('%',#{prof_person_name},'%')
+  	</if>
+  	limit #{page}, #{rows}
+  </select>
+  
+  
+  <select id="getPostRecordListTotal" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCProfessionalRanksListRepBO">
+  	select count(*)
+  	from professional_ranks
+	where 1=1
+  	<if test="is_prof != null and is_prof != ''">
+  		and is_prof = #{is_prof}
+  	</if>
+  	<if test="prof_person_name != null and prof_person_name != ''">
+  		and prof_person_name like concat('%',#{prof_person_name},'%')
+  	</if>
+  </select>
+  
+  <select id="getPostRecordbySearch" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCProfessionalRanksListRspBO" parameterType = "com.ctbu.javateach666.pojo.bo.thcbo.THCProfessionalRanksListRepBO">
+  	select id, prof_person_name, now_prof_saltv, prof_saltv, prof_reason, prof_time, is_prof
+  	from professional_ranks
+	where 1=1
+  	<if test="is_prof != null and is_prof != ''">
+  		and is_prof = #{is_prof}
+  	</if>
+  	<if test="prof_person_name != null and prof_person_name != ''">
+  		and prof_person_name like concat('%',#{prof_person_name},'%')
+  	</if>
+  </select>
+  
+  <!-- 学生信息管理 -->
+  <select id="getStuListbyPage" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCAccountListRspBO" parameterType = "com.ctbu.javateach666.pojo.bo.thcbo.THCAccountListRepBO">
+  	select ac.id, ac.username, ac.password
+  	from account ac, authorities au
+  	where 1=1
+  	and ac.username = au.username
+  	and au.authorities = "STUDENT"
+  	<if test="username != null and username != ''">
+  		and ac.username like concat('%',#{username},'%')
+  	</if>
+  	limit #{page}, #{rows}
+  </select>
+  
+  <select id="getStuTotal" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCAccountListRepBO">
+  	select count(*)
+  	from account ac, authorities au
+  	where 1=1
+  	and ac.username = au.username
+  	and au.authorities = "STUDENT"
+  	<if test="username != null and username != ''">
+  		and ac.username like concat('%',#{username},'%')
+  	</if>
+  </select>
+  
+  <select id="getStubySearch" resultType="com.ctbu.javateach666.pojo.bo.thcbo.THCAccountListRspBO" parameterType = "com.ctbu.javateach666.pojo.bo.thcbo.THCAccountListRepBO">
+  	select ac.id, ac.username, ac.password
+  	from account ac, authorities au
+  	where 1=1
+  	and ac.username = au.username
+  	and au.authorities = "STUDENT"
+  	<if test="username != null and username != ''">
+  		and ac.username like concat('%',#{username},'%')
+  	</if>
+  </select>
+</mapper>

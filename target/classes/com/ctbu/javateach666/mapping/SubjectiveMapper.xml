@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.SubjectiveDao">
+    
+	<sql id="SubjectiveColumns">
+	a.id AS "id",
+	a.couse_id AS "course.id",
+	a.subjective_title AS "subjectiveTitle",
+	a.subjective_answer AS "subjectiveAnswer",
+	a.degree AS "degree",
+	a.create_time AS "createTime",
+	a.is_delete AS "isDelete",
+	
+	b.couname AS "course.couname",
+	b.couname AS "couname"
+	</sql>
+	
+	<sql id="SubjectiveJoins">
+	left join course b on b.id = a.couse_id
+	left join teacourse tc on tc.couid = b.id
+	</sql>
+	
+	<select id="get" resultType="com.ctbu.javateach666.pojo.po.questions.Subjective">
+		SELECT 
+			<include refid="SubjectiveColumns"/>
+		FROM subjective a
+		<include refid="SubjectiveJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="com.ctbu.javateach666.pojo.po.questions.Subjective">
+		SELECT 
+			<include refid="SubjectiveColumns"/>
+		FROM subjective a
+		<include refid="SubjectiveJoins"/>
+		<where>
+		 a.is_delete = '0'
+		 <if test="course != null and course.id !=null and course.id !=''">
+		  and a.couse_id = #{course.id}
+		 </if>
+		 <if test="subjectiveTitle !=null and subjectiveTitle !=''">
+		  and a.subjective_title LIKE CONCAT('%',#{subjectiveTitle},'%')
+		 </if>
+		 <if test="degree !=null and degree !=''">
+		  and a.degree = #{degree}
+		 </if>
+		 <if test="bTime !=null and bTime !=''">
+		  and a.create_time &gt;= #{bTime}
+		 </if>
+		 <if test="eTime !=null and eTime !=''">
+		  and a.create_time &lt;= #{eTime}
+		 </if>
+		 <if test="teaId !=null and teaId !=''">
+		  and tc.teaid = #{teaId}
+		 </if>
+		</where>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO subjective(
+			id,
+			couse_id,
+			subjective_title,
+			subjective_answer,
+			degree,
+			create_time,
+			is_delete
+		) VALUES (
+			#{id},
+			#{course.id},
+			#{subjectiveTitle},
+			#{subjectiveAnswer},
+			#{degree},
+			#{createTime},
+			0
+		)
+	</insert>
+	<update id="update">
+		UPDATE subjective SET 	
+			couse_id = #{course.id},
+			subjective_title = #{subjectiveTitle},
+			subjective_answer = #{subjectiveAnswer},
+			degree = #{degree},
+			create_time = #{createTime}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!--物理删除-->
+	<delete id="delete">
+		DELETE FROM subjective
+		WHERE id = #{id}
+	</delete>
+	
+	<!--逻辑删除-->
+	<update id="deleteByLogic">
+		UPDATE subjective SET 
+			is_delete = 1
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

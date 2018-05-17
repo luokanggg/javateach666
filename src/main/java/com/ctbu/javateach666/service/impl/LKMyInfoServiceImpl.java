@@ -166,6 +166,11 @@ public class LKMyInfoServiceImpl implements LKMyInfoService{
 			stuname = "%" + lKMyClassInfoListRepBO.getStuname() + "%";
 			lKMyClassInfoListRepBO.setStuname(stuname);
 		}
+		//取得当前用户信息；
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		//取得登录学生的id和姓名
+		LKStudentInfoPO logstu = lKMyInfoDao.initStuInfo(userDetails.getUsername());
+		lKMyClassInfoListRepBO.setClassid(logstu.getClassid());
 		return lKMyInfoDao.getMyClassInfoBySearch(lKMyClassInfoListRepBO);
 	}
 
@@ -179,6 +184,11 @@ public class LKMyInfoServiceImpl implements LKMyInfoService{
 		LKStudentInfoPO logstu = lKMyInfoDao.initStuInfo(userDetails.getUsername());
 		//取得被通知学生的id
 		LKStudentInfoPO noticestu = lKMyInfoDao.getStuInfoByStuno(lKSendMessageToStuReqBO.getStuno());
+		if(logstu.getId() == noticestu.getId()){
+			rsp.setResponseCode(Constant.RSP_FALSE_CODE);
+			rsp.setResponseDesc("不能给自己发消息！");
+			return rsp;
+		}
 		//生成一个通知实体
 		LKNoticePO lKNoticePO = new LKNoticePO();
 		lKNoticePO.setNotid(logstu.getId());  //通知人id

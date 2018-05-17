@@ -70,8 +70,8 @@ public class THCMaterialsServiceImpl extends BaseServiceImpl<THCMaterialsDao, TH
 		//定义数据库图片名称
 		String imgurl = "static\\materials\\" + imgname;
 		//定义文件上传路径
-		//String saveserverpath = request.getServletContext().getRealPath("/") + "static\\img\\materials";
-		String savepath = "C:\\Users\\Administrator\\Desktop\\javateach6666\\src\\main\\webapp\\" + "static\\materials";
+		String savepath = request.getServletContext().getRealPath("/") + "static\\materials";
+		//String savepath = "C:\\Users\\Administrator\\Desktop\\javateach6666\\src\\main\\webapp\\" + "static\\materials";
 		
 		// 判断上传目录是否存在
 		File savePath = new File(savepath);

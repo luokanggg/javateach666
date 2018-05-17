@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.THCCourseIntroduceDao">
+
+	<select id="getCourseIntroduce" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCCourseIntroducePO">
+		select * from courseintroduce
+		where is_delete = 0
+	</select>
+	
+	<select id="getCourseIntroduceByPage" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCCourseIntroducePO" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCCourseIntroduceRepBO">
+		select * from courseintroduce
+		where is_delete = 0
+		<if test="cname != null and cname != '' ">
+  			and cname like concat('%',#{cname},'%')
+  		</if>
+  		limit #{page}, #{rows}
+	</select>
+	
+	<select id="getCourseIntroduceTotal" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCCourseIntroduceRepBO">
+		select count(*)
+		from courseintroduce
+		where is_delete = 0
+		<if test="cname != null and cname != '' ">
+  			and cname like concat('%',#{cname},'%')
+  		</if>
+	</select>
+	
+	<update id="deleteByLogic">
+		UPDATE courseintroduce SET 
+			is_delete = 1
+		WHERE id = #{id}
+  	</update>
+  
+  	<insert id="insert">
+	  	insert into courseintroduce(cimg, cname, csign)
+	  	values(#{cimg}, #{cname}, #{csign})
+  	</insert>
+  
+  	<update id="update">
+	  	update courseintroduce set 	
+		cimg = #{cimg},
+		cname = #{cname},
+		csign = #{csign}
+		where id = #{id}
+  	</update>
+  	
+  	<select id="checkCname" parameterType="String" resultType="com.ctbu.javateach666.pojo.po.thcpo.THCCourseIntroducePO">
+  		select * from courseintroduce
+  		where cname = #{cname}
+  	</select>
+
+</mapper>

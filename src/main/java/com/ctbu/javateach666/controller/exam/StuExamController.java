@@ -221,7 +221,7 @@ public class StuExamController {
 			model.addAttribute("times", examTime);
 			
 			// 单选题
-			List<SingleChoice> choices = new ArrayList<>();
+			List<SingleChoice> choices = new ArrayList<SingleChoice>();
 			String singleChoiceChecked = examRule.getSingleRules();
 			Integer singleChoiceNum = examRule.getSingleNum();
 			Integer singleScore = examRule.getSingleScore();
@@ -243,7 +243,7 @@ public class StuExamController {
 			}
 	
 			// 多选题
-			List<MultipleChoice> mulChoices = new ArrayList<>();
+			List<MultipleChoice> mulChoices = new ArrayList<MultipleChoice>();
 			String mulChoiceChecked = examRule.getMultipleRules();
 			Integer mulChoiceNum = examRule.getMultipleNum();
 			Integer mulScore = examRule.getMultipleScore();
@@ -266,7 +266,7 @@ public class StuExamController {
 			}
 	
 			// 判断题
-			List<Judgment> judges = new ArrayList<>();
+			List<Judgment> judges = new ArrayList<Judgment>();
 			String judgeChoiceChecked = examRule.getJudgmentRules();
 			Integer judgeChoiceNum = examRule.getJudgmentNum();
 			Integer judgeScore = examRule.getJudgmentScore();
@@ -289,7 +289,7 @@ public class StuExamController {
 			}
 	
 			// 填空题
-			List<Completion> blanks = new ArrayList<>();
+			List<Completion> blanks = new ArrayList<Completion>();
 			String blankChoiceChecked = examRule.getCompletionRules();
 			Integer blankChoiceNum = examRule.getCompletionNum();
 			Integer blankScore = examRule.getCompletionScore();
@@ -312,7 +312,7 @@ public class StuExamController {
 			}
 	
 			// 主观题
-			List<Subjective> subjectives = new ArrayList<>();
+			List<Subjective> subjectives = new ArrayList<Subjective>();
 			String subChoiceChecked = examRule.getSubjectiveRules();
 			Integer subChoiceNum = examRule.getSubjectiveNum();
 			Integer subScore = examRule.getSubjectiveScore();
@@ -364,7 +364,7 @@ public class StuExamController {
 		Integer stuId = account.getUserdetailid(); // 学生id
 		ExamPaper examPaper = ExamPaperService.get(examId); // 试卷信息
 		
-		List<QuestionAnswer> answers = new ArrayList<>();
+		List<QuestionAnswer> answers = new ArrayList<QuestionAnswer>();
 		Integer score = 0;
 		AnswerSheet answerSheet = new AnswerSheet(); // 答案对象
 		Achievement achievement = new Achievement(); // 成绩对象

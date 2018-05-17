@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctbu.javateach666.dao.TeacherProfessionDao_zxy">
+  <select id="getDictionByDtype" resultType="map" parameterType="String">
+    SELECT * FROM dictionaries WHERE dtype=#{dtype}
+  </select>
+  
+  <select id="getIsHasNoProfData" resultType="int" parameterType="map">
+  SELECT COUNT(*) FROM professional_ranks WHERE prof_person_id=#{prof_person_id} AND is_approve=#{is_approve}
+  </select>
+  
+  <insert id="insertProfData" parameterType="map">
+  INSERT INTO professional_ranks(prof_person_id,prof_person_name,prof_saltv,prof_reason,is_prof,prof_time,is_approve,now_prof_saltv)
+  VALUES(#{prof_person_id},#{prof_person_name},#{prof_saltv},#{prof_reason},#{is_prof},#{prof_time},#{is_approve},#{now_prof_saltv});		
+  </insert>
+  
+  <select id="getAllProfessionalRanks" resultType="com.ctbu.javateach666.pojo.po.ProfessionalRanks_zxy" parameterType="String">
+  SELECT * FROM professional_ranks WHERE prof_person_id=#{prof_person_id}
+  </select>
+  
+  <delete parameterType="int" id="deleteProfByid">
+  DELETE FROM professional_ranks WHERE id=#{id};
+  </delete>
+  
+  <select id="getAllLikeSelectProfList" resultType="com.ctbu.javateach666.pojo.po.ProfessionalRanks_zxy" parameterType="com.ctbu.javateach666.pojo.bo.ProfessionalRanksBo_zxy">
+	<bind name="startproftime" value="startproftime"/>
+	<bind name="endproftime" value="endproftime"/>
+	SELECT * FROM professional_ranks WHERE 1=1
+		<if test="startproftime != null and startproftime!=''">
+				and prof_time >= #{startproftime} 
+		</if> 
+		<if test="endproftime != null and endproftime !=''">
+				and prof_time &lt;= #{endproftime}
+		</if>
+		<if test="prof_person_id !=null and prof_person_id!=''">
+			<bind name="prof_person_id" value="'%'+prof_person_id+'%'"/>
+                and prof_person_id like #{prof_person_id}
+		</if>
+		<if test="is_prof != null and is_prof !=''">
+				and is_prof = #{is_prof}
+		</if>
+		<if test="is_approve != null and is_approve !=''">
+				and is_approve = #{is_approve}
+		</if>
+</select>
+
+<select id="getAllProfessionalRanksByPage" resultType="com.ctbu.javateach666.pojo.bo.ProfessionalRanksBo_zxy" parameterType="com.ctbu.javateach666.pojo.bo.ProfessionInfoListReqBo">
+	SELECT * FROM professional_ranks WHERE 1=1 and prof_person_id=#{prof_person_id}
+  	<if test="prof_saltv != null and prof_saltv != '' ">
+  		and prof_saltv like #{prof_saltv}
+  	</if>
+  	<if test="approve_id != null and approve_id != '' ">
+  		and approve_id like #{approve_id}
+  	</if>
+  	limit #{page}, #{rows}
+</select>
+<select id="getAllProfessionByquestion" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.ProfessionInfoListReqBo">
+SELECT count(*) FROM professional_ranks WHERE 1=1 and prof_person_id=#{prof_person_id}
+  	<if test="prof_saltv != null and prof_saltv != '' ">
+  		and prof_saltv like #{prof_saltv}
+  	</if>
+  	<if test="approve_id != null and approve_id != '' ">
+  		and approve_id like #{approve_id}
+  	</if>
+</select>
+
+<select id="getAllProfessionByeach" resultType="com.ctbu.javateach666.pojo.po.ProfessionalRanks_zxy"  parameterType="com.ctbu.javateach666.pojo.bo.ProfessionInfoListReqBo">
+SELECT * FROM professional_ranks WHERE 1=1 and prof_person_id=#{prof_person_id}
+  	<if test="prof_saltv != null and prof_saltv != '' ">
+  		and prof_saltv like #{prof_saltv}
+  	</if>
+  	<if test="approve_id != null and approve_id != '' ">
+  		and approve_id like #{approve_id}
+  	</if>
+</select>
+
+<select id="getProfessionalRanks_zxyById" resultType="com.ctbu.javateach666.pojo.po.ProfessionalRanks_zxy"  parameterType="int">
+SELECT * FROM professional_ranks WHERE id=#{id}
+</select>
+
+<update id="updateProfession"  parameterType="com.ctbu.javateach666.pojo.bo.ProfessionInfoListReqBo">
+update professional_ranks set prof_reason=#{prof_reason},prof_saltv=#{prof_saltv} where id=#{id}
+</update>
+
+
+<!-- 审批 -->
+<select id="getAllProfessionNoAppro" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.ProfessionInfoListReqBo">
+SELECT count(*) FROM professional_ranks WHERE 1=1 and is_approve=0
+</select>
+<select id="getAllProfessionApproEd" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.ProfessionInfoListReqBo">
+SELECT count(*) FROM professional_ranks WHERE 1=1 and is_approve=1
+</select>
+
+<select id="getAllProfessionalRanksNoAppro" resultType="com.ctbu.javateach666.pojo.po.ProfessionalRanks_zxy" parameterType="com.ctbu.javateach666.pojo.bo.ProfessionInfoListReqBo">
+	SELECT * FROM professional_ranks WHERE 1=1 and is_approve=0 limit #{page}, #{rows}
+</select>
+
+<select id="getAllProfessionalRanksApproEd" resultType="com.ctbu.javateach666.pojo.po.ProfessionalRanks_zxy" parameterType="com.ctbu.javateach666.pojo.bo.ProfessionInfoListReqBo">
+	SELECT * FROM professional_ranks WHERE 1=1 and is_approve=1 limit #{page}, #{rows}
+</select>
+
+<update id="updateApproveNOAppr" parameterType="com.ctbu.javateach666.pojo.po.ProfessionalRanks_zxy">
+UPDATE professional_ranks SET prof_fk_reason=#{prof_fk_reason},is_approve=#{is_approve},approve_time=#{approve_time},approve_id=#{approve_id},approve_name=#{approve_name},is_prof=#{is_prof} WHERE id=#{id}
+</update>
+
+<select id="getProfessionById" parameterType="INTEGER" resultType="STRING">
+SELECT prof_person_id FROM professional_ranks WHERE id=#{id}
+</select>
+
+<update id="updateProfessionByTeano" parameterType="Map">
+UPDATE teachersinfo SET professional=#{prof_saltv} WHERE teano=#{teano}
+</update>
+
+<select id="getProfessionalById" parameterType="INTEGER" resultType="com.ctbu.javateach666.pojo.po.ProfessionalRanks_zxy">
+SELECT * FROM professional_ranks WHERE id=#{id}
+</select>
+</mapper>
