@@ -104,6 +104,7 @@
 		            {field: 'imgname', title: '图片名称', width: 50, sortable: false},
 		            {field: 'imgurl', title: '图片', width: 100, sortable: false,formatter: function(value,row,index){
 		            	var myurl = "${pageContext.request.contextPath}/"+value;
+		 
 		            	var str = '<img width="100px" height="60px" border="0" src="'+ myurl +'"/>';
 	                    return str;    
 	                }},

@@ -213,7 +213,7 @@
 		            modal: true,
 		            width: 500,
 		            height: 350,
-		            title: "修改新闻",
+		            title: "修改课程简介",
 		            buttons: [{
 		                text: '确定',
 		                iconCls: 'icon-ok',
