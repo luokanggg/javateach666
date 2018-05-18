@@ -75,6 +75,7 @@
 					    <td align="center" colspan="6">
 					    	<button id="save" iconCls="icon-save" class="easyui-linkbutton" v-on:click="save">保存</button>
 					    	<button id="submits" iconCls="icon-ok" class="easyui-linkbutton" v-on:click="submits">提交</button>
+					    	&nbsp;&nbsp;[{{ count + 1 }}/{{ data.length }}]
 					    </td>
 					  </tr>
 					</table>
