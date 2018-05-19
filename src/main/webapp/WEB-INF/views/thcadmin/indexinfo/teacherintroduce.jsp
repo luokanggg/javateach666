@@ -60,7 +60,7 @@
 		     * Name 载入数据
 		     */
 		    $('#introduceinfo-datagrid').datagrid({
-		        url: 'gettealist',
+		        url: 'gettealist1',
 		        rownumbers: true,
 		        singleSelect: false,
 		        checkOnSelect:false,  
@@ -82,6 +82,9 @@
 	                }},
 	                {field: 'professional', title: '教师职称', width: 50, sortable: true},
 		            {field: 'prosonal_statement', title: '教师介绍', width: 200, sortable: false,formatter: function(value,row,index){
+		            	if(value == null){
+		            		value='无';
+		            	}
 		            	var str = '<textarea style="word-wrap: break-word" rows="5" cols="80" readonly>' + value + '</textarea>';
 	                    return str;    
 	                }},
@@ -116,13 +119,13 @@
 		  	//编辑教师介绍
 		  	function editIntroduce(){
 		  		var rows = $('#introduceinfo-datagrid').datagrid('getSelections');
-		  		alert(JSON.stringify(rows[0]));
+		  		//alert(JSON.stringify(rows[0]));
 		        $('#addintroduce-dialog').dialog({
 		            closed: false,
 		            modal: true,
 		            width: 500,
 		            height: 350,
-		            title: "修改新闻",
+		            title: "修改教师介绍",
 		            buttons: [{
 		                text: '确定',
 		                iconCls: 'icon-ok',

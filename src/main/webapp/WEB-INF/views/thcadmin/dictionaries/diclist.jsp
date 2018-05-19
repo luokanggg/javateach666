@@ -216,7 +216,7 @@
 		  	//编辑字典
 		  	function editDic(){
 		  		var rows = $('#dicinfo-datagrid').datagrid('getSelections');
-		  		alert(JSON.stringify(rows[0]));
+		  		//alert(JSON.stringify(rows[0]));
 		  		//$('#addnews-form').form('clear');
 		        $('#adddic-dialog').dialog({
 		            closed: false,

@@ -49,7 +49,7 @@ public class THCTeacherController {
 	 */
 	@ResponseBody
 	@RequestMapping("/updateteacherintroduce")
-	public String addIndexImg(@RequestParam("file") CommonsMultipartFile file, HttpServletRequest request){
+	public String updateTeacherIntroduce(@RequestParam("file") CommonsMultipartFile file, HttpServletRequest request){
 		int m = tHCTeacherService.updateTeacherIntroduce(file, request);
 		if(m == 1){
 			return "OK";
@@ -215,6 +215,16 @@ public class THCTeacherController {
 	@RequestMapping("/getteacherintroduce")
 	public List<THCTeachersInfoPO> getTeacherIntroduce(){
 		return tHCTeacherService.getTeacherIntroduce();
+	}
+	
+	//后台师资力量列表
+	@ResponseBody
+	@RequestMapping("/gettealist1")
+	public PageInfoBo<THCAccountListRspBO> getTeaList1(THCAccountListRepBO tHCAccountListRepBO){
+		System.out.println("gettealist");
+		PageInfoBo<THCAccountListRspBO> page = new PageInfoBo<THCAccountListRspBO>();
+		page = tHCTeacherService.getTeaList1(tHCAccountListRepBO);
+		return page;
 	}
 	
 	/**

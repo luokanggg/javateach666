@@ -220,7 +220,7 @@
 		  	//编辑新闻
 		  	function editCourse(){
 		  		var rows = $('#courseinfo-datagrid').datagrid('getSelections');
-		  		alert(JSON.stringify(rows[0]));
+		  		//alert(JSON.stringify(rows[0]));
 		  		//$('#addnews-form').form('clear');
 		        $('#addcourse-dialog').dialog({
 		            closed: false,

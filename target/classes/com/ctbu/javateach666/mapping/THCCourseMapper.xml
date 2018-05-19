@@ -7,7 +7,7 @@
   <select id="getCoursebyPage" resultType="map" parameterType = "com.ctbu.javateach666.pojo.bo.thcbo.THCCourseListRepBO">
   	SELECT c.id, c.couname, d.dicname, c.credit, c.is_delete
   	FROM course c, dictionaries d
-  	WHERE is_delete = 0
+  	WHERE c.is_delete = 0
   	AND c.ctype =d.dvalue
   	AND d.dtype = "课程类型"
   	<if test="ctype != null and ctype != '' and ctype != '--请选择--'">

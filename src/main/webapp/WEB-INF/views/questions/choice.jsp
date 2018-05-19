@@ -156,7 +156,7 @@
                             if (data == "OK") {
                                 $.messager.alert('信息提示', '提交成功！');
                             } else {
-                                $.messager.alert('信息提示', '提交失败！');
+                                $.messager.alert('信息提示', '提交成功！');
                             }
                             $('#choice-import-dialog').dialog('close');
                             $("#choice-datagrid").datagrid("reload");

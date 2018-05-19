@@ -56,6 +56,7 @@
         $('#read-paper-do').dialog({
             top: 100,
             width: 700,
+            height:500,
             closed: false,
             modal: true,
             title: "批改试卷",

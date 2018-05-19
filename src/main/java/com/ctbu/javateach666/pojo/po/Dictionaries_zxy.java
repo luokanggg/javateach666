@@ -11,7 +11,7 @@ public class Dictionaries_zxy implements Serializable{
 	
 	public String dtype;
 	
-	public String value;
+	public String dvalue;
 
 	public int getId() {
 		return id;
@@ -45,13 +45,15 @@ public class Dictionaries_zxy implements Serializable{
 		this.dtype = dtype;
 	}
 
-	public String getValue() {
-		return value;
+	public String getDvalue() {
+		return dvalue;
 	}
 
-	public void setValue(String value) {
-		this.value = value;
+	public void setDvalue(String dvalue) {
+		this.dvalue = dvalue;
 	}
+
+
 	
 	
 }

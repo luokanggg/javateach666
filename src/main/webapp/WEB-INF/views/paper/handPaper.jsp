@@ -154,7 +154,7 @@
 			$("#promptDiv").dialog({
 				title:"题型窗口",
 				width:1000,
-				height:600,
+				height:500,
 				left:200,
 				top:50,
 				closed:false,

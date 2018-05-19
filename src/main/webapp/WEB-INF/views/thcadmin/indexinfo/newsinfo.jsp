@@ -230,7 +230,7 @@
 		  	//编辑新闻
 		  	function editNews(){
 		  		var rows = $('#newsinfo-datagrid').datagrid('getSelections');
-		  		alert(JSON.stringify(rows[0]));
+		  		//alert(JSON.stringify(rows[0]));
 		  		//$('#addnews-form').form('clear');
 		        $('#addnews-dialog').dialog({
 		            closed: false,

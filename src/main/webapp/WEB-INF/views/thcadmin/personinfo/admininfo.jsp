@@ -19,7 +19,7 @@
 		<table width="80%" height="400px" border="1" style="border-color: #99CCFF; border-collapse : collapse">
 		  <tr>
 		    <td width="20%">头像：</td>
-		    <td width="20%" colspan="3"><img width="100px" height="100px" src=""></td>
+		    <td width="20%" colspan="3"><img width="100px" height="100px" src="\javateach666\static\file\public.jpg"></td>
 		  </tr>
 		  <tr>
 		    <td width="20%">姓名：</td>
@@ -63,7 +63,7 @@
 							contentType: "application/json",    //必须配置
 							success: function(result){
 								man.AdminInfo = result;
-								alert(JSON.stringify(man.AdminInfo));
+								//alert(JSON.stringify(man.AdminInfo));
 							} 
 						});
 					},

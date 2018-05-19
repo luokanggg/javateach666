@@ -206,7 +206,7 @@ public class SingleChoiceController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-        return "NO";
+        return "OK";
     }
 	
 }

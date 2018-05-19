@@ -225,14 +225,14 @@
 		  	//展示图片
 		  	function showImg(){
 		  		var rows = $('#imginfo-datagrid').datagrid('getSelections');
-		  		alert(JSON.stringify(rows[0]));
+		  		//alert(JSON.stringify(rows[0]));
 				$.ajax({
 					type: 'post',
 					url: 'showimg',
 					contentType: 'application/json',
 					data: JSON.stringify(rows[0]),
 					success: function(result){
-						alert(result);
+						//alert(result);
 						$("#imginfo-datagrid").datagrid("reload");
 					}
 				});
@@ -241,7 +241,7 @@
 		  	//隐藏图片
 		  	function hideImg(){
 		  		var rows = $('#imginfo-datagrid').datagrid('getSelections');
-		  		alert(JSON.stringify(rows[0]));
+		  		//alert(JSON.stringify(rows[0]));
 				$.ajax({
 					type: 'post',
 					url: 'hideimg',

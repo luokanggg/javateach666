@@ -34,6 +34,7 @@ import com.ctbu.javateach666.pojo.po.StudentInfoPO_zxy;
 import com.ctbu.javateach666.pojo.po.TeacherInfo_zxy;
 import com.ctbu.javateach666.service.interfac.PublishCourseServise_zxy;
 import com.ctbu.javateach666.service.interfac.TeacherInfoService_zxy;
+import com.ctbu.javateach666.util.BCryptEncoderUtil;
 
 @Controller
 public class ZXYTeacherInfoController {
@@ -184,7 +185,7 @@ public class ZXYTeacherInfoController {
 		}
 		String pass="";
 		pass=reqBo.getPass();
-		
+		pass= BCryptEncoderUtil.passwordEncoder(pass);
 		Map map=new HashMap<String, String>();
 		Map info=new HashMap<String, String>();
 		map.put("password", pass);

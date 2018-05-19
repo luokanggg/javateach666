@@ -41,4 +41,5 @@ public interface THCTeacherDao extends BaseDao<THCAccountPO>{
 	public List<THCTeachersInfoPO> getTeacherIntroduce();
 	//后台师资力量管理
 	public int updateTeaIntroduce(THCTeachersInfoPO tHCTeachersInfoPO);
+	public List<THCAccountListRspBO> getTeaListbyPage1(THCAccountListRepBO tHCAccountListRepBO);
 }

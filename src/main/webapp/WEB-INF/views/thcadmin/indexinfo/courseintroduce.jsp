@@ -207,7 +207,7 @@
 		  	//编辑课程简介
 		  	function editIntroduce(){
 		  		var rows = $('#introduceinfo-datagrid').datagrid('getSelections');
-		  		alert(JSON.stringify(rows[0]));
+		  		//alert(JSON.stringify(rows[0]));
 		        $('#addintroduce-dialog').dialog({
 		            closed: false,
 		            modal: true,

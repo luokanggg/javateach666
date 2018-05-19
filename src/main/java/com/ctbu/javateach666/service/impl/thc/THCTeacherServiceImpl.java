@@ -160,10 +160,8 @@ public class THCTeacherServiceImpl extends BaseServiceImpl<THCTeacherDao, THCAcc
 			File myimg = new File(savePath, imgname);
 			file.transferTo(myimg);
 		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		tHCTeachersInfoPO.setTeaimage(imgurl);
@@ -183,6 +181,26 @@ public class THCTeacherServiceImpl extends BaseServiceImpl<THCTeacherDao, THCAcc
 	@Override
 	public THCTeachersInfoPO checkTeano(String teano) {
 		return tHCTeacherDao.checkTeano(teano);
+	}
+
+
+
+	@Override
+	public PageInfoBo<THCAccountListRspBO> getTeaList1(THCAccountListRepBO tHCAccountListRepBO) {
+		//定义出参
+		PageInfoBo<THCAccountListRspBO> rsp = new PageInfoBo<THCAccountListRspBO>();
+		int page = 0;
+		page = ((tHCAccountListRepBO).getPage() - 1) * tHCAccountListRepBO.getRows();
+		tHCAccountListRepBO.setPage(page);
+		int total = tHCTeacherDao.getTeaTotal(tHCAccountListRepBO);
+		System.out.println("total"+total);
+		if(total < 1)
+			return rsp;
+		List<THCAccountListRspBO> list = tHCTeacherDao.getTeaListbyPage1(tHCAccountListRepBO);
+		System.out.println(list);
+		rsp.setRows(list);
+		rsp.setTotal(total);
+		return rsp;
 	}
 
 }

@@ -116,7 +116,7 @@ public class ZXYPublishCourseController {
 		Course_zxy course=publishcourse.getCourseById(id);
 		String coursename=course.getCouname();
 		teacouBo.setCouname(coursename);
-		
+		teacouBo.setCouid(id); 
 		//先判断分配的教师课程信息是否存在
 		int tag=0;
 		tag=publishcourse.Is_HaveTeaCou(teacouBo);

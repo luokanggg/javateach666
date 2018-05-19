@@ -38,27 +38,19 @@
 		FROM stucourse a
 		<include refid="StuCourseJoins"/>
 		<where>
+		1 = 1
 		 <if test="course != null and course.id != null and course.id !=''">
-		  a.couid = #{course.id}
+		  and a.couid = #{course.id}
 		 </if>
 		 <if test="stuid != null and stuid !=''">
-		  a.stuid = #{stuid}
+		  and a.stuid = #{stuid}
 		 </if>
 		</where>
 	</select>
 	
 	<update id="update">
 		UPDATE stucourse SET 	
-			stuid = #{stuid},
-			teacourseid = #{teacourseid},
-			coutime = #{coutime},
-			couhour = #{couhour},
-			coufhour = #{coufhour},
 			score = #{score},
-			evaluate = #{evaluate},
-			teaname = #{teaname},
-			couname = #{couname},
-			couid = #{couid},
 			rescore = #{rescore}
 		WHERE id = #{id}
 	</update>

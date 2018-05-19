@@ -30,8 +30,8 @@
   </select>
   
   <insert id="insertTeaCourse" parameterType="com.ctbu.javateach666.pojo.bo.TeacourseBo_zxy">
-  INSERT INTO teacourse(teaid,couname,couyear,semester,counumber,couaddress,alcounumber) 
-  VALUES(#{teaid},#{couname},#{couyear},#{semester},#{counumber},#{couaddress},#{alcounumber});
+  INSERT INTO teacourse(teaid,couname,couyear,semester,counumber,couaddress,alcounumber,couid) 
+  VALUES(#{teaid},#{couname},#{couyear},#{semester},#{counumber},#{couaddress},#{alcounumber},#{couid});
   </insert>
   <select id="Is_HaveTeaCou" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.TeacourseBo_zxy">
   

@@ -22,7 +22,17 @@
 					<ul>
 						<li>
 							<span>欢迎您：</span>
-							<span><security:authentication property="principal.username" />同学</span>
+							<span><security:authentication property="principal.username" />
+							<security:authorize ifAnyGranted="STUDENT" >
+							同学
+							</security:authorize>
+							<security:authorize ifAnyGranted="TEACHER" >
+							老师
+							</security:authorize>
+							<security:authorize ifAnyGranted="ADMIN" >
+							管理员
+							</security:authorize>
+							</span>
 						</li>
 						<li>
 							<a href="logout">退出</a>
@@ -448,7 +458,15 @@
 		<!--中间-->
 		<div class="center">
 			<div>
-				<iframe name="_son" src="mynoticelist"  width="98%" height="543px" style="margin: 0px 12px;" scrolling="no" frameborder="0"></iframe>
+				<security:authorize ifAnyGranted="STUDENT" >
+					<iframe name="_son" src="mynoticelist"  width="98%" height="543px" style="margin: 0px 12px;" scrolling="no" frameborder="0"></iframe>
+				</security:authorize>
+				<security:authorize ifAnyGranted="TEACHER" >
+					<iframe name="_son" src="lookmynotice"  width="98%" height="543px" style="margin: 0px 12px;" scrolling="no" frameborder="0"></iframe>
+				</security:authorize>
+				<security:authorize ifAnyGranted="ADMIN" >
+					<iframe name="_son" src="admininfo"  width="98%" height="543px" style="margin: 0px 12px;" scrolling="no" frameborder="0"></iframe>
+				</security:authorize>
 			</div>
 		</div>
 		<!--底部-->

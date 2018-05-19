@@ -29,7 +29,7 @@
                 <form id="choice-search-form" style="display: inline-block">
 			                        学年：<select id="couyear" class="easyui-combobox" name="couyear" style="width:70px;">   
     					<c:forEach items="${diccouyear}" var="se">
-    						<option  value="${se.value }" >${se.value }</option>
+    						<option  value="${se.dvalue }" >${se.dvalue }</option>
     					</c:forEach>     
     			   </select> &nbsp;&nbsp; &nbsp;  &nbsp;         
 			   学期：<select id="semester" class="easyui-combobox" name="semester" style="width:70px;">   

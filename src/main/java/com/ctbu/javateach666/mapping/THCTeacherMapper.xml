@@ -20,6 +20,22 @@
   	limit #{page}, #{rows}
   </select>
   
+    <select id="getTeaListbyPage1" resultType="map" parameterType = "com.ctbu.javateach666.pojo.bo.thcbo.THCAccountListRepBO">
+  	select ac.username, tea.*
+  	from account ac, authorities au, teachersinfo tea
+  	where 1=1
+  	and ac.username = au.username
+  	and au.authorities = "TEACHER"
+  	and ac.userdetailid = tea.id
+  	<if test="username != null and username != ''">
+  		and ac.username like concat('%',#{username},'%')
+  	</if>
+  	<if test="teaname != null and teaname != ''">
+  		and tea.teaname like concat('%',#{teaname},'%')
+  	</if>
+  	limit #{page}, #{rows}
+  </select>
+  
   <select id="getTeaTotal" resultType="int" parameterType="com.ctbu.javateach666.pojo.bo.thcbo.THCAccountListRepBO">
   	select count(*)
   	from account ac, authorities au, teachersinfo tea

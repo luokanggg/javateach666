@@ -202,7 +202,7 @@
 		  	//编辑课程简介
 		  	function editMaterials(){
 		  		var rows = $('#materialsinfo-datagrid').datagrid('getSelections');
-		  		alert(JSON.stringify(rows[0]));
+		  		//alert(JSON.stringify(rows[0]));
 		        $('#addmaterials-dialog').dialog({
 		            closed: false,
 		            modal: true,

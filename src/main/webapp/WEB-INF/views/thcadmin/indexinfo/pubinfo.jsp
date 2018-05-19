@@ -230,7 +230,7 @@
 		  //编辑公告
 		  	function editPubs(){
 		  		var rows = $('#pubinfo-datagrid').datagrid('getSelections');
-		  		alert(JSON.stringify(rows[0]));
+		  		//alert(JSON.stringify(rows[0]));
 		  		//$('#addnews-form').form('clear');
 		        $('#addpubs-dialog').dialog({
 		            closed: false,

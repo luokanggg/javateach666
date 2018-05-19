@@ -314,7 +314,7 @@
 		  	//编辑教师账户
 		  	function editStu(){
 		  		var rows = $('#stuinfo-datagrid').datagrid('getSelections');
-		  		alert(JSON.stringify(rows[0]));
+		  		//alert(JSON.stringify(rows[0]));
 		  		//$('#addnews-form').form('clear');
 		        $('#addstu-dialog').dialog({
 		            closed: false,

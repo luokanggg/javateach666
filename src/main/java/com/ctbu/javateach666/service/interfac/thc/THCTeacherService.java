@@ -44,4 +44,5 @@ public interface THCTeacherService extends BaseService<THCTeacherDao, THCAccount
 	public List<THCTeachersInfoPO> getTeacherIntroduce();
 	//后台师资力量管理
 	public int updateTeacherIntroduce(CommonsMultipartFile file, HttpServletRequest request);
+	public PageInfoBo<THCAccountListRspBO> getTeaList1(THCAccountListRepBO tHCAccountListRepBO);
 }

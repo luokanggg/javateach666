@@ -331,19 +331,21 @@ public class ExamController {
         }
         Achievement achievement = AchievementService.get(Integer.valueOf(scoreId));
         achievement.setSubjectiveScore(score);
-        achievement.setScore(achievement.getScore()+score);
+        achievement.setScore(Integer.valueOf(achievement.getScore())+score);
         int row2 = AchievementService.update(achievement); // 保存分数信息
         
         // 保存到学生课程表中
         StuCourse stuCourse = new StuCourse();
         stuCourse.setStuid(achievement.getStuId());
         stuCourse.setCourse(achievement.getCourse());
+//        stuCourse.setScore(achievement.getScore());
+//        stuCourse.setRescore(achievement.getScore());
         List<StuCourse> findList = StuCourseService.findList(stuCourse);
         if(CollectionUtils.isNotBlank(findList)) {
         	stuCourse = findList.get(0);
         }
-        stuCourse.setScore(achievement.getScore()+score);
-        stuCourse.setRescore(achievement.getScore()+score);
+        stuCourse.setScore(achievement.getScore());
+        stuCourse.setRescore(achievement.getScore());
         int row3 = StuCourseService.update(stuCourse);
         
 		return row1 == 1 && row2 == 1 && row3 == 1 ? "OK" : "NO";

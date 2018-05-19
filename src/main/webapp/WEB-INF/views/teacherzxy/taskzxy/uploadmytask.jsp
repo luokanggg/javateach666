@@ -149,7 +149,6 @@ margin-right: auto;
 	 $(function(){
 		 
 		var mess=${mess};
-		alert(mess);
 		if(mess=='8888'){
 			$(".form1").text("");
 			$.messager.confirm({

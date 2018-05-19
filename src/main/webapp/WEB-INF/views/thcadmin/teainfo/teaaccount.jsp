@@ -299,7 +299,7 @@
 		  	//编辑教师账户
 		  	function editTea(){
 		  		var rows = $('#teainfo-datagrid').datagrid('getSelections');
-		  		alert(JSON.stringify(rows[0]));
+		  		//alert(JSON.stringify(rows[0]));
 		  		//$('#addnews-form').form('clear');
 		        $('#addtea-dialog').dialog({
 		            closed: false,

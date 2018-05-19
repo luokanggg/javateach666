@@ -27,7 +27,7 @@
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               	  学年：<select id="classyear" class="easyui-combobox" name="couyear" style="width:60px;">   
     					<c:forEach items="${diccouyear}" var="se">
-    						<option  value="${se.value }" >${se.value }</option>
+    						<option  value="${se.dvalue }" >${se.dvalue }</option>
     					</c:forEach>     
     			   </select> &nbsp;&nbsp; &nbsp;
     			班级：<select id="classid" class="easyui-combobox" name="classid" style="width:110px;">   
